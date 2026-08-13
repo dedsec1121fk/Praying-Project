@@ -1,0 +1,115 @@
+name: Worldwide Prayer Cycle
+
+on:
+  schedule:
+    # Quarter-hour UTC checks support capital timezones with :00, :30 and :45 offsets.
+    # The reconstruction job itself runs only when the selected capital's local 03:00
+    # on Sunday, Wednesday or Friday is due.
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: praying-project-worldwide-prayer-cycle
+  cancel-in-progress: false
+
+jobs:
+  worldwide-prayer-cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Configure Git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Validate worldwide country coverage
+        run: python scripts/select_country.py validate
+
+      - name: Select country and check its capital time
+        id: schedule_gate
+        run: python scripts/select_country.py check --github-output "$GITHUB_OUTPUT"
+
+      - name: Persist the new daily random country selection
+        if: steps.schedule_gate.outputs.state_changed == 'true'
+        run: |
+          git add .prayer-country-state.json
+          git commit -m "prayer cycle: select ${{ steps.schedule_gate.outputs.country }}" || true
+          git push
+
+      - name: Show selected capital target
+        run: |
+          echo "Country: ${{ steps.schedule_gate.outputs.country }}"
+          echo "Capital: ${{ steps.schedule_gate.outputs.capital }}"
+          echo "Timezone: ${{ steps.schedule_gate.outputs.timezone }}"
+          echo "Target local time: ${{ steps.schedule_gate.outputs.target_local }}"
+          echo "Target UTC: ${{ steps.schedule_gate.outputs.target_utc }}"
+          echo "Run now: ${{ steps.schedule_gate.outputs.should_run }}"
+
+      - name: Decode and reconstruct prayers exactly 33 times
+        if: steps.schedule_gate.outputs.should_run == 'true'
+        run: python scripts/reconstruct.py generate
+
+      - name: Verify generated README numbering
+        if: steps.schedule_gate.outputs.should_run == 'true'
+        run: |
+          test -f README.md
+          for i in $(seq 1 33); do
+            test -f "README_${i}.md"
+          done
+          COUNT="$(find . -maxdepth 1 -type f -name 'README_*.md' | wc -l | tr -d ' ')"
+          test "$COUNT" = "33"
+
+      - name: Publish README_1.md through README_33.md
+        if: steps.schedule_gate.outputs.should_run == 'true'
+        run: |
+          python scripts/select_country.py mark-run --target-id '${{ steps.schedule_gate.outputs.target_id }}'
+          git add .prayer-country-state.json README_*.md
+          git commit -m "prayer cycle: publish 33 reconstructions for ${{ steps.schedule_gate.outputs.country }}"
+          git push
+          python - <<'PY'
+          import time
+          from pathlib import Path
+          Path('/tmp/praying-published-at').write_text(f'{time.time():.9f}\n', encoding='ascii')
+          PY
+
+      - name: Prepare deletion while generated READMEs stay published
+        if: steps.schedule_gate.outputs.should_run == 'true'
+        run: |
+          python scripts/reconstruct.py cleanup
+          test -f README.md
+          for i in $(seq 1 33); do
+            test ! -e "README_${i}.md"
+          done
+          git add -A
+          git commit -m "prayer cycle: remove temporary reconstructions"
+
+      - name: Hold publication until exactly 33 minutes after publish step
+        if: steps.schedule_gate.outputs.should_run == 'true'
+        run: |
+          python - <<'PY'
+          import time
+          from pathlib import Path
+          published_at = float(Path('/tmp/praying-published-at').read_text(encoding='ascii').strip())
+          target = published_at + (33 * 60)
+          remaining = target - time.time()
+          if remaining > 0:
+              time.sleep(remaining)
+          PY
+
+      - name: Push prepared deletion after the 33-minute target
+        if: steps.schedule_gate.outputs.should_run == 'true'
+        run: git push

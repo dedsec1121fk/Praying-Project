@@ -1,0 +1,1172 @@
+[
+  {
+    "iso2": "DZ",
+    "country": "Algeria",
+    "capital": "Algiers",
+    "timezone": "Africa/Algiers"
+  },
+  {
+    "iso2": "AO",
+    "country": "Angola",
+    "capital": "Luanda",
+    "timezone": "Africa/Luanda"
+  },
+  {
+    "iso2": "BJ",
+    "country": "Benin",
+    "capital": "Porto-Novo",
+    "timezone": "Africa/Porto-Novo"
+  },
+  {
+    "iso2": "BW",
+    "country": "Botswana",
+    "capital": "Gaborone",
+    "timezone": "Africa/Gaborone"
+  },
+  {
+    "iso2": "BF",
+    "country": "Burkina Faso",
+    "capital": "Ouagadougou",
+    "timezone": "Africa/Ouagadougou"
+  },
+  {
+    "iso2": "BI",
+    "country": "Burundi",
+    "capital": "Gitega",
+    "timezone": "Africa/Bujumbura"
+  },
+  {
+    "iso2": "CV",
+    "country": "Cabo Verde",
+    "capital": "Praia",
+    "timezone": "Atlantic/Cape_Verde"
+  },
+  {
+    "iso2": "CM",
+    "country": "Cameroon",
+    "capital": "Yaoundé",
+    "timezone": "Africa/Douala"
+  },
+  {
+    "iso2": "CF",
+    "country": "Central African Republic",
+    "capital": "Bangui",
+    "timezone": "Africa/Bangui"
+  },
+  {
+    "iso2": "TD",
+    "country": "Chad",
+    "capital": "N'Djamena",
+    "timezone": "Africa/Ndjamena"
+  },
+  {
+    "iso2": "KM",
+    "country": "Comoros",
+    "capital": "Moroni",
+    "timezone": "Indian/Comoro"
+  },
+  {
+    "iso2": "CD",
+    "country": "Democratic Republic of the Congo",
+    "capital": "Kinshasa",
+    "timezone": "Africa/Kinshasa"
+  },
+  {
+    "iso2": "CG",
+    "country": "Republic of the Congo",
+    "capital": "Brazzaville",
+    "timezone": "Africa/Brazzaville"
+  },
+  {
+    "iso2": "CI",
+    "country": "Côte d’Ivoire",
+    "capital": "Yamoussoukro",
+    "timezone": "Africa/Abidjan"
+  },
+  {
+    "iso2": "DJ",
+    "country": "Djibouti",
+    "capital": "Djibouti",
+    "timezone": "Africa/Djibouti"
+  },
+  {
+    "iso2": "EG",
+    "country": "Egypt",
+    "capital": "Cairo",
+    "timezone": "Africa/Cairo"
+  },
+  {
+    "iso2": "GQ",
+    "country": "Equatorial Guinea",
+    "capital": "Malabo",
+    "timezone": "Africa/Malabo"
+  },
+  {
+    "iso2": "ER",
+    "country": "Eritrea",
+    "capital": "Asmara",
+    "timezone": "Africa/Asmara"
+  },
+  {
+    "iso2": "SZ",
+    "country": "Eswatini",
+    "capital": "Lobamba",
+    "timezone": "Africa/Mbabane"
+  },
+  {
+    "iso2": "ET",
+    "country": "Ethiopia",
+    "capital": "Addis Ababa",
+    "timezone": "Africa/Addis_Ababa"
+  },
+  {
+    "iso2": "GA",
+    "country": "Gabon",
+    "capital": "Libreville",
+    "timezone": "Africa/Libreville"
+  },
+  {
+    "iso2": "GM",
+    "country": "Gambia",
+    "capital": "Banjul",
+    "timezone": "Africa/Banjul"
+  },
+  {
+    "iso2": "GH",
+    "country": "Ghana",
+    "capital": "Accra",
+    "timezone": "Africa/Accra"
+  },
+  {
+    "iso2": "GN",
+    "country": "Guinea",
+    "capital": "Conakry",
+    "timezone": "Africa/Conakry"
+  },
+  {
+    "iso2": "GW",
+    "country": "Guinea-Bissau",
+    "capital": "Bissau",
+    "timezone": "Africa/Bissau"
+  },
+  {
+    "iso2": "KE",
+    "country": "Kenya",
+    "capital": "Nairobi",
+    "timezone": "Africa/Nairobi"
+  },
+  {
+    "iso2": "LS",
+    "country": "Lesotho",
+    "capital": "Maseru",
+    "timezone": "Africa/Maseru"
+  },
+  {
+    "iso2": "LR",
+    "country": "Liberia",
+    "capital": "Monrovia",
+    "timezone": "Africa/Monrovia"
+  },
+  {
+    "iso2": "LY",
+    "country": "Libya",
+    "capital": "Tripoli",
+    "timezone": "Africa/Tripoli"
+  },
+  {
+    "iso2": "MG",
+    "country": "Madagascar",
+    "capital": "Antananarivo",
+    "timezone": "Indian/Antananarivo"
+  },
+  {
+    "iso2": "MW",
+    "country": "Malawi",
+    "capital": "Lilongwe",
+    "timezone": "Africa/Blantyre"
+  },
+  {
+    "iso2": "ML",
+    "country": "Mali",
+    "capital": "Bamako",
+    "timezone": "Africa/Bamako"
+  },
+  {
+    "iso2": "MR",
+    "country": "Mauritania",
+    "capital": "Nouakchott",
+    "timezone": "Africa/Nouakchott"
+  },
+  {
+    "iso2": "MU",
+    "country": "Mauritius",
+    "capital": "Port Louis",
+    "timezone": "Indian/Mauritius"
+  },
+  {
+    "iso2": "MA",
+    "country": "Morocco",
+    "capital": "Rabat",
+    "timezone": "Africa/Casablanca"
+  },
+  {
+    "iso2": "MZ",
+    "country": "Mozambique",
+    "capital": "Maputo",
+    "timezone": "Africa/Maputo"
+  },
+  {
+    "iso2": "NA",
+    "country": "Namibia",
+    "capital": "Windhoek",
+    "timezone": "Africa/Windhoek"
+  },
+  {
+    "iso2": "NE",
+    "country": "Niger",
+    "capital": "Niamey",
+    "timezone": "Africa/Niamey"
+  },
+  {
+    "iso2": "NG",
+    "country": "Nigeria",
+    "capital": "Abuja",
+    "timezone": "Africa/Lagos"
+  },
+  {
+    "iso2": "RW",
+    "country": "Rwanda",
+    "capital": "Kigali",
+    "timezone": "Africa/Kigali"
+  },
+  {
+    "iso2": "ST",
+    "country": "Sao Tome and Principe",
+    "capital": "São Tomé",
+    "timezone": "Africa/Sao_Tome"
+  },
+  {
+    "iso2": "SN",
+    "country": "Senegal",
+    "capital": "Dakar",
+    "timezone": "Africa/Dakar"
+  },
+  {
+    "iso2": "SC",
+    "country": "Seychelles",
+    "capital": "Victoria",
+    "timezone": "Indian/Mahe"
+  },
+  {
+    "iso2": "SL",
+    "country": "Sierra Leone",
+    "capital": "Freetown",
+    "timezone": "Africa/Freetown"
+  },
+  {
+    "iso2": "SO",
+    "country": "Somalia",
+    "capital": "Mogadishu",
+    "timezone": "Africa/Mogadishu"
+  },
+  {
+    "iso2": "ZA",
+    "country": "South Africa",
+    "capital": "Pretoria",
+    "timezone": "Africa/Johannesburg"
+  },
+  {
+    "iso2": "SS",
+    "country": "South Sudan",
+    "capital": "Juba",
+    "timezone": "Africa/Juba"
+  },
+  {
+    "iso2": "SD",
+    "country": "Sudan",
+    "capital": "Khartoum",
+    "timezone": "Africa/Khartoum"
+  },
+  {
+    "iso2": "TZ",
+    "country": "Tanzania",
+    "capital": "Dodoma",
+    "timezone": "Africa/Dar_es_Salaam"
+  },
+  {
+    "iso2": "TG",
+    "country": "Togo",
+    "capital": "Lomé",
+    "timezone": "Africa/Lome"
+  },
+  {
+    "iso2": "TN",
+    "country": "Tunisia",
+    "capital": "Tunis",
+    "timezone": "Africa/Tunis"
+  },
+  {
+    "iso2": "UG",
+    "country": "Uganda",
+    "capital": "Kampala",
+    "timezone": "Africa/Kampala"
+  },
+  {
+    "iso2": "ZM",
+    "country": "Zambia",
+    "capital": "Lusaka",
+    "timezone": "Africa/Lusaka"
+  },
+  {
+    "iso2": "ZW",
+    "country": "Zimbabwe",
+    "capital": "Harare",
+    "timezone": "Africa/Harare"
+  },
+  {
+    "iso2": "AF",
+    "country": "Afghanistan",
+    "capital": "Kabul",
+    "timezone": "Asia/Kabul"
+  },
+  {
+    "iso2": "AM",
+    "country": "Armenia",
+    "capital": "Yerevan",
+    "timezone": "Asia/Yerevan"
+  },
+  {
+    "iso2": "AZ",
+    "country": "Azerbaijan",
+    "capital": "Baku",
+    "timezone": "Asia/Baku"
+  },
+  {
+    "iso2": "BH",
+    "country": "Bahrain",
+    "capital": "Manama",
+    "timezone": "Asia/Bahrain"
+  },
+  {
+    "iso2": "BD",
+    "country": "Bangladesh",
+    "capital": "Dhaka",
+    "timezone": "Asia/Dhaka"
+  },
+  {
+    "iso2": "BT",
+    "country": "Bhutan",
+    "capital": "Thimphu",
+    "timezone": "Asia/Thimphu"
+  },
+  {
+    "iso2": "BN",
+    "country": "Brunei",
+    "capital": "Bandar Seri Begawan",
+    "timezone": "Asia/Brunei"
+  },
+  {
+    "iso2": "KH",
+    "country": "Cambodia",
+    "capital": "Phnom Penh",
+    "timezone": "Asia/Phnom_Penh"
+  },
+  {
+    "iso2": "CN",
+    "country": "China",
+    "capital": "Beijing",
+    "timezone": "Asia/Shanghai"
+  },
+  {
+    "iso2": "CY",
+    "country": "Cyprus",
+    "capital": "Nicosia",
+    "timezone": "Asia/Nicosia"
+  },
+  {
+    "iso2": "GE",
+    "country": "Georgia",
+    "capital": "Tbilisi",
+    "timezone": "Asia/Tbilisi"
+  },
+  {
+    "iso2": "IN",
+    "country": "India",
+    "capital": "New Delhi",
+    "timezone": "Asia/Kolkata"
+  },
+  {
+    "iso2": "ID",
+    "country": "Indonesia",
+    "capital": "Jakarta",
+    "timezone": "Asia/Jakarta"
+  },
+  {
+    "iso2": "IR",
+    "country": "Iran",
+    "capital": "Tehran",
+    "timezone": "Asia/Tehran"
+  },
+  {
+    "iso2": "IQ",
+    "country": "Iraq",
+    "capital": "Baghdad",
+    "timezone": "Asia/Baghdad"
+  },
+  {
+    "iso2": "IL",
+    "country": "Israel",
+    "capital": "Jerusalem",
+    "timezone": "Asia/Jerusalem"
+  },
+  {
+    "iso2": "JP",
+    "country": "Japan",
+    "capital": "Tokyo",
+    "timezone": "Asia/Tokyo"
+  },
+  {
+    "iso2": "JO",
+    "country": "Jordan",
+    "capital": "Amman",
+    "timezone": "Asia/Amman"
+  },
+  {
+    "iso2": "KZ",
+    "country": "Kazakhstan",
+    "capital": "Astana",
+    "timezone": "Asia/Almaty"
+  },
+  {
+    "iso2": "KW",
+    "country": "Kuwait",
+    "capital": "Kuwait City",
+    "timezone": "Asia/Kuwait"
+  },
+  {
+    "iso2": "KG",
+    "country": "Kyrgyzstan",
+    "capital": "Bishkek",
+    "timezone": "Asia/Bishkek"
+  },
+  {
+    "iso2": "LA",
+    "country": "Laos",
+    "capital": "Vientiane",
+    "timezone": "Asia/Vientiane"
+  },
+  {
+    "iso2": "LB",
+    "country": "Lebanon",
+    "capital": "Beirut",
+    "timezone": "Asia/Beirut"
+  },
+  {
+    "iso2": "MY",
+    "country": "Malaysia",
+    "capital": "Kuala Lumpur",
+    "timezone": "Asia/Kuala_Lumpur"
+  },
+  {
+    "iso2": "MV",
+    "country": "Maldives",
+    "capital": "Malé",
+    "timezone": "Indian/Maldives"
+  },
+  {
+    "iso2": "MN",
+    "country": "Mongolia",
+    "capital": "Ulan Bator",
+    "timezone": "Asia/Ulaanbaatar"
+  },
+  {
+    "iso2": "MM",
+    "country": "Myanmar",
+    "capital": "Naypyidaw",
+    "timezone": "Asia/Yangon"
+  },
+  {
+    "iso2": "NP",
+    "country": "Nepal",
+    "capital": "Kathmandu",
+    "timezone": "Asia/Kathmandu"
+  },
+  {
+    "iso2": "KP",
+    "country": "North Korea",
+    "capital": "Pyongyang",
+    "timezone": "Asia/Pyongyang"
+  },
+  {
+    "iso2": "OM",
+    "country": "Oman",
+    "capital": "Muscat",
+    "timezone": "Asia/Muscat"
+  },
+  {
+    "iso2": "PK",
+    "country": "Pakistan",
+    "capital": "Islamabad",
+    "timezone": "Asia/Karachi"
+  },
+  {
+    "iso2": "PS",
+    "country": "Palestine",
+    "capital": "Ramallah",
+    "timezone": "Asia/Hebron"
+  },
+  {
+    "iso2": "PH",
+    "country": "Philippines",
+    "capital": "Manila",
+    "timezone": "Asia/Manila"
+  },
+  {
+    "iso2": "QA",
+    "country": "Qatar",
+    "capital": "Doha",
+    "timezone": "Asia/Qatar"
+  },
+  {
+    "iso2": "SA",
+    "country": "Saudi Arabia",
+    "capital": "Riyadh",
+    "timezone": "Asia/Riyadh"
+  },
+  {
+    "iso2": "SG",
+    "country": "Singapore",
+    "capital": "Singapore",
+    "timezone": "Asia/Singapore"
+  },
+  {
+    "iso2": "KR",
+    "country": "South Korea",
+    "capital": "Seoul",
+    "timezone": "Asia/Seoul"
+  },
+  {
+    "iso2": "LK",
+    "country": "Sri Lanka",
+    "capital": "Sri Jayawardenepura Kotte",
+    "timezone": "Asia/Colombo"
+  },
+  {
+    "iso2": "SY",
+    "country": "Syria",
+    "capital": "Damascus",
+    "timezone": "Asia/Damascus"
+  },
+  {
+    "iso2": "TJ",
+    "country": "Tajikistan",
+    "capital": "Dushanbe",
+    "timezone": "Asia/Dushanbe"
+  },
+  {
+    "iso2": "TH",
+    "country": "Thailand",
+    "capital": "Bangkok",
+    "timezone": "Asia/Bangkok"
+  },
+  {
+    "iso2": "TL",
+    "country": "Timor-Leste",
+    "capital": "Dili",
+    "timezone": "Asia/Dili"
+  },
+  {
+    "iso2": "TR",
+    "country": "Türkiye",
+    "capital": "Ankara",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "iso2": "TM",
+    "country": "Turkmenistan",
+    "capital": "Ashgabat",
+    "timezone": "Asia/Ashgabat"
+  },
+  {
+    "iso2": "AE",
+    "country": "United Arab Emirates",
+    "capital": "Abu Dhabi",
+    "timezone": "Asia/Dubai"
+  },
+  {
+    "iso2": "UZ",
+    "country": "Uzbekistan",
+    "capital": "Tashkent",
+    "timezone": "Asia/Tashkent"
+  },
+  {
+    "iso2": "VN",
+    "country": "Vietnam",
+    "capital": "Hanoi",
+    "timezone": "Asia/Ho_Chi_Minh"
+  },
+  {
+    "iso2": "YE",
+    "country": "Yemen",
+    "capital": "Sana'a",
+    "timezone": "Asia/Aden"
+  },
+  {
+    "iso2": "AL",
+    "country": "Albania",
+    "capital": "Tirana",
+    "timezone": "Europe/Tirane"
+  },
+  {
+    "iso2": "AD",
+    "country": "Andorra",
+    "capital": "Andorra la Vella",
+    "timezone": "Europe/Andorra"
+  },
+  {
+    "iso2": "AT",
+    "country": "Austria",
+    "capital": "Vienna",
+    "timezone": "Europe/Vienna"
+  },
+  {
+    "iso2": "BY",
+    "country": "Belarus",
+    "capital": "Minsk",
+    "timezone": "Europe/Minsk"
+  },
+  {
+    "iso2": "BE",
+    "country": "Belgium",
+    "capital": "Brussels",
+    "timezone": "Europe/Brussels"
+  },
+  {
+    "iso2": "BA",
+    "country": "Bosnia and Herzegovina",
+    "capital": "Sarajevo",
+    "timezone": "Europe/Sarajevo"
+  },
+  {
+    "iso2": "BG",
+    "country": "Bulgaria",
+    "capital": "Sofia",
+    "timezone": "Europe/Sofia"
+  },
+  {
+    "iso2": "HR",
+    "country": "Croatia",
+    "capital": "Zagreb",
+    "timezone": "Europe/Zagreb"
+  },
+  {
+    "iso2": "CZ",
+    "country": "Czechia",
+    "capital": "Prague",
+    "timezone": "Europe/Prague"
+  },
+  {
+    "iso2": "DK",
+    "country": "Denmark",
+    "capital": "Copenhagen",
+    "timezone": "Europe/Copenhagen"
+  },
+  {
+    "iso2": "EE",
+    "country": "Estonia",
+    "capital": "Tallinn",
+    "timezone": "Europe/Tallinn"
+  },
+  {
+    "iso2": "FI",
+    "country": "Finland",
+    "capital": "Helsinki",
+    "timezone": "Europe/Helsinki"
+  },
+  {
+    "iso2": "FR",
+    "country": "France",
+    "capital": "Paris",
+    "timezone": "Europe/Paris"
+  },
+  {
+    "iso2": "DE",
+    "country": "Germany",
+    "capital": "Berlin",
+    "timezone": "Europe/Berlin"
+  },
+  {
+    "iso2": "GR",
+    "country": "Greece",
+    "capital": "Athens",
+    "timezone": "Europe/Athens"
+  },
+  {
+    "iso2": "HU",
+    "country": "Hungary",
+    "capital": "Budapest",
+    "timezone": "Europe/Budapest"
+  },
+  {
+    "iso2": "IS",
+    "country": "Iceland",
+    "capital": "Reykjavik",
+    "timezone": "Atlantic/Reykjavik"
+  },
+  {
+    "iso2": "IE",
+    "country": "Ireland",
+    "capital": "Dublin",
+    "timezone": "Europe/Dublin"
+  },
+  {
+    "iso2": "IT",
+    "country": "Italy",
+    "capital": "Rome",
+    "timezone": "Europe/Rome"
+  },
+  {
+    "iso2": "LV",
+    "country": "Latvia",
+    "capital": "Riga",
+    "timezone": "Europe/Riga"
+  },
+  {
+    "iso2": "LI",
+    "country": "Liechtenstein",
+    "capital": "Vaduz",
+    "timezone": "Europe/Vaduz"
+  },
+  {
+    "iso2": "LT",
+    "country": "Lithuania",
+    "capital": "Vilnius",
+    "timezone": "Europe/Vilnius"
+  },
+  {
+    "iso2": "LU",
+    "country": "Luxembourg",
+    "capital": "Luxembourg",
+    "timezone": "Europe/Luxembourg"
+  },
+  {
+    "iso2": "MT",
+    "country": "Malta",
+    "capital": "Valletta",
+    "timezone": "Europe/Malta"
+  },
+  {
+    "iso2": "MD",
+    "country": "Moldova",
+    "capital": "Chișinău",
+    "timezone": "Europe/Chisinau"
+  },
+  {
+    "iso2": "MC",
+    "country": "Monaco",
+    "capital": "Monaco",
+    "timezone": "Europe/Monaco"
+  },
+  {
+    "iso2": "ME",
+    "country": "Montenegro",
+    "capital": "Podgorica",
+    "timezone": "Europe/Podgorica"
+  },
+  {
+    "iso2": "NL",
+    "country": "Netherlands",
+    "capital": "Amsterdam",
+    "timezone": "Europe/Amsterdam"
+  },
+  {
+    "iso2": "MK",
+    "country": "North Macedonia",
+    "capital": "Skopje",
+    "timezone": "Europe/Skopje"
+  },
+  {
+    "iso2": "NO",
+    "country": "Norway",
+    "capital": "Oslo",
+    "timezone": "Europe/Oslo"
+  },
+  {
+    "iso2": "PL",
+    "country": "Poland",
+    "capital": "Warsaw",
+    "timezone": "Europe/Warsaw"
+  },
+  {
+    "iso2": "PT",
+    "country": "Portugal",
+    "capital": "Lisbon",
+    "timezone": "Europe/Lisbon"
+  },
+  {
+    "iso2": "RO",
+    "country": "Romania",
+    "capital": "Bucharest",
+    "timezone": "Europe/Bucharest"
+  },
+  {
+    "iso2": "RU",
+    "country": "Russia",
+    "capital": "Moscow",
+    "timezone": "Europe/Moscow"
+  },
+  {
+    "iso2": "SM",
+    "country": "San Marino",
+    "capital": "City of San Marino",
+    "timezone": "Europe/San_Marino"
+  },
+  {
+    "iso2": "RS",
+    "country": "Serbia",
+    "capital": "Belgrade",
+    "timezone": "Europe/Belgrade"
+  },
+  {
+    "iso2": "SK",
+    "country": "Slovakia",
+    "capital": "Bratislava",
+    "timezone": "Europe/Bratislava"
+  },
+  {
+    "iso2": "SI",
+    "country": "Slovenia",
+    "capital": "Ljubljana",
+    "timezone": "Europe/Ljubljana"
+  },
+  {
+    "iso2": "ES",
+    "country": "Spain",
+    "capital": "Madrid",
+    "timezone": "Europe/Madrid"
+  },
+  {
+    "iso2": "SE",
+    "country": "Sweden",
+    "capital": "Stockholm",
+    "timezone": "Europe/Stockholm"
+  },
+  {
+    "iso2": "CH",
+    "country": "Switzerland",
+    "capital": "Bern",
+    "timezone": "Europe/Zurich"
+  },
+  {
+    "iso2": "UA",
+    "country": "Ukraine",
+    "capital": "Kyiv",
+    "timezone": "Europe/Kyiv"
+  },
+  {
+    "iso2": "GB",
+    "country": "United Kingdom",
+    "capital": "London",
+    "timezone": "Europe/London"
+  },
+  {
+    "iso2": "VA",
+    "country": "Vatican City",
+    "capital": "Vatican City",
+    "timezone": "Europe/Vatican"
+  },
+  {
+    "iso2": "AG",
+    "country": "Antigua and Barbuda",
+    "capital": "Saint John's",
+    "timezone": "America/Antigua"
+  },
+  {
+    "iso2": "AR",
+    "country": "Argentina",
+    "capital": "Buenos Aires",
+    "timezone": "America/Argentina/Buenos_Aires"
+  },
+  {
+    "iso2": "BS",
+    "country": "Bahamas",
+    "capital": "Nassau",
+    "timezone": "America/Nassau"
+  },
+  {
+    "iso2": "BB",
+    "country": "Barbados",
+    "capital": "Bridgetown",
+    "timezone": "America/Barbados"
+  },
+  {
+    "iso2": "BZ",
+    "country": "Belize",
+    "capital": "Belmopan",
+    "timezone": "America/Belize"
+  },
+  {
+    "iso2": "BO",
+    "country": "Bolivia",
+    "capital": "Sucre",
+    "timezone": "America/La_Paz"
+  },
+  {
+    "iso2": "BR",
+    "country": "Brazil",
+    "capital": "Brasília",
+    "timezone": "America/Sao_Paulo"
+  },
+  {
+    "iso2": "CA",
+    "country": "Canada",
+    "capital": "Ottawa",
+    "timezone": "America/Toronto"
+  },
+  {
+    "iso2": "CL",
+    "country": "Chile",
+    "capital": "Santiago",
+    "timezone": "America/Santiago"
+  },
+  {
+    "iso2": "CO",
+    "country": "Colombia",
+    "capital": "Bogotá",
+    "timezone": "America/Bogota"
+  },
+  {
+    "iso2": "CR",
+    "country": "Costa Rica",
+    "capital": "San José",
+    "timezone": "America/Costa_Rica"
+  },
+  {
+    "iso2": "CU",
+    "country": "Cuba",
+    "capital": "Havana",
+    "timezone": "America/Havana"
+  },
+  {
+    "iso2": "DM",
+    "country": "Dominica",
+    "capital": "Roseau",
+    "timezone": "America/Dominica"
+  },
+  {
+    "iso2": "DO",
+    "country": "Dominican Republic",
+    "capital": "Santo Domingo",
+    "timezone": "America/Santo_Domingo"
+  },
+  {
+    "iso2": "EC",
+    "country": "Ecuador",
+    "capital": "Quito",
+    "timezone": "America/Guayaquil"
+  },
+  {
+    "iso2": "SV",
+    "country": "El Salvador",
+    "capital": "San Salvador",
+    "timezone": "America/El_Salvador"
+  },
+  {
+    "iso2": "GD",
+    "country": "Grenada",
+    "capital": "St. George's",
+    "timezone": "America/Grenada"
+  },
+  {
+    "iso2": "GT",
+    "country": "Guatemala",
+    "capital": "Guatemala City",
+    "timezone": "America/Guatemala"
+  },
+  {
+    "iso2": "GY",
+    "country": "Guyana",
+    "capital": "Georgetown",
+    "timezone": "America/Guyana"
+  },
+  {
+    "iso2": "HT",
+    "country": "Haiti",
+    "capital": "Port-au-Prince",
+    "timezone": "America/Port-au-Prince"
+  },
+  {
+    "iso2": "HN",
+    "country": "Honduras",
+    "capital": "Tegucigalpa",
+    "timezone": "America/Tegucigalpa"
+  },
+  {
+    "iso2": "JM",
+    "country": "Jamaica",
+    "capital": "Kingston",
+    "timezone": "America/Jamaica"
+  },
+  {
+    "iso2": "MX",
+    "country": "Mexico",
+    "capital": "Mexico City",
+    "timezone": "America/Mexico_City"
+  },
+  {
+    "iso2": "NI",
+    "country": "Nicaragua",
+    "capital": "Managua",
+    "timezone": "America/Managua"
+  },
+  {
+    "iso2": "PA",
+    "country": "Panama",
+    "capital": "Panama City",
+    "timezone": "America/Panama"
+  },
+  {
+    "iso2": "PY",
+    "country": "Paraguay",
+    "capital": "Asunción",
+    "timezone": "America/Asuncion"
+  },
+  {
+    "iso2": "PE",
+    "country": "Peru",
+    "capital": "Lima",
+    "timezone": "America/Lima"
+  },
+  {
+    "iso2": "KN",
+    "country": "Saint Kitts and Nevis",
+    "capital": "Basseterre",
+    "timezone": "America/St_Kitts"
+  },
+  {
+    "iso2": "LC",
+    "country": "Saint Lucia",
+    "capital": "Castries",
+    "timezone": "America/St_Lucia"
+  },
+  {
+    "iso2": "VC",
+    "country": "Saint Vincent and the Grenadines",
+    "capital": "Kingstown",
+    "timezone": "America/St_Vincent"
+  },
+  {
+    "iso2": "SR",
+    "country": "Suriname",
+    "capital": "Paramaribo",
+    "timezone": "America/Paramaribo"
+  },
+  {
+    "iso2": "TT",
+    "country": "Trinidad and Tobago",
+    "capital": "Port of Spain",
+    "timezone": "America/Port_of_Spain"
+  },
+  {
+    "iso2": "US",
+    "country": "United States",
+    "capital": "Washington D.C.",
+    "timezone": "America/New_York"
+  },
+  {
+    "iso2": "UY",
+    "country": "Uruguay",
+    "capital": "Montevideo",
+    "timezone": "America/Montevideo"
+  },
+  {
+    "iso2": "VE",
+    "country": "Venezuela",
+    "capital": "Caracas",
+    "timezone": "America/Caracas"
+  },
+  {
+    "iso2": "AU",
+    "country": "Australia",
+    "capital": "Canberra",
+    "timezone": "Australia/Sydney"
+  },
+  {
+    "iso2": "FJ",
+    "country": "Fiji",
+    "capital": "Suva",
+    "timezone": "Pacific/Fiji"
+  },
+  {
+    "iso2": "KI",
+    "country": "Kiribati",
+    "capital": "South Tarawa",
+    "timezone": "Pacific/Tarawa"
+  },
+  {
+    "iso2": "MH",
+    "country": "Marshall Islands",
+    "capital": "Majuro",
+    "timezone": "Pacific/Majuro"
+  },
+  {
+    "iso2": "FM",
+    "country": "Micronesia",
+    "capital": "Palikir",
+    "timezone": "Pacific/Pohnpei"
+  },
+  {
+    "iso2": "NR",
+    "country": "Nauru",
+    "capital": "Yaren",
+    "timezone": "Pacific/Nauru"
+  },
+  {
+    "iso2": "NZ",
+    "country": "New Zealand",
+    "capital": "Wellington",
+    "timezone": "Pacific/Auckland"
+  },
+  {
+    "iso2": "PW",
+    "country": "Palau",
+    "capital": "Ngerulmud",
+    "timezone": "Pacific/Palau"
+  },
+  {
+    "iso2": "PG",
+    "country": "Papua New Guinea",
+    "capital": "Port Moresby",
+    "timezone": "Pacific/Port_Moresby"
+  },
+  {
+    "iso2": "WS",
+    "country": "Samoa",
+    "capital": "Apia",
+    "timezone": "Pacific/Apia"
+  },
+  {
+    "iso2": "SB",
+    "country": "Solomon Islands",
+    "capital": "Honiara",
+    "timezone": "Pacific/Guadalcanal"
+  },
+  {
+    "iso2": "TO",
+    "country": "Tonga",
+    "capital": "Nuku'alofa",
+    "timezone": "Pacific/Tongatapu"
+  },
+  {
+    "iso2": "TV",
+    "country": "Tuvalu",
+    "capital": "Funafuti",
+    "timezone": "Pacific/Funafuti"
+  },
+  {
+    "iso2": "VU",
+    "country": "Vanuatu",
+    "capital": "Port Vila",
+    "timezone": "Pacific/Efate"
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "project": "Praying Project",
+  "source": "Orthodox_Prayers_GR_EN_CLEAN.txt (user-provided)",
+  "fixed_parts_per_language": 33,
+  "fixed_reconstruction_passes": 33,
+  "fixed_temporary_readmes": 33,
+  "languages": {
+    "Greek": {
+      "characters": 589,
+      "utf8_bytes": 1041,
+      "sha256": "fdee1b8dc37e13f3d5b458ade9d15783ef27f41c4e714b65d8b565b099077d57",
+      "encoded_files_sha256": "092c45152ae6e3171da0bcc5ee70c3fdf09a56265ed7c783579a6acfe8db5612"
+    },
+    "English": {
+      "characters": 525,
+      "utf8_bytes": 527,
+      "sha256": "3dfb6322f94417a9aafcbb980e15bff6e6da6b3e590b19bc1b8a73f309fb93ab",
+      "encoded_files_sha256": "cd51442b3f0768fe7031dd89c4340d54ad91076f5a15ef5d450c473f7e146986"
+    }
+  },
+  "encoding": {
+    "algorithm": "Base85 (Python base64.b85encode / b85decode)",
+    "layers": 33,
+    "decoding_rounds_required_before_each_reconstruction": 33
+  }
+}
