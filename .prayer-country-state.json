@@ -193,15 +193,14 @@
     "CZ",
     "MK",
     "MT",
-    "IS",
-    "KE"
+    "IS"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Victoria",
-    "country": "Seychelles",
-    "iso2": "SC",
-    "timezone": "Indian/Mahe"
+    "capital": "Nairobi",
+    "country": "Kenya",
+    "iso2": "KE",
+    "timezone": "Africa/Nairobi"
   },
-  "selection_period": "2026-08-14"
+  "selection_period": "2026-08-15"
 }
