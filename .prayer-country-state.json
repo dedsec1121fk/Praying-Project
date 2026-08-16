@@ -192,15 +192,14 @@
     "MV",
     "CZ",
     "MK",
-    "MT",
-    "IS"
+    "MT"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Nairobi",
-    "country": "Kenya",
-    "iso2": "KE",
-    "timezone": "Africa/Nairobi"
+    "capital": "Reykjavik",
+    "country": "Iceland",
+    "iso2": "IS",
+    "timezone": "Atlantic/Reykjavik"
   },
-  "selection_period": "2026-08-15"
+  "selection_period": "2026-08-16"
 }
