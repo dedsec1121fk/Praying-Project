@@ -2,18 +2,24 @@ name: Worldwide Prayer Cycle
 
 on:
   schedule:
-    # Quarter-hour UTC checks support capital timezones with :00, :30 and :45 offsets.
-    # The reconstruction job itself runs only when the selected capital's local 03:00
-    # on Sunday, Wednesday or Friday is due.
-    - cron: '*/15 * * * *'
+    # A local 03:00 can only fall between 13:00 UTC on the previous day and
+    # 15:00 UTC on the named local day (civil offsets span UTC-12..UTC+14).
+    # Checking only these windows preserves every valid quarter-hour target while
+    # cutting scheduled runs by roughly half.
+    - cron: '*/15 13-23 * * 2,4,6'  # Tue/Thu/Sat UTC -> Wed/Fri/Sun local targets
+    - cron: '*/15 0-15 * * 0,3,5'   # Sun/Wed/Fri UTC -> same local target day
+
+    # Keep the once-per-day country deck advancing even on UTC days that do not
+    # need a target check. Wed/Fri/Sun already include 12:00 above.
+    - cron: '0 12 * * 1,2,4,6'
   workflow_dispatch:
 
 permissions:
   contents: write
 
-concurrency:
-  group: praying-project-worldwide-prayer-cycle
-  cancel-in-progress: false
+# No workflow-level queue: the 33-minute publication run records its target
+# before sleeping, so later lightweight checks safely see that it already ran.
+# This avoids stacking two or three scheduled runs behind the 33-minute hold.
 
 jobs:
   worldwide-prayer-cycle:
@@ -24,12 +30,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
+      - name: Confirm runner Python
+        run: python3 --version
 
       - name: Configure Git author
         run: |
