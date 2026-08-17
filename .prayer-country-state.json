@@ -191,15 +191,14 @@
     "SR",
     "MV",
     "CZ",
-    "MK",
-    "MT"
+    "MK"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Reykjavik",
-    "country": "Iceland",
-    "iso2": "IS",
-    "timezone": "Atlantic/Reykjavik"
+    "capital": "Valletta",
+    "country": "Malta",
+    "iso2": "MT",
+    "timezone": "Europe/Malta"
   },
-  "selection_period": "2026-08-16"
+  "selection_period": "2026-08-17"
 }
