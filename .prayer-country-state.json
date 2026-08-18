@@ -190,15 +190,14 @@
     "AT",
     "SR",
     "MV",
-    "CZ",
-    "MK"
+    "CZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Valletta",
-    "country": "Malta",
-    "iso2": "MT",
-    "timezone": "Europe/Malta"
+    "capital": "Skopje",
+    "country": "North Macedonia",
+    "iso2": "MK",
+    "timezone": "Europe/Skopje"
   },
-  "selection_period": "2026-08-17"
+  "selection_period": "2026-08-18"
 }
