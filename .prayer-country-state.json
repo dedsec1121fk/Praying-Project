@@ -189,15 +189,14 @@
     "EE",
     "AT",
     "SR",
-    "MV",
-    "CZ"
+    "MV"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Skopje",
-    "country": "North Macedonia",
-    "iso2": "MK",
-    "timezone": "Europe/Skopje"
+    "capital": "Prague",
+    "country": "Czechia",
+    "iso2": "CZ",
+    "timezone": "Europe/Prague"
   },
-  "selection_period": "2026-08-18"
+  "selection_period": "2026-08-19"
 }
