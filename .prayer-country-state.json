@@ -188,15 +188,14 @@
     "PK",
     "EE",
     "AT",
-    "SR",
-    "MV"
+    "SR"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Prague",
-    "country": "Czechia",
-    "iso2": "CZ",
-    "timezone": "Europe/Prague"
+    "capital": "Malé",
+    "country": "Maldives",
+    "iso2": "MV",
+    "timezone": "Indian/Maldives"
   },
-  "selection_period": "2026-08-19"
+  "selection_period": "2026-08-20"
 }
