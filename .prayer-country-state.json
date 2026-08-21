@@ -187,15 +187,14 @@
     "AD",
     "PK",
     "EE",
-    "AT",
-    "SR"
+    "AT"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Malé",
-    "country": "Maldives",
-    "iso2": "MV",
-    "timezone": "Indian/Maldives"
+    "capital": "Paramaribo",
+    "country": "Suriname",
+    "iso2": "SR",
+    "timezone": "America/Paramaribo"
   },
-  "selection_period": "2026-08-20"
+  "selection_period": "2026-08-21"
 }
