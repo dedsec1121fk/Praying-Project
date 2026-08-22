@@ -186,15 +186,14 @@
     "AG",
     "AD",
     "PK",
-    "EE",
-    "AT"
+    "EE"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Paramaribo",
-    "country": "Suriname",
-    "iso2": "SR",
-    "timezone": "America/Paramaribo"
+    "capital": "Vienna",
+    "country": "Austria",
+    "iso2": "AT",
+    "timezone": "Europe/Vienna"
   },
-  "selection_period": "2026-08-21"
+  "selection_period": "2026-08-22"
 }
