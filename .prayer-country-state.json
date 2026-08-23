@@ -185,15 +185,14 @@
     "KZ",
     "AG",
     "AD",
-    "PK",
-    "EE"
+    "PK"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Vienna",
-    "country": "Austria",
-    "iso2": "AT",
-    "timezone": "Europe/Vienna"
+    "capital": "Tallinn",
+    "country": "Estonia",
+    "iso2": "EE",
+    "timezone": "Europe/Tallinn"
   },
-  "selection_period": "2026-08-22"
+  "selection_period": "2026-08-23"
 }
