@@ -184,15 +184,14 @@
     "SG",
     "KZ",
     "AG",
-    "AD",
-    "PK"
+    "AD"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Tallinn",
-    "country": "Estonia",
-    "iso2": "EE",
-    "timezone": "Europe/Tallinn"
+    "capital": "Islamabad",
+    "country": "Pakistan",
+    "iso2": "PK",
+    "timezone": "Asia/Karachi"
   },
-  "selection_period": "2026-08-23"
+  "selection_period": "2026-08-24"
 }
