@@ -183,15 +183,14 @@
     "GB",
     "SG",
     "KZ",
-    "AG",
-    "AD"
+    "AG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Islamabad",
-    "country": "Pakistan",
-    "iso2": "PK",
-    "timezone": "Asia/Karachi"
+    "capital": "Andorra la Vella",
+    "country": "Andorra",
+    "iso2": "AD",
+    "timezone": "Europe/Andorra"
   },
-  "selection_period": "2026-08-24"
+  "selection_period": "2026-08-25"
 }
