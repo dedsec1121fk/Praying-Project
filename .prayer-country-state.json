@@ -182,15 +182,14 @@
     "CL",
     "GB",
     "SG",
-    "KZ",
-    "AG"
+    "KZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Andorra la Vella",
-    "country": "Andorra",
-    "iso2": "AD",
-    "timezone": "Europe/Andorra"
+    "capital": "Saint John's",
+    "country": "Antigua and Barbuda",
+    "iso2": "AG",
+    "timezone": "America/Antigua"
   },
-  "selection_period": "2026-08-25"
+  "selection_period": "2026-08-26"
 }
