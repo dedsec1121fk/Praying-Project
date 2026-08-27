@@ -181,15 +181,14 @@
     "SM",
     "CL",
     "GB",
-    "SG",
-    "KZ"
+    "SG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Saint John's",
-    "country": "Antigua and Barbuda",
-    "iso2": "AG",
-    "timezone": "America/Antigua"
+    "capital": "Astana",
+    "country": "Kazakhstan",
+    "iso2": "KZ",
+    "timezone": "Asia/Almaty"
   },
-  "selection_period": "2026-08-26"
+  "selection_period": "2026-08-27"
 }
