@@ -180,15 +180,14 @@
     "CR",
     "SM",
     "CL",
-    "GB",
-    "SG"
+    "GB"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Astana",
-    "country": "Kazakhstan",
-    "iso2": "KZ",
-    "timezone": "Asia/Almaty"
+    "capital": "Singapore",
+    "country": "Singapore",
+    "iso2": "SG",
+    "timezone": "Asia/Singapore"
   },
-  "selection_period": "2026-08-27"
+  "selection_period": "2026-08-28"
 }
