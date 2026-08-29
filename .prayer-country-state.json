@@ -179,15 +179,14 @@
     "WS",
     "CR",
     "SM",
-    "CL",
-    "GB"
+    "CL"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Singapore",
-    "country": "Singapore",
-    "iso2": "SG",
-    "timezone": "Asia/Singapore"
+    "capital": "London",
+    "country": "United Kingdom",
+    "iso2": "GB",
+    "timezone": "Europe/London"
   },
-  "selection_period": "2026-08-28"
+  "selection_period": "2026-08-29"
 }
