@@ -178,15 +178,14 @@
     "NG",
     "WS",
     "CR",
-    "SM",
-    "CL"
+    "SM"
   ],
   "schema": 1,
   "selected": {
-    "capital": "London",
-    "country": "United Kingdom",
-    "iso2": "GB",
-    "timezone": "Europe/London"
+    "capital": "Santiago",
+    "country": "Chile",
+    "iso2": "CL",
+    "timezone": "America/Santiago"
   },
-  "selection_period": "2026-08-29"
+  "selection_period": "2026-08-30"
 }
