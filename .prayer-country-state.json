@@ -177,15 +177,14 @@
     "SE",
     "NG",
     "WS",
-    "CR",
-    "SM"
+    "CR"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Santiago",
-    "country": "Chile",
-    "iso2": "CL",
-    "timezone": "America/Santiago"
+    "capital": "City of San Marino",
+    "country": "San Marino",
+    "iso2": "SM",
+    "timezone": "Europe/San_Marino"
   },
-  "selection_period": "2026-08-30"
+  "selection_period": "2026-08-31"
 }
