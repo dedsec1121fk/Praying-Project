@@ -176,15 +176,14 @@
     "NZ",
     "SE",
     "NG",
-    "WS",
-    "CR"
+    "WS"
   ],
   "schema": 1,
   "selected": {
-    "capital": "City of San Marino",
-    "country": "San Marino",
-    "iso2": "SM",
-    "timezone": "Europe/San_Marino"
+    "capital": "San José",
+    "country": "Costa Rica",
+    "iso2": "CR",
+    "timezone": "America/Costa_Rica"
   },
-  "selection_period": "2026-08-31"
+  "selection_period": "2026-09-01"
 }
