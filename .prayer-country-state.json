@@ -175,15 +175,14 @@
     "MH",
     "NZ",
     "SE",
-    "NG",
-    "WS"
+    "NG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "San José",
-    "country": "Costa Rica",
-    "iso2": "CR",
-    "timezone": "America/Costa_Rica"
+    "capital": "Apia",
+    "country": "Samoa",
+    "iso2": "WS",
+    "timezone": "Pacific/Apia"
   },
-  "selection_period": "2026-09-01"
+  "selection_period": "2026-09-02"
 }
