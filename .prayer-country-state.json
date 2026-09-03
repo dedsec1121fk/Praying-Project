@@ -174,15 +174,14 @@
     "GE",
     "MH",
     "NZ",
-    "SE",
-    "NG"
+    "SE"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Apia",
-    "country": "Samoa",
-    "iso2": "WS",
-    "timezone": "Pacific/Apia"
+    "capital": "Abuja",
+    "country": "Nigeria",
+    "iso2": "NG",
+    "timezone": "Africa/Lagos"
   },
-  "selection_period": "2026-09-02"
+  "selection_period": "2026-09-03"
 }
