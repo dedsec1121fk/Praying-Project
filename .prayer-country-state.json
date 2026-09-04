@@ -173,15 +173,14 @@
     "IQ",
     "GE",
     "MH",
-    "NZ",
-    "SE"
+    "NZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Abuja",
-    "country": "Nigeria",
-    "iso2": "NG",
-    "timezone": "Africa/Lagos"
+    "capital": "Stockholm",
+    "country": "Sweden",
+    "iso2": "SE",
+    "timezone": "Europe/Stockholm"
   },
-  "selection_period": "2026-09-03"
+  "selection_period": "2026-09-04"
 }
