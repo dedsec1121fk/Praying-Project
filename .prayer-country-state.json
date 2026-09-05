@@ -172,15 +172,14 @@
     "HU",
     "IQ",
     "GE",
-    "MH",
-    "NZ"
+    "MH"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Stockholm",
-    "country": "Sweden",
-    "iso2": "SE",
-    "timezone": "Europe/Stockholm"
+    "capital": "Wellington",
+    "country": "New Zealand",
+    "iso2": "NZ",
+    "timezone": "Pacific/Auckland"
   },
-  "selection_period": "2026-09-04"
+  "selection_period": "2026-09-05"
 }
