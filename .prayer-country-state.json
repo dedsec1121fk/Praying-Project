@@ -171,15 +171,14 @@
     "MA",
     "HU",
     "IQ",
-    "GE",
-    "MH"
+    "GE"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Wellington",
-    "country": "New Zealand",
-    "iso2": "NZ",
-    "timezone": "Pacific/Auckland"
+    "capital": "Majuro",
+    "country": "Marshall Islands",
+    "iso2": "MH",
+    "timezone": "Pacific/Majuro"
   },
-  "selection_period": "2026-09-05"
+  "selection_period": "2026-09-06"
 }
