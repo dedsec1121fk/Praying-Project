@@ -170,15 +170,14 @@
     "NL",
     "MA",
     "HU",
-    "IQ",
-    "GE"
+    "IQ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Majuro",
-    "country": "Marshall Islands",
-    "iso2": "MH",
-    "timezone": "Pacific/Majuro"
+    "capital": "Tbilisi",
+    "country": "Georgia",
+    "iso2": "GE",
+    "timezone": "Asia/Tbilisi"
   },
-  "selection_period": "2026-09-06"
+  "selection_period": "2026-09-07"
 }
