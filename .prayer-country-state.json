@@ -169,15 +169,14 @@
     "LK",
     "NL",
     "MA",
-    "HU",
-    "IQ"
+    "HU"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Tbilisi",
-    "country": "Georgia",
-    "iso2": "GE",
-    "timezone": "Asia/Tbilisi"
+    "capital": "Baghdad",
+    "country": "Iraq",
+    "iso2": "IQ",
+    "timezone": "Asia/Baghdad"
   },
-  "selection_period": "2026-09-07"
+  "selection_period": "2026-09-08"
 }
