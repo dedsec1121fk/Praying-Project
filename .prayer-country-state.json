@@ -168,15 +168,14 @@
     "VE",
     "LK",
     "NL",
-    "MA",
-    "HU"
+    "MA"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Baghdad",
-    "country": "Iraq",
-    "iso2": "IQ",
-    "timezone": "Asia/Baghdad"
+    "capital": "Budapest",
+    "country": "Hungary",
+    "iso2": "HU",
+    "timezone": "Europe/Budapest"
   },
-  "selection_period": "2026-09-08"
+  "selection_period": "2026-09-09"
 }
