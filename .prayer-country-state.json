@@ -167,15 +167,14 @@
     "UZ",
     "VE",
     "LK",
-    "NL",
-    "MA"
+    "NL"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Budapest",
-    "country": "Hungary",
-    "iso2": "HU",
-    "timezone": "Europe/Budapest"
+    "capital": "Rabat",
+    "country": "Morocco",
+    "iso2": "MA",
+    "timezone": "Africa/Casablanca"
   },
-  "selection_period": "2026-09-09"
+  "selection_period": "2026-09-10"
 }
