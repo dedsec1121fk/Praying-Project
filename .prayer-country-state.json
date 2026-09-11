@@ -166,15 +166,14 @@
     "ET",
     "UZ",
     "VE",
-    "LK",
-    "NL"
+    "LK"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Rabat",
-    "country": "Morocco",
-    "iso2": "MA",
-    "timezone": "Africa/Casablanca"
+    "capital": "Amsterdam",
+    "country": "Netherlands",
+    "iso2": "NL",
+    "timezone": "Europe/Amsterdam"
   },
-  "selection_period": "2026-09-10"
+  "selection_period": "2026-09-11"
 }
