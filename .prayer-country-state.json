@@ -165,15 +165,14 @@
     "GN",
     "ET",
     "UZ",
-    "VE",
-    "LK"
+    "VE"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Amsterdam",
-    "country": "Netherlands",
-    "iso2": "NL",
-    "timezone": "Europe/Amsterdam"
+    "capital": "Sri Jayawardenepura Kotte",
+    "country": "Sri Lanka",
+    "iso2": "LK",
+    "timezone": "Asia/Colombo"
   },
-  "selection_period": "2026-09-11"
+  "selection_period": "2026-09-12"
 }
