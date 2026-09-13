@@ -1,0 +1,25 @@
+{
+  "datasets": {
+    "entries.js": 131,
+    "expanded-biblical.js": 124,
+    "church-saints.js": 67,
+    "feasts.js": 20,
+    "biblical-context.js": 48,
+    "further-expansion.js": 335,
+    "deep-biblical.js": 184
+  },
+  "total": 909,
+  "categories": {
+    "angel": 14,
+    "apostle": 74,
+    "biblical-context": 323,
+    "christ": 2,
+    "church-saint": 246,
+    "feast": 61,
+    "forefather": 54,
+    "nt-saint": 40,
+    "prophet": 24,
+    "righteous": 70,
+    "theotokos": 1
+  }
+}

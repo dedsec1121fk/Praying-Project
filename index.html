@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#211650" />
+  <meta name="description" content="A bilingual English/Greek interactive Orthodox biblical people, saints and heavenly beings explorer." />
+  <title>Orthodox Web • Ορθόδοξος Ιστός</title>
+  <link rel="stylesheet" href="web/assets/css/styles.css" />
+</head>
+<body>
+  <div class="aurora aurora-a" aria-hidden="true"></div><div class="aurora aurora-b" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Orthodox Web home"><span class="brand-cross">☦</span><span><strong data-i18n="brand">Orthodox Web</strong><small data-i18n="tagline">Scripture • Saints • Heavenly Powers</small></span></a>
+    <label class="searchbox search-middle"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search every person or being…" autocomplete="off" aria-label="Search"/><kbd>/</kbd></label>
+    <div class="header-actions"><button id="motionBtn" class="icon-btn" type="button" title="Toggle 3D motion">3D</button><div class="lang-switch" role="group" aria-label="Language"><button class="lang active" data-lang="en">EN</button><button class="lang" data-lang="el">ΕΛ</button></div></div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div><div class="eyebrow" data-i18n="eyebrow">EXPLORE SCRIPTURE THROUGH ORTHODOX MEMORY</div><h1 data-i18n="heroTitle">A bright 3D web of biblical people, heavenly beings & saints.</h1><p data-i18n="heroText">Tap a bubble for its story, Scripture, feast day, prayer, and notes. Search the entire catalog in English or Greek.</p></div>
+      <div class="stats"><strong id="entryCount">0</strong><span data-i18n="entries">entries in the catalog</span><small data-i18n="performance">Only one constellation is rendered at a time to keep phones and older processors light.</small></div>
+    </section>
+
+    <nav class="filters" aria-label="Categories">
+      <button class="filter active" data-filter="all" data-i18n="all">All</button><button class="filter" data-filter="christ" data-i18n="christ">Christ & Spirit</button><button class="filter" data-filter="theotokos" data-i18n="theotokos">Theotokos</button><button class="filter" data-filter="angel" data-i18n="angels">Angels</button><button class="filter" data-filter="forefather" data-i18n="forefathers">Forefathers</button><button class="filter" data-filter="righteous" data-i18n="righteous">Righteous</button><button class="filter" data-filter="prophet" data-i18n="prophets">Prophets</button><button class="filter" data-filter="apostle" data-i18n="apostles">Apostles</button><button class="filter" data-filter="nt-saint" data-i18n="ntsaints">NT Saints</button><button class="filter" data-filter="church-saint" data-i18n="churchsaints">Church Saints</button><button class="filter" data-filter="feast" data-i18n="feasts">Feasts</button><button class="filter" data-filter="biblical-context" data-i18n="context">Biblical Context</button>
+    </nav>
+
+    <section class="web-card">
+      <div class="web-head"><div><strong data-i18n="webTitle">The Orthodox Web</strong><span id="webStatus"></span></div><div class="web-controls"><button id="prevBtn" class="ghost" type="button">←</button><span id="pageText">1 / 1</span><button id="nextBtn" class="ghost" type="button">→</button><button id="randomBtn" class="ghost" type="button" data-i18n="random">Random</button><button id="resetBtn" class="ghost" type="button" data-i18n="reset">Reset view</button></div></div>
+      <div id="network" class="network" tabindex="0" aria-label="Interactive 3D Orthodox network">
+        <div id="scene" class="scene"><svg id="webLines" class="web-lines" viewBox="0 0 1200 760" preserveAspectRatio="none" aria-hidden="true"></svg><div class="center-node"><span>☦</span><strong data-i18n="center">ORTHODOXY</strong><small data-i18n="centerSub">Scripture • memory • prayer</small></div><div id="nodes"></div></div>
+      </div>
+      <div class="web-foot"><span data-i18n="hint">Drag bubbles • move the pointer for a subtle 3D tilt • use ← → to change constellation.</span><span class="legend-note" data-i18n="imageNote">Local images are lightweight illustrative medallions, not liturgical icons.</span></div>
+    </section>
+  </main>
+
+  <footer><span>☦</span><p data-i18n="footer">Educational project. Orthodox feast dates and local liturgical customs can vary by jurisdiction and calendar.</p></footer>
+
+  <dialog id="detailModal" class="modal"><div class="modal-shell"><button id="closeModal" class="modal-close" aria-label="Close">×</button><div class="modal-media"><img id="modalImage" alt="" /><div class="image-shade"></div><div class="modal-badge" id="modalCategory"></div></div><div class="modal-content"><div class="modal-kicker" id="modalRole"></div><h2 id="modalName"></h2><div class="meta-grid"><div><small data-i18n="feastDay">Feast / commemoration</small><strong id="modalFeast"></strong></div><div><small data-i18n="scripture">Scripture</small><strong id="modalScripture"></strong></div></div><div class="tabs" role="tablist"><button class="tab active" data-tab="story" data-i18n="story">Story</button><button class="tab" data-tab="prayer" data-i18n="prayer">Prayer</button><button class="tab" data-tab="notes" data-i18n="notes">Notes</button></div><div id="modalNotice" class="modal-notice" hidden></div><div id="tabBody" class="tab-body"></div><a id="modalSource" class="source-link" href="#" target="_blank" rel="noopener noreferrer" hidden></a></div></div></dialog>
+
+  <script src="web/data/entries.js"></script>
+  <script src="web/data/expanded-biblical.js"></script>
+  <script src="web/data/church-saints.js"></script>
+  <script src="web/data/feasts.js"></script>
+  <script src="web/data/biblical-context.js"></script>
+  <script src="web/data/further-expansion.js"></script>
+  <script src="web/data/deep-biblical.js"></script>
+  <script src="web/data/catalog.js"></script>
+  <script src="web/assets/js/app.js"></script>
+</body>
+</html>

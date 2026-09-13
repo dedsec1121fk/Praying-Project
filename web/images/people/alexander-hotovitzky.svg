@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Saint Alexander Hotovitzky">
+<defs><radialGradient id="g"><stop offset="0" stop-color="#ff9e6f"/><stop offset="1" stop-color="#50213b"/></radialGradient></defs>
+<rect width="240" height="240" rx="120" fill="url(#g)"/><circle cx="120" cy="120" r="102" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="3"/>
+<circle cx="120" cy="91" r="48" fill="#fff" fill-opacity=".13"/><path d="M70 184c8-38 32-58 50-58s42 20 50 58" fill="#fff" fill-opacity=".12"/>
+<text x="120" y="32" text-anchor="middle" font-size="20" fill="#fff" fill-opacity=".9">☦</text><text x="120" y="109" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="42" fill="#fff">AH</text>
+<text x="120" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff" fill-opacity=".78">ORTHODOX WEB</text></svg>
