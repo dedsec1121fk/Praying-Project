@@ -164,15 +164,14 @@
     "RO",
     "GN",
     "ET",
-    "UZ",
-    "VE"
+    "UZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Sri Jayawardenepura Kotte",
-    "country": "Sri Lanka",
-    "iso2": "LK",
-    "timezone": "Asia/Colombo"
+    "capital": "Caracas",
+    "country": "Venezuela",
+    "iso2": "VE",
+    "timezone": "America/Caracas"
   },
-  "selection_period": "2026-09-12"
+  "selection_period": "2026-09-13"
 }
