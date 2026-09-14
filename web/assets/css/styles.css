@@ -266,3 +266,27 @@ body.startup-lock .web-app{pointer-events:none}
   .canvas-label{width:100px;max-width:100px;font-size:9.5px;padding:3px 4px}
   .holy-center{width:184px;height:164px}.cross-core{width:94px;height:94px}.orthodox-cross{font-size:38px}.cross-core strong{font-size:6.7px}.cross-core small{font-size:5.5px}.trinity-node{width:52px;height:52px}.trinity-node b{font-size:6.8px}.trinity-symbol{font-size:16px}.christogram{font-size:10.5px}.dove{font-size:21px}
 }
+
+/* v13: cloud sky belongs to the network itself so it can never disappear behind the canvas stack. */
+.network{
+  background-color:#89cef5;
+  background-image:
+    radial-gradient(ellipse 28% 11% at 7% 17%,rgba(255,255,255,.98) 0 31%,rgba(255,255,255,.72) 47%,rgba(255,255,255,.18) 67%,transparent 75%),
+    radial-gradient(ellipse 34% 13% at 31% 31%,rgba(255,255,255,.93) 0 29%,rgba(255,255,255,.58) 49%,rgba(255,255,255,.10) 69%,transparent 76%),
+    radial-gradient(ellipse 31% 12% at 78% 15%,rgba(255,255,255,.96) 0 29%,rgba(255,255,255,.62) 48%,rgba(255,255,255,.12) 68%,transparent 75%),
+    radial-gradient(ellipse 40% 14% at 98% 47%,rgba(255,255,255,.90) 0 28%,rgba(255,255,255,.50) 50%,rgba(255,255,255,.08) 69%,transparent 76%),
+    radial-gradient(ellipse 37% 14% at 17% 72%,rgba(255,255,255,.91) 0 28%,rgba(255,255,255,.52) 49%,rgba(255,255,255,.08) 69%,transparent 76%),
+    radial-gradient(ellipse 35% 13% at 72% 84%,rgba(255,255,255,.96) 0 29%,rgba(255,255,255,.58) 49%,rgba(255,255,255,.10) 68%,transparent 75%),
+    linear-gradient(180deg,#63baf0 0%,#8ed1f5 33%,#c9eafb 68%,#79c2ed 100%);
+  background-attachment:fixed;
+}
+.network::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.76;
+  background:
+    radial-gradient(ellipse 17% 7% at 20% 9%,rgba(255,255,255,.88) 0 42%,transparent 73%),
+    radial-gradient(ellipse 21% 8% at 54% 56%,rgba(255,255,255,.72) 0 41%,transparent 74%),
+    radial-gradient(ellipse 18% 7% at 88% 67%,rgba(255,255,255,.82) 0 41%,transparent 73%),
+    radial-gradient(ellipse 24% 9% at 42% 93%,rgba(255,255,255,.76) 0 42%,transparent 74%);
+}
+.scene{z-index:1}
+.canvas-labels,.search-marker,.empty-state{z-index:20}

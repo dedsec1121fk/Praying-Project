@@ -244,3 +244,6 @@ python scripts/reconstruct.py cleanup
 ### v8 web-face update
 
 The bilingual web now uses a lightweight static cloud/sky background. All 1,083 catalog records have permanent positions in the same continuous web; the far overview draws every bubble while nearby bubbles are promoted to full clickable image/name nodes for performance. Image-source attribution is placed inside the details content rather than over the icon/title. Greek-mode reference terms such as Gospel, Gospels, New Testament and Bible-book names are normalized into Greek at runtime.
+
+## v13 rendering note
+The web now includes a baked cloud-sky environment and a single local fallback image atlas. Every catalog entry therefore has a visible bubble image even when completely offline or when remote icon sources fail. Verified remote iconography remains an optional visual upgrade and is not required for the site to function.

@@ -15,11 +15,10 @@
   const lowMemory=typeof navigator.deviceMemory==='number'&&navigator.deviceMemory<4;
 
   /*
-    v12 performance architecture:
-    - all 1,083 bubbles + all web threads are rasterized once into ONE canvas during startup;
-    - panning/zooming changes only the transform of the scene (one composited layer);
-    - there are no image/button DOM nodes to move while dragging;
-    - names are small screen-space labels created only after movement stops;
+    v13 performance architecture:
+    - every entry is guaranteed an image immediately from one local fallback atlas;
+    - verified real images are optional upgrades painted over the atlas artwork;
+    - all bubbles + web threads remain one raster canvas, so pan/zoom moves one layer;
     - details remain one-file-per-entry and are unloaded when the modal closes.
   */
   const WORLD={w:(compact||lowMemory)?2900:3400,h:(compact||lowMemory)?2100:2450};
@@ -115,6 +114,18 @@
 
   function imageUrl(path){try{return new URL(path,document.baseURI).href}catch(_){return path}}
   const fallbackIcon='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"><rect width="160" height="160" rx="80" fill="#203b66"/><circle cx="80" cy="80" r="60" fill="#d6a93c" stroke="#fff3b7" stroke-width="5"/><text x="80" y="105" text-anchor="middle" font-family="Georgia,serif" font-size="68" fill="#17203c">☦</text></svg>`);
+  const FALLBACK_ATLAS={src:imageUrl('web/images/fallback-atlas.webp'),cell:64,cols:33};
+  let fallbackAtlasImage=null;
+  function loadFallbackAtlas(deadline){
+    if(fallbackAtlasImage)return Promise.resolve(fallbackAtlasImage);
+    return new Promise(resolve=>{
+      const img=new Image();let done=false;
+      const timeout=Math.max(300,Math.min(4000,(deadline||performance.now()+4000)-performance.now()));
+      const timer=setTimeout(()=>finish(null),timeout);
+      function finish(value){if(done)return;done=true;clearTimeout(timer);img.onload=img.onerror=null;if(value)fallbackAtlasImage=value;resolve(value)}
+      img.decoding='async';img.onload=()=>finish(img);img.onerror=()=>finish(null);img.src=FALLBACK_ATLAS.src;
+    });
+  }
   function imageChain(e,forCanvas=false){
     const chain=[];
     if(e.imageLocalReal)chain.push(imageUrl(e.imageLocalReal));
@@ -135,9 +146,19 @@
     ctx=canvas.getContext('2d',{alpha:true,desynchronized:true});
     if(ctx)ctx.imageSmoothingEnabled=true;
   }
+  function drawCloudWorld(){
+    if(!ctx)return;
+    const sky=ctx.createLinearGradient(0,0,0,WORLD.h);sky.addColorStop(0,'#64bdf1');sky.addColorStop(.48,'#a7ddf8');sky.addColorStop(1,'#79c4ee');ctx.fillStyle=sky;ctx.fillRect(0,0,WORLD.w,WORLD.h);
+    // Static cloud banks are baked once into the same raster layer as the web: zero animation cost.
+    for(let i=0;i<42;i++){
+      const h=hashString('cloud-'+i),x=unit(h+11)*WORLD.w,y=unit(h+37)*WORLD.h,scale=.65+unit(h+71)*1.15;
+      ctx.save();ctx.globalAlpha=.28+unit(h+103)*.34;ctx.fillStyle='#fff';
+      ctx.beginPath();ctx.ellipse(x,y,72*scale,24*scale,0,0,Math.PI*2);ctx.ellipse(x-52*scale,y+5*scale,52*scale,19*scale,0,0,Math.PI*2);ctx.ellipse(x+58*scale,y+8*scale,58*scale,21*scale,0,0,Math.PI*2);ctx.ellipse(x-12*scale,y-16*scale,45*scale,27*scale,0,0,Math.PI*2);ctx.fill();ctx.restore();
+    }
+  }
   function drawThreads(){
     if(!ctx)return;
-    ctx.clearRect(0,0,WORLD.w,WORLD.h);
+    ctx.clearRect(0,0,WORLD.w,WORLD.h);drawCloudWorld();
     ctx.lineCap='round';ctx.lineWidth=1.15;ctx.strokeStyle='rgba(24,84,127,.34)';ctx.beginPath();
     for(let i=1;i<positions.length;i++){
       const a=positions[i];
@@ -161,6 +182,13 @@
     g.addColorStop(0,'#fff1ad');g.addColorStop(.48,'#c99734');g.addColorStop(1,'#2e4770');ctx.fillStyle=g;ctx.fillRect(p.x-BUBBLE_R,p.y-BUBBLE_R,BUBBLE_R*2,BUBBLE_R*2);
     ctx.fillStyle='#17203c';ctx.font=`bold ${Math.round(BUBBLE_R*1.05)}px Georgia,serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('☦',p.x,p.y+1);ctx.restore();
   }
+  function drawAtlasInBubble(e,p,atlas){
+    if(!ctx||!atlas||!Number.isFinite(e.atlasIndex)){drawFallbackInBubble(p);return}
+    const idx=e.atlasIndex|0,s=FALLBACK_ATLAS.cell,sx=(idx%FALLBACK_ATLAS.cols)*s,sy=Math.floor(idx/FALLBACK_ATLAS.cols)*s;
+    ctx.save();ctx.beginPath();ctx.arc(p.x,p.y,BUBBLE_R-3,0,Math.PI*2);ctx.clip();
+    ctx.fillStyle='#152444';ctx.fillRect(p.x-BUBBLE_R,p.y-BUBBLE_R,BUBBLE_R*2,BUBBLE_R*2);
+    ctx.drawImage(atlas,sx,sy,s,s,p.x-BUBBLE_R+3,p.y-BUBBLE_R+3,(BUBBLE_R-3)*2,(BUBBLE_R-3)*2);ctx.restore();
+  }
   function drawImageInBubble(img,p){
     ctx.save();ctx.beginPath();ctx.arc(p.x,p.y,BUBBLE_R-3,0,Math.PI*2);ctx.clip();
     const iw=img.naturalWidth||img.width||1,ih=img.naturalHeight||img.height||1;
@@ -168,8 +196,8 @@
     ctx.fillStyle='#152444';ctx.fillRect(p.x-BUBBLE_R,p.y-BUBBLE_R,BUBBLE_R*2,BUBBLE_R*2);
     ctx.drawImage(img,p.x-w/2,p.y-h/2,w,h);ctx.restore();
   }
-  function loadEntryImage(e,deadline){
-    const chain=imageChain(e,true);
+  function loadEntryImage(e,deadline,realOnly=false){
+    const chain=realOnly?[...(e.imageLocalReal?[imageUrl(e.imageLocalReal)]:[]),...(e.imageRemote&&navigator.onLine!==false?[e.imageRemote]:[])]:imageChain(e,true);
     let index=0;
     return new Promise(resolve=>{
       const tryNext=()=>{
@@ -185,28 +213,33 @@
   }
   async function rasterizeAll(deadline,onProgress){
     drawThreads();
-    for(let i=0;i<ordered.length;i++)drawBubbleShell(ordered[i],positions[i]);
-    let cursor=0,done=0,stopped=false;
-    const concurrency=lowMemory?6:(compact?9:14);
+    // Paint a complete local image for EVERY bubble from one atlas before touching the network.
+    const atlas=await loadFallbackAtlas(deadline);
+    for(let i=0;i<ordered.length;i++){
+      drawBubbleShell(ordered[i],positions[i]);
+      if(atlas)drawAtlasInBubble(ordered[i],positions[i],atlas);else drawFallbackInBubble(positions[i]);
+    }
+    onProgress?.(ordered.length,ordered.length);
+
+    // Upgrade only entries that already have a verified real-image mapping. The web never waits
+    // on hundreds of remote requests, and no bubble can ever become blank if a request fails.
+    const upgrades=[];
+    for(let i=0;i<ordered.length;i++){const e=ordered[i];if(e.imageLocalReal||e.imageRemote)upgrades.push(i)}
+    let cursor=0,stopped=false;
+    const concurrency=lowMemory?3:(compact?5:8);
     async function worker(){
       while(!stopped){
-        const i=cursor++;if(i>=ordered.length)return;
-        const e=ordered[i],p=positions[i];
-        const img=await loadEntryImage(e,deadline);
-        if(img)drawImageInBubble(img,p);else drawFallbackInBubble(p);
-        done++;onProgress?.(done,ordered.length);
+        const ui=cursor++;if(ui>=upgrades.length)return;const i=upgrades[ui],e=ordered[i],p=positions[i];
         if(performance.now()>=deadline){stopped=true;return}
-        if((done&31)===0)await new Promise(r=>setTimeout(r,0));
+        const img=await loadEntryImage(e,deadline,true);
+        if(img)drawImageInBubble(img,p);
+        if((ui&7)===0)await new Promise(r=>setTimeout(r,0));
       }
     }
     await Promise.race([
-      Promise.all(Array.from({length:Math.min(concurrency,ordered.length)},()=>worker())),
+      Promise.all(Array.from({length:Math.min(concurrency,Math.max(1,upgrades.length))},()=>worker())),
       new Promise(r=>setTimeout(()=>{stopped=true;r()},Math.max(0,deadline-performance.now())))
     ]);
-    // Anything not completed before the 30 s cap still gets a cheap local-looking shell.
-    for(let i=0;i<ordered.length;i++){
-      // Shells already exist, so no expensive late work is required.
-    }
     renderReady=true;
   }
 
@@ -382,7 +415,7 @@
     const loader=document.getElementById('startupLoader');if(!loader){document.body.classList.remove('startup-lock');return}
     const bar=document.getElementById('startupBar'),pct=document.getElementById('startupPct'),title=document.getElementById('startupTitle'),sub=document.getElementById('startupSub');title.textContent=UI[state.lang].startup;sub.textContent=UI[state.lang].startupSub;
     const started=performance.now(),bootStarted=Number(window.ORTHODOX_BOOT_STARTED)||started,deadline=bootStarted+30000,minVisibleUntil=Math.min(deadline,started+1200);
-    const progress=(done,total)=>{const v=Math.min(.99,.08+(done/Math.max(1,total))*.90);if(bar)bar.style.transform=`scaleX(${v})`;if(pct)pct.textContent=`${Math.round(v*100)}%`;if(sub){sub.textContent=state.lang==='el'?`Απόδοση φυσαλίδων ${done}/${total} • οι λεπτομέρειες θα φορτώνονται μόνο όταν ανοίγονται`:`Rasterizing bubbles ${done}/${total} • details will load only when opened`}};
+    const progress=(done,total)=>{const v=Math.min(.99,.08+(done/Math.max(1,total))*.90);if(bar)bar.style.transform=`scaleX(${v})`;if(pct)pct.textContent=`${Math.round(v*100)}%`;if(sub){sub.textContent=state.lang==='el'?`Προετοιμασία εικόνων ${done}/${total} • οι λεπτομέρειες φορτώνονται μόνο όταν ανοίγονται`:`Preparing bubble images ${done}/${total} • details load only when opened`}};
     progress(0,entries.length);await rasterizeAll(deadline,progress);applySceneTransform();refreshLabels();updateSearchUI();
     const wait=Math.max(0,minVisibleUntil-performance.now());if(wait)await new Promise(r=>setTimeout(r,wait));if(bar)bar.style.transform='scaleX(1)';if(pct)pct.textContent='100%';if(sub)sub.textContent=state.lang==='el'?'Ο ομαλός ιστός είναι έτοιμος':'The smooth web is ready';await new Promise(r=>setTimeout(r,160));loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),420);
   }
