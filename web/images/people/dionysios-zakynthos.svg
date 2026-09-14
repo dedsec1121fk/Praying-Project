@@ -1,6 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Saint Dionysios of Zakynthos">
-<defs><radialGradient id="g"><stop offset="0" stop-color="#ff9e6f"/><stop offset="1" stop-color="#50213b"/></radialGradient></defs>
-<rect width="240" height="240" rx="120" fill="url(#g)"/><circle cx="120" cy="120" r="102" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="3"/>
-<circle cx="120" cy="91" r="48" fill="#fff" fill-opacity=".13"/><path d="M70 184c8-38 32-58 50-58s42 20 50 58" fill="#fff" fill-opacity=".12"/>
-<text x="120" y="32" text-anchor="middle" font-size="20" fill="#fff" fill-opacity=".9">☦</text><text x="120" y="109" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="42" fill="#fff">DZ</text>
-<text x="120" y="211" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff" fill-opacity=".78">ORTHODOX WEB</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="ΔΙΟΝΥΣΙΟΣ local offline fallback">
+<defs><radialGradient id="g" cx="36%" cy="24%"><stop offset="0" stop-color="#fff7c8"/><stop offset=".52" stop-color="#e1b04c"/><stop offset="1" stop-color="#8d6330"/></radialGradient><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3e8caf"/><stop offset="1" stop-color="#534187"/></linearGradient></defs>
+<rect width="240" height="240" rx="120" fill="url(#b)"/><circle cx="120" cy="87" r="58" fill="none" stroke="#ffe68a" stroke-width="12" opacity=".92"/><path d="M63 203c8-52 28-76 57-76s49 24 57 76z" fill="#252444" stroke="#f2db8a" stroke-width="4"/><circle cx="120" cy="105" r="35" fill="#b87b53"/><text x="120" y="117" text-anchor="middle" font-family="Georgia,serif" font-size="35" font-weight="700" fill="#fff8da">Δ</text><text x="120" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">ΔΙΟΝΥΣΙΟΣ</text>
+</svg>

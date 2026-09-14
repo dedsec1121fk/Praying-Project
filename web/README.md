@@ -1,57 +1,98 @@
-# Orthodox Web front end
+# Orthodox Web front end — v8
 
-This folder contains the bilingual, processor-light web front end added alongside the existing Praying Project. The original prayer automation, Befunge payloads, country data, manifest, scripts, and GitHub workflows remain separate from the website.
+This directory contains the bilingual English/Greek Orthodox Web front end that lives beside the existing Praying Project prayer automation. The original Befunge prayer payloads, country scheduler, manifest and prayer scripts are intentionally independent from the website.
 
-## Current catalog
+## Catalog and language coverage
 
-The catalog now contains **909 searchable entries**. This is intentionally broader than a saint list: it combines Christ and the Holy Spirit, the Theotokos, angels and heavenly powers, forefathers, Old Testament righteous, prophets, apostles, New Testament saints, post-biblical Church saints, feasts/synaxes, and a large **biblical-context** collection for additional people, peoples, rulers, opponents, parable figures, and visionary/symbolic beings.
+The local catalog contains **1,083 searchable records** spanning Christ and the Holy Spirit, the Theotokos, angels and heavenly powers, forefathers, Old Testament righteous, prophets, apostles, New Testament saints, post-biblical Church saints, feasts/synaxes, and a broad `biblical-context` layer for additional biblical/deuterocanonical people, rulers, opponents, peoples, creatures and visionary/symbolic beings.
 
-Current category totals are generated in `data/catalog-stats.json`.
+`biblical-context` does **not** mean saint. Context-only records are marked as such and the site never addresses a prayer to them.
 
-The expansion includes the Orthodox Synaxis list of the Seventy Apostles, the nine traditional ranks of bodiless powers, many ancestors and lesser-known names from Scripture, figures from the deuterocanonical books used in Orthodox Bibles, a broader set of ancient/Byzantine/Slavic/Greek/Western pre-schism/modern saints, North American saints, Great Lent and Paschal-cycle commemorations, synaxes, and Revelation/Daniel visionary figures clearly marked as biblical context where they are not saints.
+Every one of the 1,083 records has English **and** Greek name, role/title, story/known account, feast or context information, prayer text or non-veneration notice, notes, and a structured knowledge dossier. The dossier generator preserves the distinction between Scripture, Church tradition and later historical material. When only a name, genealogy, brief event or symbolic description survives, it says so rather than inventing a missing life story.
 
-**909 entries does not mean 909 canonized saints.** The UI deliberately separates venerated people from biblical-context records. Context entries never address a prayer to the person or symbol; their prayer panel addresses God for discernment.
+The release also contains **67 individually hand-curated or source-expanded bilingual dossiers** for central people and feasts. All remaining records receive a structured bilingual dossier assembled from their own stored facts and source/reference metadata; generic filler is not used to pretend that unknown biographical events are known.
 
-## Files
+## Search-only web interface
 
-- `assets/css/styles.css` — bright responsive UI and light CSS 3D.
-- `assets/js/app.js` — bilingual pre-indexed search/filtering, paginated constellation, drag, random explorer, modal, and optional pointer tilt.
-- `data/entries.js` — original 131-entry base web catalog.
-- `data/expanded-biblical.js` — additional biblical saints, ancestors, angels, and the Seventy Apostles.
-- `data/church-saints.js` — first post-biblical Orthodox saint expansion.
-- `data/feasts.js` — first feast/liturgical expansion.
-- `data/biblical-context.js` — first contextual biblical layer.
-- `data/further-expansion.js` — large second expansion: saints, righteous figures, feasts, and many more biblical names.
-- `data/deep-biblical.js` — deeper biblical genealogy, Table of Nations, minor named figures, visionary beings/symbols, and additional saints.
-- `data/catalog.js` — merges every runtime dataset.
-- `data/catalog-stats.json` — generated count report.
-- `images/people/` — one local lightweight SVG medallion for every catalog entry.
-- `tools/build_catalog.py` — regenerates the first expansion datasets and generated medallions.
-- `tools/add_more_catalog.py` — generates the second large additive expansion.
-- `tools/add_deep_biblical.py` — generates the deeper biblical/additional-saints layer.
-- `tools/validate_catalog.py` — validates unique IDs, bilingual fields, categories, and image paths across all datasets.
-- `SOURCES.md` — source/reference and content-policy notes.
+The public face intentionally stays simple: one centered search bar above a large irregular spider-web/constellation. The Orthodox Cross and Holy Trinity form the visual center. Person/being/feast nodes show their name directly beneath the image.
 
-## Performance
+Interaction:
 
-The entire 909-entry catalog is searchable, but only one constellation page is mounted at once: 42 nodes on ordinary desktop devices, 32 on lower-memory devices when browser memory information is available, and 26 on small screens. The 3D effect uses CSS transforms only—no WebGL, no physics engine, and no continuous animation loop. Pointer tilt is `requestAnimationFrame`-throttled and ignored on coarse-pointer devices. Drag-line and resize redraws are also frame-throttled.
+- one-finger or mouse drag pans the whole web;
+- two-finger pinch zooms on phones/tablets;
+- mouse wheel/trackpad zooms on desktop;
+- double-tap/double-click performs quick zoom;
+- `+`, `=` and `-` also zoom on keyboards;
+- a short tap/click opens the selected record;
+- dragging suppresses the accidental click that would otherwise open a record.
 
-Search text is normalized **once at startup** into a small in-memory index rather than rebuilding/normalizing all 909 records on every keystroke. `prefers-reduced-motion` is respected, and 3D can be disabled manually.
+All **1,083 records have permanent positions in one continuous web**. At overview zoom every record is still drawn as a lightweight SVG bubble/ring, so there is no pagination, page switching, or hidden catalog slice. As you move or zoom closer, the nearby records become their full clickable image-and-name bubbles. Only those heavier image DOM elements are spatially virtualized; the complete web itself remains visible. Only one composited `.scene` element is transformed while panning/zooming. The site does not run a WebGL renderer, physics engine, or continuous per-bubble animation, which keeps the very large web usable on modest phones.
 
-## Search and navigation
+## Local `file://` and repository hosting
 
-The search bar stays at the top-center on desktop and searches English and Greek names, roles, stories, feast text, Scripture references, aliases, and extra keywords. Press `/` to focus it and `Enter` to open the first matching entry.
+The catalog, scripts, styles and fallback images are all repository-relative files. No package manager, API, database, CDN, web font, `fetch()`, service worker or ES-module loader is needed for the application itself.
 
-`Random / Τυχαίο` opens a random result from the currently active category/search result set, which makes the large catalog easier to explore without mounting more bubbles.
+You can unzip the repository and open the root `index.html` directly, or serve exactly the same directory from GitHub Pages or another static host. `.nojekyll` is included and `404.html` mirrors the static application shell.
 
-## Validate after editing
+The source-based text and UI therefore remain fully available with no network connection. Real-icon downloads are an **optional media enhancement**, described below.
+
+## Real iconography and offline fallback
+
+`data/image-sources.json` contains **52 verified Wikimedia Commons icon/image mappings** with source pages, licenses/attribution and local cache destinations. Important central/featured people and major feasts preferentially use these real iconographic images when available.
+
+Because a source image is a separate binary asset, the repository also keeps one local lightweight fallback image for every one of the 1,083 records. This guarantees that no node becomes a broken image when the site is offline.
+
+To cache all currently verified real images into `web/images/real/` on a normal internet-connected machine, run from the repository root:
+
+```bash
+python web/tools/download_real_icons.py
+```
+
+Once cached, those real images are also available during completely offline `file://` use. The exact image source and license list is in `IMAGE_SOURCES.md`.
+
+For people or beings for whom no responsibly reusable historical/iconographic image has yet been mapped, the site deliberately uses the local symbolic fallback rather than falsely presenting generated artwork as an authentic icon.
+
+## Detailed information model
+
+The details window can contain:
+
+- known life/narrative and historical setting;
+- relevant biblical/documentary evidence;
+- Orthodox reception and tradition;
+- feast/commemoration or explicit non-veneration status;
+- theological/liturgical context where appropriate;
+- English and Greek names/aliases;
+- prayer for venerated figures, or a prayer addressed to God for context-only entries;
+- source/reference links;
+- an explicit statement about the limits of surviving evidence.
+
+The application does not manufacture a “complete biography” for a person whose complete life is not historically preserved. In those cases, “complete” means all information currently stored and sourced by this catalog, together with a clear statement of what is unknown.
+
+## Main files
+
+- `assets/css/styles.css` — responsive full-screen web, labels and details window.
+- `assets/js/app.js` — bilingual search, camera pan/zoom, image fallback chain and record viewer.
+- `data/*.js` — catalog layers.
+- `data/deep-profiles.js`, `data/deep-profiles-2.js`, and `data/deep-profiles-3.js` — hand-curated bilingual dossiers.
+- `data/profile-enricher.js` — structured bilingual dossiers for the rest of the catalog.
+- `data/image-sources.json` / `data/media-manifest.js` — verified image source and runtime mapping data.
+- `images/people/` — always-local lightweight fallback media.
+- `images/real/` — optional cached real icon/image binaries.
+- `tools/download_real_icons.py` — cache verified real images.
+- `tools/validate_catalog.py` — catalog, translation and local-fallback validation.
+- `tools/validate_profiles.js` — bilingual dossier coverage validation.
+- `tools/check_static_site.py` — local/static/GitHub-host compatibility audit.
+- `IMAGE_SOURCES.md` — media source/license index.
+- `SOURCES.md` — content/source policy notes.
+
+## Validation
+
+Run after editing:
 
 ```bash
 python web/tools/validate_catalog.py
+node web/tools/validate_profiles.js
+python web/tools/check_static_site.py
+node --check web/assets/js/app.js
+node --check web/data/profile-enricher.js
 ```
-
-The additive data generators are intentionally separated so future work can extend the catalog without hand-editing the large generated JavaScript arrays.
-
-## Images
-
-The local images are deliberately small original **illustrative medallions**, not canonical liturgical icons. This keeps the repository self-contained and avoids silently copying copyrighted icon photography. Properly licensed icon files can be substituted later entry-by-entry without changing the catalog schema.

@@ -1,1 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Shelah"><defs><radialGradient id="g"><stop offset="0" stop-color="#aeb6d2"/><stop offset="1" stop-color="#25294a"/></radialGradient></defs><rect width="240" height="240" rx="120" fill="url(#g)"/><circle cx="120" cy="120" r="102" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="3"/><text x="120" y="35" text-anchor="middle" font-size="21" fill="#fff">☦</text><circle cx="120" cy="105" r="55" fill="#fff" fill-opacity=".1"/><text x="120" y="119" text-anchor="middle" font-family="Georgia,serif" font-size="43" font-weight="700" fill="#fff">S</text><text x="120" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#fff" fill-opacity=".78">ORTHODOX WEB</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Local fallback artwork for Shelah">
+<defs><radialGradient id="b" cx="38%" cy="25%"><stop stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#424861"/></radialGradient></defs>
+<rect width="240" height="240" rx="32" fill="url(#b)"/>
+<circle cx="120" cy="82" r="55" fill="none" stroke="#d9dfef" stroke-width="8" opacity=".92"/>
+<circle cx="120" cy="91" r="31" fill="#15182a"/>
+<path d="M55 219c5-58 31-91 65-91s60 33 65 91" fill="#15182a"/>
+<path d="M79 155l41 28 41-28" fill="none" stroke="#d9dfef" stroke-width="4" opacity=".7"/>
+<text x="120" y="28" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#d9dfef">☦</text>
+<text x="120" y="211" text-anchor="middle" font-family="system-ui,sans-serif" font-size="25" font-weight="800" fill="#fff">S</text>
+</svg>

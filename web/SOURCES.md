@@ -13,7 +13,7 @@ The website is an educational Orthodox-oriented explorer, not a replacement for 
 
 Biblical records cite their primary Scripture passages in the detail view. Church-saint summaries are intentionally concise. Where an exact feast date was not treated as sufficiently stable across calendars/jurisdictions, the entry says to consult the local Orthodox calendar rather than inventing a date.
 
-## Scope of the 909-entry catalog
+## Scope of the 1,041-entry catalog
 
 The catalog is broader than a list of saints. It includes:
 
@@ -37,3 +37,12 @@ The local SVG files under `web/images/people/` are original lightweight illustra
 ## Calendar note
 
 Fixed feast dates can appear on different civil dates depending on whether a local church uses the revised/new calendar or the old Julian calendar. Moveable feasts depend on Pascha, and some local synaxes differ by jurisdiction.
+
+
+## Detailed local profiles and translations
+
+Every record carries English and Greek display data. The local `profile-enricher.js` adds structured information panels in both languages without downloading anything at runtime. The generated profile combines the stored narrative, role, Scripture/tradition reference, feast or context information, veneration status, aliases, and an explicit evidence-limit note.
+
+This is intentionally not a claim that a long historical biography exists for every biblical name. Where the biblical or ecclesiastical evidence preserves only a name or short episode, the profile states that limit instead of inventing details.
+
+The runtime also localizes common Scripture book names and generic source labels for the Greek interface.

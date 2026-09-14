@@ -1,3 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="440" viewBox="0 0 360 440" role="img" aria-label="Illustrative medallion for Saint Lydia of Philippi">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8ff7d1"/><stop offset="1" stop-color="#1e6d58"/></linearGradient><radialGradient id="h"><stop stop-color="#fff8c7"/><stop offset=".65" stop-color="#f6cf55"/><stop offset="1" stop-color="#bb7e16"/></radialGradient></defs>
-<rect width="360" height="440" rx="34" fill="url(#g)"/><path d="M30 370 Q180 290 330 370 L330 440 L30 440Z" fill="#20143f" opacity=".78"/><circle cx="180" cy="158" r="104" fill="url(#h)" stroke="#fff8d2" stroke-width="8"/><circle cx="180" cy="172" r="64" fill="#f3c7a8"/><path d="M120 168 Q180 85 240 168 L230 215 Q180 250 130 215Z" fill="#5b352c" opacity=".78"/><circle cx="158" cy="173" r="5" fill="#261a1a"/><circle cx="202" cy="173" r="5" fill="#261a1a"/><path d="M158 203 Q180 216 202 203" fill="none" stroke="#6b4038" stroke-width="4" stroke-linecap="round"/><text x="180" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#4d3511">☦</text><text x="180" y="340" text-anchor="middle" font-family="system-ui,sans-serif" font-size="36" font-weight="900" fill="white">LP</text><text x="180" y="385" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="white" opacity=".9">ORTHODOX WEB</text><rect x="16" y="16" width="328" height="408" rx="26" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Local fallback artwork for Saint Lydia of Philippi">
+<defs><radialGradient id="b" cx="38%" cy="25%"><stop stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#2b7c72"/></radialGradient></defs>
+<rect width="240" height="240" rx="32" fill="url(#b)"/>
+<circle cx="120" cy="82" r="55" fill="none" stroke="#ffe39a" stroke-width="8" opacity=".92"/>
+<circle cx="120" cy="91" r="31" fill="#15182a"/>
+<path d="M55 219c5-58 31-91 65-91s60 33 65 91" fill="#15182a"/>
+<path d="M79 155l41 28 41-28" fill="none" stroke="#ffe39a" stroke-width="4" opacity=".7"/>
+<text x="120" y="28" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#ffe39a">☦</text>
+<text x="120" y="211" text-anchor="middle" font-family="system-ui,sans-serif" font-size="25" font-weight="800" fill="#fff">SL</text>
+</svg>

@@ -1,25 +1,17 @@
 {
-  "datasets": {
-    "entries.js": 131,
-    "expanded-biblical.js": 124,
-    "church-saints.js": 67,
-    "feasts.js": 20,
-    "biblical-context.js": 48,
-    "further-expansion.js": 335,
-    "deep-biblical.js": 184
-  },
-  "total": 909,
+  "total": 1083,
   "categories": {
-    "angel": 14,
+    "angel": 19,
     "apostle": 74,
-    "biblical-context": 323,
+    "biblical-context": 356,
     "christ": 2,
-    "church-saint": 246,
+    "church-saint": 382,
     "feast": 61,
     "forefather": 54,
     "nt-saint": 40,
     "prophet": 24,
     "righteous": 70,
     "theotokos": 1
-  }
+  },
+  "veneratedPersonBeing": 666
 }

@@ -1,0 +1,574 @@
+{
+  "jesus-christ": {
+    "file": "Christ Icon Sinai 6th century.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Christ%20Icon%20Sinai%206th%20century.jpg?width=640",
+    "local": "web/images/real/jesus-christ.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christ_Icon_Sinai_6th_century.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Sinai Pantocrator, 6th century — Wikimedia Commons — Public domain",
+      "el": "Sinai Pantocrator, 6th century — Wikimedia Commons — Public domain"
+    }
+  },
+  "theotokos": {
+    "file": "Theotokos, the Orthodox icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Theotokos,%20the%20Orthodox%20icon.jpg?width=640",
+    "local": "web/images/real/theotokos.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Theotokos,_the_Orthodox_icon.jpg",
+    "license": "CC0 1.0",
+    "credit": {
+      "en": "Orthodox icon of the Theotokos — Wikimedia Commons — CC0 1.0",
+      "el": "Orthodox icon of the Theotokos — Wikimedia Commons — CC0 1.0"
+    }
+  },
+  "archangel-michael": {
+    "file": "Icon of Archangel Michael.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Archangel%20Michael.jpg?width=640",
+    "local": "web/images/real/archangel-michael.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Archangel_Michael.jpg",
+    "license": "CC0 1.0",
+    "credit": {
+      "en": "Icon of Archangel Michael, Mantamados — Wikimedia Commons — CC0 1.0",
+      "el": "Icon of Archangel Michael, Mantamados — Wikimedia Commons — CC0 1.0"
+    }
+  },
+  "archangel-gabriel": {
+    "file": "Archangel Gabriel Icon wearing sacred blue.png",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Archangel%20Gabriel%20Icon%20wearing%20sacred%20blue.png?width=640",
+    "local": "web/images/real/archangel-gabriel.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Archangel_Gabriel_Icon_wearing_sacred_blue.png",
+    "license": "CC0 / public-domain artwork",
+    "credit": {
+      "en": "Archangel Gabriel, Saint Catherine’s Monastery — Wikimedia Commons — CC0 / public-domain artwork",
+      "el": "Archangel Gabriel, Saint Catherine’s Monastery — Wikimedia Commons — CC0 / public-domain artwork"
+    }
+  },
+  "john-baptist": {
+    "file": "Icon of John Baptist by Emmanouel Tzanes.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20John%20Baptist%20by%20Emmanouel%20Tzanes.jpg?width=640",
+    "local": "web/images/real/john-baptist.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_John_Baptist_by_Emmanouel_Tzanes.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Saint John the Baptist, Emmanuel Tzanes — Wikimedia Commons — Public domain artwork",
+      "el": "Saint John the Baptist, Emmanuel Tzanes — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "peter": {
+    "file": "Apostle Peter - 13th century icon.jpeg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Apostle%20Peter%20-%2013th%20century%20icon.jpeg?width=640",
+    "local": "web/images/real/peter.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apostle_Peter_-_13th_century_icon.jpeg",
+    "license": "Public domain",
+    "credit": {
+      "en": "13th-century Byzantine icon of Apostle Peter — Wikimedia Commons — Public domain",
+      "el": "13th-century Byzantine icon of Apostle Peter — Wikimedia Commons — Public domain"
+    }
+  },
+  "paul": {
+    "file": "Apostle Paul - icon.jpeg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Apostle%20Paul%20-%20icon.jpeg?width=640",
+    "local": "web/images/real/paul.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apostle_Paul_-_icon.jpeg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Orthodox icon of Apostle Paul — Wikimedia Commons — Public domain artwork",
+      "el": "Orthodox icon of Apostle Paul — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "andrew": {
+    "file": "Saint Andrew.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Andrew.jpg?width=640",
+    "local": "web/images/real/andrew.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Andrew.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "18th-century Orthodox icon of Apostle Andrew — Wikimedia Commons — Public domain",
+      "el": "18th-century Orthodox icon of Apostle Andrew — Wikimedia Commons — Public domain"
+    }
+  },
+  "john-theologian": {
+    "file": "Holy Apostle and Evangelist John the Theologian. Icon. Greece, 1500. Monastery of St. John the Theologian on the island of Patmos.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Holy%20Apostle%20and%20Evangelist%20John%20the%20Theologian.%20Icon.%20Greece,%201500.%20Monastery%20of%20St.%20John%20the%20Theologian%20on%20the%20island%20of%20Patmos.jpg?width=640",
+    "local": "web/images/real/john-theologian.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holy_Apostle_and_Evangelist_John_the_Theologian._Icon._Greece,_1500._Monastery_of_St._John_the_Theologian_on_the_island_of_Patmos.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Saint John the Theologian, Patmos icon — Wikimedia Commons — Public domain artwork",
+      "el": "Saint John the Theologian, Patmos icon — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "mary-magdalene": {
+    "file": "Maria Magdalene icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Maria%20Magdalene%20icon.jpg?width=640",
+    "local": "web/images/real/mary-magdalene.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maria_Magdalene_icon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Eastern Orthodox icon of Mary Magdalene — Wikimedia Commons — Public domain artwork",
+      "el": "Eastern Orthodox icon of Mary Magdalene — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "stephen": {
+    "file": "Saint stephen bulgaria icon.gif",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20stephen%20bulgaria%20icon.gif?width=640",
+    "local": "web/images/real/stephen.gif",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_stephen_bulgaria_icon.gif",
+    "license": "Public domain",
+    "credit": {
+      "en": "17th-century Bulgarian icon of Saint Stephen — Wikimedia Commons — Public domain",
+      "el": "17th-century Bulgarian icon of Saint Stephen — Wikimedia Commons — Public domain"
+    }
+  },
+  "george": {
+    "file": "Saint-George-Grk-ikon.png",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint-George-Grk-ikon.png?width=640",
+    "local": "web/images/real/george.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint-George-Grk-ikon.png",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Traditional Greek Orthodox icon of Saint George — Wikimedia Commons — Public domain artwork",
+      "el": "Traditional Greek Orthodox icon of Saint George — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "demetrios": {
+    "file": "Saint Demetrius Icon from Saint George Church in Agios Vasileios.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Demetrius%20Icon%20from%20Saint%20George%20Church%20in%20Agios%20Vasileios.jpg?width=640",
+    "local": "web/images/real/demetrios.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Demetrius_Icon_from_Saint_George_Church_in_Agios_Vasileios.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Icon of Saint Demetrios — Wikimedia Commons — Public domain",
+      "el": "Icon of Saint Demetrios — Wikimedia Commons — Public domain"
+    }
+  },
+  "nicholas": {
+    "file": "Saint nicholas icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20nicholas%20icon.jpg?width=640",
+    "local": "web/images/real/nicholas.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_nicholas_icon.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Icon of Saint Nicholas the Wonderworker — Wikimedia Commons — Public domain",
+      "el": "Icon of Saint Nicholas the Wonderworker — Wikimedia Commons — Public domain"
+    }
+  },
+  "nektarios": {
+    "file": "Saint Nektarios of Aegina Icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Nektarios%20of%20Aegina%20Icon.jpg?width=640",
+    "local": "web/images/real/nektarios.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Nektarios_of_Aegina_Icon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Greek Orthodox icon of Saint Nektarios of Aegina — Wikimedia Commons — Public domain artwork",
+      "el": "Greek Orthodox icon of Saint Nektarios of Aegina — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "john-chrysostom": {
+    "file": "Icons of John Chrysostom.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icons%20of%20John%20Chrysostom.jpg?width=640",
+    "local": "web/images/real/john-chrysostom.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icons_of_John_Chrysostom.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Icon of Saint John Chrysostom — Wikimedia Commons — Public domain",
+      "el": "Icon of Saint John Chrysostom — Wikimedia Commons — Public domain"
+    }
+  },
+  "gregory-palamas": {
+    "file": "015 Saint Gregory Palamas Icon from Saint Paraskevi Church in Langadas.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/015%20Saint%20Gregory%20Palamas%20Icon%20from%20Saint%20Paraskevi%20Church%20in%20Langadas.jpg?width=640",
+    "local": "web/images/real/gregory-palamas.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:015_Saint_Gregory_Palamas_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of Saint Gregory Palamas — Wikimedia Commons — Public domain artwork",
+      "el": "Icon of Saint Gregory Palamas — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "spyridon": {
+    "file": "Saint Spyridon Icon from Gorno Statitsa 1720.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Spyridon%20Icon%20from%20Gorno%20Statitsa%201720.jpg?width=640",
+    "local": "web/images/real/spyridon.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Spyridon_Icon_from_Gorno_Statitsa_1720.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "1720 icon of Saint Spyridon — Wikimedia Commons — Public domain",
+      "el": "1720 icon of Saint Spyridon — Wikimedia Commons — Public domain"
+    }
+  },
+  "athanasius-great": {
+    "file": "Saint Athanasius Icon in Saint Athanasius Church in Livadi, Sterios Dimitriou, 1844, Detail 1.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Athanasius%20Icon%20in%20Saint%20Athanasius%20Church%20in%20Livadi,%20Sterios%20Dimitriou,%201844,%20Detail%201.jpg?width=640",
+    "local": "web/images/real/athanasius-great.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Athanasius_Icon_in_Saint_Athanasius_Church_in_Livadi,_Sterios_Dimitriou,_1844,_Detail_1.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "1844 icon of Saint Athanasius — Wikimedia Commons — Public domain",
+      "el": "1844 icon of Saint Athanasius — Wikimedia Commons — Public domain"
+    }
+  },
+  "cyril-alexandria": {
+    "file": "Icon St. Cyril of Alexandria.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20St.%20Cyril%20of%20Alexandria.jpg?width=640",
+    "local": "web/images/real/cyril-alexandria.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_St._Cyril_of_Alexandria.jpg",
+    "license": "CC BY-SA 2.0",
+    "credit": {
+      "en": "Icon of Saint Cyril of Alexandria — Wikimedia Commons — CC BY-SA 2.0",
+      "el": "Icon of Saint Cyril of Alexandria — Wikimedia Commons — CC BY-SA 2.0"
+    }
+  },
+  "maximus-confessor": {
+    "file": "Greek Icon of Saint Maximos the Confessor.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Greek%20Icon%20of%20Saint%20Maximos%20the%20Confessor.jpg?width=640",
+    "local": "web/images/real/maximus-confessor.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Greek_Icon_of_Saint_Maximos_the_Confessor.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Greek icon of Saint Maximus the Confessor — Wikimedia Commons — Public domain",
+      "el": "Greek icon of Saint Maximus the Confessor — Wikimedia Commons — Public domain"
+    }
+  },
+  "mary-egypt": {
+    "file": "Mary of Egypt.gif",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Mary%20of%20Egypt.gif?width=640",
+    "local": "web/images/real/mary-egypt.gif",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mary_of_Egypt.gif",
+    "license": "Public domain",
+    "credit": {
+      "en": "18th-century Russian icon of Saint Mary of Egypt — Wikimedia Commons — Public domain",
+      "el": "18th-century Russian icon of Saint Mary of Egypt — Wikimedia Commons — Public domain"
+    }
+  },
+  "seraphim-sarov": {
+    "file": "Saint Seraphim of Sarov.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Seraphim%20of%20Sarov.jpg?width=640",
+    "local": "web/images/real/seraphim-sarov.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Seraphim_of_Sarov.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Russian icon of Saint Seraphim of Sarov — Wikimedia Commons — Public domain artwork",
+      "el": "Russian icon of Saint Seraphim of Sarov — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "david": {
+    "file": "David-icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/David-icon.jpg?width=640",
+    "local": "web/images/real/david.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:David-icon.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "18th-century Russian icon of Prophet-King David — Wikimedia Commons — Public domain",
+      "el": "18th-century Russian icon of Prophet-King David — Wikimedia Commons — Public domain"
+    }
+  },
+  "daniel": {
+    "file": "Prophet danielorthodox icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Prophet%20danielorthodox%20icon.jpg?width=640",
+    "local": "web/images/real/daniel.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prophet_danielorthodox_icon.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Orthodox icon of Prophet Daniel — Wikimedia Commons — Public domain",
+      "el": "Orthodox icon of Prophet Daniel — Wikimedia Commons — Public domain"
+    }
+  },
+  "basil-great": {
+    "file": "Basil-the-Great.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Basil-the-Great.jpg?width=640",
+    "local": "web/images/real/basil-great.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Basil-the-Great.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of Saint Basil the Great — Wikimedia Commons — Public domain artwork",
+      "el": "Icon of Saint Basil the Great — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "gregory-theologian": {
+    "file": "Gregory of Nazianzus.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Gregory%20of%20Nazianzus.jpg?width=640",
+    "local": "web/images/real/gregory-theologian.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gregory_of_Nazianzus.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of Saint Gregory the Theologian — Wikimedia Commons — Public domain artwork",
+      "el": "Icon of Saint Gregory the Theologian — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "elijah": {
+    "file": "Prophet Elijah two-sided icon late 12th century Byzantine Museum, Kastoria.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Prophet%20Elijah%20two-sided%20icon%20late%2012th%20century%20Byzantine%20Museum,%20Kastoria.jpg?width=640",
+    "local": "web/images/real/elijah.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prophet_Elijah_two-sided_icon_late_12th_century_Byzantine_Museum,_Kastoria.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Byzantine icon of Prophet Elijah — Wikimedia Commons — Public domain artwork",
+      "el": "Byzantine icon of Prophet Elijah — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "abraham": {
+    "file": "AbrahamIcon.JPG",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/AbrahamIcon.JPG?width=640",
+    "local": "web/images/real/abraham.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:AbrahamIcon.JPG",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Orthodox icon of Patriarch Abraham — Wikimedia Commons — Public domain artwork",
+      "el": "Orthodox icon of Patriarch Abraham — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "holy-spirit": {
+    "file": "Dove of the Holy Spirit.png",
+    "local": "web/images/real/holy-spirit.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dove_of_the_Holy_Spirit.png",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Dove symbol of the Holy Spirit after Bernini — Wikimedia Commons — public-domain artwork",
+      "el": "Σύμβολο περιστεράς του Αγίου Πνεύματος κατά Bernini — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Dove%20of%20the%20Holy%20Spirit.png?width=640"
+  },
+  "archangel-raphael": {
+    "file": "Archangel Raphael icon (Annunciation Cathedral in Moscow) by shakko.jpg",
+    "local": "web/images/real/archangel-raphael.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Archangel_Raphael_icon_(Annunciation_Cathedral_in_Moscow)_by_shakko.jpg",
+    "license": "CC BY-SA 3.0",
+    "credit": {
+      "en": "Icon of Archangel Raphael — Annunciation Cathedral, Moscow — Wikimedia Commons — CC BY-SA 3.0",
+      "el": "Εικόνα Αρχαγγέλου Ραφαήλ — Καθεδρικός Ευαγγελισμού Μόσχας — Wikimedia Commons — CC BY-SA 3.0"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Archangel%20Raphael%20icon%20%28Annunciation%20Cathedral%20in%20Moscow%29%20by%20shakko.jpg?width=640"
+  },
+  "james-zebedee": {
+    "file": "James son of Zebedee.jpg",
+    "local": "web/images/real/james-zebedee.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:James_son_of_Zebedee.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "18th-century Russian icon of Saint James the Greater — Wikimedia Commons — public domain",
+      "el": "Ρωσική εικόνα του 18ου αιώνα του Αγίου Ιακώβου του Ζεβεδαίου — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/James%20son%20of%20Zebedee.jpg?width=640"
+  },
+  "constantine-helen": {
+    "file": "070 Saints Constantine and Helen Icon from Saint Paraskevi Church in Langadas.jpg",
+    "local": "web/images/real/constantine-helen.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:070_Saints_Constantine_and_Helen_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of Saints Constantine and Helen, Langadas — Wikimedia Commons — public-domain artwork",
+      "el": "Εικόνα Αγίων Κωνσταντίνου και Ελένης, Λαγκαδάς — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/070%20Saints%20Constantine%20and%20Helen%20Icon%20from%20Saint%20Paraskevi%20Church%20in%20Langadas.jpg?width=640"
+  },
+  "paisios": {
+    "file": "SaintPaisiosofMountAthos.jpg",
+    "local": "web/images/real/paisios.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:SaintPaisiosofMountAthos.jpg",
+    "license": "CC BY 4.0",
+    "credit": {
+      "en": "Image of Saint Paisios of Mount Athos — Wikimedia Commons — CC BY 4.0",
+      "el": "Εικόνα Αγίου Παϊσίου του Αγιορείτου — Wikimedia Commons — CC BY 4.0"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/SaintPaisiosofMountAthos.jpg?width=640"
+  },
+  "moses": {
+    "file": "Moses-icon.jpg",
+    "local": "web/images/real/moses.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moses-icon.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Orthodox icon of the Prophet Moses — Wikimedia Commons — public domain",
+      "el": "Ορθόδοξη εικόνα του Προφήτη Μωυσή — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Moses-icon.jpg?width=640"
+  },
+  "sarah": {
+    "file": "Righteous Sarah.jpg",
+    "local": "web/images/real/sarah.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Righteous_Sarah.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Russian Orthodox icon roundel of Righteous Sarah — Wikimedia Commons — public domain",
+      "el": "Ρωσικό ορθόδοξο μετάλλιο εικόνας της Δικαίας Σάρρας — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Righteous%20Sarah.jpg?width=640"
+  },
+  "noah": {
+    "file": "Noah icon.jpg",
+    "local": "web/images/real/noah.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Noah_icon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "19th-century icon of Righteous Noah — Wikimedia Commons — public-domain artwork",
+      "el": "Εικόνα 19ου αιώνα του Δικαίου Νώε — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Noah%20icon.jpg?width=640"
+  },
+  "pentecost": {
+    "file": "Pentecost on Icon from Hajdudorog Frame.jpg",
+    "local": "web/images/real/pentecost.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pentecost_on_Icon_from_Hajdudorog_Frame.jpg",
+    "license": "CC BY-SA 3.0",
+    "credit": {
+      "en": "Pentecost icon, Hajdúdorog — Wikimedia Commons — CC BY-SA 3.0",
+      "el": "Εικόνα Πεντηκοστής, Hajdúdorog — Wikimedia Commons — CC BY-SA 3.0"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Pentecost%20on%20Icon%20from%20Hajdudorog%20Frame.jpg?width=640"
+  },
+  "nativity-christ": {
+    "file": "Nativity of christ.jpg",
+    "local": "web/images/real/nativity-christ.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nativity_of_christ.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Early Russian icon of the Nativity of Christ — Wikimedia Commons — public-domain artwork",
+      "el": "Παλαιά ρωσική εικόνα της Γεννήσεως του Χριστού — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Nativity%20of%20christ.jpg?width=640"
+  },
+  "theophany": {
+    "file": "Baptism of Christ Icon from Saint George Church in Melissourgos.jpg",
+    "local": "web/images/real/theophany.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baptism_of_Christ_Icon_from_Saint_George_Church_in_Melissourgos.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of the Baptism/Theophany of Christ — Wikimedia Commons — public-domain artwork",
+      "el": "Εικόνα Βαπτίσεως/Θεοφανείων του Χριστού — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Baptism%20of%20Christ%20Icon%20from%20Saint%20George%20Church%20in%20Melissourgos.jpg?width=640"
+  },
+  "transfiguration": {
+    "file": "Transfiguration of Christ Icon Sinai 12th century.jpg",
+    "local": "web/images/real/transfiguration.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Transfiguration_of_Christ_Icon_Sinai_12th_century.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "12th-century Sinai icon of the Transfiguration — Wikimedia Commons — public-domain artwork",
+      "el": "Σιναϊτική εικόνα Μεταμορφώσεως του 12ου αιώνα — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Transfiguration%20of%20Christ%20Icon%20Sinai%2012th%20century.jpg?width=640"
+  },
+  "dormition": {
+    "file": "Dormition-of-the-Theotokos Icon.jpg",
+    "local": "web/images/real/dormition.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dormition-of-the-Theotokos_Icon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of the Dormition of the Theotokos — Wikimedia Commons — public-domain artwork",
+      "el": "Εικόνα της Κοιμήσεως της Θεοτόκου — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Dormition-of-the-Theotokos%20Icon.jpg?width=640"
+  },
+  "annunciation": {
+    "file": "Ohrid annunciation icon.jpg",
+    "local": "web/images/real/annunciation.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ohrid_annunciation_icon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Medieval Ohrid icon of the Annunciation — Wikimedia Commons — public-domain artwork",
+      "el": "Μεσαιωνική εικόνα Ευαγγελισμού από την Αχρίδα — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Ohrid%20annunciation%20icon.jpg?width=640"
+  },
+  "pascha": {
+    "file": "Icon 1500s Anastasis.JPG",
+    "local": "web/images/real/pascha.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_1500s_Anastasis.JPG",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Anastasis icon, 16th century — Wikimedia Commons — public-domain artwork",
+      "el": "Εικόνα Αναστάσεως, 16ος αιώνας — Wikimedia Commons — κοινό κτήμα"
+    },
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%201500s%20Anastasis.JPG?width=640"
+  },
+  "isaac-syrian": {
+    "file": "Isak Sirin.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Isak%20Sirin.jpg?width=640",
+    "local": "web/images/real/isaac-syrian.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Isak_Sirin.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of Saint Isaac the Syrian, 14th–15th century — Wikimedia Commons — Public domain artwork",
+      "el": "Εικόνα του Αγίου Ισαάκ του Σύρου, 14ος–15ος αιώνας — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "jacob": {
+    "file": "Jacob (Israel).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Jacob%20%28Israel%29.jpg?width=640",
+    "local": "web/images/real/jacob.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jacob_(Israel).jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "18th-century Russian icon of Patriarch Jacob (Israel) — Wikimedia Commons — Public domain",
+      "el": "Ρωσική εικόνα 18ου αιώνα του Πατριάρχη Ιακώβ (Ισραήλ) — Wikimedia Commons — Public domain"
+    }
+  },
+  "aaron": {
+    "file": "Icon of Aaron (17th c., North Russia, priv. coll.).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Aaron%20%2817th%20c.%2C%20North%20Russia%2C%20priv.%20coll.%29.jpg?width=640",
+    "local": "web/images/real/aaron.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Aaron_(17th_c.,_North_Russia,_priv._coll.).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "17th-century North Russian icon of Aaron — Wikimedia Commons — Public domain artwork",
+      "el": "Βορειορωσική εικόνα 17ου αιώνα του Ααρών — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "ezekiel": {
+    "file": "Icon of Ezekiel (17th c., North Russia, priv. coll.).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Ezekiel%20%2817th%20c.%2C%20North%20Russia%2C%20priv.%20coll.%29.jpg?width=640",
+    "local": "web/images/real/ezekiel.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Ezekiel_(17th_c.,_North_Russia,_priv._coll.).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "17th-century North Russian icon of Prophet Ezekiel — Wikimedia Commons — Public domain artwork",
+      "el": "Βορειορωσική εικόνα 17ου αιώνα του Προφήτη Ιεζεκιήλ — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "gideon": {
+    "file": "Icon of Gideon (17th c., North Russia, priv. coll.).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Gideon%20%2817th%20c.%2C%20North%20Russia%2C%20priv.%20coll.%29.jpg?width=640",
+    "local": "web/images/real/gideon.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Gideon_(17th_c.,_North_Russia,_priv._coll.).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "17th-century North Russian icon of Gideon — Wikimedia Commons — Public domain artwork",
+      "el": "Βορειορωσική εικόνα 17ου αιώνα του Γεδεών — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "jeremiah": {
+    "file": "Icon of Jeremiah (17th c., North Russia, priv. coll.).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Jeremiah%20%2817th%20c.%2C%20North%20Russia%2C%20priv.%20coll.%29.jpg?width=640",
+    "local": "web/images/real/jeremiah.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Jeremiah_(17th_c.,_North_Russia,_priv._coll.).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "17th-century North Russian icon of Prophet Jeremiah — Wikimedia Commons — Public domain artwork",
+      "el": "Βορειορωσική εικόνα 17ου αιώνα του Προφήτη Ιερεμία — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "zephaniah": {
+    "file": "Icon of Zephaniah (17th c., North Russia, priv. coll.).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Zephaniah%20%2817th%20c.%2C%20North%20Russia%2C%20priv.%20coll.%29.jpg?width=640",
+    "local": "web/images/real/zephaniah.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Zephaniah_(17th_c.,_North_Russia,_priv._coll.).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "17th-century North Russian icon of Prophet Zephaniah — Wikimedia Commons — Public domain artwork",
+      "el": "Βορειορωσική εικόνα 17ου αιώνα του Προφήτη Σοφονία — Wikimedia Commons — Public domain artwork"
+    }
+  },
+  "job": {
+    "file": "Icon of Job (North Russia, 17 c.).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Job%20%28North%20Russia%2C%2017%20c.%29.jpg?width=640",
+    "local": "web/images/real/job.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Job_(North_Russia,_17_c.).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "17th-century North Russian icon of Righteous Job — Wikimedia Commons — Public domain artwork",
+      "el": "Βορειορωσική εικόνα 17ου αιώνα του Δικαίου Ιώβ — Wikimedia Commons — Public domain artwork"
+    }
+  }
+}

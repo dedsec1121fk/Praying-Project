@@ -239,3 +239,8 @@ python scripts/reconstruct.py cleanup
 </details>
 
 </details>
+
+
+### v8 web-face update
+
+The bilingual web now uses a lightweight static cloud/sky background. All 1,083 catalog records have permanent positions in the same continuous web; the far overview draws every bubble while nearby bubbles are promoted to full clickable image/name nodes for performance. Image-source attribution is placed inside the details content rather than over the icon/title. Greek-mode reference terms such as Gospel, Gospels, New Testament and Bible-book names are normalized into Greek at runtime.

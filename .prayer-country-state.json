@@ -163,14 +163,15 @@
     "PA",
     "RO",
     "GN",
-    "ET"
+    "ET",
+    "UZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Tashkent",
-    "country": "Uzbekistan",
-    "iso2": "UZ",
-    "timezone": "Asia/Tashkent"
+    "capital": "Caracas",
+    "country": "Venezuela",
+    "iso2": "VE",
+    "timezone": "America/Caracas"
   },
-  "selection_period": "2026-09-14"
+  "selection_period": "2026-09-13"
 }

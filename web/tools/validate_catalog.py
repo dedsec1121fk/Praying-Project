@@ -16,6 +16,9 @@ FILES = [
     ("biblical-context.js", "ORTHODOX_BIBLICAL_CONTEXT"),
     ("further-expansion.js", "ORTHODOX_FURTHER_EXPANSION"),
     ("deep-biblical.js", "ORTHODOX_DEEP_BIBLICAL"),
+    ("comprehensive-expansion.js", "ORTHODOX_COMPREHENSIVE_EXPANSION"),
+    ("v7-expansion.js", "ORTHODOX_V7_EXPANSION"),
+    ("v8-expansion.js", "ORTHODOX_V8_EXPANSION"),
 ]
 
 def load_js_array(path: Path):
@@ -23,18 +26,21 @@ def load_js_array(path: Path):
     rhs = text.split("=", 1)[1].strip().rstrip(";")
     return json.loads(rhs)
 
-entries = []
+entries_by_id = {}
+errors = []
 for filename, _ in FILES:
     path = DATA / filename
     if not path.exists():
         raise SystemExit(f"Missing data file: {path.relative_to(ROOT)}")
-    entries.extend(load_js_array(path))
-
-errors = []
-ids = [e.get("id") for e in entries]
-for item, count in Counter(ids).items():
-    if count > 1:
-        errors.append(f"duplicate id: {item} ({count} times)")
+    layer = load_js_array(path)
+    layer_ids = [e.get("id") for e in layer]
+    for item, count in Counter(layer_ids).items():
+        if count > 1:
+            errors.append(f"duplicate id inside {filename}: {item} ({count} times)")
+    for e in layer:
+        if e.get("id"):
+            entries_by_id[e["id"]] = e
+entries = list(entries_by_id.values())
 
 required = ("id", "name", "category", "role", "story", "feast", "prayer", "notes", "image")
 for e in entries:
@@ -50,6 +56,15 @@ for e in entries:
     image = ROOT / str(e.get("image", ""))
     if not image.exists():
         errors.append(f"{eid}: missing image {e.get('image')}")
+
+
+greek_re = re.compile(r'[\u0370-\u03ff\u1f00-\u1fff]')
+for e in entries:
+    eid = e.get("id", "<missing>")
+    for key in ("name", "role", "story", "feast", "prayer", "notes"):
+        text = str(e.get(key, {}).get("el", ""))
+        if text and not greek_re.search(text):
+            errors.append(f"{eid}: {key}.el does not contain Greek text")
 
 valid_categories = {"christ", "theotokos", "angel", "forefather", "righteous", "prophet", "apostle", "nt-saint", "church-saint", "feast", "biblical-context"}
 for e in entries:
