@@ -170,6 +170,10 @@ button{-webkit-tap-highlight-color:transparent}
 .profile-section .source-list a{color:#96f4ff;text-decoration:none}
 .profile-section .source-list a:hover{text-decoration:underline}
 .profile-section.long p{white-space:pre-line}
+.profile-section.description-section p{font-size:16px;line-height:1.78}
+.profile-section.prayer-section{padding:16px 18px;border:1px solid rgba(255,226,122,.22);border-radius:16px;background:rgba(255,226,122,.06)}
+.profile-section.prayer-section h3{color:#ffe58c}
+.profile-section.prayer-section p{font-size:17px;line-height:1.82}
 .profile-quality{display:inline-flex;align-items:center;margin:0 0 14px;padding:6px 9px;border-radius:999px;border:1px solid rgba(146,241,255,.23);background:rgba(83,218,255,.08);color:#b9f7ff;font-size:10px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}
 .network{overscroll-behavior:none;touch-action:none;-webkit-user-select:none}
 .scene{backface-visibility:hidden;-webkit-backface-visibility:hidden}

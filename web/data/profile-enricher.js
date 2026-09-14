@@ -2,6 +2,7 @@
   'use strict';
   const entries=Array.isArray(window.ORTHODOX_ENTRIES)?window.ORTHODOX_ENTRIES:[];
   const clean=s=>String(s||'').replace(/\s+/g,' ').trim();
+  const firstSentence=s=>{const t=clean(s),m=t.match(/^.*?[.!?](?=\s|$)/);return m?m[0]:t};
   // Runtime Greek normalizer for reference labels and legacy records. Keep the
   // replacements domain-specific; never machine-translate whole biographies.
   const refMap=[
@@ -9,7 +10,7 @@
     [/Church tradition \/ Lives of the Saints/gi,'Εκκλησιαστική παράδοση / Βίοι Αγίων'],
     [/Lives of the Saints/gi,'Βίοι Αγίων'],[/Church tradition/gi,'Εκκλησιαστική παράδοση'],[/Liturgical tradition/gi,'Λειτουργική παράδοση'],
     [/Biblical \/ historical context/gi,'Βιβλικό / ιστορικό πλαίσιο'],[/Biblical \/ visionary context/gi,'Βιβλικό / οραματικό πλαίσιο'],
-    [/New Testament/gi,'Καινή Διαθήκη'],[/Old Testament/gi,'Παλαιά Διαθήκη'],[/Synoptic Gospels/gi,'Συνοπτικά Ευαγγέλια'],[/Gospels/gi,'Ευαγγέλια'],[/Gospel/gi,'Ευαγγέλιο'],
+    [/New Testament/gi,'Καινή Διαθήκη'],[/Old Testament/gi,'Παλαιά Διαθήκη'],[/Gospel of Matthew/gi,'Ευαγγέλιο κατά Ματθαίον'],[/Gospel of Mark/gi,'Ευαγγέλιο κατά Μάρκον'],[/Gospel of Luke/gi,'Ευαγγέλιο κατά Λουκάν'],[/Gospel of John/gi,'Ευαγγέλιο κατά Ιωάννην'],[/Gospels and Acts/gi,'Ευαγγέλια και Πράξεις'],[/Greek Daniel/gi,'ελληνικό κείμενο του Δανιήλ'],[/Sirach, Prologue/gi,'Σειράχ, Πρόλογος'],[/Synoptic Gospels/gi,'Συνοπτικά Ευαγγέλια'],[/Gospels/gi,'Ευαγγέλια'],[/Gospel/gi,'Ευαγγέλιο'],
     [/Early Church tradition/gi,'Αρχαία εκκλησιαστική παράδοση'],[/Early Antiochian tradition/gi,'Αρχαία αντιοχειανή παράδοση'],[/Orthodox angelic tradition/gi,'Ορθόδοξη αγγελική παράδοση'],[/Orthodox tradition/gi,'Ορθόδοξη παράδοση'],[/apostolic tradition/gi,'αποστολική παράδοση'],[/by tradition/gi,'κατά την παράδοση'],[/later Jewish history/gi,'μεταγενέστερη ιουδαϊκή ιστορία'],[/later tradition/gi,'μεταγενέστερη παράδοση'],
     [/Pauline Epistles/gi,'Επιστολές του Παύλου'],[/General Epistles/gi,'Καθολικές Επιστολές'],[/Wisdom tradition/gi,'Σοφιολογική παράδοση'],
     [/Wisdom of Solomon/gi,'Σοφία Σολομώντος'],[/Song of the Three Holy Youths/gi,'Ωδή των Τριών Αγίων Παίδων'],[/Prayer of Manasseh/gi,'Προσευχή Μανασσή'],[/Song of Songs/gi,'Άσμα Ασμάτων'],
@@ -21,7 +22,7 @@
     [/Early Christian letters/gi,'Πρωτοχριστιανικές επιστολές'],[/Early Christian apologetic writings/gi,'Πρωτοχριστιανικά απολογητικά συγγράμματα'],[/Early Christian/gi,'Πρωτοχριστιανική'],[/traditional identification/gi,'παραδοσιακή ταύτιση'],[/angelic tradition/gi,'αγγελική παράδοση'],[/Jewish history/gi,'ιουδαϊκή ιστορία'],
     [/patristic and conciliar history/gi,'πατερική και συνοδική ιστορία'],[/hagiographic comparison with/gi,'αγιολογική σύγκριση με'],[/modern biographical testimony/gi,'σύγχρονη βιογραφική μαρτυρία'],[/Lenten liturgical tradition/gi,'λειτουργική παράδοση της Μεγάλης Τεσσαρακοστής'],[/Paschal liturgical tradition/gi,'πασχάλια λειτουργική παράδοση'],[/Second Sunday after Pentecost in OCA usage/gi,'Δεύτερη Κυριακή μετά την Πεντηκοστή κατά τη χρήση της OCA'],[/Seventh Ecumenical Council memory/gi,'μνήμη της Ζ΄ Οικουμενικής Συνόδου'],[/Romans 16 circle/gi,'κύκλος της Ρωμαίους 16'],
     [/Early Εκκλησιαστική παράδοση/gi,'Αρχαία εκκλησιαστική παράδοση'],[/Πρωτοχριστιανική tradition/gi,'Πρωτοχριστιανική παράδοση'],[/Ρωμαίους 16 circle/gi,'κύκλος προσώπων της Ρωμαίους 16'],[/\btradition\b/gi,'παράδοση'],[/Ζ΄ Οικουμενική Σύνοδος memory/gi,'μνήμη της Ζ΄ Οικουμενικής Συνόδου'],[/Lenten Λειτουργική παράδοση/gi,'λειτουργική παράδοση της Μεγάλης Τεσσαρακοστής'],[/Paschal Λειτουργική παράδοση/gi,'πασχάλια λειτουργική παράδοση'],[/Second Κυριακή μετά από Πεντηκοστή in OCA usage/gi,'Δεύτερη Κυριακή μετά την Πεντηκοστή κατά τη χρήση της OCA'],[/Greek Orthodox/gi,'Ελληνική Ορθόδοξη'],[/Greek Daniel/gi,'ελληνικό κείμενο του Δανιήλ'],[/Susanna/gi,'Σουσάννα'],
-    [/Public domain artwork/gi,'έργο κοινό κτήμα'],[/Public domain/gi,'κοινό κτήμα'],[/Orthodox icon/gi,'Ορθόδοξη εικόνα'],[/Russian icon/gi,'Ρωσική εικόνα'],[/Byzantine icon/gi,'Βυζαντινή εικόνα'],[/Wikimedia Commons/gi,'Wikimedia Commons'],[/cf\./gi,'πρβλ.']
+    [/Public domain artwork/gi,'έργο κοινό κτήμα'],[/Public domain/gi,'κοινό κτήμα'],[/Orthodox icon/gi,'Ορθόδοξη εικόνα'],[/Russian icon/gi,'Ρωσική εικόνα'],[/Byzantine icon/gi,'Βυζαντινή εικόνα'],[/Greek icon/gi,'Ελληνική εικόνα'],[/Icon of/gi,'Εικόνα του'],[/\band\b/gi,'και'],[/Wikimedia Commons/gi,'Wikimedia Commons'],[/cf\./gi,'πρβλ.']
   ];
   function translateEl(s){let out=clean(s);for(const [a,b] of refMap)out=out.replace(a,b);return out||'—'}
   function refEl(s){return translateEl(s)}
@@ -65,18 +66,19 @@
     if(biblical)return {level:'scripture-grounded',label:{en:'Scripture-grounded record',el:'Καταχώριση θεμελιωμένη στη Γραφή'},note:{en:'The catalog limits factual claims to the cited biblical passages plus clearly labeled Orthodox reception. Where Scripture gives only a name or brief episode, no missing biography is invented.',el:'Ο κατάλογος περιορίζει τους πραγματολογικούς ισχυρισμούς στα παρατιθέμενα βιβλικά χωρία και σε σαφώς επισημασμένη ορθόδοξη πρόσληψη. Όταν η Γραφή διασώζει μόνο όνομα ή σύντομο επεισόδιο, δεν επινοείται ελλείπουσα βιογραφία.'}};
     return {level:'catalog-summary',label:{en:'Catalog summary — verify minor details',el:'Συνοπτική καταχώριση — έλεγχος λεπτομερειών'},note:{en:'Only limited locally sourced material is available for this record. The entry deliberately avoids unsupported precision; linked Orthodox references should be consulted for jurisdiction-specific or disputed minor details.',el:'Για αυτή την καταχώριση υπάρχουν περιορισμένα τοπικά τεκμηριωμένα στοιχεία. Αποφεύγεται σκόπιμα η ατεκμηρίωτη ακρίβεια· για τοπικές ή αμφισβητούμενες λεπτομέρειες πρέπει να ελέγχονται οι συνδεδεμένες ορθόδοξες πηγές.'}};
   }
-  function polishGreekField(value){
+  function polishGreekGeneral(value){
     let s=clean(value);
-    // Remove legacy slash-gender placeholders from generated Greek text. These
-    // were useful internally while the catalog was being assembled but should
-    // never appear in the finished bilingual UI.
-    s=s.replace(/Ο\/Η\s+/g,'')
-       .replace(/του\/της/g,'του προσώπου')
-       .replace(/Άγιε\/Αγία\s+/g,'');
-    // Repair the most common nominative saint titles when they appear at the
-    // start of an invocation after the neutral marker has been removed.
+    // Remove legacy assembly placeholders without changing grammatical case in
+    // descriptions, roles, stories, feasts, notes, or documentary sections.
+    return s.replace(/Ο\/Η\s+/g,'').replace(/του\/της/g,'του προσώπου');
+  }
+  function polishGreekPrayer(value){
+    let s=polishGreekGeneral(value).replace(/Άγιε\/Αγία\s+/g,'');
+    // Prayer invocations need the vocative; non-prayer prose must stay in the nominative.
     s=s.replace(/^Άγιος\s+/,'Άγιε ')
+       .replace(/^Αγία\s+/,'Αγία ')
        .replace(/^Όσιος\s+/,'Όσιε ')
+       .replace(/^Οσία\s+/,'Οσία ')
        .replace(/^Απόστολος\s+/,'Απόστολε ')
        .replace(/^Προφήτης\s+/,'Προφήτα ')
        .replace(/^Δίκαιος\s+/,'Δίκαιε ')
@@ -90,6 +92,8 @@
     const enStory=clean(e.story?.en)||`${enName} is present in the catalog because of a recorded role in Scripture or Orthodox tradition.`;
     const elStory=clean(e.story?.el)||`Ο/Η ${elName} περιλαμβάνεται στον κατάλογο λόγω καταγεγραμμένου ρόλου στη Γραφή ή στην Ορθόδοξη παράδοση.`;
     const refs=clean(e.scripture||'—'), refsEl=refEl(refs), feastEn=clean(e.feast?.en||'—'), feastEl=clean(e.feast?.el||e.feast?.en||'—');
+    const roleEn=clean(e.role?.en), roleEl=clean(e.role?.el||e.role?.en);
+    e.description={en:clean(`${roleEn?roleEn+'. ':''}${firstSentence(enStory)}`),el:clean(`${roleEl?roleEl+'. ':''}${firstSentence(elStory)}`)};
     e.scriptureText={en:refs,el:refsEl};
     const src=sourceArray(e);if(src.length)e.sources=src;
     e.contentQuality=sourceQuality(e,src,hadKnowledge);
@@ -123,18 +127,20 @@
     e.profile={en:{overview:enStory,identity:ctx.en,sources:`References: ${refs}`,commemoration:feastEn,names:`${enName}; ${aliases(e,'en')}`},el:{overview:elStory,identity:ctx.el,sources:`Αναφορές: ${refsEl}`,commemoration:feastEl,names:`${elName}; ${aliases(e,'el')}`}};
 
     // Clean legacy English reference terms that survived inside Greek-mode fields.
-    for(const key of ['role','story','feast','prayer','notes'])if(e[key]?.el)e[key].el=polishGreekField(translateEl(e[key].el));
+    for(const key of ['role','story','feast','notes'])if(e[key]?.el)e[key].el=polishGreekGeneral(translateEl(e[key].el));
+    if(e.prayer?.el)e.prayer.el=polishGreekPrayer(translateEl(e.prayer.el));
+    if(e.description?.el)e.description.el=polishGreekGeneral(translateEl(e.description.el));
     if(e.prayer?.en)e.prayer.en=clean(e.prayer.en).replace(/^Holy Saint\s+/,'Saint ');
-    if(e.scriptureText?.el)e.scriptureText.el=translateEl(e.scriptureText.el);
-    if(e.profile?.el)for(const key of Object.keys(e.profile.el))if(typeof e.profile.el[key]==='string')e.profile.el[key]=polishGreekField(translateEl(e.profile.el[key]));
+    if(e.scriptureText?.el)e.scriptureText.el=polishGreekGeneral(translateEl(e.scriptureText.el));
+    if(e.profile?.el)for(const key of Object.keys(e.profile.el))if(typeof e.profile.el[key]==='string')e.profile.el[key]=polishGreekGeneral(translateEl(e.profile.el[key]));
     if(e.knowledge?.el?.sections)for(const sec of e.knowledge.el.sections){
-      if(typeof sec.title==='string')sec.title=polishGreekField(translateEl(sec.title));
-      else if(sec.title?.el)sec.title.el=polishGreekField(translateEl(sec.title.el));
-      if(typeof sec.text==='string')sec.text=polishGreekField(translateEl(sec.text));
-      else if(sec.text?.el)sec.text.el=polishGreekField(translateEl(sec.text.el));
+      if(typeof sec.title==='string')sec.title=polishGreekGeneral(translateEl(sec.title));
+      else if(sec.title?.el)sec.title.el=polishGreekGeneral(translateEl(sec.title.el));
+      if(typeof sec.text==='string')sec.text=polishGreekGeneral(translateEl(sec.text));
+      else if(sec.text?.el)sec.text.el=polishGreekGeneral(translateEl(sec.text.el));
     }
     const allSources=[...(Array.isArray(e.sources)?e.sources:[]),...(Array.isArray(e.knowledge?.el?.sources)?e.knowledge.el.sources:[])];
     for(const source of allSources)if(source?.label?.el)source.label.el=translateEl(source.label.el);
-    if(e.imageMeta?.credit?.el)e.imageMeta.credit.el=translateEl(e.imageMeta.credit.el);
+    if(e.imageMeta?.sourceUrl){const lic=polishGreekGeneral(translateEl(e.imageMeta.license||''));e.imageMeta.credit=e.imageMeta.credit||{};e.imageMeta.credit.el=`Εικονογραφική πηγή: ${elName} — Wikimedia Commons${lic?` — ${lic}`:''}`;}
   }
 })();

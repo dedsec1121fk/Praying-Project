@@ -41,13 +41,13 @@
 
   const state={
     lang:(window.ORTHODOX_BOOT_LANG==='el'?'el':window.ORTHODOX_BOOT_LANG==='en'?'en':storageGet('orthodox-lang','en')),
-    query:'',active:null,tab:'story',panX:0,panY:0,scale:BASE_SCALE
+    query:'',active:null,tab:'description',panX:0,panY:0,scale:BASE_SCALE
   };
 
   const UI={
     en:{
       father:'Father',son:'Son',spirit:'Holy Spirit',trinity:'HOLY TRINITY',centerSub:'Father • Son • Holy Spirit',
-      feastDay:'Feast / commemoration',scripture:'Scripture / tradition',story:'Life & knowledge',prayer:'Prayer',notes:'Notes',
+      feastDay:'Feast / commemoration',scripture:'Scripture / tradition',description:'Description',story:'Story',prayer:'Prayer',notes:'Notes & cautions',
       overview:'Known account',identity:'Identity & Orthodox context',sources:'Sources & limits',commemoration:'Commemoration & veneration',names:'Names & aliases',
       search:'Search a saint, apostle, angel…',none:'No matches',
       notVenerated:'Biblical context: this entry is not presented as a saint and no prayer is addressed to this figure.',
@@ -58,7 +58,7 @@
     },
     el:{
       father:'Πατήρ',son:'Υιός',spirit:'Άγιο Πνεύμα',trinity:'ΑΓΙΑ ΤΡΙΑΔΑ',centerSub:'Πατήρ • Υιός • Άγιο Πνεύμα',
-      feastDay:'Εορτή / μνήμη',scripture:'Γραφή / παράδοση',story:'Βίος & γνώση',prayer:'Προσευχή',notes:'Σημειώσεις',
+      feastDay:'Εορτή / μνήμη',scripture:'Γραφή / παράδοση',description:'Περιγραφή',story:'Ιστορία',prayer:'Προσευχή',notes:'Σημειώσεις & επιφυλάξεις',
       overview:'Γνωστή διήγηση',identity:'Ταυτότητα & ορθόδοξο πλαίσιο',sources:'Πηγές & όρια',commemoration:'Μνήμη & τιμή',names:'Ονόματα & εναλλακτικές',
       search:'Αναζήτησε άγιο, απόστολο, άγγελο…',none:'Δεν βρέθηκαν αποτελέσματα',
       notVenerated:'Βιβλικό πλαίσιο: η καταχώριση δεν παρουσιάζεται ως άγιος και δεν απευθύνεται προσευχή σε αυτό το πρόσωπο.',
@@ -305,7 +305,7 @@
   }
   function closeModalSafe(){
     if(typeof modal.close==='function'){try{modal.close()}catch(_){modal.removeAttribute('open')}}else modal.removeAttribute('open');
-    modal.classList.remove('fallback-open');unloadActiveDetails();state.active=null;state.tab='story';
+    modal.classList.remove('fallback-open');unloadActiveDetails();state.active=null;state.tab='description';
   }
   function detailFileUrl(e){return `web/data/details/${e.detailFile}`}
   function detailView(e){return activeDetail?.id===e.id?Object.assign({},e,activeDetail.data):e}
@@ -337,7 +337,7 @@
     document.getElementById('modalNotice').hidden=true;document.querySelectorAll('.tab').forEach(t=>{t.disabled=true;t.classList.toggle('active',t.dataset.tab===state.tab)});
   }
   async function openEntry(id){
-    const e=byId.get(id);if(!e)return;unloadActiveDetails();state.active=id;state.tab='story';populateModalLoading(e);showModalSafe();
+    const e=byId.get(id);if(!e)return;unloadActiveDetails();state.active=id;state.tab='description';populateModalLoading(e);showModalSafe();
     try{await ensureDetails(e);if(state.active!==id)return;modal.dataset.loading='false';document.querySelectorAll('.tab').forEach(t=>t.disabled=false);populateModal()}
     catch(err){if(String(err?.message||err)!=='Detail load cancelled')console.error(err);if(state.active===id)populateModalLoading(e,true)}
   }
@@ -356,12 +356,17 @@
     else{credit.hidden=true;credit.removeAttribute('href');credit.textContent=''}
     document.getElementById('modalName').textContent=locText(e.name?.[lang]||e.name?.en||e.id,lang);document.getElementById('modalRole').textContent=locText(e.role?.[lang]||e.role?.en||'',lang);document.getElementById('modalFeast').textContent=locText(e.feast?.[lang]||e.feast?.en||'—',lang);document.getElementById('modalScripture').textContent=locText(e.scriptureText?.[lang]||e.scriptureText?.en||e.scripture||'—',lang);document.getElementById('modalCategory').textContent=UI[lang].category[e.category]||locText(e.category,lang);
     const body=document.getElementById('tabBody');body.replaceChildren();
-    if(state.tab==='story'){
+    if(state.tab==='description'){
+      addSection(body,UI[lang].description,(e.description&&e.description[lang])||(e.description&&e.description.en)||(e.story&&e.story[lang])||(e.story&&e.story.en)||'—','description-section');
+    }else if(state.tab==='story'){
       const k=e.knowledge?.[lang]||e.knowledge?.en;
       if(k?.sections?.length){const q=document.createElement('div');q.className='profile-quality';q.textContent=locText(e.contentQuality?.label?.[lang]||e.contentQuality?.label?.en||UI[lang].detailed,lang);body.append(q);const qualityNote=e.contentQuality?.note?.[lang]||e.contentQuality?.note?.en;if(qualityNote)addSection(body,lang==='el'?'Τεκμηρίωση & βεβαιότητα':'Evidence & certainty',qualityNote,'quality-note');for(const s of k.sections)addSection(body,(typeof s.title==='object'?(s.title?.[lang]||s.title?.en):s.title)||'',typeof s.text==='object'?(s.text?.[lang]||s.text?.en):s.text,'long');addSources(body,(k.sources&&k.sources.length?k.sources:e.sources)||[],lang)}
       else if(e.profile?.[lang]){const q=document.createElement('div');q.className='profile-quality';q.textContent=UI[lang].localRecord;body.append(q);const profile=e.profile[lang];for(const key of ['overview','identity','sources','commemoration','names'])addSection(body,UI[lang][key]||key,profile[key]);addSources(body,e.sources||[],lang)}
-      else addSection(body,UI[lang].overview,(e.story&&e.story[lang])||(e.story&&e.story.en)||'—');
-    }else body.textContent=locText((e[state.tab]&&e[state.tab][lang])||(e[state.tab]&&e[state.tab].en)||'—',lang);
+      else addSection(body,UI[lang].story,(e.story&&e.story[lang])||(e.story&&e.story.en)||'—');
+    }else if(state.tab==='prayer'){
+      addSection(body,UI[lang].prayer,(e.prayer&&e.prayer[lang])||(e.prayer&&e.prayer.en)||'—','prayer-section');
+    }
+
     const notice=document.getElementById('modalNotice');notice.hidden=e.venerated!==false;notice.textContent=UI[lang].notVenerated;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===state.tab));
   }
 

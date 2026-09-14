@@ -11,6 +11,7 @@ const scripts=[
 const ctx={window:{},console,encodeURIComponent,decodeURIComponent,URL,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Set,Map,Date};ctx.window.window=ctx.window;vm.createContext(ctx);
 for(const rel of scripts)vm.runInContext(fs.readFileSync(path.join(root,rel),'utf8'),ctx,{filename:rel});
 const entries=ctx.window.ORTHODOX_ENTRIES||[];
+for(const e of entries){if(e.imageLocalReal&&!fs.existsSync(path.join(root,e.imageLocalReal)))delete e.imageLocalReal}
 const detailsDir=path.join(root,'web/data/details');fs.mkdirSync(detailsDir,{recursive:true});
 for(const f of fs.readdirSync(detailsDir))if(/^(?:details-[0-9a-f]|entry-\d+)\.js$/.test(f))fs.unlinkSync(path.join(detailsDir,f));
 const lightKeys=new Set(['id','name','category','role','search','aliases','venerated','image','imageLocalReal','imageRemote']);

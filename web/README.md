@@ -1,4 +1,4 @@
-# Orthodox Web front end — v14
+# Orthodox Web front end — v15
 
 This directory contains the bilingual English/Greek Orthodox Web front end that lives beside the existing Praying Project prayer automation. The original Befunge prayer payloads, country scheduler, manifest and prayer scripts are intentionally independent from the website.
 
@@ -8,7 +8,7 @@ The local catalog contains **1,083 searchable records** spanning Christ and the 
 
 `biblical-context` does **not** mean saint. Context-only records are marked as such and the site never addresses a prayer to them.
 
-Every one of the 1,083 records has English **and** Greek name, role/title, story/known account, feast or context information, prayer text or non-veneration notice, notes, and a structured knowledge dossier. The dossier generator preserves the distinction between Scripture, Church tradition and later historical material. When only a name, genealogy, brief event or symbolic description survives, it says so rather than inventing a missing life story.
+Every one of the 1,083 records has English **and** Greek **Description**, **Story**, and **Prayer** content, plus name, role/title, feast or context information, notes, and a structured knowledge dossier. These three reader-facing fields are mandatory: the runtime build/validation fails if any language is missing one of them. The dossier generator preserves the distinction between Scripture, Church tradition and later historical material. When only a name, genealogy, brief event or symbolic description survives, it says so rather than inventing a missing life story.
 
 The release contains **67 hand-curated deep-profile records**, while every record also receives an explicit evidence-status audit for central people and feasts. All remaining records receive a structured bilingual dossier assembled from their own stored facts and source/reference metadata; generic filler is not used to pretend that unknown biographical events are known.
 
@@ -40,7 +40,7 @@ The source-based text and UI therefore remain fully available with no network co
 
 `data/image-sources.json` contains **52 verified Wikimedia Commons icon/image mappings** with source pages, licenses/attribution and local cache destinations. Important central/featured people and major feasts preferentially use these real iconographic images when available.
 
-Because a source image is a separate binary asset, the repository also keeps one local lightweight fallback image for every one of the 1,083 records. This guarantees that no node becomes a broken image when the site is offline.
+Because a source image is a separate binary asset, the repository also keeps one local lightweight fallback image for every one of the 1,083 records. The validation suite checks that all 1,083 fallback files exist and contain valid SVG structure. The runtime builder publishes a local verified-image path only when that binary actually exists, so a missing optional cache file cannot create a broken local image reference.
 
 To cache all currently verified real images into `web/images/real/` on a normal internet-connected machine, run from the repository root:
 
@@ -54,17 +54,13 @@ For people or beings for whom no responsibly reusable historical/iconographic im
 
 ## Detailed information model
 
-The details window can contain:
+Every details window opens with the same three easy-to-read tabs in both languages:
 
-- known life/narrative and historical setting;
-- relevant biblical/documentary evidence;
-- Orthodox reception and tradition;
-- feast/commemoration or explicit non-veneration status;
-- theological/liturgical context where appropriate;
-- English and Greek names/aliases;
-- prayer for venerated figures, or a prayer addressed to God for context-only entries;
-- source/reference links;
-- an explicit statement about the limits of surviving evidence.
+- **Description / Περιγραφή** — a concise identity-and-context summary.
+- **Story / Ιστορία** — the fuller life/narrative, evidence, feast/context, tradition, notes, and source material.
+- **Prayer / Προσευχή** — a prayer for venerated figures, or a prayer addressed to God rather than to a non-venerated/context-only figure.
+
+The Story view can also include relevant biblical/documentary evidence, Orthodox reception and tradition, theological/liturgical context, English and Greek names/aliases, source/reference links, and an explicit statement about the limits of surviving evidence.
 
 The application does not manufacture a “complete biography” for a person whose complete life is not historically preserved. In those cases, “complete” means all information currently stored and sourced by this catalog, together with a clear statement of what is unknown.
 
@@ -90,8 +86,11 @@ The application does not manufacture a “complete biography” for a person who
 Run after editing:
 
 ```bash
+node web/tools/build_lazy_runtime.js
 python web/tools/validate_catalog.py
 node web/tools/validate_profiles.js
+node web/tools/validate_lazy_runtime.js
+node web/tools/audit_content_quality.js
 python web/tools/check_static_site.py
 node --check web/assets/js/app.js
 node --check web/data/profile-enricher.js
@@ -114,7 +113,7 @@ node web/tools/build_lazy_runtime.js && node web/tools/validate_lazy_runtime.js
 ```
 
 ## v11 startup and performance
-The initial overlay asks for English or Greek before loading the lightweight runtime index. After selection, startup preparation precomputes the entire web and preloads every bundled local icon; the old 30-second global cutoff no longer applies in v14. This does **not** preload biographies or prayers; those remain strict per-icon lazy files and are removed from the application state when closed. The web world is intentionally denser than v10 and node-mount virtualization is throttled during camera movement to reduce mobile lag.
+The initial overlay asks for English or Greek before loading the lightweight runtime index. After selection, startup preparation precomputes the entire web and preloads every bundled local icon; the old 30-second global cutoff no longer applies in v15. This does **not** preload biographies or prayers; those remain strict per-icon lazy files and are removed from the application state when closed. The web world is intentionally denser than v10 and node-mount virtualization is throttled during camera movement to reduce mobile lag.
 
 ## v12 performance architecture
 
@@ -127,3 +126,11 @@ The loader has no global time limit. It paints the one-file atlas first, then de
 All local artwork was regenerated so context-only/non-venerated figures are halo-free, while venerated figures, angels, Christ/Holy Spirit, the Theotokos and feasts use distinct symbolic treatments. The local artwork is illustrative; it is never described as an authentic historical likeness unless an individually verified external mapping exists.
 
 Every detail record now exposes an evidence-status label and the validators reject missing bilingual fields, untranslated common Greek-mode reference terms, generic slash-gender placeholders, missing local icons and intercessory prayers attached to non-venerated records. See `CONTENT_ACCURACY.md` and `RELEASE_NOTES_v14.md`.
+
+## v15 Description / Story / Prayer integrity pass
+
+Every one of the 1,083 detail files now carries explicit bilingual `description`, `story`, and `prayer` fields, and the modal exposes those exact three reader-facing tabs. The lazy-runtime validator and content-quality audit reject a build if any one of those fields is empty in English or Greek.
+
+The Greek normalizer was tightened so Gospel/reference names are rendered as natural Greek (for example, `Ευαγγέλιο κατά Μάρκον`) without applying prayer-vocative grammar to ordinary titles or descriptions. Verified-image credits are normalized consistently while retaining the exact mapped source URL and license.
+
+The image pipeline now checks the existence of local verified-image binaries before publishing their paths; all 1,083 bundled local fallback SVGs remain mandatory and structurally validated. A source-sensitive factual review also corrected Saint Olga of Kwethluk's OCA commemoration to **27 October** and records the official OCA source directly. See `RELEASE_NOTES_v15.md` and `CONTENT_ACCURACY.md`.

@@ -1262,44 +1262,58 @@ window.ORTHODOX_V7_EXPANSION = [
   {
     "id": "olga-alaska",
     "name": {
-      "en": "Saint Olga of Alaska",
-      "el": "Αγία Όλγα της Αλάσκας"
+      "en": "Saint Olga of Kwethluk",
+      "el": "Αγία Όλγα του Κουέθλουκ"
     },
     "category": "church-saint",
     "role": {
-      "en": "Matushka, midwife and servant of the Yup’ik people",
-      "el": "Πρεσβυτέρα, μαία και διακόνισσα του λαού Yup’ik"
+      "en": "Righteous mother, matushka, midwife, and servant of the Yup’ik people",
+      "el": "Δικαία μητέρα, πρεσβυτέρα, μαία και υπηρέτρια του λαού Yup’ik"
     },
     "story": {
-      "en": "Olga Michael of Kwethluk, Alaska (1916–1979), was a Yup’ik Orthodox Christian, wife of the priest Michael Michael, mother of a large family, and a midwife who served women and families with practical generosity and quiet faith. Local devotion to her grew after her repose, especially among people seeking healing from trauma and abuse. The Orthodox Church in America formally glorified her, making her one of the first canonized female Orthodox saints of North America.",
-      "el": "Η Όλγα Μάικλ του Kwethluk στην Αλάσκα (1916–1979) ήταν Yup’ik Ορθόδοξη Χριστιανή, σύζυγος του ιερέα Μιχαήλ Μάικλ, μητέρα πολυμελούς οικογένειας και μαία που υπηρετούσε γυναίκες και οικογένειες με πρακτική γενναιοδωρία και ήσυχη πίστη. Η τοπική τιμή της αυξήθηκε μετά την κοίμησή της, ιδιαίτερα ανάμεσα σε ανθρώπους που αναζητούν ίαση από τραύμα και κακοποίηση. Η Ορθόδοξη Εκκλησία στην Αμερική την κατέταξε επίσημα στο αγιολόγιο."
+      "en": "Olga Michael of Kwethluk, Alaska (1916–1979), was a Yup’ik Orthodox Christian, the wife of priest Michael Michael, a mother of a large family, and a midwife remembered for quiet faith, hospitality, practical generosity, and care for women and families. The Holy Synod of the Orthodox Church in America numbered her among the saints in November 2023; her public glorification services were celebrated in Kwethluk and Anchorage in June 2025. The OCA identifies her as the first North American woman and the first Yup’ik person to be glorified as a saint in the Orthodox Church.",
+      "el": "Η Όλγα Μάικλ του Κουέθλουκ στην Αλάσκα (1916–1979) ήταν Ορθόδοξη Χριστιανή Yup’ik, σύζυγος του ιερέα Μιχαήλ Μάικλ, μητέρα πολυμελούς οικογένειας και μαία, γνωστή για την ήσυχη πίστη, τη φιλοξενία, την έμπρακτη γενναιοδωρία και τη φροντίδα γυναικών και οικογενειών. Η Ιερά Σύνοδος της Ορθόδοξης Εκκλησίας στην Αμερική την κατέταξε στους αγίους τον Νοέμβριο του 2023 και οι δημόσιες ακολουθίες της αγιοκατάταξής της τελέστηκαν στο Κουέθλουκ και στο Άνκορατζ τον Ιούνιο του 2025. Η OCA την αναγνωρίζει ως την πρώτη γυναίκα της Βόρειας Αμερικής και το πρώτο πρόσωπο Yup’ik που δοξάστηκε ως άγιος στην Ορθόδοξη Εκκλησία."
     },
     "feast": {
-      "en": "10 November in the OCA",
-      "el": "10 Νοεμβρίου στην OCA"
+      "en": "27 October (OCA)",
+      "el": "27 Οκτωβρίου (OCA)"
     },
     "scripture": "Church tradition / Lives of the Saints",
     "prayer": {
-      "en": "Holy Saint Olga of Alaska, pray to God for us, that we may learn from your witness and follow Christ with faith, repentance, courage, and love.",
-      "el": "Άγιε/Αγία Αγία Όλγα της Αλάσκας, πρέσβευε στον Θεό για μας, ώστε να διδαχθούμε από τη μαρτυρία σου και να ακολουθούμε τον Χριστό με πίστη, μετάνοια, θάρρος και αγάπη."
+      "en": "Righteous Mother Olga of Kwethluk, pray to Christ God for us, that we may serve those who suffer with compassion, courage, purity of heart, and steadfast faith.",
+      "el": "Δικαία Μητέρα Όλγα του Κουέθλουκ, πρέσβευε στον Χριστό τον Θεό για μας, ώστε να υπηρετούμε όσους υποφέρουν με συμπόνια, θάρρος, καθαρότητα καρδιάς και σταθερή πίστη."
     },
     "notes": {
-      "en": "The profile distinguishes well-attested historical or biblical information from later devotional tradition. Local calendars may differ in date or emphasis.",
-      "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
+      "en": "The OCA confirmed October 27 as her annual liturgical commemoration. The Holy Synod decided to number her among the saints in November 2023; the liturgical glorification was celebrated June 19–22, 2025.",
+      "el": "Η OCA όρισε την 27η Οκτωβρίου ως την ετήσια λειτουργική μνήμη της. Η Ιερά Σύνοδος αποφάσισε την κατάταξή της στους αγίους τον Νοέμβριο του 2023 και η λειτουργική αγιοκατάταξη εορτάστηκε 19–22 Ιουνίου 2025."
     },
-    "aliases": [],
+    "aliases": [
+      "Saint Olga of Alaska",
+      "Saint Olga of Kwethluk",
+      "Righteous Olga of Kwethluk",
+      "Matushka Olga",
+      "Αγία Όλγα της Αλάσκας",
+      "Μάτουσκα Όλγα"
+    ],
     "image": "web/images/people/olga-alaska.svg",
-    "sourceUrl": "https://www.oca.org/saints/lives?q=Olga%20Alaska",
+    "sourceUrl": "https://www.oca.org/fs/st-olga-alaska",
     "sources": [
       {
         "label": {
-          "en": "Orthodox reference",
-          "el": "Ορθόδοξη αναφορά"
+          "en": "OCA — Saint Olga of Kwethluk",
+          "el": "OCA — Αγία Όλγα του Κουέθλουκ"
         },
-        "url": "https://www.oca.org/saints/lives?q=Olga%20Alaska"
+        "url": "https://www.oca.org/fs/st-olga-alaska"
+      },
+      {
+        "label": {
+          "en": "OCA — Canonization schedule and 2025 glorification",
+          "el": "OCA — Πρόγραμμα αγιοκατάταξης και δοξολογία 2025"
+        },
+        "url": "https://www.oca.org/news/headline-news/schedule-for-the-canonization-of-righteous-olga-of-kwethluk"
       }
     ],
-    "search": "Saint Olga of Alaska Αγία Όλγα της Αλάσκας Matushka, midwife and servant of the Yup’ik people Πρεσβυτέρα, μαία και διακόνισσα του λαού Yup’ik Church tradition / Lives of the Saints"
+    "search": "Saint Olga of Kwethluk Αγία Όλγα του Κουέθλουκ Righteous mother, matushka, midwife, and servant of the Yup’ik people Δικαία μητέρα, πρεσβυτέρα, μαία και διακόνισσα του λαού Yup’ik Saint Olga of Alaska Saint Olga of Kwethluk Righteous Olga of Kwethluk Matushka Olga Αγία Όλγα της Αλάσκας Μάτουσκα Όλγα Church tradition / Lives of the Saints"
   },
   {
     "id": "ephraim-katunakia",

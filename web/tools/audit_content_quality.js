@@ -7,14 +7,17 @@ const ctx={window:{},console};ctx.window.window=ctx.window;vm.createContext(ctx)
 const entries=ctx.window.ORTHODOX_ENTRIES||[];
 const stats={quality:{},images:{local:0,verifiedMapped:0},errors:[]};
 for(const e of entries){
-  const img=path.join(root,e.image||'');if(fs.existsSync(img))stats.images.local++;else stats.errors.push(`${e.id}: missing local icon ${e.image}`);
+  const img=path.join(root,e.image||'');if(fs.existsSync(img)){stats.images.local++;const raw=fs.readFileSync(img,'utf8');if(/\.svg$/i.test(img)&&(!/<svg\b/i.test(raw)||!/<\/svg>/i.test(raw)))stats.errors.push(`${e.id}: invalid SVG icon ${e.image}`)}else stats.errors.push(`${e.id}: missing local icon ${e.image}`);
+  if(e.imageLocalReal&&!fs.existsSync(path.join(root,e.imageLocalReal)))stats.errors.push(`${e.id}: runtime points to missing verified local image ${e.imageLocalReal}`);
   if(e.imageLocalReal||e.imageRemote)stats.images.verifiedMapped++;
   const detailPath=path.join(root,'web/data/details',e.detailFile||'');
   if(!fs.existsSync(detailPath)){stats.errors.push(`${e.id}: missing detail file`);continue}
   const dctx={window:{},console};dctx.window.window=dctx.window;vm.createContext(dctx);vm.runInContext(fs.readFileSync(detailPath,'utf8'),dctx,{filename:detailPath});
   const d=dctx.window.ORTHODOX_ENTRY_DETAILS?.[e.id];if(!d){stats.errors.push(`${e.id}: detail file does not publish record`);continue}
   for(const lang of ['en','el']){
+    if(!d.description?.[lang])stats.errors.push(`${e.id}: missing description.${lang}`);
     if(!d.story?.[lang])stats.errors.push(`${e.id}: missing story.${lang}`);
+    if(!d.prayer?.[lang])stats.errors.push(`${e.id}: missing prayer.${lang}`);
     if(!d.knowledge?.[lang]?.sections?.length)stats.errors.push(`${e.id}: missing knowledge.${lang}`);
   }
   const level=d.contentQuality?.level||'missing';stats.quality[level]=(stats.quality[level]||0)+1;
