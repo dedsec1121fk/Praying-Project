@@ -1,4 +1,4 @@
-# Orthodox Web front end — v8
+# Orthodox Web front end — v14
 
 This directory contains the bilingual English/Greek Orthodox Web front end that lives beside the existing Praying Project prayer automation. The original Befunge prayer payloads, country scheduler, manifest and prayer scripts are intentionally independent from the website.
 
@@ -10,7 +10,7 @@ The local catalog contains **1,083 searchable records** spanning Christ and the 
 
 Every one of the 1,083 records has English **and** Greek name, role/title, story/known account, feast or context information, prayer text or non-veneration notice, notes, and a structured knowledge dossier. The dossier generator preserves the distinction between Scripture, Church tradition and later historical material. When only a name, genealogy, brief event or symbolic description survives, it says so rather than inventing a missing life story.
 
-The release also contains **67 individually hand-curated or source-expanded bilingual dossiers** for central people and feasts. All remaining records receive a structured bilingual dossier assembled from their own stored facts and source/reference metadata; generic filler is not used to pretend that unknown biographical events are known.
+The release contains **67 hand-curated deep-profile records**, while every record also receives an explicit evidence-status audit for central people and feasts. All remaining records receive a structured bilingual dossier assembled from their own stored facts and source/reference metadata; generic filler is not used to pretend that unknown biographical events are known.
 
 ## Search-only web interface
 
@@ -105,7 +105,7 @@ Every catalog record has its own independent static JavaScript file under `web/d
 
 This remains compatible with `file://`, local static servers, and repository hosting because it uses relative classic `<script>` files rather than `fetch()`. Browser-level HTTP/file caching may keep the resource bytes available, but the biography object is not retained by the application after close.
 
-The five-second startup screen is intentional: while it is visible the app computes the complete 1,083-node web, builds its lightweight search index, draws the overview web and warms nearby bubble images. It does not load any biography/detail file.
+The startup screen is now a real completeness gate rather than a fixed delay. After language selection it computes the complete 1,083-node web, draws the cloud/web canvas, then loads and decodes every local entry image before the web can open. There is no global startup deadline. Biography/detail files are still excluded from startup and remain strict per-entry lazy files.
 
 After editing source catalog/profile files, regenerate and validate the browser runtime with:
 
@@ -114,8 +114,16 @@ node web/tools/build_lazy_runtime.js && node web/tools/validate_lazy_runtime.js
 ```
 
 ## v11 startup and performance
-The initial overlay asks for English or Greek before loading the lightweight runtime index. After selection, startup preparation precomputes the entire web and preloads bubble artwork for up to 30 seconds, finishing early when possible. This does **not** preload biographies or prayers; those remain strict per-icon lazy files and are removed from the application state when closed. The web world is intentionally denser than v10 and node-mount virtualization is throttled during camera movement to reduce mobile lag.
+The initial overlay asks for English or Greek before loading the lightweight runtime index. After selection, startup preparation precomputes the entire web and preloads every bundled local icon; the old 30-second global cutoff no longer applies in v14. This does **not** preload biographies or prayers; those remain strict per-icon lazy files and are removed from the application state when closed. The web world is intentionally denser than v10 and node-mount virtualization is throttled during camera movement to reduce mobile lag.
 
 ## v12 performance architecture
 
 The visible web is rasterized into a single fixed-size canvas during startup. The catalog's 1,083 bubble positions are permanent. Pan and zoom transform the scene as one composited layer rather than moving hundreds of individual image elements. Screen-space labels are refreshed only after movement pauses. Detail records remain strict per-entry lazy files under `web/data/details/` and are unloaded when their modal closes.
+
+## v14 complete icon preload and evidence audit
+
+The loader has no global time limit. It paints the one-file atlas first, then decodes and paints all 1,083 individual local SVG artworks before opening the web. Verified real-image mappings are then attempted. Source image objects are released after painting to keep the final canvas interaction light.
+
+All local artwork was regenerated so context-only/non-venerated figures are halo-free, while venerated figures, angels, Christ/Holy Spirit, the Theotokos and feasts use distinct symbolic treatments. The local artwork is illustrative; it is never described as an authentic historical likeness unless an individually verified external mapping exists.
+
+Every detail record now exposes an evidence-status label and the validators reject missing bilingual fields, untranslated common Greek-mode reference terms, generic slash-gender placeholders, missing local icons and intercessory prayers attached to non-venerated records. See `CONTENT_ACCURACY.md` and `RELEASE_NOTES_v14.md`.

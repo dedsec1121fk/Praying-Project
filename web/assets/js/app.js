@@ -53,7 +53,7 @@
       notVenerated:'Biblical context: this entry is not presented as a saint and no prayer is addressed to this figure.',
       source:'Primary source / reference',imageSource:'Image source',detailed:'Expanded source-based profile',localRecord:'Complete local record',
       result:'match',results:'matches',detailLoading:'Loading full profile…',detailError:'The full local profile could not be loaded.',
-      startup:'Building the smooth web',startupSub:'Rasterizing every bubble, icon, thread and cloud scene…',
+      startup:'Loading every icon',startupSub:'Checking and decoding every local icon before the web opens…',
       category:{christ:'Christ & Spirit',theotokos:'Theotokos',angel:'Angel / Heavenly Power',forefather:'Forefather',righteous:'Old Testament Righteous',prophet:'Prophet',apostle:'Apostle / Evangelist','nt-saint':'New Testament Saint','church-saint':'Church Saint',feast:'Feast','biblical-context':'Biblical Context'}
     },
     el:{
@@ -64,7 +64,7 @@
       notVenerated:'Βιβλικό πλαίσιο: η καταχώριση δεν παρουσιάζεται ως άγιος και δεν απευθύνεται προσευχή σε αυτό το πρόσωπο.',
       source:'Κύρια πηγή / αναφορά',imageSource:'Πηγή εικόνας',detailed:'Εκτεταμένο προφίλ βασισμένο σε πηγές',localRecord:'Πλήρης τοπική καταγραφή',
       result:'αποτέλεσμα',results:'αποτελέσματα',detailLoading:'Φόρτωση πλήρους προφίλ…',detailError:'Δεν ήταν δυνατή η φόρτωση του πλήρους τοπικού προφίλ.',
-      startup:'Δημιουργία ομαλού ιστού',startupSub:'Απόδοση όλων των φυσαλίδων, εικόνων, νημάτων και νεφών…',
+      startup:'Φόρτωση κάθε εικόνας',startupSub:'Έλεγχος και αποκωδικοποίηση κάθε τοπικής εικόνας πριν ανοίξει ο ιστός…',
       category:{christ:'Χριστός & Πνεύμα',theotokos:'Θεοτόκος',angel:'Άγγελος / Ουράνια Δύναμη',forefather:'Προπάτορας',righteous:'Δίκαιος Παλαιάς Διαθήκης',prophet:'Προφήτης',apostle:'Απόστολος / Ευαγγελιστής','nt-saint':'Άγιος Καινής Διαθήκης','church-saint':'Άγιος Εκκλησίας',feast:'Εορτή','biblical-context':'Βιβλικό Πλαίσιο'}
     }
   };
@@ -116,14 +116,12 @@
   const fallbackIcon='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160"><rect width="160" height="160" rx="80" fill="#203b66"/><circle cx="80" cy="80" r="60" fill="#d6a93c" stroke="#fff3b7" stroke-width="5"/><text x="80" y="105" text-anchor="middle" font-family="Georgia,serif" font-size="68" fill="#17203c">☦</text></svg>`);
   const FALLBACK_ATLAS={src:imageUrl('web/images/fallback-atlas.webp'),cell:64,cols:33};
   let fallbackAtlasImage=null;
-  function loadFallbackAtlas(deadline){
+  function loadFallbackAtlas(){
     if(fallbackAtlasImage)return Promise.resolve(fallbackAtlasImage);
     return new Promise(resolve=>{
       const img=new Image();let done=false;
-      const timeout=Math.max(300,Math.min(4000,(deadline||performance.now()+4000)-performance.now()));
-      const timer=setTimeout(()=>finish(null),timeout);
-      function finish(value){if(done)return;done=true;clearTimeout(timer);img.onload=img.onerror=null;if(value)fallbackAtlasImage=value;resolve(value)}
-      img.decoding='async';img.onload=()=>finish(img);img.onerror=()=>finish(null);img.src=FALLBACK_ATLAS.src;
+      function finish(value){if(done)return;done=true;img.onload=img.onerror=null;if(value)fallbackAtlasImage=value;resolve(value)}
+      img.decoding='async';img.onload=async()=>{try{if(img.decode)await img.decode()}catch(_){}finish(img)};img.onerror=()=>finish(null);img.src=FALLBACK_ATLAS.src;
     });
   }
   function imageChain(e,forCanvas=false){
@@ -132,7 +130,6 @@
     if(e.imageRemote&&navigator.onLine!==false)chain.push(e.imageRemote);
     if(e.image)chain.push(imageUrl(e.image));
     chain.push(fallbackIcon);
-    // Canvas startup prioritizes local reliability; real remote mappings are still attempted first.
     return [...new Set(chain)];
   }
   function preferredImage(e){return imageChain(e)[0]}
@@ -149,7 +146,6 @@
   function drawCloudWorld(){
     if(!ctx)return;
     const sky=ctx.createLinearGradient(0,0,0,WORLD.h);sky.addColorStop(0,'#64bdf1');sky.addColorStop(.48,'#a7ddf8');sky.addColorStop(1,'#79c4ee');ctx.fillStyle=sky;ctx.fillRect(0,0,WORLD.w,WORLD.h);
-    // Static cloud banks are baked once into the same raster layer as the web: zero animation cost.
     for(let i=0;i<42;i++){
       const h=hashString('cloud-'+i),x=unit(h+11)*WORLD.w,y=unit(h+37)*WORLD.h,scale=.65+unit(h+71)*1.15;
       ctx.save();ctx.globalAlpha=.28+unit(h+103)*.34;ctx.fillStyle='#fff';
@@ -196,51 +192,61 @@
     ctx.fillStyle='#152444';ctx.fillRect(p.x-BUBBLE_R,p.y-BUBBLE_R,BUBBLE_R*2,BUBBLE_R*2);
     ctx.drawImage(img,p.x-w/2,p.y-h/2,w,h);ctx.restore();
   }
-  function loadEntryImage(e,deadline,realOnly=false){
-    const chain=realOnly?[...(e.imageLocalReal?[imageUrl(e.imageLocalReal)]:[]),...(e.imageRemote&&navigator.onLine!==false?[e.imageRemote]:[])]:imageChain(e,true);
-    let index=0;
+  function loadImageSource(src,remoteTimeout=15000){
     return new Promise(resolve=>{
-      const tryNext=()=>{
-        if(index>=chain.length||performance.now()>deadline){resolve(null);return}
-        const src=chain[index++],img=new Image();let done=false;
-        const remote=/^https?:/i.test(src);const timeout=Math.min(remote?1800:1200,Math.max(120,deadline-performance.now()));
-        const timer=setTimeout(()=>finish(null),timeout);
-        function finish(ok){if(done)return;done=true;clearTimeout(timer);img.onload=img.onerror=null;if(ok)resolve(img);else tryNext()}
-        img.decoding='async';img.onload=()=>finish(img);img.onerror=()=>finish(null);img.src=src;
-      };
-      tryNext();
+      const img=new Image();let done=false,timer=0;const remote=/^https?:/i.test(src);
+      const finish=async value=>{if(done)return;done=true;if(timer)clearTimeout(timer);img.onload=img.onerror=null;if(value){try{if(img.decode)await img.decode()}catch(_){}resolve(img)}else resolve(null)};
+      img.decoding='async';img.onload=()=>finish(img);img.onerror=()=>finish(null);img.src=src;
+      // No global preload deadline. Only a broken remote request is bounded so one dead host cannot trap the user forever.
+      if(remote&&remoteTimeout>0)timer=setTimeout(()=>finish(null),remoteTimeout);
     });
   }
-  async function rasterizeAll(deadline,onProgress){
+  function releaseDecodedImage(img){if(!img||img===fallbackAtlasImage)return;try{img.src=''}catch(_){}}
+  async function loadEntryImage(e,realOnly=false){
+    const chain=realOnly?[...(e.imageLocalReal?[imageUrl(e.imageLocalReal)]:[]),...(e.imageRemote&&navigator.onLine!==false?[e.imageRemote]:[])]:imageChain(e,true);
+    for(const src of chain){const img=await loadImageSource(src,/^https?:/i.test(src)?15000:0);if(img)return img}
+    return null;
+  }
+  async function rasterizeAll(onProgress){
     drawThreads();
-    // Paint a complete local image for EVERY bubble from one atlas before touching the network.
-    const atlas=await loadFallbackAtlas(deadline);
+    const atlas=await loadFallbackAtlas();
     for(let i=0;i<ordered.length;i++){
       drawBubbleShell(ordered[i],positions[i]);
       if(atlas)drawAtlasInBubble(ordered[i],positions[i],atlas);else drawFallbackInBubble(positions[i]);
     }
-    onProgress?.(ordered.length,ordered.length);
 
-    // Upgrade only entries that already have a verified real-image mapping. The web never waits
-    // on hundreds of remote requests, and no bubble can ever become blank if a request fails.
-    const upgrades=[];
-    for(let i=0;i<ordered.length;i++){const e=ordered[i];if(e.imageLocalReal||e.imageRemote)upgrades.push(i)}
-    let cursor=0,stopped=false;
-    const concurrency=lowMemory?3:(compact?5:8);
-    async function worker(){
-      while(!stopped){
-        const ui=cursor++;if(ui>=upgrades.length)return;const i=upgrades[ui],e=ordered[i],p=positions[i];
-        if(performance.now()>=deadline){stopped=true;return}
-        const img=await loadEntryImage(e,deadline,true);
-        if(img)drawImageInBubble(img,p);
-        if((ui&7)===0)await new Promise(r=>setTimeout(r,0));
+    // True full local preload: every individual local icon file is decoded before startup completes.
+    // The atlas remains the instant visual fallback, so a damaged single SVG can never leave a blank bubble.
+    let localCursor=0,localDone=0,localFailed=0;
+    const localConcurrency=lowMemory?2:(compact?4:8);
+    async function localWorker(){
+      while(true){
+        const i=localCursor++;if(i>=ordered.length)return;const e=ordered[i],p=positions[i];
+        const img=e.image?await loadImageSource(imageUrl(e.image),0):null;
+        if(img){drawImageInBubble(img,p);releaseDecodedImage(img)}else localFailed++;
+        localDone++;onProgress?.({stage:'local',done:localDone,total:ordered.length,failed:localFailed});
+        if((localDone&31)===0)await new Promise(r=>setTimeout(r,0));
       }
     }
-    await Promise.race([
-      Promise.all(Array.from({length:Math.min(concurrency,Math.max(1,upgrades.length))},()=>worker())),
-      new Promise(r=>setTimeout(()=>{stopped=true;r()},Math.max(0,deadline-performance.now())))
-    ]);
+    await Promise.all(Array.from({length:Math.min(localConcurrency,Math.max(1,ordered.length))},()=>localWorker()));
+
+    // Then wait for every verified real-image mapping to either decode successfully or fail cleanly.
+    // There is no overall startup timeout. When offline, remote-only upgrades are skipped because the local icon is already ready.
+    const upgrades=[];for(let i=0;i<ordered.length;i++){const e=ordered[i];if(e.imageLocalReal||e.imageRemote)upgrades.push(i)}
+    let realCursor=0,realDone=0,realFailed=0;
+    const realConcurrency=lowMemory?1:(compact?2:4);
+    async function realWorker(){
+      while(true){
+        const ui=realCursor++;if(ui>=upgrades.length)return;const i=upgrades[ui],e=ordered[i],p=positions[i];
+        const img=await loadEntryImage(e,true);
+        if(img){drawImageInBubble(img,p);releaseDecodedImage(img)}else realFailed++;
+        realDone++;onProgress?.({stage:'verified',done:realDone,total:upgrades.length,failed:realFailed});
+        if((realDone&7)===0)await new Promise(r=>setTimeout(r,0));
+      }
+    }
+    if(upgrades.length)await Promise.all(Array.from({length:Math.min(realConcurrency,upgrades.length)},()=>realWorker()));
     renderReady=true;
+    return {localTotal:ordered.length,localFailed,verifiedTotal:upgrades.length,verifiedFailed:realFailed};
   }
 
   // ---------- Screen-space names (not transformed while dragging) ----------
@@ -346,12 +352,13 @@
     const img=document.getElementById('modalImage');img.onerror=null;installImageFallback(img,e);img.src=preferredImage(e);img.alt=locText(e.name?.[lang]||e.name?.en||'',lang);
     const credit=document.getElementById('modalImageCredit');
     if(e.imageMeta?.sourceUrl){credit.hidden=false;credit.href=e.imageMeta.sourceUrl;const license=locText(e.imageMeta.license||'',lang);credit.textContent=lang==='el'?`${UI.el.imageSource} — Wikimedia Commons${license?` — ${license}`:''}`:locText(e.imageMeta.credit?.en||UI.en.imageSource,'en')}
+    else if(e.imageQuality?.label){credit.hidden=false;credit.removeAttribute('href');credit.textContent=locText(e.imageQuality.label?.[lang]||e.imageQuality.label?.en||'',lang)}
     else{credit.hidden=true;credit.removeAttribute('href');credit.textContent=''}
     document.getElementById('modalName').textContent=locText(e.name?.[lang]||e.name?.en||e.id,lang);document.getElementById('modalRole').textContent=locText(e.role?.[lang]||e.role?.en||'',lang);document.getElementById('modalFeast').textContent=locText(e.feast?.[lang]||e.feast?.en||'—',lang);document.getElementById('modalScripture').textContent=locText(e.scriptureText?.[lang]||e.scriptureText?.en||e.scripture||'—',lang);document.getElementById('modalCategory').textContent=UI[lang].category[e.category]||locText(e.category,lang);
     const body=document.getElementById('tabBody');body.replaceChildren();
     if(state.tab==='story'){
       const k=e.knowledge?.[lang]||e.knowledge?.en;
-      if(k?.sections?.length){const q=document.createElement('div');q.className='profile-quality';q.textContent=UI[lang].detailed;body.append(q);for(const s of k.sections)addSection(body,(typeof s.title==='object'?(s.title?.[lang]||s.title?.en):s.title)||'',typeof s.text==='object'?(s.text?.[lang]||s.text?.en):s.text,'long');addSources(body,(k.sources&&k.sources.length?k.sources:e.sources)||[],lang)}
+      if(k?.sections?.length){const q=document.createElement('div');q.className='profile-quality';q.textContent=locText(e.contentQuality?.label?.[lang]||e.contentQuality?.label?.en||UI[lang].detailed,lang);body.append(q);const qualityNote=e.contentQuality?.note?.[lang]||e.contentQuality?.note?.en;if(qualityNote)addSection(body,lang==='el'?'Τεκμηρίωση & βεβαιότητα':'Evidence & certainty',qualityNote,'quality-note');for(const s of k.sections)addSection(body,(typeof s.title==='object'?(s.title?.[lang]||s.title?.en):s.title)||'',typeof s.text==='object'?(s.text?.[lang]||s.text?.en):s.text,'long');addSources(body,(k.sources&&k.sources.length?k.sources:e.sources)||[],lang)}
       else if(e.profile?.[lang]){const q=document.createElement('div');q.className='profile-quality';q.textContent=UI[lang].localRecord;body.append(q);const profile=e.profile[lang];for(const key of ['overview','identity','sources','commemoration','names'])addSection(body,UI[lang][key]||key,profile[key]);addSources(body,e.sources||[],lang)}
       else addSection(body,UI[lang].overview,(e.story&&e.story[lang])||(e.story&&e.story.en)||'—');
     }else body.textContent=locText((e[state.tab]&&e[state.tab][lang])||(e[state.tab]&&e[state.tab].en)||'—',lang);
@@ -410,14 +417,25 @@
   document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==search){e.preventDefault();search.focus();return}if(e.key==='Escape'&&modal.hasAttribute('open')){closeModalSafe();return}if(!modal.hasAttribute('open')&&(e.key==='+'||e.key==='='||e.key==='-')){e.preventDefault();const r=network.getBoundingClientRect();zoomAt(r.left+r.width/2,r.top+r.height/2,state.scale*(e.key==='-'?.82:1.22));return}if(!modal.hasAttribute('open')&&e.key==='0'){e.preventDefault();state.panX=0;state.panY=0;state.scale=BASE_SCALE;requestCamera();scheduleLabels(60)}});
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(t.disabled)return;state.tab=t.dataset.tab;populateModal()}));document.getElementById('closeModal').addEventListener('click',closeModalSafe);modal.addEventListener('click',e=>{if(e.target===modal)closeModalSafe()});modal.addEventListener('cancel',e=>{e.preventDefault();closeModalSafe()});
 
-  // ---------- Startup: actual pre-render work, max 30 s ----------
+  // ---------- Startup: complete icon preload, no global time limit ----------
   async function runStartup(){
     const loader=document.getElementById('startupLoader');if(!loader){document.body.classList.remove('startup-lock');return}
     const bar=document.getElementById('startupBar'),pct=document.getElementById('startupPct'),title=document.getElementById('startupTitle'),sub=document.getElementById('startupSub');title.textContent=UI[state.lang].startup;sub.textContent=UI[state.lang].startupSub;
-    const started=performance.now(),bootStarted=Number(window.ORTHODOX_BOOT_STARTED)||started,deadline=bootStarted+30000,minVisibleUntil=Math.min(deadline,started+1200);
-    const progress=(done,total)=>{const v=Math.min(.99,.08+(done/Math.max(1,total))*.90);if(bar)bar.style.transform=`scaleX(${v})`;if(pct)pct.textContent=`${Math.round(v*100)}%`;if(sub){sub.textContent=state.lang==='el'?`Προετοιμασία εικόνων ${done}/${total} • οι λεπτομέρειες φορτώνονται μόνο όταν ανοίγονται`:`Preparing bubble images ${done}/${total} • details load only when opened`}};
-    progress(0,entries.length);await rasterizeAll(deadline,progress);applySceneTransform();refreshLabels();updateSearchUI();
-    const wait=Math.max(0,minVisibleUntil-performance.now());if(wait)await new Promise(r=>setTimeout(r,wait));if(bar)bar.style.transform='scaleX(1)';if(pct)pct.textContent='100%';if(sub)sub.textContent=state.lang==='el'?'Ο ομαλός ιστός είναι έτοιμος':'The smooth web is ready';await new Promise(r=>setTimeout(r,160));loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),420);
+    const setProgress=(fraction,text)=>{const v=Math.max(0,Math.min(.995,fraction));if(bar)bar.style.transform=`scaleX(${v})`;if(pct)pct.textContent=`${Math.round(v*100)}%`;if(sub&&text)sub.textContent=text};
+    setProgress(.02,UI[state.lang].startupSub);
+    const result=await rasterizeAll(info=>{
+      if(info.stage==='local'){
+        const f=.04+(info.done/Math.max(1,info.total))*.78;
+        setProgress(f,state.lang==='el'?`Τοπικές εικόνες ${info.done}/${info.total}${info.failed?` • αποτυχίες ${info.failed}`:''}`:`Local icons ${info.done}/${info.total}${info.failed?` • failures ${info.failed}`:''}`);
+      }else{
+        const f=.82+(info.done/Math.max(1,info.total))*.17;
+        setProgress(f,state.lang==='el'?`Επαληθευμένες πραγματικές εικόνες ${info.done}/${info.total}${info.failed?` • μη διαθέσιμες ${info.failed}`:''}`:`Verified real images ${info.done}/${info.total}${info.failed?` • unavailable ${info.failed}`:''}`);
+      }
+    });
+    applySceneTransform();refreshLabels();updateSearchUI();
+    if(bar)bar.style.transform='scaleX(1)';if(pct)pct.textContent='100%';
+    if(sub)sub.textContent=state.lang==='el'?`Έτοιμο: ${result.localTotal-result.localFailed}/${result.localTotal} τοπικές εικόνες • ${result.verifiedTotal-result.verifiedFailed}/${result.verifiedTotal} επαληθευμένες πραγματικές εικόνες`:`Ready: ${result.localTotal-result.localFailed}/${result.localTotal} local icons • ${result.verifiedTotal-result.verifiedFailed}/${result.verifiedTotal} verified real images`;
+    await new Promise(r=>setTimeout(r,260));loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),420);
   }
 
   document.body.classList.add('startup-lock');buildLayout();sizeCanvas();translate();applySceneTransform();runStartup();

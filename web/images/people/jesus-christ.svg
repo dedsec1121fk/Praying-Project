@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Local fallback artwork for Jesus Christ">
-<defs><radialGradient id="b" cx="38%" cy="25%"><stop stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#5b2b83"/></radialGradient></defs>
-<rect width="240" height="240" rx="32" fill="url(#b)"/>
-<circle cx="120" cy="82" r="55" fill="none" stroke="#ffd967" stroke-width="8" opacity=".92"/>
-<circle cx="120" cy="91" r="31" fill="#15182a"/>
-<path d="M55 219c5-58 31-91 65-91s60 33 65 91" fill="#15182a"/>
-<path d="M79 155l41 28 41-28" fill="none" stroke="#ffd967" stroke-width="4" opacity=".7"/>
-<text x="120" y="28" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#ffd967">☦</text>
-<text x="120" y="211" text-anchor="middle" font-family="system-ui,sans-serif" font-size="25" font-weight="800" fill="#fff">JC</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Local illustrative artwork for Jesus Christ"><defs><radialGradient id="b" cx="36%" cy="23%"><stop stop-color="#ffffff" stop-opacity=".25"/><stop offset=".58" stop-color="#8c6a1e"/><stop offset="1" stop-color="#17243d"/></radialGradient><linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe38c"/><stop offset="1" stop-color="#8c6a1e"/></linearGradient></defs><circle cx="120" cy="120" r="112" fill="url(#b)" stroke="#ffe38c" stroke-width="7"/><circle cx="120" cy="86" r="56" fill="#d4a83e" stroke="#fff0a7" stroke-width="7"/><path d="M120 31v110M66 86h108" stroke="#72551b" stroke-width="8" opacity=".78"/><circle cx="120" cy="94" r="30" fill="#2a2431"/><path d="M55 205c8-54 32-81 65-81s57 27 65 81" fill="#6b2430"/><text x="120" y="25" text-anchor="middle" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#fff0a7">IC XC</text><text x="120" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="800" fill="#fff">JC</text></svg>

@@ -13,7 +13,7 @@ The website is an educational Orthodox-oriented explorer, not a replacement for 
 
 Biblical records cite their primary Scripture passages in the detail view. Church-saint summaries are intentionally concise. Where an exact feast date was not treated as sufficiently stable across calendars/jurisdictions, the entry says to consult the local Orthodox calendar rather than inventing a date.
 
-## Scope of the 1,041-entry catalog
+## Scope of the 1,083-entry catalog
 
 The catalog is broader than a list of saints. It includes:
 
@@ -46,3 +46,9 @@ Every record carries English and Greek display data. The local `profile-enricher
 This is intentionally not a claim that a long historical biography exists for every biblical name. Where the biblical or ecclesiastical evidence preserves only a name or short episode, the profile states that limit instead of inventing details.
 
 The runtime also localizes common Scripture book names and generic source labels for the Greek interface.
+
+## Evidence-status audit
+
+The generated detail records carry an explicit evidence status rather than implying the same certainty for every entry. See `CONTENT_ACCURACY.md`. Scripture-grounded entries are limited to cited passages plus clearly identified Orthodox reception; source-linked/source-expanded entries expose their source links; catalog-summary entries explicitly warn that minor details need verification.
+
+Every local illustration is bundled and validated. Non-venerated/context-only entries are intentionally halo-free so the navigation artwork does not accidentally imply sainthood. Historical/iconographic images are used only when a specific reusable source has been individually mapped.

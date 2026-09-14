@@ -55,13 +55,45 @@
     if(lang==='el')return sparse?'Η σωζόμενη τοπική καταγραφή είναι σύντομη. Αυτό δεν συμπληρώνεται με εικασία: όταν η Γραφή ή οι πηγές διασώζουν μόνο όνομα, γενεαλογία, αξίωμα ή σύντομο επεισόδιο, το όριο δηλώνεται καθαρά. Οι σύνδεσμοι πηγών επιτρέπουν περαιτέρω έλεγχο όπου υπάρχουν.':'Η καταχώριση συγκεντρώνει τα στοιχεία που είναι αποθηκευμένα τοπικά και δηλώνει χωριστά βιβλική μαρτυρία, εκκλησιαστική παράδοση και τυχόν αβεβαιότητες. Δεν επινοούνται γεγονότα για να φανεί η βιογραφία μεγαλύτερη.';
     return sparse?'The surviving local record is brief. It is not padded with invented biography: when Scripture or the sources preserve only a name, genealogy, office, or short episode, that boundary is stated clearly. Source links are provided for further verification where available.':'This entry gathers the material stored locally while keeping biblical evidence, Church tradition, and uncertainty distinct. Missing events are not invented merely to make the biography appear longer.';
   }
+  function sourceQuality(e,sources,hadKnowledge){
+    const urls=(sources||[]).map(s=>s?.url).filter(Boolean);
+    const specific=urls.filter(u=>!/\/fs\/?(?:$|[?#])/.test(u)&&!/\/saints\/lives\?q=/.test(u));
+    const refs=clean(e.scripture);
+    const biblical=/\b(?:Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|Samuel|Kings|Chronicles|Ezra|Nehemiah|Esther|Job|Psalm|Proverbs|Ecclesiastes|Song of Songs|Isaiah|Jeremiah|Lamentations|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zechariah|Malachi|Matthew|Mark|Luke|John|Acts|Romans|Corinthians|Galatians|Ephesians|Philippians|Colossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|James|Peter|Jude|Revelation|Tobit|Judith|Maccabees|Sirach|Baruch|Wisdom)\b/i.test(refs);
+    if(hadKnowledge)return {level:'source-expanded',label:{en:'Source-expanded dossier',el:'Εκτεταμένος φάκελος πηγών'},note:{en:'This entry contains individually curated material. Distinct source layers are kept separate; disputed or late traditions are not presented as certain historical fact.',el:'Η καταχώριση περιέχει ατομικά επιμελημένο υλικό. Τα διαφορετικά επίπεδα πηγών διακρίνονται και οι αμφισβητούμενες ή ύστερες παραδόσεις δεν παρουσιάζονται ως βέβαιο ιστορικό γεγονός.'}};
+    if(specific.length)return {level:'source-linked',label:{en:'Source-linked dossier',el:'Φάκελος με συγκεκριμένες πηγές'},note:{en:'The local summary is tied to specific source references. It is a paraphrase and evidence guide, not a verbatim reproduction of the source.',el:'Η τοπική περίληψη συνδέεται με συγκεκριμένες πηγές. Είναι παράφραση και οδηγός τεκμηρίωσης, όχι αυτούσια αναπαραγωγή της πηγής.'}};
+    if(biblical)return {level:'scripture-grounded',label:{en:'Scripture-grounded record',el:'Καταχώριση θεμελιωμένη στη Γραφή'},note:{en:'The catalog limits factual claims to the cited biblical passages plus clearly labeled Orthodox reception. Where Scripture gives only a name or brief episode, no missing biography is invented.',el:'Ο κατάλογος περιορίζει τους πραγματολογικούς ισχυρισμούς στα παρατιθέμενα βιβλικά χωρία και σε σαφώς επισημασμένη ορθόδοξη πρόσληψη. Όταν η Γραφή διασώζει μόνο όνομα ή σύντομο επεισόδιο, δεν επινοείται ελλείπουσα βιογραφία.'}};
+    return {level:'catalog-summary',label:{en:'Catalog summary — verify minor details',el:'Συνοπτική καταχώριση — έλεγχος λεπτομερειών'},note:{en:'Only limited locally sourced material is available for this record. The entry deliberately avoids unsupported precision; linked Orthodox references should be consulted for jurisdiction-specific or disputed minor details.',el:'Για αυτή την καταχώριση υπάρχουν περιορισμένα τοπικά τεκμηριωμένα στοιχεία. Αποφεύγεται σκόπιμα η ατεκμηρίωτη ακρίβεια· για τοπικές ή αμφισβητούμενες λεπτομέρειες πρέπει να ελέγχονται οι συνδεδεμένες ορθόδοξες πηγές.'}};
+  }
+  function polishGreekField(value){
+    let s=clean(value);
+    // Remove legacy slash-gender placeholders from generated Greek text. These
+    // were useful internally while the catalog was being assembled but should
+    // never appear in the finished bilingual UI.
+    s=s.replace(/Ο\/Η\s+/g,'')
+       .replace(/του\/της/g,'του προσώπου')
+       .replace(/Άγιε\/Αγία\s+/g,'');
+    // Repair the most common nominative saint titles when they appear at the
+    // start of an invocation after the neutral marker has been removed.
+    s=s.replace(/^Άγιος\s+/,'Άγιε ')
+       .replace(/^Όσιος\s+/,'Όσιε ')
+       .replace(/^Απόστολος\s+/,'Απόστολε ')
+       .replace(/^Προφήτης\s+/,'Προφήτα ')
+       .replace(/^Δίκαιος\s+/,'Δίκαιε ')
+       .replace(/^Μάρτυρας\s+/,'Μάρτυς ')
+       .replace(/^Ιερομάρτυρας\s+/,'Ιερομάρτυς ');
+    return s;
+  }
   for(const e of entries){
+    const hadKnowledge=!!e.knowledge;
     const enName=clean(e.name?.en||e.id), elName=clean(e.name?.el||e.name?.en||e.id), ctx=kind[e.category]||kind['biblical-context'];
     const enStory=clean(e.story?.en)||`${enName} is present in the catalog because of a recorded role in Scripture or Orthodox tradition.`;
     const elStory=clean(e.story?.el)||`Ο/Η ${elName} περιλαμβάνεται στον κατάλογο λόγω καταγεγραμμένου ρόλου στη Γραφή ή στην Ορθόδοξη παράδοση.`;
     const refs=clean(e.scripture||'—'), refsEl=refEl(refs), feastEn=clean(e.feast?.en||'—'), feastEl=clean(e.feast?.el||e.feast?.en||'—');
     e.scriptureText={en:refs,el:refsEl};
     const src=sourceArray(e);if(src.length)e.sources=src;
+    e.contentQuality=sourceQuality(e,src,hadKnowledge);
+    e.imageQuality=e.imageMeta?.sourceUrl?{kind:'verified',label:{en:'Verified historical/iconographic image source',el:'Επαληθευμένη ιστορική/εικονογραφική πηγή εικόνας'}}:{kind:'illustrative',label:{en:'Local illustrative icon — no verified reusable historical image is mapped yet',el:'Τοπική εικονογραφική απεικόνιση — δεν έχει ακόμη αντιστοιχιστεί επαληθευμένη επαναχρησιμοποιήσιμη ιστορική εικόνα'}};
     // A deep, hand-curated profile loaded earlier always wins. Otherwise build a complete local dossier from every field we actually possess.
     if(!e.knowledge){
       e.knowledge={
@@ -77,9 +109,9 @@
         ],sources:src},
         el:{sections:[
           {title:'Βίος / γνωστή διήγηση',text:elStory},
-          {title:'Ταυτότητα και πλαίσιο',text:`Ο/Η ${elName} καταγράφεται εδώ ως ${clean(e.role?.el||e.role?.en)||'πρόσωπο της Γραφής ή της Ορθόδοξης παράδοσης'}. ${ctx.el}`},
+          {title:'Ταυτότητα και πλαίσιο',text:`Η καταχώριση «${elName}» αφορά τον ρόλο: ${clean(e.role?.el||e.role?.en)||'πρόσωπο της Γραφής ή της Ορθόδοξης παράδοσης'}. ${ctx.el}`},
           {title:'Βιβλική και τεκμηριακή μαρτυρία',text:`Καταγεγραμμένες βιβλικές, ιστορικές ή παραδοσιακές αναφορές: ${refsEl}. Η διατύπωση διακρίνει τη μαρτυρία της πηγής από τη μεταγενέστερη ερμηνεία αντί να συγχωνεύει όλα τα επίπεδα σε μία ενιαία βιογραφία.`},
-          {title:'Ορθόδοξη πρόσληψη και νόημα',text:e.venerated===false?`Πρόκειται για καταχώριση πλαισίου και όχι για δήλωση αγιότητας. Η αξία της είναι να κατανοηθεί η βιβλική διήγηση, το ηθικό ή ιστορικό πλαίσιο, η γενεαλογία ή η συμβολική όραση στην οποία εμφανίζεται ο/η ${elName}.`:`Η Ορθόδοξη μνήμη προσλαμβάνει τον/την ${elName} μέσα στην προσευχή, τη Γραφή, την υμνογραφία, το συναξάρι, τη θεολογία ή την τοπική ευσέβεια ανάλογα με το είδος της καταχώρισης. Η τιμητική προσκύνηση διακρίνεται από τη λατρεία που ανήκει μόνο στον Θεό.`},
+          {title:'Ορθόδοξη πρόσληψη και νόημα',text:e.venerated===false?`Πρόκειται για καταχώριση πλαισίου και όχι για δήλωση αγιότητας. Η αξία της είναι να κατανοηθεί η βιβλική διήγηση, το ηθικό ή ιστορικό πλαίσιο, η γενεαλογία ή η συμβολική όραση στην οποία εμφανίζεται η μορφή «${elName}».`:`Η Ορθόδοξη μνήμη τιμά τη μορφή «${elName}» μέσα στην προσευχή, τη Γραφή, την υμνογραφία, το συναξάρι, τη θεολογία ή την τοπική ευσέβεια ανάλογα με το είδος της καταχώρισης. Η τιμητική προσκύνηση διακρίνεται από τη λατρεία που ανήκει μόνο στον Θεό.`},
           {title:'Μνήμη / ημερολόγιο',text:`${feastEl}. Οι ημερομηνίες μπορεί να διαφέρουν όταν οι ορθόδοξες δικαιοδοσίες χρησιμοποιούν διαφορετικό πολιτικό ή λειτουργικό ημερολόγιο· για την πράξη μιας κοινότητας υπερισχύει το τοπικό εκκλησιαστικό ημερολόγιο.`},
           {title:'Ονόματα και εναλλακτικές',text:`Κύρια αποθηκευμένη ονομασία: ${elName}. ${aliases(e,'el')}`},
           {title:'Αποθηκευμένες σημειώσεις και επιφυλάξεις',text:clean(e.notes?.el||e.notes?.en)||'Δεν υπάρχει πρόσθετη τοπική σημείωση για αυτή την καταχώριση.'},
@@ -91,14 +123,15 @@
     e.profile={en:{overview:enStory,identity:ctx.en,sources:`References: ${refs}`,commemoration:feastEn,names:`${enName}; ${aliases(e,'en')}`},el:{overview:elStory,identity:ctx.el,sources:`Αναφορές: ${refsEl}`,commemoration:feastEl,names:`${elName}; ${aliases(e,'el')}`}};
 
     // Clean legacy English reference terms that survived inside Greek-mode fields.
-    for(const key of ['role','story','feast','prayer','notes'])if(e[key]?.el)e[key].el=translateEl(e[key].el);
+    for(const key of ['role','story','feast','prayer','notes'])if(e[key]?.el)e[key].el=polishGreekField(translateEl(e[key].el));
+    if(e.prayer?.en)e.prayer.en=clean(e.prayer.en).replace(/^Holy Saint\s+/,'Saint ');
     if(e.scriptureText?.el)e.scriptureText.el=translateEl(e.scriptureText.el);
-    if(e.profile?.el)for(const key of Object.keys(e.profile.el))if(typeof e.profile.el[key]==='string')e.profile.el[key]=translateEl(e.profile.el[key]);
+    if(e.profile?.el)for(const key of Object.keys(e.profile.el))if(typeof e.profile.el[key]==='string')e.profile.el[key]=polishGreekField(translateEl(e.profile.el[key]));
     if(e.knowledge?.el?.sections)for(const sec of e.knowledge.el.sections){
-      if(typeof sec.title==='string')sec.title=translateEl(sec.title);
-      else if(sec.title?.el)sec.title.el=translateEl(sec.title.el);
-      if(typeof sec.text==='string')sec.text=translateEl(sec.text);
-      else if(sec.text?.el)sec.text.el=translateEl(sec.text.el);
+      if(typeof sec.title==='string')sec.title=polishGreekField(translateEl(sec.title));
+      else if(sec.title?.el)sec.title.el=polishGreekField(translateEl(sec.title.el));
+      if(typeof sec.text==='string')sec.text=polishGreekField(translateEl(sec.text));
+      else if(sec.text?.el)sec.text.el=polishGreekField(translateEl(sec.text.el));
     }
     const allSources=[...(Array.isArray(e.sources)?e.sources:[]),...(Array.isArray(e.knowledge?.el?.sources)?e.knowledge.el.sources:[])];
     for(const source of allSources)if(source?.label?.el)source.label.el=translateEl(source.label.el);

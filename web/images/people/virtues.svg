@@ -1,10 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Local fallback artwork for Virtues">
-<defs><radialGradient id="b" cx="38%" cy="25%"><stop stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#257d9a"/></radialGradient></defs>
-<rect width="240" height="240" rx="32" fill="url(#b)"/>
-<circle cx="120" cy="82" r="55" fill="none" stroke="#f4f5ff" stroke-width="8" opacity=".92"/>
-<circle cx="120" cy="91" r="31" fill="#15182a"/>
-<path d="M55 219c5-58 31-91 65-91s60 33 65 91" fill="#15182a"/>
-<path d="M79 155l41 28 41-28" fill="none" stroke="#f4f5ff" stroke-width="4" opacity=".7"/>
-<text x="120" y="28" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#f4f5ff">☦</text>
-<text x="120" y="211" text-anchor="middle" font-family="system-ui,sans-serif" font-size="25" font-weight="800" fill="#fff">V</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Local illustrative artwork for Virtues"><defs><radialGradient id="b" cx="36%" cy="23%"><stop stop-color="#ffffff" stop-opacity=".25"/><stop offset=".58" stop-color="#315985"/><stop offset="1" stop-color="#17243d"/></radialGradient><linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d7eeff"/><stop offset="1" stop-color="#315985"/></linearGradient></defs><circle cx="120" cy="120" r="112" fill="url(#b)" stroke="#d7eeff" stroke-width="7"/><circle cx="120" cy="83" r="48" fill="none" stroke="#ffe8a2" stroke-width="7"/><circle cx="120" cy="91" r="27" fill="#d5aa7f"/><path d="M104 124C72 104 47 113 34 145c30-9 48 0 65 22M136 124c32-20 57-11 70 21-30-9-48 0-65 22" fill="none" stroke="#e8f4ff" stroke-width="13" stroke-linecap="round"/><path d="M68 207c9-51 26-78 52-78s43 27 52 78" fill="#375c83"/><text x="120" y="28" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#eaf6ff">✦</text><text x="120" y="214" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="800" fill="#fff">VI</text></svg>

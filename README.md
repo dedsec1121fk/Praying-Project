@@ -247,3 +247,7 @@ The bilingual web now uses a lightweight static cloud/sky background. All 1,083 
 
 ## v13 rendering note
 The web now includes a baked cloud-sky environment and a single local fallback image atlas. Every catalog entry therefore has a visible bubble image even when completely offline or when remote icon sources fail. Verified remote iconography remains an optional visual upgrade and is not required for the site to function.
+
+## v14 accuracy and preload note
+
+After language selection, the web now remains on its preparation screen until all 1,083 bundled local entry images have been decoded and painted; there is no overall 30-second cutoff. Every entry therefore has an offline image before interaction begins. The local navigation artwork distinguishes venerated figures from context-only records, and the detail system exposes an evidence-status label so incomplete or disputed source material is not presented as certain fact. Full biography/detail files remain per-icon lazy and are removed from application state when closed.

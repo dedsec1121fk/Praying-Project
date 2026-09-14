@@ -8,6 +8,7 @@ for(const f of files)vm.runInContext(fs.readFileSync(path.join(root,'web/data',f
 const entries=ctx.window.ORTHODOX_ENTRIES||[];
 let errors=[],enWords=0,elWords=0,minEn=1e9,minEl=1e9,deep=0;
 const untranslatedGreek=/\b(?:Gospel|Gospels|Scripture|Church|Saint|Saints|Apostle|Apostles|Prophet|Prophets|Martyr|Bishop|Metropolitan|Elder|Monastic|feast|commemoration|prayer|tradition|history|New Testament|Old Testament|Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Greek Daniel)\b/i;
+const genericGreek=/(?:Ο\/Η|του\/της|Άγιε\/Αγία)/;
 for(const e of entries){
   for(const lang of ['en','el']){
     const k=e.knowledge?.[lang];
@@ -26,6 +27,8 @@ for(const e of entries){
   for(const [i,src] of (e.knowledge?.el?.sources||[]).entries())if(src?.label?.el)greekChecks.push([`knowledge.el.sources[${i}].label.el`,src.label.el]);
   for(const [field,val] of Object.entries(e.profile?.el||{}))greekChecks.push([`profile.el.${field}`,val]);
   for(const [where,val] of greekChecks)if(typeof val==='string'&&untranslatedGreek.test(val))errors.push(`${e.id}: untranslated English reference term in ${where}: ${val.slice(0,120)}`);
+  for(const [where,val] of greekChecks)if(typeof val==='string'&&genericGreek.test(val))errors.push(`${e.id}: unresolved Greek grammar placeholder in ${where}: ${val.slice(0,120)}`);
+  if(e.venerated===false&&/(?:pray to God for us|intercede for us|πρέσβευε|πρεσβεύ)/i.test(`${e.prayer?.en||''} ${e.prayer?.el||''}`))errors.push(`${e.id}: context-only record contains intercessory prayer`);
   for(const field of ['name','role','story','feast','prayer','notes'])for(const lang of ['en','el'])if(!String(e[field]?.[lang]||'').trim())errors.push(`${e.id}: missing ${field}.${lang}`);
 }
 deep=(ctx.window.ORTHODOX_DEEP_PROFILE_COUNT||0)+(ctx.window.ORTHODOX_DEEP_PROFILE_2_COUNT||0)+(ctx.window.ORTHODOX_DEEP_PROFILE_3_COUNT||13);
