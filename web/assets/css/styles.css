@@ -201,3 +201,34 @@ body.startup-lock .web-app{pointer-events:none}
 @keyframes detail-spin{to{transform:rotate(360deg)}}
 .tab:disabled{opacity:.45;cursor:default}
 @media(prefers-reduced-motion:reduce){.startup-loader{transition:none}.detail-spinner{animation-duration:1.6s}}
+
+/* v11 compact + smoother web */
+.node{width:118px;height:108px}
+.node-art{width:66px;height:66px;border-width:2px;box-shadow:0 0 0 2px color-mix(in srgb,var(--node) 52%,transparent),0 4px 10px rgba(0,0,0,.20)}
+.node-label{top:72px;width:116px;max-width:116px;padding:4px 5px;border-radius:7px;font-size:10px;line-height:1.08;background:rgba(4,12,28,.90)}
+.node:hover .node-art,.node:focus-visible .node-art{box-shadow:0 0 0 3px var(--node),0 5px 12px rgba(0,0,0,.22)}
+.holy-center{width:270px;height:238px}.cross-core{width:138px;height:138px}.trinity-node{width:76px;height:76px}.trinity-node b{font-size:8.5px}.trinity-symbol{font-size:22px}.christogram{font-size:16px}.dove{font-size:29px}
+.web-thread{stroke-width:1.45}.web-thread.faint{stroke-width:1}.web-thread.hot{stroke-width:1.35}
+.web-bubble-overview{stroke-width:1.45}.web-bubble-overview.inner{stroke-width:1.8}
+.network.is-dragging .node{pointer-events:none}
+.network.is-dragging .node-art{box-shadow:none}
+.network.is-dragging .node-label{box-shadow:none}
+
+.language-stage,.loading-stage{width:100%}
+.startup-language-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.startup-language-buttons button{min-height:74px;border:1px solid rgba(255,255,255,.26);border-radius:18px;background:rgba(255,255,255,.09);color:#fff;cursor:pointer;padding:13px 12px;box-shadow:none}
+.startup-language-buttons button:active{transform:scale(.985)}
+.startup-language-buttons b{display:block;font-size:17px}.startup-language-buttons small{display:block;margin-top:5px;color:#bdeeff;font-weight:900;letter-spacing:.1em}
+.startup-error{margin:14px 0 0;color:#ffe0df;font-size:12px;line-height:1.4}
+
+@media(max-width:900px){
+  .node{width:110px;height:102px}.node-art{width:62px;height:62px}.node-label{top:68px;width:108px;max-width:108px;font-size:9.5px}
+  .holy-center{width:240px;height:210px}.cross-core{width:124px;height:124px}.trinity-node{width:68px;height:68px}
+}
+@media(max-width:620px){
+  .node{width:100px;height:94px}.node-art{width:56px;height:56px;border-width:2px;box-shadow:0 0 0 2px color-mix(in srgb,var(--node) 48%,transparent),0 3px 8px rgba(0,0,0,.18)}
+  .node-label{top:61px;width:98px;max-width:98px;font-size:8.8px;padding:3px 4px;line-height:1.05}
+  .holy-center{width:196px;height:176px}.cross-core{width:100px;height:100px}.orthodox-cross{font-size:40px}.cross-core strong{font-size:7px}.cross-core small{font-size:5.8px}.trinity-node{width:56px;height:56px}.trinity-node b{font-size:7px}.trinity-symbol{font-size:17px}.christogram{font-size:11px}.dove{font-size:22px}
+  .startup-card{padding:24px 18px 20px}.startup-cross{font-size:60px}.startup-card strong{font-size:18px}.startup-card>span{font-size:12px}.startup-language-buttons{gap:9px}.startup-language-buttons button{min-height:66px}.startup-language-buttons b{font-size:15px}
+}
+.language-stage>span,.loading-stage>span{display:block;margin:9px auto 18px;max-width:340px;color:#d9ecff;font-size:13px;line-height:1.45}

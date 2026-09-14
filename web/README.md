@@ -112,3 +112,6 @@ After editing source catalog/profile files, regenerate and validate the browser 
 ```bash
 node web/tools/build_lazy_runtime.js && node web/tools/validate_lazy_runtime.js
 ```
+
+## v11 startup and performance
+The initial overlay asks for English or Greek before loading the lightweight runtime index. After selection, startup preparation precomputes the entire web and preloads bubble artwork for up to 30 seconds, finishing early when possible. This does **not** preload biographies or prayers; those remain strict per-icon lazy files and are removed from the application state when closed. The web world is intentionally denser than v10 and node-mount virtualization is throttled during camera movement to reduce mobile lag.

@@ -9,13 +9,24 @@
   <link rel="stylesheet" href="web/assets/css/styles.css" />
 </head>
 <body>
-  <div id="startupLoader" class="startup-loader" role="status" aria-live="polite" aria-label="Preparing the Orthodox web">
+  <div id="startupLoader" class="startup-loader" role="status" aria-live="polite" aria-label="Choose language and prepare the Orthodox web">
     <div class="startup-card">
-      <div class="startup-cross" aria-hidden="true">☦</div>
-      <strong id="startupTitle">Preparing the complete web</strong>
-      <span id="startupSub">Building all bubble positions and warming nearby images…</span>
-      <div class="startup-track" aria-hidden="true"><i id="startupBar"></i></div>
-      <small id="startupPct">0%</small>
+      <div id="languageStage" class="language-stage">
+        <div class="startup-cross" aria-hidden="true">☦</div>
+        <strong>Choose language • Επιλέξτε γλώσσα</strong>
+        <span>Choose the language before the web loads. You can change it again later from the search bar.<br>Επιλέξτε γλώσσα πριν φορτώσει ο ιστός. Μπορείτε να την αλλάξετε ξανά αργότερα από τη γραμμή αναζήτησης.</span>
+        <div class="startup-language-buttons" role="group" aria-label="Choose language">
+          <button type="button" data-start-lang="en"><b>English</b><small>EN</small></button>
+          <button type="button" data-start-lang="el"><b>Ελληνικά</b><small>ΕΛ</small></button>
+        </div>
+      </div>
+      <div id="loadingStage" class="loading-stage" hidden>
+        <div class="startup-cross" aria-hidden="true">☦</div>
+        <strong id="startupTitle">Preparing the complete web</strong>
+        <span id="startupSub">Preparing every bubble, the web and the cloud environment…</span>
+        <div class="startup-track" aria-hidden="true"><i id="startupBar"></i></div>
+        <small id="startupPct">0%</small>
+      </div>
     </div>
   </div>
   <main class="web-app" id="top">
@@ -88,7 +99,6 @@
     </div>
   </dialog>
 
-  <script src="web/data/runtime-index.js"></script>
-  <script src="web/assets/js/app.js"></script>
+  <script src="web/assets/js/bootstrap.js"></script>
 </body>
 </html>

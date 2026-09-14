@@ -23,14 +23,17 @@
     outside) the viewport are mounted in the DOM; panning/zooming reveals every other
     bubble at its fixed world position. This is spatial virtualization, not pagination.
   */
-  const outerEstimate=2600+255*Math.sqrt(Math.max(1,entries.length));
+  // v11: a much denser world. The previous 20k+ pixel field forced huge pan distances
+  // and too much visibility bookkeeping. All entries still have permanent positions, but
+  // the web is compact enough to navigate comfortably on a phone.
+  const densityRadius=980+92*Math.sqrt(Math.max(1,entries.length));
   const WORLD={
-    w:Math.ceil(Math.max(compact?22000:24000,outerEstimate*2.34)),
-    h:Math.ceil(Math.max(compact?17000:18500,outerEstimate*1.82))
+    w:Math.ceil(Math.max(compact?7600:8200,densityRadius*2.08)),
+    h:Math.ceil(Math.max(compact?5600:6100,densityRadius*1.54))
   };
   const CENTER={x:WORLD.w/2,y:WORLD.h/2};
-  const BASE_SCALE=compact?.54:.66;
-  const NORMAL_MIN_SCALE=compact?.095:.075;
+  const BASE_SCALE=compact?.50:.60;
+  const NORMAL_MIN_SCALE=compact?.075:.065;
   const MAX_SCALE=2.8;
   function minScale(){
     const vw=network.clientWidth||innerWidth||360,vh=network.clientHeight||innerHeight||640;
@@ -42,7 +45,7 @@
   function storageSet(key,value){try{localStorage.setItem(key,value)}catch(_){} }
 
   const state={
-    lang:storageGet('orthodox-lang','en'),query:'',active:null,tab:'story',
+    lang:(window.ORTHODOX_BOOT_LANG==='el'?'el':window.ORTHODOX_BOOT_LANG==='en'?'en':storageGet('orthodox-lang','en')),query:'',active:null,tab:'story',
     panX:0,panY:0,hoverX:0,hoverY:0,scale:BASE_SCALE
   };
 
@@ -54,7 +57,7 @@
       search:'Search a saint, apostle, angel…',none:'No matches',
       notVenerated:'Biblical context: this entry is not presented as a saint and no prayer is addressed to this figure.',
       source:'Primary source / reference',imageSource:'Image source',detailed:'Expanded source-based profile',localRecord:'Complete local record',
-      result:'match',results:'matches',detailLoading:'Loading full profile…',detailError:'The full local profile could not be loaded.',startup:'Preparing the complete web',startupSub:'Building all bubble positions and warming nearby images…',
+      result:'match',results:'matches',detailLoading:'Loading full profile…',detailError:'The full local profile could not be loaded.',startup:'Preparing the complete web',startupSub:'Preloading every bubble, web geometry and cloud environment…',
       category:{christ:'Christ & Spirit',theotokos:'Theotokos',angel:'Angel / Heavenly Power',forefather:'Forefather',righteous:'Old Testament Righteous',prophet:'Prophet',apostle:'Apostle / Evangelist','nt-saint':'New Testament Saint','church-saint':'Church Saint',feast:'Feast','biblical-context':'Biblical Context'}
     },
     el:{
@@ -64,7 +67,7 @@
       search:'Αναζήτησε άγιο, απόστολο, άγγελο…',none:'Δεν βρέθηκαν αποτελέσματα',
       notVenerated:'Βιβλικό πλαίσιο: η καταχώριση δεν παρουσιάζεται ως άγιος και δεν απευθύνεται προσευχή σε αυτό το πρόσωπο.',
       source:'Κύρια πηγή / αναφορά',imageSource:'Πηγή εικόνας',detailed:'Εκτεταμένο προφίλ βασισμένο σε πηγές',localRecord:'Πλήρης τοπική καταγραφή',
-      result:'αποτέλεσμα',results:'αποτελέσματα',detailLoading:'Φόρτωση πλήρους προφίλ…',detailError:'Δεν ήταν δυνατή η φόρτωση του πλήρους τοπικού προφίλ.',startup:'Προετοιμασία ολόκληρου του ιστού',startupSub:'Υπολογισμός όλων των φυσαλίδων και προφόρτωση κοντινών εικόνων…',
+      result:'αποτέλεσμα',results:'αποτελέσματα',detailLoading:'Φόρτωση πλήρους προφίλ…',detailError:'Δεν ήταν δυνατή η φόρτωση του πλήρους τοπικού προφίλ.',startup:'Προετοιμασία ολόκληρου του ιστού',startupSub:'Προφόρτωση όλων των φυσαλίδων, της γεωμετρίας του ιστού και του περιβάλλοντος νεφών…',
       category:{christ:'Χριστός & Πνεύμα',theotokos:'Θεοτόκος',angel:'Άγγελος / Ουράνια Δύναμη',forefather:'Προπάτορας',righteous:'Δίκαιος Παλαιάς Διαθήκης',prophet:'Προφήτης',apostle:'Απόστολος / Ευαγγελιστής','nt-saint':'Άγιος Καινής Διαθήκης','church-saint':'Άγιος Εκκλησίας',feast:'Εορτή','biblical-context':'Βιβλικό Πλαίσιο'}
     }
   };
@@ -100,25 +103,25 @@
   function layout(items){
     const out=[],n=items.length;
     const rings=compact?
-      [{cap:5,rx:520,ry:430,jx:95,jy:85},{cap:8,rx:910,ry:730,jx:125,jy:105},{cap:12,rx:1330,ry:1040,jx:150,jy:125},{cap:18,rx:1770,ry:1370,jx:180,jy:145}]:
-      [{cap:6,rx:610,ry:500,jx:105,jy:90},{cap:10,rx:1030,ry:810,jx:140,jy:115},{cap:15,rx:1510,ry:1160,jx:170,jy:135},{cap:22,rx:2030,ry:1510,jx:205,jy:165}];
+      [{cap:7,rx:300,ry:245,jx:38,jy:34},{cap:11,rx:480,ry:380,jx:48,jy:42},{cap:17,rx:690,ry:520,jx:58,jy:48},{cap:25,rx:930,ry:690,jx:68,jy:56}]:
+      [{cap:8,rx:340,ry:275,jx:42,jy:36},{cap:13,rx:545,ry:420,jx:52,jy:44},{cap:19,rx:775,ry:575,jx:62,jy:50},{cap:28,rx:1035,ry:750,jx:72,jy:58}];
     let used=0;
     for(let ri=0;ri<rings.length&&used<n;ri++){
-      const ring=rings[ri],count=Math.min(ring.cap,n-used),offset=.22*ri+(ri%2?Math.PI/Math.max(1,count):0);
+      const ring=rings[ri],count=Math.min(ring.cap,n-used),offset=.19*ri+(ri%2?Math.PI/Math.max(1,count):0);
       for(let j=0;j<count;j++){
-        const e=items[used+j],h=hashString(e.id),a=(Math.PI*2*j/count)+offset+(unit(h)*.20-.10);
+        const e=items[used+j],h=hashString(e.id),a=(Math.PI*2*j/count)+offset+(unit(h)*.14-.07);
         out.push({x:CENTER.x+Math.cos(a)*ring.rx+(unit(h+11)*2-1)*ring.jx,y:CENTER.y+Math.sin(a)*ring.ry+(unit(h+37)*2-1)*ring.jy,ring:ri});
       }
       used+=count;
     }
     const golden=Math.PI*(3-Math.sqrt(5));
-    const startR=compact?2120:2380,spacing=compact?255:270,yr=.79;
+    const startR=compact?960:1050,spacing=compact?84:90,yr=.76;
     for(let i=used;i<n;i++){
       const k=i-used+1,e=items[i],h=hashString(e.id),r=startR+spacing*Math.sqrt(k);
-      const a=k*golden+(unit(h+91)*.30-.15);
-      const radial=1+(unit(h+123)*.10-.05);
-      const jx=(unit(h+17)*2-1)*105,jy=(unit(h+53)*2-1)*90;
-      out.push({x:CENTER.x+Math.cos(a)*r*radial+jx,y:CENTER.y+Math.sin(a)*r*yr*radial+jy,ring:4+Math.floor(Math.sqrt(k)/4)});
+      const a=k*golden+(unit(h+91)*.22-.11);
+      const radial=1+(unit(h+123)*.065-.0325);
+      const jx=(unit(h+17)*2-1)*42,jy=(unit(h+53)*2-1)*36;
+      out.push({x:CENTER.x+Math.cos(a)*r*radial+jx,y:CENTER.y+Math.sin(a)*r*yr*radial+jy,ring:4+Math.floor(Math.sqrt(k)/5)});
     }
     return out;
   }
@@ -127,27 +130,24 @@
   function drawWeb(pos){
     if(!pos.length){svg.replaceChildren();return}
     let primary='',secondary='',center='';
-    // O(n) connections: Fibonacci offsets stay locally adjacent in a golden-angle field.
+    // Keep the web messy but cheap: one local thread per node, with one extra thread on
+    // alternating nodes. This cuts the SVG path work substantially while preserving the web look.
     for(let i=1;i<pos.length;i++){
-      const a=pos[i];
-      const offsets=i<55?[1,5,8]:[13,21,34];
-      offsets.forEach((off,k)=>{
-        const j=i-off;if(j<0)return;const b=pos[j];
-        const dx=a.x-b.x,dy=a.y-b.y,dist=Math.hypot(dx,dy);
-        if(dist>(k===0?1250:980))return;
+      const a=pos[i],offsets=i<70?[1,5]:[13,(i%2?21:0)];
+      for(let k=0;k<offsets.length;k++){
+        const off=offsets[k];if(!off)continue;const j=i-off;if(j<0)continue;const b=pos[j];
+        const dist=Math.hypot(a.x-b.x,a.y-b.y);if(dist>(k===0?650:520))continue;
         const seg=`M${a.x.toFixed(0)} ${a.y.toFixed(0)}L${b.x.toFixed(0)} ${b.y.toFixed(0)}`;
         if(k===0)primary+=seg;else secondary+=seg;
-      });
+      }
     }
-    pos.slice(0,Math.min(16,pos.length)).forEach((p,i)=>{if(i%2===0)center+=`M${CENTER.x} ${CENTER.y}L${p.x.toFixed(0)} ${p.y.toFixed(0)}`});
-    // A single SVG path sketches every bubble, including off-screen virtualized nodes.
-    // This means the entire catalogue is visibly part of one web at overview zoom without
-    // forcing 1,000+ image/button DOM elements onto a phone at once.
+    pos.slice(0,Math.min(14,pos.length)).forEach((p,i)=>{if(i%2===0)center+=`M${CENTER.x} ${CENTER.y}L${p.x.toFixed(0)} ${p.y.toFixed(0)}`});
+    // Overview rings represent every entry even while full image buttons are spatially virtualized.
     let overview='',innerOverview='';
     for(let i=0;i<pos.length;i++){
-      const p=pos[i],r=i<55?54:44;
+      const p=pos[i],r=i<70?35:29;
       const circle=`M${(p.x-r).toFixed(0)} ${p.y.toFixed(0)}a${r} ${r} 0 1 0 ${r*2} 0a${r} ${r} 0 1 0 -${r*2} 0`;
-      if(i<55)innerOverview+=circle;else overview+=circle;
+      if(i<70)innerOverview+=circle;else overview+=circle;
     }
     const f=document.createDocumentFragment();
     if(secondary)f.appendChild(svgPath('web-thread faint',secondary));
@@ -185,13 +185,14 @@
   }
   function visibleBounds(){
     const b=cameraBase(),ox=b.x+state.panX+state.hoverX,oy=b.y+state.panY+state.hoverY,s=Math.max(.001,state.scale);
-    const margin=Math.max(360,260/s);
+    // A generous margin means dragging normally does not need to mount/unmount nodes every frame.
+    const margin=Math.max(520,620/s);
     return{x0:(-ox)/s-margin,y0:(-oy)/s-margin,x1:(network.clientWidth-ox)/s+margin,y1:(network.clientHeight-oy)/s+margin};
   }
   function refreshVisible(force=false){
     if(!currentItems.length){nodesEl.replaceChildren();mounted.clear();return}
     const v=visibleBounds(),wanted=new Set();
-    const overviewOnly=state.scale<.055 && currentItems.length>180;
+    const overviewOnly=state.scale<.045 && currentItems.length>180;
     for(let i=0;i<currentItems.length;i++){
       const p=currentPositions[i];if(p.x<v.x0||p.x>v.x1||p.y<v.y0||p.y>v.y1)continue;
       // At extreme all-web overview scale the SVG path already draws every bubble.
@@ -207,10 +208,11 @@
       }
     }
     for(const [id,node] of [...mounted])if(!wanted.has(id)){node.remove();mounted.delete(id)}
-    network.classList.toggle('far-view',state.scale<.20);
+    network.classList.toggle('far-view',state.scale<.18);
     network.classList.toggle('all-web-view',overviewOnly);
   }
   let visibleRaf=0;function requestVisible(force=false){if(visibleRaf)return;visibleRaf=requestAnimationFrame(()=>{visibleRaf=0;refreshVisible(force)})}
+  let visibleTimer=0;function scheduleVisible(force=false,delay=95){clearTimeout(visibleTimer);visibleTimer=setTimeout(()=>{visibleTimer=0;requestVisible(force)},delay)}
 
   function resetView(){state.panX=0;state.panY=0;state.hoverX=0;state.hoverY=0;state.scale=BASE_SCALE;applySceneTransform();requestVisible(true)}
   function render(){
@@ -357,7 +359,7 @@
     clampPan();const b=cameraBase();
     scene.style.transform=`translate3d(${(b.x+state.panX+state.hoverX).toFixed(1)}px,${(b.y+state.panY+state.hoverY).toFixed(1)}px,0) scale(${state.scale.toFixed(4)})`;
   }
-  let cameraRaf=0;function requestCamera(){if(cameraRaf)return;cameraRaf=requestAnimationFrame(()=>{cameraRaf=0;applySceneTransform();requestVisible(false)})}
+  let cameraRaf=0;function requestCamera(){if(cameraRaf)return;cameraRaf=requestAnimationFrame(()=>{cameraRaf=0;applySceneTransform();scheduleVisible(false,110)})}
 
   function zoomAt(clientX,clientY,nextScale){
     nextScale=clamp(nextScale,minScale(),MAX_SCALE);if(Math.abs(nextScale-state.scale)<.0001)return;
@@ -408,7 +410,7 @@
     const oldGesture=gesture;pointers.delete(e.pointerId);
     if(oldGesture?.type==='pinch'){suppressClicksUntil=performance.now()+280;if(pointers.size===1){const p=[...pointers.values()][0];gesture={type:'pan',id:p.id,startX:p.x,startY:p.y,panX:state.panX,panY:state.panY,moved:false}}else gesture=null}
     else if(oldGesture?.type==='pan'&&oldGesture.id===e.pointerId){if(oldGesture.moved)suppressClicksUntil=performance.now()+220;gesture=null}
-    if(!pointers.size){network.classList.remove('is-dragging');gesture=null}
+    if(!pointers.size){network.classList.remove('is-dragging');gesture=null;requestVisible(false)}
   }
   network.addEventListener('pointerup',e=>{
     const p=pointers.get(e.pointerId),wasPan=gesture?.type==='pan'&&gesture.id===e.pointerId&&!gesture.moved;releasePointer(e);
@@ -434,18 +436,62 @@
   document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(t.disabled)return;state.tab=t.dataset.tab;populateModal()}));
   document.getElementById('closeModal').addEventListener('click',closeModalSafe);modal.addEventListener('click',e=>{if(e.target===modal)closeModalSafe()});modal.addEventListener('cancel',e=>{e.preventDefault();closeModalSafe()});
 
-  function warmInitialImages(limit=30){
-    const pool=currentItems.slice(0,Math.min(limit,currentItems.length));
-    let done=0;for(const e of pool){const img=new Image();img.decoding='async';img.onload=img.onerror=()=>{done+=1};img.src=imageUrl(e.image||preferredImage(e))}return pool.length;
+  function preloadOne(url,timeoutMs=3500){
+    return new Promise(resolve=>{
+      if(!url){resolve(false);return}
+      const img=new Image();let settled=false;
+      const finish=ok=>{if(settled)return;settled=true;clearTimeout(timer);img.onload=null;img.onerror=null;resolve(ok)};
+      const timer=setTimeout(()=>finish(false),timeoutMs);
+      img.decoding='async';img.onload=()=>finish(true);img.onerror=()=>finish(false);img.src=url;
+    });
   }
-  function runStartupScreen(){
-    const loader=document.getElementById('startupLoader');if(!loader)return;const bar=document.getElementById('startupBar'),pct=document.getElementById('startupPct'),title=document.getElementById('startupTitle'),sub=document.getElementById('startupSub');
+  function preloadTargets(){
+    const urls=[];
+    for(const e of entries){
+      if(e.image)urls.push(imageUrl(e.image));
+      if(e.imageLocalReal)urls.push(imageUrl(e.imageLocalReal));
+      if(e.imageRemote&&navigator.onLine!==false)urls.push(e.imageRemote);
+    }
+    return [...new Set(urls)];
+  }
+  async function runStartupScreen(){
+    const loader=document.getElementById('startupLoader');if(!loader){document.body.classList.remove('startup-lock');return}
+    const bar=document.getElementById('startupBar'),pct=document.getElementById('startupPct'),title=document.getElementById('startupTitle'),sub=document.getElementById('startupSub');
     title.textContent=UI[state.lang].startup;sub.textContent=UI[state.lang].startupSub;
-    const start=performance.now(),duration=5000;
-    const tick=now=>{const progress=Math.min(1,(now-start)/duration);if(bar)bar.style.transform=`scaleX(${progress})`;if(pct)pct.textContent=`${Math.round(progress*100)}%`;if(progress<1)requestAnimationFrame(tick);else{loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),420)}};
-    requestAnimationFrame(tick);
+    const started=performance.now(),bootStarted=Number(window.ORTHODOX_BOOT_STARTED)||started,deadline=bootStarted+30000,minVisibleUntil=Math.min(deadline,started+1800);
+    // Force the cloud scene and the already-computed SVG web through layout/paint while hidden by the loader.
+    const app=document.querySelector('.web-app');if(app){void app.offsetWidth;void getComputedStyle(app).backgroundImage}
+    refreshVisible(true);applySceneTransform();
+    const targets=preloadTargets(),total=Math.max(1,targets.length);let cursor=0,finished=0,stop=false;
+    const setProgress=()=>{
+      const assetPart=finished/total,progress=Math.min(.985,.12+assetPart*.86);
+      if(bar)bar.style.transform=`scaleX(${progress})`;if(pct)pct.textContent=`${Math.round(progress*100)}%`;
+      if(sub){
+        const bubbles=Math.min(entries.length,Math.round(entries.length*assetPart));
+        sub.textContent=state.lang==='el'?`Προφόρτωση φυσαλίδων ${bubbles}/${entries.length} • ο ιστός και τα νέφη είναι έτοιμα`:`Preloading bubbles ${bubbles}/${entries.length} • web and clouds ready`;
+      }
+    };
+    setProgress();
+    const concurrency=lowMemory?7:(compact?10:16);
+    async function worker(){
+      while(!stop){
+        const i=cursor++;if(i>=targets.length)return;
+        const url=targets[i],remote=/^https?:/i.test(url);
+        await preloadOne(url,remote?4500:2200);finished++;setProgress();
+        if(performance.now()>=deadline){stop=true;return}
+        // Yield regularly so the loader stays responsive even when opening from file://.
+        if((finished&15)===0)await new Promise(r=>setTimeout(r,0));
+      }
+    }
+    const workers=Array.from({length:Math.min(concurrency,total)},()=>worker());
+    await Promise.race([Promise.all(workers),new Promise(r=>setTimeout(()=>{stop=true;r()},Math.max(0,deadline-performance.now()))) ]);
+    const wait=Math.max(0,minVisibleUntil-performance.now());if(wait)await new Promise(r=>setTimeout(r,wait));
+    if(bar)bar.style.transform='scaleX(1)';if(pct)pct.textContent='100%';
+    if(sub)sub.textContent=state.lang==='el'?'Ο ιστός είναι έτοιμος':'The web is ready';
+    await new Promise(r=>setTimeout(r,180));
+    loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),420);
   }
 
   document.body.classList.add('startup-lock');
-  translate();applySceneTransform();requestVisible(true);warmInitialImages();runStartupScreen();
+  translate();applySceneTransform();requestVisible(true);runStartupScreen();
 })();
