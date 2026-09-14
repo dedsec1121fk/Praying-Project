@@ -44,7 +44,7 @@
 
     <section id="network" class="network" tabindex="0" aria-label="Interactive Orthodox web">
       <div id="scene" class="scene">
-        <svg id="webLines" class="web-lines" viewBox="0 0 3500 2700" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <canvas id="webCanvas" class="web-canvas" aria-hidden="true"></canvas>
 
         <div class="holy-center" aria-label="The Cross and the Holy Trinity">
           <div class="trinity-node trinity-father">
@@ -66,8 +66,9 @@
           </div>
         </div>
 
-        <div id="nodes" class="nodes"></div>
       </div>
+      <div id="labels" class="canvas-labels" aria-hidden="true"></div>
+      <div id="searchMarker" class="search-marker" hidden aria-hidden="true"></div>
       <div id="emptyState" class="empty-state" hidden data-i18n="none">No matches</div>
     </section>
   </main>

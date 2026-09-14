@@ -232,3 +232,37 @@ body.startup-lock .web-app{pointer-events:none}
   .startup-card{padding:24px 18px 20px}.startup-cross{font-size:60px}.startup-card strong{font-size:18px}.startup-card>span{font-size:12px}.startup-language-buttons{gap:9px}.startup-language-buttons button{min-height:66px}.startup-language-buttons b{font-size:15px}
 }
 .language-stage>span,.loading-stage>span{display:block;margin:9px auto 18px;max-width:340px;color:#d9ecff;font-size:13px;line-height:1.45}
+
+/* v12: one rasterized web layer. The moving scene contains only the canvas + Holy Trinity. */
+.web-app{
+  background:
+    radial-gradient(ellipse 38% 15% at 15% 22%,rgba(255,255,255,.90) 0 30%,rgba(255,255,255,.38) 55%,transparent 76%),
+    radial-gradient(ellipse 43% 17% at 78% 25%,rgba(255,255,255,.82) 0 28%,rgba(255,255,255,.30) 55%,transparent 76%),
+    radial-gradient(ellipse 44% 18% at 35% 78%,rgba(255,255,255,.78) 0 27%,rgba(255,255,255,.27) 56%,transparent 77%),
+    linear-gradient(180deg,#6fc3f4 0%,#a7def8 43%,#e0f3fc 72%,#86c8ef 100%);
+}
+.web-app::before{display:none}
+.web-app::after{background:linear-gradient(180deg,rgba(25,75,112,.05),transparent 30%,transparent 74%,rgba(25,75,112,.08))}
+.scene{contain:layout paint style;transform-origin:0 0;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.web-canvas{position:absolute;inset:0;display:block;z-index:1;pointer-events:none;contain:strict}
+.canvas-labels{position:absolute;inset:0;z-index:18;pointer-events:none;overflow:hidden;transition:opacity .06s linear;contain:strict}
+.canvas-labels.moving{opacity:0}
+.canvas-label{
+  position:absolute;left:0;top:0;width:112px;max-width:112px;padding:3px 5px;border-radius:7px;
+  background:rgba(4,12,28,.90);border:1px solid rgba(255,255,255,.24);color:#fff;
+  font-size:10px;font-weight:900;line-height:1.08;text-align:center;text-shadow:0 1px 2px #000;
+  white-space:normal;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;
+  will-change:transform;contain:layout paint style;
+}
+.canvas-label.context-label{border-style:dashed;color:#e7ebf5}
+.search-marker{
+  position:absolute;left:0;top:0;z-index:17;border:3px solid rgba(104,242,255,.96);border-radius:50%;
+  box-shadow:0 0 0 3px rgba(255,255,255,.72);pointer-events:none;will-change:transform;
+}
+.network.is-dragging .holy-center{pointer-events:none}
+/* Old DOM-node/SVG rules remain for compatibility with older snapshots, but are unused in v12. */
+.nodes,.web-lines{display:none!important}
+@media(max-width:620px){
+  .canvas-label{width:100px;max-width:100px;font-size:9.5px;padding:3px 4px}
+  .holy-center{width:184px;height:164px}.cross-core{width:94px;height:94px}.orthodox-cross{font-size:38px}.cross-core strong{font-size:6.7px}.cross-core small{font-size:5.5px}.trinity-node{width:52px;height:52px}.trinity-node b{font-size:6.8px}.trinity-symbol{font-size:16px}.christogram{font-size:10.5px}.dove{font-size:21px}
+}

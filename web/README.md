@@ -115,3 +115,7 @@ node web/tools/build_lazy_runtime.js && node web/tools/validate_lazy_runtime.js
 
 ## v11 startup and performance
 The initial overlay asks for English or Greek before loading the lightweight runtime index. After selection, startup preparation precomputes the entire web and preloads bubble artwork for up to 30 seconds, finishing early when possible. This does **not** preload biographies or prayers; those remain strict per-icon lazy files and are removed from the application state when closed. The web world is intentionally denser than v10 and node-mount virtualization is throttled during camera movement to reduce mobile lag.
+
+## v12 performance architecture
+
+The visible web is rasterized into a single fixed-size canvas during startup. The catalog's 1,083 bubble positions are permanent. Pan and zoom transform the scene as one composited layer rather than moving hundreds of individual image elements. Screen-space labels are refreshed only after movement pauses. Detail records remain strict per-entry lazy files under `web/data/details/` and are unloaded when their modal closes.
