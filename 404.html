@@ -9,6 +9,15 @@
   <link rel="stylesheet" href="web/assets/css/styles.css" />
 </head>
 <body>
+  <div id="startupLoader" class="startup-loader" role="status" aria-live="polite" aria-label="Preparing the Orthodox web">
+    <div class="startup-card">
+      <div class="startup-cross" aria-hidden="true">☦</div>
+      <strong id="startupTitle">Preparing the complete web</strong>
+      <span id="startupSub">Building all bubble positions and warming nearby images…</span>
+      <div class="startup-track" aria-hidden="true"><i id="startupBar"></i></div>
+      <small id="startupPct">0%</small>
+    </div>
+  </div>
   <main class="web-app" id="top">
     <header class="search-dock" aria-label="Search and language">
       <label class="searchbox" for="search">
@@ -79,22 +88,7 @@
     </div>
   </dialog>
 
-  <script src="web/data/entries.js"></script>
-  <script src="web/data/expanded-biblical.js"></script>
-  <script src="web/data/church-saints.js"></script>
-  <script src="web/data/feasts.js"></script>
-  <script src="web/data/biblical-context.js"></script>
-  <script src="web/data/further-expansion.js"></script>
-  <script src="web/data/deep-biblical.js"></script>
-  <script src="web/data/comprehensive-expansion.js"></script>
-  <script src="web/data/v7-expansion.js"></script>
-  <script src="web/data/v8-expansion.js"></script>
-  <script src="web/data/catalog.js"></script>
-  <script src="web/data/media-manifest.js"></script>
-  <script src="web/data/deep-profiles.js"></script>
-  <script src="web/data/deep-profiles-2.js"></script>
-  <script src="web/data/deep-profiles-3.js"></script>
-  <script src="web/data/profile-enricher.js"></script>
+  <script src="web/data/runtime-index.js"></script>
   <script src="web/assets/js/app.js"></script>
 </body>
 </html>

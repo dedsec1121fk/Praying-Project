@@ -2,6 +2,9 @@
   'use strict';
 
   const entries=Array.isArray(window.ORTHODOX_ENTRIES)?window.ORTHODOX_ENTRIES:[];
+  let activeDetail=null;
+  let detailScript=null;
+  let detailLoadToken=0;
   const nodesEl=document.getElementById('nodes');
   const svg=document.getElementById('webLines');
   const network=document.getElementById('network');
@@ -51,7 +54,7 @@
       search:'Search a saint, apostle, angel…',none:'No matches',
       notVenerated:'Biblical context: this entry is not presented as a saint and no prayer is addressed to this figure.',
       source:'Primary source / reference',imageSource:'Image source',detailed:'Expanded source-based profile',localRecord:'Complete local record',
-      result:'match',results:'matches',
+      result:'match',results:'matches',detailLoading:'Loading full profile…',detailError:'The full local profile could not be loaded.',startup:'Preparing the complete web',startupSub:'Building all bubble positions and warming nearby images…',
       category:{christ:'Christ & Spirit',theotokos:'Theotokos',angel:'Angel / Heavenly Power',forefather:'Forefather',righteous:'Old Testament Righteous',prophet:'Prophet',apostle:'Apostle / Evangelist','nt-saint':'New Testament Saint','church-saint':'Church Saint',feast:'Feast','biblical-context':'Biblical Context'}
     },
     el:{
@@ -61,7 +64,7 @@
       search:'Αναζήτησε άγιο, απόστολο, άγγελο…',none:'Δεν βρέθηκαν αποτελέσματα',
       notVenerated:'Βιβλικό πλαίσιο: η καταχώριση δεν παρουσιάζεται ως άγιος και δεν απευθύνεται προσευχή σε αυτό το πρόσωπο.',
       source:'Κύρια πηγή / αναφορά',imageSource:'Πηγή εικόνας',detailed:'Εκτεταμένο προφίλ βασισμένο σε πηγές',localRecord:'Πλήρης τοπική καταγραφή',
-      result:'αποτέλεσμα',results:'αποτελέσματα',
+      result:'αποτέλεσμα',results:'αποτελέσματα',detailLoading:'Φόρτωση πλήρους προφίλ…',detailError:'Δεν ήταν δυνατή η φόρτωση του πλήρους τοπικού προφίλ.',startup:'Προετοιμασία ολόκληρου του ιστού',startupSub:'Υπολογισμός όλων των φυσαλίδων και προφόρτωση κοντινών εικόνων…',
       category:{christ:'Χριστός & Πνεύμα',theotokos:'Θεοτόκος',angel:'Άγγελος / Ουράνια Δύναμη',forefather:'Προπάτορας',righteous:'Δίκαιος Παλαιάς Διαθήκης',prophet:'Προφήτης',apostle:'Απόστολος / Ευαγγελιστής','nt-saint':'Άγιος Καινής Διαθήκης','church-saint':'Άγιος Εκκλησίας',feast:'Εορτή','biblical-context':'Βιβλικό Πλαίσιο'}
     }
   };
@@ -74,8 +77,9 @@
     return s;
   }
   function haystack(e){
-    const extra=(e.knowledge&&Object.values(e.knowledge).flatMap(v=>Array.isArray(v?.sections)?v.sections.map(s=>typeof s.text==='object'?(s.text.en||s.text.el||''):s.text):[]))||[];
-    return [e.name?.en,e.name?.el,e.role?.en,e.role?.el,e.story?.en,e.story?.el,e.feast?.en,e.feast?.el,e.scripture,e.search,...(e.aliases||[]),...extra].join(' ');
+    // Keep startup light: only index/name/role/aliases are resident before a bubble is opened.
+    // Full biographies, prayers, notes, sources and calendar data live in lazy detail chunks.
+    return [e.name?.en,e.name?.el,e.role?.en,e.role?.el,e.search,...(e.aliases||[])].join(' ');
   }
   const searchIndex=new Map(entries.map(e=>[e.id,norm(haystack(e))]));
   const featuredIds=['jesus-christ','holy-spirit','theotokos','archangel-michael','archangel-gabriel','archangel-raphael','john-baptist','peter','paul','andrew','john-theologian','james-zebedee','mary-magdalene','stephen','george','demetrios','nicholas','nektarios','john-chrysostom','basil-great','gregory-theologian','gregory-palamas','constantine-helen','paisios','porphyrios','seraphim-sarov','spyridon','athanasius-great','cyril-alexandria','maximus-confessor','isaac-syrian','mary-egypt','moses','elijah','david','daniel','abraham','sarah','isaac','jacob','joseph-patriarch','noah','job','pentecost','nativity-christ','theophany','transfiguration','dormition','annunciation','pascha'];
@@ -218,8 +222,62 @@
   }
 
   function showModalSafe(){if(typeof modal.showModal==='function'){try{modal.showModal();return}catch(_){}}modal.setAttribute('open','');modal.classList.add('fallback-open')}
-  function closeModalSafe(){if(typeof modal.close==='function'){try{modal.close();return}catch(_){}}modal.removeAttribute('open');modal.classList.remove('fallback-open')}
-  function openEntry(id){state.active=id;state.tab='story';populateModal();showModalSafe()}
+  function clearPublishedDetail(id){
+    const store=window.ORTHODOX_ENTRY_DETAILS;if(!store||!id)return;
+    delete store[id];
+    if(!Object.keys(store).length){try{delete window.ORTHODOX_ENTRY_DETAILS}catch(_){window.ORTHODOX_ENTRY_DETAILS=Object.create(null)}}
+  }
+  function unloadActiveDetails(){
+    detailLoadToken++;
+    if(detailScript){detailScript.onload=null;detailScript.onerror=null;detailScript.remove();detailScript=null}
+    if(activeDetail?.id)clearPublishedDetail(activeDetail.id);
+    if(state.active)clearPublishedDetail(state.active);
+    activeDetail=null;
+    const body=document.getElementById('tabBody');if(body)body.replaceChildren();
+    const credit=document.getElementById('modalImageCredit');if(credit){credit.hidden=true;credit.removeAttribute('href');credit.textContent=''}
+    const img=document.getElementById('modalImage');if(img){img.onerror=null;img.removeAttribute('src');img.alt=''}
+  }
+  function closeModalSafe(){
+    if(typeof modal.close==='function'){try{modal.close()}catch(_){modal.removeAttribute('open')}}else modal.removeAttribute('open');
+    modal.classList.remove('fallback-open');
+    unloadActiveDetails();state.active=null;state.tab='story';
+  }
+  function detailFileUrl(e){return `web/data/details/${e.detailFile}`}
+  function detailView(e){return activeDetail?.id===e.id?Object.assign({},e,activeDetail.data):e}
+  function ensureDetails(e){
+    if(!e.detailFile)return Promise.reject(new Error('Missing per-entry detail file'));
+    const token=++detailLoadToken;
+    return new Promise((resolve,reject)=>{
+      const script=document.createElement('script');detailScript=script;script.src=detailFileUrl(e);script.async=true;
+      script.onload=()=>{
+        const data=window.ORTHODOX_ENTRY_DETAILS?.[e.id];
+        if(token!==detailLoadToken||state.active!==e.id){clearPublishedDetail(e.id);script.remove();if(detailScript===script)detailScript=null;return reject(new Error('Detail load cancelled'))}
+        if(!data){script.remove();if(detailScript===script)detailScript=null;return reject(new Error('Entry missing from detail file'))}
+        activeDetail={id:e.id,data};resolve(data);
+      };
+      script.onerror=()=>{if(detailScript===script)detailScript=null;script.remove();clearPublishedDetail(e.id);reject(new Error(`Could not load ${script.src}`))};
+      document.head.appendChild(script);
+    });
+  }
+  function populateModalLoading(e,error=false){
+    const lang=state.lang;modal.dataset.loading=error?'error':'true';
+    const img=document.getElementById('modalImage');img.onerror=null;installImageFallback(img,e);img.src=preferredImage(e);img.alt=locText(e.name?.[lang]||e.name?.en||'',lang);
+    const credit=document.getElementById('modalImageCredit');credit.hidden=true;credit.removeAttribute('href');credit.textContent='';
+    document.getElementById('modalName').textContent=locText(e.name?.[lang]||e.name?.en||e.id,lang);
+    document.getElementById('modalRole').textContent=locText(e.role?.[lang]||e.role?.en||'',lang);
+    document.getElementById('modalFeast').textContent='…';document.getElementById('modalScripture').textContent='…';
+    document.getElementById('modalCategory').textContent=UI[lang].category[e.category]||locText(e.category,lang);
+    const body=document.getElementById('tabBody');body.replaceChildren();const status=document.createElement('div');status.className='detail-loading';
+    status.innerHTML=`<span class="detail-spinner" aria-hidden="true"></span><strong>${escapeHtml(error?UI[lang].detailError:UI[lang].detailLoading)}</strong>`;body.append(status);
+    document.getElementById('modalNotice').hidden=true;document.querySelectorAll('.tab').forEach(t=>{t.disabled=true;t.classList.toggle('active',t.dataset.tab===state.tab)});
+  }
+  async function openEntry(id){
+    const e=byId.get(id);if(!e)return;
+    unloadActiveDetails();state.active=id;state.tab='story';
+    populateModalLoading(e);showModalSafe();
+    try{await ensureDetails(e);if(state.active!==id)return;modal.dataset.loading='false';document.querySelectorAll('.tab').forEach(t=>t.disabled=false);populateModal()}
+    catch(err){if(String(err?.message||err)!=='Detail load cancelled')console.error(err);if(state.active===id)populateModalLoading(e,true)}
+  }
 
   function addSection(body,title,text,cls=''){
     text=locText(text);title=locText(title);if(!text)return;
@@ -243,7 +301,7 @@
   }
 
   function populateModal(){
-    const e=byId.get(state.active);if(!e)return;const lang=state.lang;
+    const base=byId.get(state.active);if(!base||activeDetail?.id!==base.id)return;const e=detailView(base);const lang=state.lang;modal.dataset.loading='false';document.querySelectorAll('.tab').forEach(t=>t.disabled=false);
     const img=document.getElementById('modalImage');img.onerror=null;installImageFallback(img,e);img.src=preferredImage(e);img.alt=locText(e.name?.[lang]||e.name?.en||'',lang);
     const credit=document.getElementById('modalImageCredit');
     if(e.imageMeta?.sourceUrl){
@@ -282,7 +340,7 @@
     document.documentElement.lang=state.lang;
     document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(UI[state.lang][k])el.textContent=UI[state.lang][k]});
     search.placeholder=UI[state.lang].search;document.querySelectorAll('.lang').forEach(b=>b.classList.toggle('active',b.dataset.lang===state.lang));
-    if(state.active)populateModal();render();
+    if(state.active){const e=byId.get(state.active);if(e&&activeDetail?.id===e.id)populateModal();else if(e)populateModalLoading(e)}render();
   }
 
   // ---------- Camera: one composited transform for pan + pinch/wheel zoom ----------
@@ -373,8 +431,21 @@
     if(!modal.hasAttribute('open')&&(e.key==='+'||e.key==='='||e.key==='-')){e.preventDefault();const r=network.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;zoomAt(cx,cy,state.scale*(e.key==='-'?.82:1.22));return}
     if(!modal.hasAttribute('open')&&e.key==='0'){e.preventDefault();state.panX=0;state.panY=0;state.hoverX=0;state.hoverY=0;state.scale=minScale();requestCamera();requestVisible(true)}
   });
-  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{state.tab=t.dataset.tab;populateModal()}));
-  document.getElementById('closeModal').addEventListener('click',closeModalSafe);modal.addEventListener('click',e=>{if(e.target===modal)closeModalSafe()});
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{if(t.disabled)return;state.tab=t.dataset.tab;populateModal()}));
+  document.getElementById('closeModal').addEventListener('click',closeModalSafe);modal.addEventListener('click',e=>{if(e.target===modal)closeModalSafe()});modal.addEventListener('cancel',e=>{e.preventDefault();closeModalSafe()});
 
-  translate();applySceneTransform();requestVisible(true);
+  function warmInitialImages(limit=30){
+    const pool=currentItems.slice(0,Math.min(limit,currentItems.length));
+    let done=0;for(const e of pool){const img=new Image();img.decoding='async';img.onload=img.onerror=()=>{done+=1};img.src=imageUrl(e.image||preferredImage(e))}return pool.length;
+  }
+  function runStartupScreen(){
+    const loader=document.getElementById('startupLoader');if(!loader)return;const bar=document.getElementById('startupBar'),pct=document.getElementById('startupPct'),title=document.getElementById('startupTitle'),sub=document.getElementById('startupSub');
+    title.textContent=UI[state.lang].startup;sub.textContent=UI[state.lang].startupSub;
+    const start=performance.now(),duration=5000;
+    const tick=now=>{const progress=Math.min(1,(now-start)/duration);if(bar)bar.style.transform=`scaleX(${progress})`;if(pct)pct.textContent=`${Math.round(progress*100)}%`;if(progress<1)requestAnimationFrame(tick);else{loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),420)}};
+    requestAnimationFrame(tick);
+  }
+
+  document.body.classList.add('startup-lock');
+  translate();applySceneTransform();requestVisible(true);warmInitialImages();runStartupScreen();
 })();

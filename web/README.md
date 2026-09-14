@@ -96,3 +96,19 @@ python web/tools/check_static_site.py
 node --check web/assets/js/app.js
 node --check web/data/profile-enricher.js
 ```
+
+## v10 strict per-entry performance loading
+
+The browser loads only `web/data/runtime-index.js` at startup. It contains the lightweight bubble/search index (names, roles, aliases, image pointers and one detail filename per entry), not the long biographies, prayers, notes or source dossiers.
+
+Every catalog record has its own independent static JavaScript file under `web/data/details/` (`entry-0000.js`, `entry-0001.js`, and so on). Tapping a bubble loads only that one record. No neighboring saint/person/being details are loaded with it. When the details window closes, the app removes the script element, deletes that record from `window.ORTHODOX_ENTRY_DETAILS`, clears the modal content, and drops the active detail reference so it can be garbage-collected. Reopening the same bubble loads that one file again.
+
+This remains compatible with `file://`, local static servers, and repository hosting because it uses relative classic `<script>` files rather than `fetch()`. Browser-level HTTP/file caching may keep the resource bytes available, but the biography object is not retained by the application after close.
+
+The five-second startup screen is intentional: while it is visible the app computes the complete 1,083-node web, builds its lightweight search index, draws the overview web and warms nearby bubble images. It does not load any biography/detail file.
+
+After editing source catalog/profile files, regenerate and validate the browser runtime with:
+
+```bash
+node web/tools/build_lazy_runtime.js && node web/tools/validate_lazy_runtime.js
+```

@@ -174,3 +174,30 @@ button{-webkit-tap-highlight-color:transparent}
 .network{overscroll-behavior:none;touch-action:none;-webkit-user-select:none}
 .scene{backface-visibility:hidden;-webkit-backface-visibility:hidden}
 @media(max-width:620px){.image-credit{max-width:100%;font-size:9px}.modal-content{padding-bottom:calc(22px + env(safe-area-inset-bottom))}}
+
+/* v9 staged startup + lazy detail loading */
+.startup-loader{
+  position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:24px;
+  background:
+    radial-gradient(ellipse 45% 20% at 22% 28%,rgba(255,255,255,.92),rgba(255,255,255,.32) 58%,transparent 76%),
+    radial-gradient(ellipse 46% 20% at 82% 72%,rgba(255,255,255,.82),rgba(255,255,255,.26) 58%,transparent 76%),
+    linear-gradient(180deg,#64bdf0,#bfe8fb 66%,#86c8ef);
+  transition:opacity .38s ease,visibility .38s ease;
+}
+.startup-loader.done{opacity:0;visibility:hidden;pointer-events:none}
+.startup-card{
+  width:min(420px,calc(100vw - 38px));padding:28px 24px 22px;border-radius:28px;text-align:center;color:#fff;
+  background:rgba(7,18,42,.92);border:1px solid rgba(255,255,255,.28);box-shadow:0 24px 70px rgba(15,54,88,.28);
+}
+.startup-cross{font-family:Georgia,"Times New Roman",serif;font-size:70px;line-height:1;color:#ffe27a;text-shadow:0 5px 18px rgba(0,0,0,.22)}
+.startup-card strong{display:block;margin-top:12px;font-size:21px;line-height:1.18}
+.startup-card>span{display:block;margin:9px auto 18px;max-width:330px;color:#d9ecff;font-size:13px;line-height:1.45}
+.startup-track{height:8px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.13)}
+.startup-track i{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:0 50%;background:linear-gradient(90deg,#6cecff,#ffe27a);will-change:transform}
+.startup-card small{display:block;margin-top:8px;color:#b9cce7;font-weight:800;font-variant-numeric:tabular-nums}
+body.startup-lock .web-app{pointer-events:none}
+.detail-loading{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;text-align:center;color:#dff8ff}
+.detail-spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.18);border-top-color:#83efff;border-radius:50%;animation:detail-spin .8s linear infinite}
+@keyframes detail-spin{to{transform:rotate(360deg)}}
+.tab:disabled{opacity:.45;cursor:default}
+@media(prefers-reduced-motion:reduce){.startup-loader{transition:none}.detail-spinner{animation-duration:1.6s}}
