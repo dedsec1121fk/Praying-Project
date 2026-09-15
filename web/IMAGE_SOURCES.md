@@ -1,8 +1,10 @@
-# Real icon image sources
+# Verified icon/image sources
 
-The site has **52 verified Wikimedia Commons icon/image mappings**. Run `python web/tools/download_real_icons.py` while online to cache these files under `web/images/real/` for fully offline real-image use. Without that optional cache, the site still works offline using the bundled local fallback artwork.
+The site currently contains **62 individually mapped Wikimedia Commons sources**. Each mapping records a specific Commons File page, a reuse/license label, an English credit, and the remote image URL. These mappings are optional visual upgrades; all 1,083 entries also have dedicated bundled local illustrative SVG artwork.
 
-| Entry | Commons file | License |
+To cache the verified images under `web/images/real/` for offline use, run `python web/tools/download_real_icons.py` while online. A cache miss does not break the application.
+
+| Entry | Commons file | License / reuse label |
 |---|---|---|
 | `jesus-christ` | [Christ Icon Sinai 6th century.jpg](https://commons.wikimedia.org/wiki/File:Christ_Icon_Sinai_6th_century.jpg) | Public domain |
 | `theotokos` | [Theotokos, the Orthodox icon.jpg](https://commons.wikimedia.org/wiki/File:Theotokos,_the_Orthodox_icon.jpg) | CC0 1.0 |
@@ -56,3 +58,15 @@ The site has **52 verified Wikimedia Commons icon/image mappings**. Run `python 
 | `jeremiah` | [Icon of Jeremiah (17th c., North Russia, priv. coll.).jpg](https://commons.wikimedia.org/wiki/File:Icon_of_Jeremiah_(17th_c.,_North_Russia,_priv._coll.).jpg) | Public domain artwork |
 | `zephaniah` | [Icon of Zephaniah (17th c., North Russia, priv. coll.).jpg](https://commons.wikimedia.org/wiki/File:Icon_of_Zephaniah_(17th_c.,_North_Russia,_priv._coll.).jpg) | Public domain artwork |
 | `job` | [Icon of Job (North Russia, 17 c.).jpg](https://commons.wikimedia.org/wiki/File:Icon_of_Job_(North_Russia,_17_c.).jpg) | Public domain artwork |
+| `philip-apostle` | [Icon of Apostle Philip (10th c, St. Catherine monastery, Sinai).jpg](https://commons.wikimedia.org/wiki/File:Icon_of_Apostle_Philip_(10th_c,_St._Catherine_monastery,_Sinai).jpg) | Public domain artwork |
+| `bartholomew` | [Icon depicting Apostle Bartholomew (Byzantine and Christian Museum, 1-15-2023).jpg](https://commons.wikimedia.org/wiki/File:Icon_depicting_Apostle_Bartholomew_(Byzantine_and_Christian_Museum,_1-15-2023).jpg) | CC BY-SA 4.0 |
+| `gregory-nyssa` | [St. Gregory of Nyssa.jpg](https://commons.wikimedia.org/wiki/File:St._Gregory_of_Nyssa.jpg) | Public domain artwork |
+| `catherine` | [Icon of Saint Catherine.jpg](https://commons.wikimedia.org/wiki/File:Icon_of_Saint_Catherine.jpg) | Public domain |
+| `jude-thaddeus` | [Icon of Apostle Jude Thaddeus, Saint Catherine's, Sinai.jpg](https://commons.wikimedia.org/wiki/File:Icon_of_Apostle_Jude_Thaddeus,_Saint_Catherine's,_Sinai.jpg) | Public domain artwork |
+| `barbara` | [Saint-Barbara-Grk-ikon.png](https://commons.wikimedia.org/wiki/File:Saint-Barbara-Grk-ikon.png) | Public domain artwork |
+| `marina` | [Saint Marina icon.JPG](https://commons.wikimedia.org/wiki/File:Saint_Marina_icon.JPG) | Public domain artwork |
+| `panteleimon` | [St Panteleimon.jpg](https://commons.wikimedia.org/wiki/File:St_Panteleimon.jpg) | Public domain artwork |
+| `anthony-great` | [Saint Anthony the Great Athonite Icon.jpg](https://commons.wikimedia.org/wiki/File:Saint_Anthony_the_Great_Athonite_Icon.jpg) | Public domain artwork |
+| `paraskevi` | [Saint Paraskevi of Rome, Orthodox Icon.jpg](https://commons.wikimedia.org/wiki/File:Saint_Paraskevi_of_Rome,_Orthodox_Icon.jpg) | Public domain artwork |
+
+> Note: the table documents the project's stored source mappings. Wikimedia Commons file pages remain the authoritative place to review the current file description and license terms before reuse outside this project.

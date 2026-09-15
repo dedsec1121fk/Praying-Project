@@ -12,11 +12,19 @@ items=json.loads(MANIFEST.read_text(encoding='utf-8'))
 ua='Praying-Project/1.0 (+https://github.com/dedsec1121fk/Praying-Project; icon-cache)'
 ok=fail=0
 for i,(entry,m) in enumerate(items.items(),1):
-    out=ROOT/m['local']
+    local=m.get('local')
+    if not local:
+        print(f'[{i}/{len(items)}] SKIP    {entry}: no local target declared')
+        continue
+    out=ROOT/local
     out.parent.mkdir(parents=True,exist_ok=True)
     if out.exists() and out.stat().st_size>500:
         print(f'[{i}/{len(items)}] exists  {entry}: {out.relative_to(ROOT)}'); ok+=1; continue
-    req=urllib.request.Request(m['remote'],headers={'User-Agent':ua})
+    remote=m.get('remote')
+    if not remote:
+        print(f'[{i}/{len(items)}] SKIP    {entry}: local-only packaged image')
+        continue
+    req=urllib.request.Request(remote,headers={'User-Agent':ua})
     try:
         with urllib.request.urlopen(req,timeout=45) as r:
             data=r.read()

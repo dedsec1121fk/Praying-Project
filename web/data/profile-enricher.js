@@ -6,6 +6,8 @@
   // Runtime Greek normalizer for reference labels and legacy records. Keep the
   // replacements domain-specific; never machine-translate whole biographies.
   const refMap=[
+    [/Synaxis of the Orthodox Church in America/gi,'Σύναξη της Ορθόδοξης Εκκλησίας στην Αμερική'],
+    [/Romans 16 circle/gi,'κύκλος προσώπων της προς Ρωμαίους 16'],
     [/Orthodox Church in America/gi,'Ορθόδοξη Εκκλησία στην Αμερική'],
     [/Church tradition \/ Lives of the Saints/gi,'Εκκλησιαστική παράδοση / Βίοι Αγίων'],
     [/Lives of the Saints/gi,'Βίοι Αγίων'],[/Church tradition/gi,'Εκκλησιαστική παράδοση'],[/Liturgical tradition/gi,'Λειτουργική παράδοση'],
@@ -68,22 +70,52 @@
   }
   function polishGreekGeneral(value){
     let s=clean(value);
-    // Remove legacy assembly placeholders without changing grammatical case in
-    // descriptions, roles, stories, feasts, notes, or documentary sections.
-    return s.replace(/Ο\/Η\s+/g,'').replace(/του\/της/g,'του προσώπου');
+    // Remove legacy assembly placeholders without changing ordinary grammatical case.
+    return s.replace(/Ο\/Η\s+/g,'')
+      .replace(/του\/της/g,'του προσώπου')
+      .replace(/της Ορθόδοξη Εκκλησία στην Αμερική/g,'της Ορθόδοξης Εκκλησίας στην Αμερική')
+      .replace(/της Ρωμαίους 16/g,'της προς Ρωμαίους 16')
+      .replace(/στο Ιωάννης/g,'στο κατά Ιωάννην')
+      .replace(/στο Ματθαίος/g,'στο κατά Ματθαίον')
+      .replace(/στο Μάρκος/g,'στο κατά Μάρκον')
+      .replace(/στο Λουκάς/g,'στο κατά Λουκάν')
+      .replace(/Bury St Edmunds/g,'Μπέρι Σεντ Έντμουντς')
+      .replace(/Shaftesbury/g,'Σάφτσμπερι')
+      .replace(/Corfe/g,'Κορφ')
+      .replace(/Heidenheim/g,'Χάιντενχαϊμ')
+      .replace(/Eichstätt/g,'Άιχστετ')
+      .replace(/ύμνο Benedictus/g,'ύμνο «Εὐλογητὸς Κύριος» (Benedictus)');
+  }
+  function greekVocativeWord(word){
+    if(!word||!/^[Ά-ώΑ-ΩΪΫάέήίόύώϊϋΐΰ]+$/u.test(word))return word;
+    const fixed={
+      'Ιωάννης':'Ιωάννη','Μωυσής':'Μωυσή','Ιησούς':'Ιησού','Νώε':'Νώε','Συμεών':'Συμεών','Σπυρίδων':'Σπυρίδων',
+      'Αβραάμ':'Αβραάμ','Ισαάκ':'Ισαάκ','Ιακώβ':'Ιακώβ','Ιώβ':'Ιώβ','Δαβίδ':'Δαβίδ','Δανιήλ':'Δανιήλ','Μιχαήλ':'Μιχαήλ','Γαβριήλ':'Γαβριήλ','Ραφαήλ':'Ραφαήλ'
+    };
+    if(fixed[word])return fixed[word];
+    if(/ιος$/u.test(word))return word.slice(0,-2)+'ε';
+    if(/ός$/u.test(word))return word.slice(0,-2)+'έ';
+    if(/ος$/u.test(word))return word.slice(0,-2)+'ε';
+    if(/ύς$/u.test(word))return word.slice(0,-1);
+    if(/υς$/u.test(word))return word.slice(0,-1);
+    if(/[άα]ς$/u.test(word)||/[ήη]ς$/u.test(word))return word.slice(0,-1);
+    return word;
   }
   function polishGreekPrayer(value){
     let s=polishGreekGeneral(value).replace(/Άγιε\/Αγία\s+/g,'');
-    // Prayer invocations need the vocative; non-prayer prose must stay in the nominative.
+    // Prayer invocations use the vocative. Keep the transformation limited to
+    // the invocation itself so ordinary prose retains the nominative.
     s=s.replace(/^Άγιος\s+/,'Άγιε ')
-       .replace(/^Αγία\s+/,'Αγία ')
        .replace(/^Όσιος\s+/,'Όσιε ')
-       .replace(/^Οσία\s+/,'Οσία ')
        .replace(/^Απόστολος\s+/,'Απόστολε ')
-       .replace(/^Προφήτης\s+/,'Προφήτα ')
+       .replace(/^Προφήτης\s+/,'Προφήτη ')
        .replace(/^Δίκαιος\s+/,'Δίκαιε ')
+       .replace(/^Πατριάρχης\s+/,'Πατριάρχη ')
+       .replace(/^Αρχάγγελος\s+/,'Αρχάγγελε ')
        .replace(/^Μάρτυρας\s+/,'Μάρτυς ')
        .replace(/^Ιερομάρτυρας\s+/,'Ιερομάρτυς ');
+    s=s.replace(/^(Άγιε|Όσιε|Απόστολε|Προφήτη|Δίκαιε|Πατριάρχη|Αρχάγγελε|Μάρτυς|Ιερομάρτυς)\s+([^\s,]+)/u,(m,title,name)=>`${title} ${greekVocativeWord(name)}`);
+    s=s.replace(/^Άγιοι\s+([^\s,]+)\s+και\s+([^\s,]+)/u,(m,a,b)=>`Άγιοι ${greekVocativeWord(a)} και ${greekVocativeWord(b)}`);
     return s;
   }
   for(const e of entries){
@@ -126,6 +158,14 @@
     // Preserve the old profile shape for backward compatibility with older app versions.
     e.profile={en:{overview:enStory,identity:ctx.en,sources:`References: ${refs}`,commemoration:feastEn,names:`${enName}; ${aliases(e,'en')}`},el:{overview:elStory,identity:ctx.el,sources:`Αναφορές: ${refsEl}`,commemoration:feastEl,names:`${elName}; ${aliases(e,'el')}`}};
 
+    // Collective angelic ranks are addressed through a God-directed prayer,
+    // avoiding singular grammar that would misrepresent a plural order.
+    if(e.category==='angel'&&['cherubim','seraphim','four-living-creatures','thrones','dominions','virtues','powers','principalities','archangels-rank','angels-rank'].includes(e.id)){
+      e.prayer={
+        en:'Lord, through the intercessions of Your holy angels, guard us from evil and guide us in truth, peace, and faithful worship of You.',
+        el:'Κύριε, με τις πρεσβείες των αγίων Αγγέλων Σου, φύλαξέ μας από το κακό και οδήγησέ μας στην αλήθεια, την ειρήνη και την πιστή λατρεία Σου.'
+      };
+    }
     // Clean legacy English reference terms that survived inside Greek-mode fields.
     for(const key of ['role','story','feast','notes'])if(e[key]?.el)e[key].el=polishGreekGeneral(translateEl(e[key].el));
     if(e.prayer?.el)e.prayer.el=polishGreekPrayer(translateEl(e.prayer.el));

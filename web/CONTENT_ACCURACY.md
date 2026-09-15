@@ -50,3 +50,14 @@ Where a reusable historical/iconographic image has been individually verified, t
 The v15 audit separates ordinary Greek prose normalization from prayer-invocation grammar, preventing vocative forms from leaking into roles and descriptions. Common Gospel/reference labels are normalized to established Greek forms rather than mixed-language constructions.
 
 Saint Olga of Kwethluk's OCA commemoration is stored as **27 October**, following the Orthodox Church in America's official saint page and its announcement fixing the annual feast on that date. The catalog also distinguishes the Holy Synod's 2023 decision to number her among the saints from the public glorification services held in June 2025.
+
+## v19 deep audit
+
+v19 tightens three areas that previously could be overstated or visually crowded.
+
+**Image provenance.** A local illustration is never promoted to “verified historical/iconographic” status merely because it is a separate binary. Verified media must have a concrete Wikimedia Commons File page, reuse/license label, credit, and remote URL in `image-sources.json`. The canonical inventory contains 62 such mappings. The other records continue to use clearly labeled local illustrative artwork rather than a guessed identity.
+
+**Greek normalization.** The generator removes legacy slash-gender placeholders, repairs recurring Orthodox Church/Gospel reference constructions, improves common vocative endings, and uses a God-directed plural prayer for collective angelic ranks. The audit rejects the known placeholder/reference regressions so they cannot silently return. This is language normalization, not a claim that every generated prayer is a published liturgical text.
+
+**Globe readability.** The sphere uses level-of-detail rather than forcing all 1,083 bubbles into a physically impossible small-screen overview. Search/active/featured records are protected, more records appear with zoom, and visible nodes pass through collision relaxation plus a final overlap-reduction step. `validate_globe_layout.js` tests this across multiple viewports, rotations, and scales.
+

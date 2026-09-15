@@ -294,3 +294,43 @@ body.startup-lock .web-app{pointer-events:none}
 }
 .scene{z-index:1}
 .canvas-labels,.search-marker,.empty-state{z-index:20}
+
+/* v16 globe layout + stronger image visibility */
+.web-app{
+  background:
+    radial-gradient(circle at 50% 14%,rgba(255,255,255,.45),transparent 26%),
+    radial-gradient(circle at 16% 22%,rgba(255,255,255,.26),transparent 24%),
+    radial-gradient(circle at 84% 28%,rgba(255,255,255,.22),transparent 22%),
+    linear-gradient(180deg,#6fbdec 0%,#97d6f5 38%,#c8ebfb 68%,#84c5ea 100%);
+}
+.network{
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.16),rgba(255,255,255,0) 34%),
+    linear-gradient(180deg,#6ab8ea 0%,#97d5f5 42%,#d1eefc 78%,#8dc7ea 100%);
+  background-attachment:fixed;
+}
+.network::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 26% 10% at 19% 18%,rgba(255,255,255,.88) 0 35%,rgba(255,255,255,.34) 54%,transparent 74%),
+    radial-gradient(ellipse 31% 11% at 79% 21%,rgba(255,255,255,.86) 0 34%,rgba(255,255,255,.30) 54%,transparent 74%),
+    radial-gradient(ellipse 30% 12% at 18% 80%,rgba(255,255,255,.82) 0 34%,rgba(255,255,255,.26) 54%,transparent 74%),
+    radial-gradient(ellipse 28% 10% at 80% 82%,rgba(255,255,255,.84) 0 34%,rgba(255,255,255,.28) 54%,transparent 74%);
+  opacity:.82;
+}
+.scene{position:absolute;inset:0;transform:none!important;transform-origin:50% 50%!important;will-change:auto;contain:layout paint style}
+.web-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+.canvas-labels{position:absolute;inset:0;z-index:24;pointer-events:none;overflow:hidden}
+.canvas-label{background:rgba(6,14,31,.90);border:1px solid rgba(255,255,255,.24);backdrop-filter:none}
+.search-marker{z-index:25;border-color:rgba(95,238,255,.98);box-shadow:0 0 0 3px rgba(255,255,255,.76),0 0 18px rgba(95,238,255,.32)}
+.holy-center{
+  z-index:6;width:260px;height:228px;filter:drop-shadow(0 14px 28px rgba(16,45,90,.18));
+}
+.cross-core{width:132px;height:132px;background:radial-gradient(circle at 32% 24%,#fffcd9 0 12%,#ffe67d 34%,#ffba69 69%,#ff84cc 100%)}
+.trinity-node{background:rgba(7,15,38,.94)}
+@media(max-width:900px){
+  .holy-center{width:228px;height:198px}.cross-core{width:118px;height:118px}.trinity-node{width:64px;height:64px}
+}
+@media(max-width:620px){
+  .holy-center{width:188px;height:164px}.cross-core{width:96px;height:96px}.trinity-node{width:52px;height:52px}.canvas-label{width:100px;max-width:100px}
+}

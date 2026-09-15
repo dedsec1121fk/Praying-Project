@@ -570,5 +570,115 @@
       "en": "17th-century North Russian icon of Righteous Job — Wikimedia Commons — Public domain artwork",
       "el": "Βορειορωσική εικόνα 17ου αιώνα του Δικαίου Ιώβ — Wikimedia Commons — Public domain artwork"
     }
+  },
+  "philip-apostle": {
+    "file": "Icon of Apostle Philip (10th c, St. Catherine monastery, Sinai).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Apostle%20Philip%20%2810th%20c%2C%20St.%20Catherine%20monastery%2C%20Sinai%29.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Apostle_Philip_(10th_c,_St._Catherine_monastery,_Sinai).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "10th-century icon of Apostle Philip, Saint Catherine’s Monastery, Sinai — Wikimedia Commons — Public domain artwork",
+      "el": "Εικόνα 10ου αιώνα του Αποστόλου Φιλίππου, Μονή Αγίας Αικατερίνης Σινά — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/philip-apostle.jpg"
+  },
+  "bartholomew": {
+    "file": "Icon depicting Apostle Bartholomew (Byzantine and Christian Museum, 1-15-2023).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20depicting%20Apostle%20Bartholomew%20%28Byzantine%20and%20Christian%20Museum%2C%201-15-2023%29.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_depicting_Apostle_Bartholomew_(Byzantine_and_Christian_Museum,_1-15-2023).jpg",
+    "license": "CC BY-SA 4.0",
+    "credit": {
+      "en": "Icon of Apostle Bartholomew, Byzantine and Christian Museum, photographed by George E. Koronaios — Wikimedia Commons — CC BY-SA 4.0",
+      "el": "Εικόνα του Αποστόλου Βαρθολομαίου, Βυζαντινό και Χριστιανικό Μουσείο, φωτογραφία George E. Koronaios — Wikimedia Commons — CC BY-SA 4.0"
+    },
+    "local": "web/images/real/bartholomew.jpg"
+  },
+  "gregory-nyssa": {
+    "file": "St. Gregory of Nyssa.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/St.%20Gregory%20of%20Nyssa.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:St._Gregory_of_Nyssa.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "11th-century Eastern Orthodox icon of Saint Gregory of Nyssa — Wikimedia Commons — Public domain artwork",
+      "el": "Ορθόδοξη εικόνα 11ου αιώνα του Αγίου Γρηγορίου Νύσσης — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/gregory-nyssa.jpg"
+  },
+  "catherine": {
+    "file": "Icon of Saint Catherine.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Saint%20Catherine.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Saint_Catherine.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Icon of Saint Catherine of Alexandria, Saint Catherine’s Monastery, Sinai — Wikimedia Commons — Public domain",
+      "el": "Εικόνα της Αγίας Αικατερίνης Αλεξανδρείας, Μονή Αγίας Αικατερίνης Σινά — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/catherine.jpg"
+  },
+  "jude-thaddeus": {
+    "file": "Icon of Apostle Jude Thaddeus, Saint Catherine's, Sinai.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Icon%20of%20Apostle%20Jude%20Thaddeus%2C%20Saint%20Catherine%27s%2C%20Sinai.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Apostle_Jude_Thaddeus,_Saint_Catherine's,_Sinai.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "10th-century icon of Apostle Jude Thaddeus, Saint Catherine’s Monastery, Sinai — Wikimedia Commons — Public domain artwork",
+      "el": "Εικόνα 10ου αιώνα του Αποστόλου Ιούδα Θαδδαίου, Μονή Αγίας Αικατερίνης Σινά — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/jude-thaddeus.jpg"
+  },
+  "barbara": {
+    "file": "Saint-Barbara-Grk-ikon.png",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint-Barbara-Grk-ikon.png?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint-Barbara-Grk-ikon.png",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Traditional Greek Orthodox icon of Saint Barbara — Wikimedia Commons — Public domain artwork",
+      "el": "Παραδοσιακή ελληνική ορθόδοξη εικόνα της Αγίας Βαρβάρας — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/barbara.png"
+  },
+  "marina": {
+    "file": "Saint Marina icon.JPG",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Marina%20icon.JPG?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Marina_icon.JPG",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Icon of Saint Marina, Byzantine and Christian Museum, Athens — Wikimedia Commons — Public domain artwork",
+      "el": "Εικόνα της Αγίας Μαρίνας, Βυζαντινό και Χριστιανικό Μουσείο Αθηνών — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/marina.jpg"
+  },
+  "panteleimon": {
+    "file": "St Panteleimon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/St%20Panteleimon.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:St_Panteleimon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Byzantine icon of Saint Panteleimon, Saint Catherine’s Monastery, Sinai — Wikimedia Commons — Public domain artwork",
+      "el": "Βυζαντινή εικόνα του Αγίου Παντελεήμονος, Μονή Αγίας Αικατερίνης Σινά — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/panteleimon.jpg"
+  },
+  "anthony-great": {
+    "file": "Saint Anthony the Great Athonite Icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Anthony%20the%20Great%20Athonite%20Icon.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Anthony_the_Great_Athonite_Icon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Athonite icon of Saint Anthony the Great — Wikimedia Commons — Public domain artwork",
+      "el": "Αγιορείτικη εικόνα του Αγίου Αντωνίου του Μεγάλου — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/anthony-great.jpg"
+  },
+  "paraskevi": {
+    "file": "Saint Paraskevi of Rome, Orthodox Icon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Paraskevi%20of%20Rome%2C%20Orthodox%20Icon.jpg?width=640",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Paraskevi_of_Rome,_Orthodox_Icon.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Orthodox icon of Saint Paraskevi of Rome — Wikimedia Commons — Public domain artwork",
+      "el": "Ορθόδοξη εικόνα της Αγίας Παρασκευής της Ρωμαίας — Wikimedia Commons — κοινό κτήμα"
+    },
+    "local": "web/images/real/paraskevi.jpg"
   }
 }
