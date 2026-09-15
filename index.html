@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#8fd0f6" />
-  <meta name="description" content="A bilingual English/Greek interactive Orthodox web of Scripture, saints and heavenly beings." />
-  <title>Orthodox Web • Ορθόδοξος Ιστός</title>
+  <meta name="description" content="A bilingual English/Greek Orthodox catalog of Scripture, saints and heavenly beings." />
+  <title>Orthodox Saints • Ορθόδοξοι Άγιοι</title>
   <link rel="stylesheet" href="web/assets/css/styles.css" />
 </head>
 <body>
@@ -14,7 +14,7 @@
       <div id="languageStage" class="language-stage">
         <div class="startup-cross" aria-hidden="true">☦</div>
         <strong>Choose language • Επιλέξτε γλώσσα</strong>
-        <span>Choose the language before the web loads. You can change it again later from the search bar.<br>Επιλέξτε γλώσσα πριν φορτώσει ο ιστός. Μπορείτε να την αλλάξετε ξανά αργότερα από τη γραμμή αναζήτησης.</span>
+        <span>Choose the language before the catalog loads. You can change it again later from the search bar.<br>Επιλέξτε γλώσσα πριν φορτώσει ο κατάλογος. Μπορείτε να την αλλάξετε ξανά αργότερα από τη γραμμή αναζήτησης.</span>
         <div class="startup-language-buttons" role="group" aria-label="Choose language">
           <button type="button" data-start-lang="en"><b>English</b><small>EN</small></button>
           <button type="button" data-start-lang="el"><b>Ελληνικά</b><small>ΕΛ</small></button>
@@ -22,8 +22,8 @@
       </div>
       <div id="loadingStage" class="loading-stage" hidden>
         <div class="startup-cross" aria-hidden="true">☦</div>
-        <strong id="startupTitle">Preparing the complete web</strong>
-        <span id="startupSub">Preparing every bubble, the web and the cloud environment…</span>
+        <strong id="startupTitle">Preparing the saints catalog</strong>
+        <span id="startupSub">Preparing the catalog and the first visible icons…</span>
         <div class="startup-track" aria-hidden="true"><i id="startupBar"></i></div>
         <small id="startupPct">0%</small>
       </div>
@@ -42,33 +42,8 @@
       </label>
     </header>
 
-    <section id="network" class="network" tabindex="0" aria-label="Interactive Orthodox web">
-      <div id="scene" class="scene">
-        <canvas id="webCanvas" class="web-canvas" aria-hidden="true"></canvas>
-
-        <div class="holy-center" aria-label="The Cross and the Holy Trinity">
-          <div class="trinity-node trinity-father">
-            <span class="trinity-symbol">✦</span>
-            <b data-i18n="father">Father</b>
-          </div>
-          <div class="trinity-node trinity-son">
-            <span class="trinity-symbol christogram">IC&nbsp;XC</span>
-            <b data-i18n="son">Son</b>
-          </div>
-          <div class="trinity-node trinity-spirit">
-            <span class="trinity-symbol dove" aria-hidden="true">✧</span>
-            <b data-i18n="spirit">Holy Spirit</b>
-          </div>
-          <div class="cross-core">
-            <span class="orthodox-cross" aria-hidden="true">☦</span>
-            <strong data-i18n="trinity">HOLY TRINITY</strong>
-            <small data-i18n="centerSub">Father • Son • Holy Spirit</small>
-          </div>
-        </div>
-
-      </div>
-      <div id="labels" class="canvas-labels" aria-hidden="true"></div>
-      <div id="searchMarker" class="search-marker" hidden aria-hidden="true"></div>
+    <section id="catalogSection" class="catalog-section" aria-label="Orthodox saints and beings catalog">
+      <div id="cardGrid" class="card-grid"></div>
       <div id="emptyState" class="empty-state" hidden data-i18n="none">No matches</div>
     </section>
   </main>

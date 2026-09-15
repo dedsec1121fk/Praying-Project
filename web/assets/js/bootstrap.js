@@ -22,15 +22,15 @@
     save(lang);document.documentElement.lang=lang;
     languageStage.hidden=true;loadingStage.hidden=false;
     const title=document.getElementById('startupTitle'),sub=document.getElementById('startupSub');
-    title.textContent=lang==='el'?'Πλήρης φόρτωση του ιστού':'Loading the complete web';
-    sub.textContent=lang==='el'?'Θα ανοίξει μόνο όταν ελεγχθούν και αποκωδικοποιηθούν όλες οι τοπικές εικόνες. Δεν υπάρχει χρονικό όριο.':'The web will open only after every local icon has been checked and decoded. There is no overall time limit.';
+    title.textContent=lang==='el'?'Φόρτωση του καταλόγου των αγίων':'Loading the saints catalog';
+    sub.textContent=lang==='el'?'Θα ανοίξει αφού προετοιμαστεί ο κατάλογος και οι πρώτες ορατές εικόνες.':'The catalog will open after the catalog and the first visible icons are prepared.';
     try{
       await loadScript('web/data/runtime-index.js');
       await loadScript('web/assets/js/app.js');
     }catch(err){
       console.error(err);started=false;languageStage.hidden=false;loadingStage.hidden=true;
       const old=loader.querySelector('.startup-error');if(old)old.remove();
-      const msg=document.createElement('p');msg.className='startup-error';msg.textContent=lang==='el'?'Η τοπική εφαρμογή δεν μπόρεσε να φορτώσει. Ελέγξτε ότι αποσυμπιέσατε ολόκληρο τον φάκελο.':'The local app could not load. Make sure the entire folder was extracted.';loader.querySelector('.startup-card').appendChild(msg);
+      const msg=document.createElement('p');msg.className='startup-error';msg.textContent=lang==='el'?'Ο τοπικός κατάλογος δεν μπόρεσε να φορτώσει. Ελέγξτε ότι αποσυμπιέσατε ολόκληρο τον φάκελο.':'The local catalog could not load. Make sure the entire folder was extracted.';loader.querySelector('.startup-card').appendChild(msg);
     }
   }
   buttons.forEach(b=>b.addEventListener('click',()=>start(b.dataset.startLang)));

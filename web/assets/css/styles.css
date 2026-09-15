@@ -334,3 +334,103 @@ body.startup-lock .web-app{pointer-events:none}
 @media(max-width:620px){
   .holy-center{width:188px;height:164px}.cross-core{width:96px;height:96px}.trinity-node{width:52px;height:52px}.canvas-label{width:100px;max-width:100px}
 }
+
+/* v20 simplified scroll catalog */
+html,body{overflow:hidden}
+.web-app{
+  height:100dvh;
+  overflow:hidden;
+}
+.search-dock{width:min(860px,calc(100% - 24px))}
+.catalog-section{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  overflow-y:auto;
+  overflow-x:hidden;
+  -webkit-overflow-scrolling:touch;
+  padding:90px 12px 28px;
+}
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:14px;
+  align-items:start;
+  max-width:1440px;
+  margin:0 auto;
+}
+.saint-card{
+  appearance:none;
+  width:100%;
+  border:2px solid rgba(255,255,255,.60);
+  border-radius:22px;
+  background:rgba(12,22,44,.82);
+  color:#fff;
+  padding:10px;
+  box-shadow:0 10px 24px rgba(9,20,40,.18);
+  cursor:pointer;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.saint-card:hover,.saint-card:focus-visible{
+  outline:none;
+  border-color:rgba(255,226,122,.96);
+  box-shadow:0 0 0 3px rgba(255,226,122,.20),0 12px 28px rgba(9,20,40,.22);
+  transform:translateY(-1px);
+}
+.saint-card-media{
+  aspect-ratio:1/1;
+  border-radius:18px;
+  overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.saint-card-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.saint-card-name{
+  font-size:15px;
+  line-height:1.28;
+  font-weight:800;
+  letter-spacing:.01em;
+  min-height:2.56em;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.saint-card-role{
+  font-size:11px;
+  line-height:1.25;
+  font-weight:700;
+  color:#d6def5;
+  min-height:2.4em;
+}
+.empty-state{
+  position:static;
+  transform:none;
+  margin:24px auto 0;
+  width:max-content;
+  max-width:calc(100% - 24px);
+  z-index:2;
+}
+@media (max-width:640px){
+  .catalog-section{padding:84px 8px 22px}
+  .card-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .saint-card{padding:7px;border-radius:16px;gap:7px}
+  .saint-card-media{border-radius:12px}
+  .saint-card-name{font-size:11.5px;min-height:2.9em}
+  .saint-card-role{display:none}
+  .searchbox{height:54px;padding:6px 8px 6px 14px}
+  .match-count{display:none}
+}
+@media (min-width:1200px){
+  .card-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+}
