@@ -123,7 +123,7 @@
   function setModalMedia(e){
     const lang=state.lang, img=document.getElementById('modalImage'), credit=document.getElementById('modalImageCredit');
     img.onerror=null; installFallback(img,e); img.src=preferredThumb(e); img.alt=locText(e.name?.[lang]||e.name?.en||'',lang);
-    if(e.imageMeta?.sourceUrl){
+    if(e.imageLocalReal&&e.imageMeta?.sourceUrl){
       credit.hidden=false; credit.href=e.imageMeta.sourceUrl;
       const license=locText(e.imageMeta.license||'',lang);
       credit.textContent=lang==='el'?`${UI.el.imageSource} — Wikimedia Commons${license?` — ${license}`:''}`:locText(e.imageMeta.credit?.en||UI.en.imageSource,'en');

@@ -434,3 +434,11 @@ html,body{overflow:hidden}
 @media (min-width:1200px){
   .card-grid{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
 }
+
+/* repository real-image display fix */
+.saint-card-media img,
+.modal-media img{
+  object-fit:contain;
+  object-position:50% 50%;
+  background:#17243d;
+}

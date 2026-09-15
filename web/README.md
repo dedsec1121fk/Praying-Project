@@ -1,95 +1,67 @@
-# Orthodox Web front end — v19
+# Orthodox saints catalog front end
 
-This directory contains the bilingual English/Greek Orthodox Web front end that lives beside the existing Praying Project prayer automation. The Befunge prayer payloads, country scheduler, manifest, and prayer scripts remain independent from the website.
+This directory contains the bilingual English/Greek static catalog used by the Praying Project website.
 
 ## Catalog coverage
 
-The local catalog contains **1,083 searchable records** covering Christ and the Holy Spirit, the Theotokos, angels and heavenly powers, forefathers, Old Testament righteous, prophets, apostles, New Testament saints, post-biblical Church saints, feasts/synaxes, and a broad `biblical-context` layer.
+The catalog contains **1,083 searchable records** covering Christ and the Holy Spirit, the Theotokos, angels and heavenly powers, forefathers, Old Testament righteous, prophets, apostles, New Testament saints, Church saints, feasts/synaxes, and a broad `biblical-context` layer.
 
-`biblical-context` does **not** mean saint. Context-only records are marked non-venerated, and their Prayer tab addresses God rather than the context figure.
+Every record has bilingual **Description**, **Story**, and **Prayer** content. Context-only records are not presented as saints and their prayers are directed to God rather than to the context figure.
 
-Every record has bilingual English/Greek **Description**, **Story**, and **Prayer** fields. The build and validation suite rejects a record if one of these core fields is absent. The longer Story dossier distinguishes Scripture, Church tradition, later historical material, and uncertainty instead of inventing a complete biography where the sources do not preserve one.
+## Interface
 
-## Sphere / globe interface
+The main page is a lightweight vertically scrolling card grid on a static cloud background.
 
-The catalog is presented as a rotatable **round sphere** with web-like connections between visible bubbles. The Holy Trinity remains at the visual center of the interface.
+- Phones use **3 cards per row**.
+- Larger screens automatically fit as many cards per row as practical.
+- Each card has an image above the name and a visible border.
+- There is no draggable bubble map, globe, canvas animation, or horizontal navigation.
+- Search and English/Greek switching remain available at the top.
+- Selecting a card opens the Description / Story / Prayer detail viewer.
 
-Interaction:
+## Repository images
 
-- drag with a mouse or one finger to rotate the sphere;
-- pinch, mouse wheel, double-click/double-tap, or `+` / `-` to zoom;
-- tap/click a bubble to open its record;
-- search and press Enter to rotate the requested entry toward the viewer and open it;
-- press `0` to return to the default globe view.
+Every entry has a repository fallback illustration in `images/catalog/`, so there is always a local image file.
 
-A phone-sized sphere cannot physically display all 1,083 image bubbles at once without overlap. v19 therefore uses **level-of-detail (LOD)**: important/search/active bubbles are retained, a stable non-overlapping subset is shown at distant zoom levels, and more entries are progressively revealed as the user zooms in. Visible bubbles are relaxed through a spatial-hash collision solver, kept inside the sphere, and kept out of the central Trinity overlay. This preserves readability instead of pretending every bubble can fit simultaneously at every zoom.
-
-`web/tools/validate_globe_layout.js` tests the layout across desktop/tablet/mobile viewports, multiple rotations, and multiple zoom levels.
-
-## Images and provenance
-
-Every one of the **1,083 records has its own bundled local SVG illustration** in `web/images/catalog/`. The v19 audit verifies that all 1,083 files exist and that all 1,083 SVG byte hashes are distinct.
-
-These local SVGs are intentionally labeled as **illustrative artwork**, not as historical likenesses or canonical icon reproductions. Their category/role-aware styling gives Christ, the Theotokos, angels, prophets, apostles, monastics, bishops, warriors, feasts, and non-venerated context records different visual treatments.
-
-Separately, `data/image-sources.json` contains **62 verified Wikimedia Commons mappings** with a specific Commons file page, reuse/license information, English credit, and remote image URL. Verified imagery is an optional enhancement, not a requirement for the application to work.
-
-The browser opens as soon as all bundled local images are ready. Verified remote images then upgrade bubbles in the background when available, so a slow or unavailable remote host cannot trap the startup screen. The detail window only displays a Wikimedia source credit when verified imagery is actually being shown; otherwise it explicitly labels the displayed artwork as local illustration.
-
-To cache the verified Commons mappings for offline use on an internet-connected machine:
+Verified reusable iconography is mapped in `data/image-sources.json`. To place those image binaries inside the repository, run this from the repository root while online:
 
 ```bash
-python web/tools/download_real_icons.py
+python web/tools/prepare_repository_images.py
 ```
 
-The exact verified source/license inventory is in `IMAGE_SOURCES.md`. `images/real/` may legitimately contain no cached binaries in the distributed ZIP; the application still has complete local image coverage.
+That command downloads verified images into `web/images/real/`, rebuilds `data/runtime-index.js`, and validates the lazy runtime. The browser prefers an existing `web/images/real/...` file and falls back to `web/images/catalog/...` only when no verified local file exists.
 
-## Detail viewer
+After running the preparation script, commit both `web/images/real/` and the rebuilt runtime files. The deployed site then displays repository-hosted images rather than depending on Wikimedia at page-view time.
 
-Every record opens with exactly three reader-facing tabs:
+`IMAGE_SOURCES.md` contains the source and reuse information for mapped verified imagery.
 
-- **Description / Περιγραφή** — concise identity and context.
-- **Story / Ιστορία** — fuller narrative, evidence layers, commemoration/context, notes, and sources.
-- **Prayer / Προσευχή** — prayer for a venerated figure, or a God-directed prayer for a non-venerated context entry.
+## Static architecture
 
-v19 also normalizes several recurring Greek grammar/reference problems, including legacy slash-gender placeholders, common Gospel reference forms, collective angelic invocations, and frequently generated vocative endings.
+The site uses repository-relative JavaScript, CSS, data, and image paths. No database, package manager, CDN, service worker, or remote image host is required at page-view time after the repository image preparation step has been committed.
 
-## Static/offline architecture
+Main files:
 
-The application uses repository-relative classic scripts, styles, data, and images. No package manager, database, CDN, web font, service worker, `fetch()`, or ES-module loader is required for the core UI. It can run from `file://` or a static host such as GitHub Pages.
+- `assets/js/app.js` — responsive catalog, search, language switch, and detail viewer.
+- `assets/css/styles.css` — cloud background, card grid, and modal styling.
+- `data/runtime-index.js` — lightweight startup/search index.
+- `data/details/` — one lazy detail file per record.
+- `data/image-sources.json` / `data/media-manifest.js` — verified image source mappings.
+- `images/catalog/` — dedicated repository fallback images.
+- `images/real/` — downloaded verified repository-hosted icon files.
+- `tools/download_real_icons.py` — downloads verified mapped images.
+- `tools/prepare_repository_images.py` — downloads images, rebuilds runtime, and validates it.
 
-`web/data/runtime-index.js` is the lightweight startup/search index. Each record's longer content lives in its own `web/data/details/entry-XXXX.js` file and is loaded only when that record is opened. Closing the modal removes the active detail object from application state.
+## Validation
 
-## Main files
-
-- `assets/js/app.js` — sphere projection, rotation/zoom, LOD/collision handling, image loading, bilingual search, and detail viewer.
-- `assets/css/styles.css` — full-screen globe/search/modal styling.
-- `data/runtime-index.js` — lightweight 1,083-entry browser index.
-- `data/details/` — 1,083 independent lazy detail records.
-- `data/profile-enricher.js` — structured bilingual dossier and language normalization logic.
-- `data/image-sources.json` / `data/media-manifest.js` — canonical verified image mappings and runtime media mapping.
-- `images/people/` — 1,083 dedicated bundled illustrations.
-- `images/real/` — optional local cache for verified real/iconographic media.
-- `tools/generate_local_icons.py` — regenerates the 1,083 dedicated local illustrations and fallback atlas.
-- `tools/validate_globe_layout.js` — multi-viewport sphere overlap/LOD validation.
-- `CONTENT_ACCURACY.md` — evidence and accuracy policy.
-- `IMAGE_SOURCES.md` — verified media source/license index.
-
-## Release validation
-
-Run from the repository root after source edits:
+Run from the repository root:
 
 ```bash
 node web/tools/build_lazy_runtime.js
-python web/tools/generate_local_icons.py
 python web/tools/validate_catalog.py
 node web/tools/validate_profiles.js
 node web/tools/validate_lazy_runtime.js
 node web/tools/audit_content_quality.js
-node web/tools/validate_globe_layout.js
 python web/tools/check_static_site.py
 node --check web/assets/js/app.js
-node --check web/data/profile-enricher.js
+node --check web/assets/js/bootstrap.js
 ```
-
-The release process also re-extracts the final ZIP and repeats the validators against the packaged copy.
