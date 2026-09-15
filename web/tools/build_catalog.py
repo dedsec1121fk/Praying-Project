@@ -39,7 +39,7 @@ def mk(id,en,el,cat,role_en,role_el,story_en,story_el,feast_en='Local commemorat
       'story':{'en':story_en,'el':story_el},'feast':{'en':feast_en,'el':feast_el},'scripture':scripture,
       'prayer':{'en':prayer_en,'el':prayer_el},
       'notes':{'en':status_en+notes_en,'el':status_el+notes_el},
-      'aliases':aliases or [],'venerated':venerated,'image':f'web/images/people/{id}.svg'
+      'aliases':aliases or [],'venerated':venerated,'image':f'web/images/catalog/{id}.svg'
     }
     if sourceUrl: e['sourceUrl']=sourceUrl
     if sourceLabel: e['sourceLabel']=sourceLabel

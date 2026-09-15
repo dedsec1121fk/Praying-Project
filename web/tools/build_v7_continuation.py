@@ -28,7 +28,7 @@ def saint(id,en,el,role_en,role_el,story_en,story_el,feast_en,feast_el,source=No
       'prayer':{'en':prayer_en,'el':prayer_el},
       'notes':{'en':'The profile distinguishes well-attested historical or biblical information from later devotional tradition. Local calendars may differ in date or emphasis.',
                'el':'Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση.'},
-      'aliases':aliases or [],'image':f'web/images/people/{id}.svg'
+      'aliases':aliases or [],'image':f'web/images/catalog/{id}.svg'
     }
     if source: e['sourceUrl']=source; e['sources']=[{'label':{'en':'Orthodox reference','el':'Ορθόδοξη αναφορά'},'url':source}]
     e['search']=' '.join([en,el,role_en,role_el,scripture]+(aliases or []))

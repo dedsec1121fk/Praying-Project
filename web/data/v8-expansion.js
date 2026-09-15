@@ -32,7 +32,7 @@ window.ORTHODOX_V8_EXPANSION = [
       "Γεράσιμος Νοταράς"
     ],
     "venerated": true,
-    "image": "web/images/people/gerasimos-cephalonia.svg",
+    "image": "web/images/catalog/gerasimos-cephalonia.svg",
     "sourceUrl": "https://www.goarch.org/chapel/saints?contentid=250",
     "sources": [
       {
@@ -78,7 +78,7 @@ window.ORTHODOX_V8_EXPANSION = [
       "Διονύσιος Σιγούρος"
     ],
     "venerated": true,
-    "image": "web/images/people/dionysios-zakynthos.svg",
+    "image": "web/images/catalog/dionysios-zakynthos.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2045/12/17/103564-venerable-dionysius-of-aegina",
     "sources": [
       {
@@ -124,7 +124,7 @@ window.ORTHODOX_V8_EXPANSION = [
       "Μέγας Φώτιος"
     ],
     "venerated": true,
-    "image": "web/images/people/photios-great.svg",
+    "image": "web/images/catalog/photios-great.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/1003/02/06/100442-saint-photius-patriarch-of-constantinople",
     "sources": [
       {
@@ -171,7 +171,7 @@ window.ORTHODOX_V8_EXPANSION = [
       "Ιγνάτιος Αντιοχείας"
     ],
     "venerated": true,
-    "image": "web/images/people/ignatius-antioch.svg",
+    "image": "web/images/catalog/ignatius-antioch.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2015/12/20/103594-hieromartyr-ignatius-the-god-bearer-bishop-of-antioch",
     "sources": [
       {
@@ -218,7 +218,7 @@ window.ORTHODOX_V8_EXPANSION = [
       "Ιουστίνος Μάρτυς"
     ],
     "venerated": true,
-    "image": "web/images/people/justin-martyr.svg",
+    "image": "web/images/catalog/justin-martyr.svg",
     "sourceUrl": "https://www.goarch.org/chapel/saints?contentid=73",
     "sources": [
       {
@@ -265,7 +265,7 @@ window.ORTHODOX_V8_EXPANSION = [
       "Νεανίας"
     ],
     "venerated": true,
-    "image": "web/images/people/procopius-caesarea.svg",
+    "image": "web/images/catalog/procopius-caesarea.svg",
     "sourceUrl": "https://www.oca.org/saints/all-lives/20141/07/08",
     "sources": [
       {
@@ -312,7 +312,7 @@ window.ORTHODOX_V8_EXPANSION = [
       "Γερόντισσα Γαβριηλία"
     ],
     "venerated": true,
-    "image": "web/images/people/gavrilia.svg",
+    "image": "web/images/catalog/gavrilia.svg",
     "sourceUrl": "https://saintgavrilia.org/pages/biography",
     "sources": [
       {

@@ -28,7 +28,7 @@ A phone-sized sphere cannot physically display all 1,083 image bubbles at once w
 
 ## Images and provenance
 
-Every one of the **1,083 records has its own bundled local SVG illustration** in `web/images/people/`. The v19 audit verifies that all 1,083 files exist and that all 1,083 SVG byte hashes are distinct.
+Every one of the **1,083 records has its own bundled local SVG illustration** in `web/images/catalog/`. The v19 audit verifies that all 1,083 files exist and that all 1,083 SVG byte hashes are distinct.
 
 These local SVGs are intentionally labeled as **illustrative artwork**, not as historical likenesses or canonical icon reproductions. Their category/role-aware styling gives Christ, the Theotokos, angels, prophets, apostles, monastics, bishops, warriors, feasts, and non-venerated context records different visual treatments.
 

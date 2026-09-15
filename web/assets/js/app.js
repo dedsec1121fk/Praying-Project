@@ -72,7 +72,6 @@
     const chain=[];
     if(e.imageLocalReal) chain.push(imageUrl(e.imageLocalReal));
     if(e.image) chain.push(imageUrl(e.image));
-    if(e.imageRemote) chain.push(e.imageRemote);
     chain.push(fallbackIcon);
     return [...new Set(chain)];
   }

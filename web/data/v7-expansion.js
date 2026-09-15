@@ -28,7 +28,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/uriel.svg",
+    "image": "web/images/catalog/uriel.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2042/11/08/103244-synaxis-of-the-archangel-michael-and-the-other-bodiless-powers",
     "sources": [
       {
@@ -70,7 +70,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/selaphiel.svg",
+    "image": "web/images/catalog/selaphiel.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2042/11/08/103244-synaxis-of-the-archangel-michael-and-the-other-bodiless-powers",
     "sources": [
       {
@@ -112,7 +112,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/jehudiel.svg",
+    "image": "web/images/catalog/jehudiel.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2042/11/08/103244-synaxis-of-the-archangel-michael-and-the-other-bodiless-powers",
     "sources": [
       {
@@ -154,7 +154,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/barachiel.svg",
+    "image": "web/images/catalog/barachiel.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2042/11/08/103244-synaxis-of-the-archangel-michael-and-the-other-bodiless-powers",
     "sources": [
       {
@@ -196,7 +196,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/jeremiel.svg",
+    "image": "web/images/catalog/jeremiel.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2042/11/08/103244-synaxis-of-the-archangel-michael-and-the-other-bodiless-powers",
     "sources": [
       {
@@ -238,7 +238,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/john-russian.svg",
+    "image": "web/images/catalog/john-russian.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2016/05/27/101545-saint-john-the-russian-and-confessor-whose-relics-are-on-the-isl",
     "sources": [
       {
@@ -280,7 +280,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/nicholas-japan.svg",
+    "image": "web/images/catalog/nicholas-japan.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2017/02/03/100455-saint-nicholas-enlightener-of-japan",
     "sources": [
       {
@@ -322,7 +322,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/cyprian-carthage.svg",
+    "image": "web/images/catalog/cyprian-carthage.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2017/08/31/102443-hieromartyr-cyprian-bishop-of-carthage",
     "sources": [
       {
@@ -364,7 +364,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/ambrose-optina.svg",
+    "image": "web/images/catalog/ambrose-optina.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2017/10/10/102934-venerable-ambrose-of-optina",
     "sources": [
       {
@@ -406,7 +406,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/macarius-optina.svg",
+    "image": "web/images/catalog/macarius-optina.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2014/09/07/148999-venerable-macarius-of-optina",
     "sources": [
       {
@@ -448,7 +448,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/philaret-moscow.svg",
+    "image": "web/images/catalog/philaret-moscow.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2035/11/19",
     "sources": [
       {
@@ -490,7 +490,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/isidore-seville.svg",
+    "image": "web/images/catalog/isidore-seville.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Isidore%20of%20Seville",
     "sources": [
       {
@@ -532,7 +532,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/paul-simple.svg",
+    "image": "web/images/catalog/paul-simple.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Paul%20the%20Simple",
     "sources": [
       {
@@ -574,7 +574,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/pambo.svg",
+    "image": "web/images/catalog/pambo.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Pambo",
     "sources": [
       {
@@ -616,7 +616,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/mark-ascetic.svg",
+    "image": "web/images/catalog/mark-ascetic.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Mark%20the%20Ascetic",
     "sources": [
       {
@@ -658,7 +658,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/diadochos-photiki.svg",
+    "image": "web/images/catalog/diadochos-photiki.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Diadochos",
     "sources": [
       {
@@ -700,7 +700,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/theodore-sykeon.svg",
+    "image": "web/images/catalog/theodore-sykeon.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Theodore%20of%20Sykeon",
     "sources": [
       {
@@ -742,7 +742,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/tarasius-constantinople.svg",
+    "image": "web/images/catalog/tarasius-constantinople.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Tarasius",
     "sources": [
       {
@@ -784,7 +784,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/john-merciful.svg",
+    "image": "web/images/catalog/john-merciful.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=John%20the%20Merciful",
     "sources": [
       {
@@ -826,7 +826,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/eulogius-alexandria.svg",
+    "image": "web/images/catalog/eulogius-alexandria.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Eulogius%20Alexandria",
     "sources": [
       {
@@ -868,7 +868,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/macrina-elder.svg",
+    "image": "web/images/catalog/macrina-elder.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Macrina%20the%20Elder",
     "sources": [
       {
@@ -910,7 +910,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/emmelia.svg",
+    "image": "web/images/catalog/emmelia.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Emmelia",
     "sources": [
       {
@@ -952,7 +952,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/caesarius-nazianzus.svg",
+    "image": "web/images/catalog/caesarius-nazianzus.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Caesarius%20Nazianzus",
     "sources": [
       {
@@ -994,7 +994,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/amphilochius-iconium.svg",
+    "image": "web/images/catalog/amphilochius-iconium.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Amphilochius%20Iconium",
     "sources": [
       {
@@ -1036,7 +1036,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/willibrord.svg",
+    "image": "web/images/catalog/willibrord.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Willibrord",
     "sources": [
       {
@@ -1078,7 +1078,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/etheldreda-ely.svg",
+    "image": "web/images/catalog/etheldreda-ely.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Etheldreda",
     "sources": [
       {
@@ -1120,7 +1120,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/edmund-martyr.svg",
+    "image": "web/images/catalog/edmund-martyr.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Edmund%20Martyr",
     "sources": [
       {
@@ -1162,7 +1162,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/edward-martyr.svg",
+    "image": "web/images/catalog/edward-martyr.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Edward%20the%20Martyr",
     "sources": [
       {
@@ -1204,7 +1204,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/rupert-salzburg.svg",
+    "image": "web/images/catalog/rupert-salzburg.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Rupert%20Salzburg",
     "sources": [
       {
@@ -1246,7 +1246,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/walburga.svg",
+    "image": "web/images/catalog/walburga.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Walburga",
     "sources": [
       {
@@ -1295,7 +1295,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "Αγία Όλγα της Αλάσκας",
       "Μάτουσκα Όλγα"
     ],
-    "image": "web/images/people/olga-alaska.svg",
+    "image": "web/images/catalog/olga-alaska.svg",
     "sourceUrl": "https://www.oca.org/fs/st-olga-alaska",
     "sources": [
       {
@@ -1344,7 +1344,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/ephraim-katunakia.svg",
+    "image": "web/images/catalog/ephraim-katunakia.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Ephraim%20Katounakia",
     "sources": [
       {
@@ -1386,7 +1386,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/nikon-optina.svg",
+    "image": "web/images/catalog/nikon-optina.svg",
     "sourceUrl": "https://www.oca.org/saints/all-lives/4462/06/25",
     "sources": [
       {
@@ -1428,7 +1428,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/dimitri-rostov.svg",
+    "image": "web/images/catalog/dimitri-rostov.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Dimitri%20Rostov",
     "sources": [
       {
@@ -1470,7 +1470,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/nectarius-optina.svg",
+    "image": "web/images/catalog/nectarius-optina.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Nectarius%20Optina",
     "sources": [
       {
@@ -1512,7 +1512,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/barsanuphius-optina.svg",
+    "image": "web/images/catalog/barsanuphius-optina.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Barsanuphius%20Optina",
     "sources": [
       {
@@ -1554,7 +1554,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/dimitri-basarabov.svg",
+    "image": "web/images/catalog/dimitri-basarabov.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=Dimitri%20Basarabov",
     "sources": [
       {
@@ -1596,7 +1596,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/david-gareja.svg",
+    "image": "web/images/catalog/david-gareja.svg",
     "sourceUrl": "https://www.oca.org/saints/lives?q=David%20of%20Gareja",
     "sources": [
       {
@@ -1638,7 +1638,7 @@ window.ORTHODOX_V7_EXPANSION = [
       "el": "Το προφίλ διακρίνει τις καλά τεκμηριωμένες ιστορικές ή βιβλικές πληροφορίες από τη μεταγενέστερη ευσεβή παράδοση. Τα τοπικά ημερολόγια μπορεί να διαφέρουν ως προς την ημερομηνία ή την έμφαση."
     },
     "aliases": [],
-    "image": "web/images/people/euthymius-takaishvili.svg",
+    "image": "web/images/catalog/euthymius-takaishvili.svg",
     "sourceUrl": "https://www.oca.org/saints/lives/2021/01/03",
     "sources": [
       {

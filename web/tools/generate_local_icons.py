@@ -194,7 +194,7 @@ def svg_for(e):
 
 # Generate all SVGs in runtime order.
 for e in entries:
-    rel=e.get('image') or f"web/images/people/{e['id']}.svg"
+    rel=e.get('image') or f"web/images/catalog/{e['id']}.svg"
     p=ROOT/rel
     p.parent.mkdir(parents=True,exist_ok=True)
     p.write_text(svg_for(e),encoding='utf-8')

@@ -32,7 +32,7 @@ This distinction matters: a searchable reference to a figure such as Herod, Juda
 
 Some biblical or traditional identities have interpretive complexity (for example, the “Angel of the Lord,” the “two witnesses,” or symbolic figures in Revelation). Those records are deliberately descriptive rather than dogmatically identifying them beyond what the text or common Orthodox tradition safely supports.
 
-The local SVG files under `web/images/people/` are original lightweight illustrative medallions generated for this interface. They are **not canonical liturgical icons** and should not be represented as such. They can be replaced one-by-one with properly licensed Orthodox icon photography or artwork later without changing the catalog schema.
+The local SVG files under `web/images/catalog/` are original lightweight illustrative medallions generated for this interface. They are **not canonical liturgical icons** and should not be represented as such. They can be replaced one-by-one with properly licensed Orthodox icon photography or artwork later without changing the catalog schema.
 
 ## Calendar note
 

@@ -57,7 +57,7 @@ def entry(id,en,el,cat,role_en,role_el,scripture='Church tradition / Lives of th
         prayer_el=f'Άγιε/Αγία {el}, πρέσβευε στον Θεό για μας, ώστε να αυξανόμαστε σε πίστη, μετάνοια, θάρρος, ταπείνωση και αγάπη.'
         notes_en='Concise educational entry; consult an Orthodox synaxarion or local calendar for the full life, hymns, and jurisdiction-specific commemoration.'
         notes_el='Σύντομη εκπαιδευτική καταχώριση· για πλήρη βίο, ύμνους και τοπική μνήμη συμβουλευτείτε ορθόδοξο συναξάρι ή τοπικό ημερολόγιο.'
-    e={'id':id,'name':{'en':en,'el':el},'category':cat,'role':{'en':role_en,'el':role_el},'story':{'en':story_en,'el':story_el},'feast':{'en':feast_en,'el':feast_el},'scripture':scripture,'prayer':{'en':prayer_en,'el':prayer_el},'notes':{'en':notes_en,'el':notes_el},'aliases':aliases or [],'venerated':bool(venerated),'image':f'web/images/people/{id}.svg'}
+    e={'id':id,'name':{'en':en,'el':el},'category':cat,'role':{'en':role_en,'el':role_el},'story':{'en':story_en,'el':story_el},'feast':{'en':feast_en,'el':feast_el},'scripture':scripture,'prayer':{'en':prayer_en,'el':prayer_el},'notes':{'en':notes_en,'el':notes_el},'aliases':aliases or [],'venerated':bool(venerated),'image':f'web/images/catalog/{id}.svg'}
     if source:
         e['sourceUrl']=source; e['sourceLabel']='Orthodox calendar / reference'
     e['search']=' '.join([en,el,role_en,role_el,scripture,*(aliases or [])])

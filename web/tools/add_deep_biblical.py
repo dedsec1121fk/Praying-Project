@@ -31,7 +31,7 @@ def mk(id,en,el,cat,ren,rel,sc='Church tradition / Lives of the Saints',feast='S
     else:
         prayer={'en':f'Holy {en}, pray to God for us and help us grow in faith, repentance, humility, courage, and love.', 'el':f'Άγιε/Αγία {el}, πρέσβευε στον Θεό για μας και βοήθησέ μας να αυξανόμαστε σε πίστη, μετάνοια, ταπείνωση, θάρρος και αγάπη.'}
         notes={'en':'Concise educational entry; feast dates may differ by local Orthodox calendar.', 'el':'Σύντομη εκπαιδευτική καταχώριση· οι ημερομηνίες μπορεί να διαφέρουν ανά τοπικό ορθόδοξο ημερολόγιο.'}
-    e={'id':id,'name':{'en':en,'el':el},'category':cat,'role':{'en':ren,'el':rel},'story':story,'feast':{'en':feast,'el':feast},'scripture':sc,'prayer':prayer,'notes':notes,'aliases':[],'venerated':v,'image':f'web/images/people/{id}.svg','search':' '.join([en,el,ren,rel,sc])}
+    e={'id':id,'name':{'en':en,'el':el},'category':cat,'role':{'en':ren,'el':rel},'story':story,'feast':{'en':feast,'el':feast},'scripture':sc,'prayer':prayer,'notes':notes,'aliases':[],'venerated':v,'image':f'web/images/catalog/{id}.svg','search':' '.join([en,el,ren,rel,sc])}
     if source: e.update(sourceUrl=source,sourceLabel='Orthodox calendar / reference')
     more.append(e)
 

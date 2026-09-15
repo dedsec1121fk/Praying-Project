@@ -7,7 +7,7 @@ This release applies the image overhaul to **the entire catalog**, not only a sm
 ### What changed
 
 - Regenerated **all 1,083 local entry images** with richer offline artwork.
-- Every entry keeps its own dedicated local SVG image in `web/images/people/`.
+- Every entry keeps its own dedicated local SVG image in `web/images/catalog/`.
 - Local illustrative icons are now more individualized by:
   - category
   - role keywords
