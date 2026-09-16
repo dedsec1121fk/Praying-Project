@@ -133,23 +133,150 @@
     if(typeof modal.close==='function'){try{modal.close()}catch(_){modal.removeAttribute('open')}}else modal.removeAttribute('open');
     modal.classList.remove('fallback-open');unloadActiveDetails();state.active=null;state.tab='description';
   }
-  function detailFileUrl(e){return `web/data/details/${e.detailFile}?v=27`}
+  const DETAIL_WARM_CACHE='praying-project-detail-warm-v28';
+  let detailsWarmEnabled=false;
+  const detailWarmPromises=new Map();
+  const detailWarmQueued=new Set();
+  const detailWarmQueue=[];
+  let detailWarmActive=0;
+  const DETAIL_WARM_CONCURRENCY=4;
+
+  function canWarmDetails(){
+    if(!detailsWarmEnabled)return false;
+    if(!window.isSecureContext||!('caches' in window)||!navigator.onLine)return false;
+    const c=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+    if(c?.saveData)return false;
+    return true;
+  }
+  async function detailAlreadyCached(e){
+    if(!('caches' in window))return false;
+    const url=detailFileUrl(e);
+    try{
+      const warm=await caches.open(DETAIL_WARM_CACHE);
+      if(await warm.match(url,{ignoreSearch:true}))return true;
+      const offline=await caches.open('praying-project-offline-v28');
+      return !!(await offline.match(url,{ignoreSearch:true}));
+    }catch(_){return false}
+  }
+  function pumpDetailWarmQueue(){
+    if(!canWarmDetails())return;
+    while(detailWarmActive<DETAIL_WARM_CONCURRENCY&&detailWarmQueue.length){
+      const e=detailWarmQueue.shift();
+      detailWarmQueued.delete(e.id);
+      if(detailWarmPromises.has(e.id))continue;
+      detailWarmActive++;
+      const promise=(async()=>{
+        try{
+          if(await detailAlreadyCached(e))return true;
+          const url=detailFileUrl(e);
+          const response=await fetch(url,{cache:'no-store',credentials:'same-origin'});
+          if(!response.ok)throw new Error(String(response.status));
+          const cache=await caches.open(DETAIL_WARM_CACHE);
+          await cache.put(url,response.clone());
+          return true;
+        }catch(_){return false}
+      })().finally(()=>{
+        detailWarmActive--;
+        detailWarmPromises.delete(e.id);
+        pumpDetailWarmQueue();
+      });
+      detailWarmPromises.set(e.id,promise);
+    }
+  }
+  function queueDetailWarm(e,urgent=false){
+    if(!e?.detailFile||!canWarmDetails())return Promise.resolve(false);
+    if(detailWarmPromises.has(e.id))return detailWarmPromises.get(e.id);
+    if(!detailWarmQueued.has(e.id)){
+      detailWarmQueued.add(e.id);
+      urgent?detailWarmQueue.unshift(e):detailWarmQueue.push(e);
+    }else if(urgent){
+      const i=detailWarmQueue.findIndex(x=>x.id===e.id);
+      if(i>0){const [item]=detailWarmQueue.splice(i,1);detailWarmQueue.unshift(item)}
+    }
+    pumpDetailWarmQueue();
+    return detailWarmPromises.get(e.id)||Promise.resolve(false);
+  }
+  function warmCardsNearViewport(){
+    if(!canWarmDetails())return;
+    const root=document.getElementById('catalogSection');
+    if(!root)return;
+    const rootRect=root.getBoundingClientRect();
+    const margin=Math.max(1400,rootRect.height*2.2);
+    const cards=cardGrid.querySelectorAll('.saint-card[data-id]');
+    for(const card of cards){
+      const r=card.getBoundingClientRect();
+      if(r.bottom>=rootRect.top-margin&&r.top<=rootRect.bottom+margin){
+        const e=byId.get(card.dataset.id);if(e)queueDetailWarm(e,false);
+      }
+    }
+  }
+  let warmScrollTimer=0;
+  function scheduleWarmCards(){
+    clearTimeout(warmScrollTimer);
+    warmScrollTimer=setTimeout(()=>{
+      if('requestIdleCallback' in window)requestIdleCallback(warmCardsNearViewport,{timeout:700});
+      else warmCardsNearViewport();
+    },90);
+  }
+
+  function detailFileUrl(e){return `web/data/details/${e.detailFile}?v=28`}
   function detailView(e){return activeDetail?.id===e.id?Object.assign({},e,activeDetail.data):e}
-  function ensureDetails(e){
-    if(!e.detailFile)return Promise.reject(new Error('Missing per-entry detail file'));
+  async function cachedDetailResponse(e){
+    if(!('caches' in window))return null;
+    const url=detailFileUrl(e);
+    try{
+      const warm=await caches.open(DETAIL_WARM_CACHE);
+      const a=await warm.match(url,{ignoreSearch:true});if(a)return a;
+      const offline=await caches.open('praying-project-offline-v28');
+      return await offline.match(url,{ignoreSearch:true});
+    }catch(_){return null}
+  }
+  async function ensureDetails(e){
+    if(!e.detailFile)throw new Error('Missing per-entry detail file');
     const token=++detailLoadToken;
+
+    // If this item is only waiting in the background queue, remove that queued
+    // copy and let the user's tap become the priority request instead.
+    if(detailWarmQueued.has(e.id)&&!detailWarmPromises.has(e.id)){
+      const i=detailWarmQueue.findIndex(x=>x.id===e.id);
+      if(i>=0)detailWarmQueue.splice(i,1);
+      detailWarmQueued.delete(e.id);
+    }
+
+    // Reuse an in-flight nearby prefetch instead of starting a duplicate request.
+    const warming=detailWarmPromises.get(e.id);
+    if(warming){try{await warming}catch(_){}}
+    if(token!==detailLoadToken||state.active!==e.id)throw new Error('Detail load cancelled');
+
+    let response=await cachedDetailResponse(e);
+    if(!response){
+      response=await fetch(detailFileUrl(e),{cache:'no-store',credentials:'same-origin'});
+      if(!response.ok)throw new Error(`Could not load ${detailFileUrl(e)} (${response.status})`);
+      if('caches' in window){
+        try{const cache=await caches.open(DETAIL_WARM_CACHE);await cache.put(detailFileUrl(e),response.clone())}catch(_){}
+      }
+    }
+    if(token!==detailLoadToken||state.active!==e.id)throw new Error('Detail load cancelled');
+
+    let objectUrl='';
+    try{objectUrl=URL.createObjectURL(await response.blob())}
+    catch(_){throw new Error(`Could not prepare ${detailFileUrl(e)}`)}
+
     return new Promise((resolve,reject)=>{
-      const script=document.createElement('script');detailScript=script;script.src=detailFileUrl(e);script.async=true;
+      const script=document.createElement('script');detailScript=script;script.src=objectUrl;script.async=true;
+      const cleanupUrl=()=>{if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=''}};
       script.onload=()=>{
+        cleanupUrl();
         const data=window.ORTHODOX_ENTRY_DETAILS?.[e.id];
         if(token!==detailLoadToken||state.active!==e.id){clearPublishedDetail(e.id);script.remove();if(detailScript===script)detailScript=null;return reject(new Error('Detail load cancelled'))}
         if(!data){script.remove();if(detailScript===script)detailScript=null;return reject(new Error('Entry missing from detail file'))}
         activeDetail={id:e.id,data};resolve(data);
       };
-      script.onerror=()=>{if(detailScript===script)detailScript=null;script.remove();clearPublishedDetail(e.id);reject(new Error(`Could not load ${script.src}`))};
+      script.onerror=()=>{cleanupUrl();if(detailScript===script)detailScript=null;script.remove();clearPublishedDetail(e.id);reject(new Error(`Could not execute ${detailFileUrl(e)}`))};
       document.head.appendChild(script);
     });
   }
+
   function setModalMedia(e){
     const lang=state.lang, img=document.getElementById('modalImage'), credit=document.getElementById('modalImageCredit');
     img.onerror=null; installFallback(img,e); img.src=preferredThumb(e); img.alt=locText(e.name?.[lang]||e.name?.en||'',lang);
@@ -249,6 +376,11 @@
     media.append(img);
     const name=document.createElement('div'); name.className='saint-card-name'; name.textContent=locText(e.name?.[state.lang]||e.name?.en||e.id,state.lang);
     card.append(media,name);
+    // Warm raw detail bytes just before likely interaction; nothing is executed
+    // or retained as active story data until the card is actually opened.
+    card.addEventListener('pointerenter',()=>queueDetailWarm(e,true),{passive:true});
+    card.addEventListener('pointerdown',()=>queueDetailWarm(e,true),{passive:true});
+    card.addEventListener('focus',()=>queueDetailWarm(e,true),{passive:true});
     card.addEventListener('click',()=>openEntry(e.id));
     return card;
   }
@@ -261,6 +393,7 @@
     for(const e of list)frag.append(createCard(e));
     cardGrid.replaceChildren(frag);
     requestAnimationFrame(updateScrollGuide);
+    scheduleWarmCards();
   }
 
   async function renderCardsChunked(onProgress){
@@ -343,6 +476,10 @@
       setProgress(1);
       await new Promise(r=>setTimeout(r,140));
       loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),300);
+      // Only after the user is inside the catalog do we begin low-priority
+      // detail warming. Startup itself remains names/cards/images only.
+      detailsWarmEnabled=true;
+      scheduleWarmCards();
       const idle=window.requestIdleCallback||((fn)=>setTimeout(fn,250));
       idle(()=>ensureSearchMetadata().catch(err=>console.warn(err)));
     }catch(err){
@@ -370,7 +507,7 @@
       if(navigator.storage?.persist)try{await navigator.storage.persist()}catch(_){}
       const response=await fetch('web/offline-files.json',{cache:'no-store'});if(!response.ok)throw new Error('offline manifest unavailable');
       const data=await response.json();const files=Array.isArray(data.files)?data.files:[];if(!files.length)throw new Error('offline manifest empty');
-      const cache=await caches.open(data.cacheName||'praying-project-offline-v27');let done=0,failed=0,cursor=0;
+      const cache=await caches.open(data.cacheName||'praying-project-offline-v28');let done=0,failed=0,cursor=0;
       const worker=async()=>{while(true){const i=cursor++;if(i>=files.length)return;const url=files[i];try{const r=await fetch(url,{cache:'reload'});if(!r.ok)throw new Error(String(r.status));await cache.put(url,r.clone())}catch(_){failed++}done++;const percent=Math.round(done/files.length*100);offlineBtn.textContent=`${percent}%`;offlineBtn.setAttribute('aria-label',`${UI[state.lang].offline} ${percent}%`)}};
       await Promise.all(Array.from({length:Math.min(6,files.length)},worker));
       if(failed)throw new Error(`${failed} files failed`);
@@ -385,7 +522,7 @@
     scrollThumb.style.transform=`translateY(${(ratio*travel).toFixed(1)}px)`;if(scrollPercent)scrollPercent.textContent=`${Math.round(ratio*100)}%`;
     const guide=document.getElementById('scrollGuide');if(guide)guide.classList.toggle('inactive',max<2);
   }
-  let scrollRaf=0;catalogSection?.addEventListener('scroll',()=>{if(scrollRaf)return;scrollRaf=requestAnimationFrame(()=>{scrollRaf=0;updateScrollGuide()})},{passive:true});
+  let scrollRaf=0;catalogSection?.addEventListener('scroll',()=>{if(scrollRaf)return;scrollRaf=requestAnimationFrame(()=>{scrollRaf=0;updateScrollGuide();scheduleWarmCards()})},{passive:true});
   window.addEventListener('resize',updateScrollGuide,{passive:true});
   let thumbDrag=null;
   scrollThumb?.addEventListener('pointerdown',e=>{e.preventDefault();thumbDrag={id:e.pointerId,startY:e.clientY,startTop:catalogSection.scrollTop};try{scrollThumb.setPointerCapture(e.pointerId)}catch(_){}});

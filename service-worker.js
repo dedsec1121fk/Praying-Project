@@ -1,6 +1,8 @@
 'use strict';
 const CACHE_PREFIX='praying-project-offline-';
-const CACHE_NAME='praying-project-offline-v27';
+const CACHE_NAME='praying-project-offline-v28';
+const DETAIL_CACHE_PREFIX='praying-project-detail-warm-';
+const DETAIL_CACHE_NAME='praying-project-detail-warm-v28';
 const SHELL=['./','./index.html','./404.html','./web-app.webmanifest','./web/assets/css/styles.css','./web/assets/js/bootstrap.js','./web/assets/js/app.js','./web/data/runtime-index.js'];
 
 self.addEventListener('install',event=>{
@@ -19,7 +21,7 @@ self.addEventListener('install',event=>{
 self.addEventListener('activate',event=>{
   event.waitUntil((async()=>{
     const names=await caches.keys();
-    await Promise.all(names.filter(n=>n.startsWith(CACHE_PREFIX)&&n!==CACHE_NAME).map(n=>caches.delete(n)));
+    await Promise.all(names.filter(n=>(n.startsWith(CACHE_PREFIX)&&n!==CACHE_NAME)||(n.startsWith(DETAIL_CACHE_PREFIX)&&n!==DETAIL_CACHE_NAME)).map(n=>caches.delete(n)));
     await self.clients.claim();
     const windows=await self.clients.matchAll({type:'window'});
     for(const client of windows){try{await client.navigate(client.url)}catch(_){}}
@@ -45,8 +47,16 @@ self.addEventListener('fetch',event=>{
     // the offline-download button, the prebuilt cache is still used as the
     // offline fallback.
     if(url.pathname.includes('/web/data/details/')){
-      try{return await fetch(req,{cache:'no-store'})}
-      catch(err){const cached=await cache.match(req,{ignoreSearch:true});if(cached)return cached;throw err}
+      const warm=await caches.open(DETAIL_CACHE_NAME);
+      const warmHit=await warm.match(req,{ignoreSearch:true});
+      if(warmHit)return warmHit;
+      const offlineHit=await cache.match(req,{ignoreSearch:true});
+      if(offlineHit)return offlineHit;
+      try{
+        const fresh=await fetch(req,{cache:'no-store'});
+        if(fresh&&fresh.ok)warm.put(req,fresh.clone()).catch(()=>{});
+        return fresh;
+      }catch(err){throw err}
     }
     if(isFreshCritical(url.pathname)){
       try{

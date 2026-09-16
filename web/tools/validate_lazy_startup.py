@@ -22,7 +22,7 @@ if len(runtime.encode('utf-8')) > 500_000: errors.append(f'runtime shell too lar
 for key in ('"story":','"prayer":','"knowledge":','"description":','"metadata":','"profile":','"role":'):
     if key in runtime: errors.append(f'heavy key leaked into startup runtime: {key}')
 if '"story":' in search or '"prayer":' in search: errors.append('story/prayer leaked into search metadata file')
-if '?v=27' not in boot: errors.append('bootstrap cache buster not updated to v27')
+if '?v=27' not in boot: errors.append('bootstrap cache buster not updated to v28')
 # Every entry must still point at one detail file and one repository image.
 images=re.findall(r'"image":"([^"]+)"',runtime)
 details=re.findall(r'"detailFile":"([^"]+)"',runtime)
