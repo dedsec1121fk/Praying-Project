@@ -5,7 +5,7 @@ const root=path.resolve(__dirname,'../..');
 const scripts=[
   'web/data/entries.js','web/data/expanded-biblical.js','web/data/church-saints.js','web/data/feasts.js',
   'web/data/biblical-context.js','web/data/further-expansion.js','web/data/deep-biblical.js','web/data/comprehensive-expansion.js',
-  'web/data/v7-expansion.js','web/data/v8-expansion.js','web/data/catalog.js','web/data/media-manifest.js',
+  'web/data/v7-expansion.js','web/data/v8-expansion.js','web/data/v24-expansion.js','web/data/catalog.js','web/data/media-manifest.js',
   'web/data/deep-profiles.js','web/data/deep-profiles-2.js','web/data/deep-profiles-3.js','web/data/profile-enricher.js'
 ];
 const ctx={window:{},console,encodeURIComponent,decodeURIComponent,URL,Math,JSON,Object,Array,String,Number,Boolean,RegExp,Set,Map,Date};ctx.window.window=ctx.window;vm.createContext(ctx);
@@ -15,9 +15,23 @@ for(const e of entries){if(e.imageLocalReal&&!fs.existsSync(path.join(root,e.ima
 const detailsDir=path.join(root,'web/data/details');fs.mkdirSync(detailsDir,{recursive:true});
 for(const f of fs.readdirSync(detailsDir))if(/^(?:details-[0-9a-f]|entry-\d+)\.js$/.test(f))fs.unlinkSync(path.join(detailsDir,f));
 const lightKeys=new Set(['id','name','category','role','search','aliases','venerated','image','imageLocalReal','imageRemote']);
+function flattenText(value,out=[]){
+  if(value==null)return out;
+  if(typeof value==='string'||typeof value==='number'||typeof value==='boolean'){out.push(String(value));return out;}
+  if(Array.isArray(value)){for(const v of value)flattenText(v,out);return out;}
+  if(typeof value==='object'){for(const v of Object.values(value))flattenText(v,out);return out;}
+  return out;
+}
+function richSearch(e){
+  const pieces=[e.search||'',...flattenText(e.name),...flattenText(e.role),...flattenText(e.aliases),...flattenText(e.metadata),...flattenText(e.feast),e.scripture||'',...flattenText(e.description),...flattenText(e.story)];
+  // Knowledge section titles make long dossiers discoverable without bloating
+  // the lightweight runtime with entire biographies.
+  for(const lang of ['en','el'])for(const s of (e.knowledge?.[lang]?.sections||[]))pieces.push(...flattenText(s?.title));
+  return [...new Set(pieces.map(x=>String(x).replace(/\s+/g,' ').trim()).filter(Boolean))].join(' ');
+}
 const lite=entries.map((e,i)=>{
   const detailFile=`entry-${String(i).padStart(4,'0')}.js`;
-  const out={id:e.id,name:e.name,category:e.category,role:e.role,search:e.search||'',aliases:e.aliases||[],venerated:e.venerated!==false,image:e.image||'',detailFile,atlasIndex:i};
+  const out={id:e.id,name:e.name,category:e.category,role:e.role,search:richSearch(e),aliases:e.aliases||[],venerated:e.venerated!==false,image:e.image||'',detailFile,atlasIndex:i};
   if(e.imageLocalReal)out.imageLocalReal=e.imageLocalReal;
   const detail={};for(const [k,v] of Object.entries(e))if(!lightKeys.has(k))detail[k]=v;
   const code=`(()=>{window.ORTHODOX_ENTRY_DETAILS=window.ORTHODOX_ENTRY_DETAILS||Object.create(null);window.ORTHODOX_ENTRY_DETAILS[${JSON.stringify(e.id)}]=${JSON.stringify(detail)};})();\n`;

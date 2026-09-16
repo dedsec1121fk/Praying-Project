@@ -1,0 +1,13 @@
+{
+  "name": "Orthodox Saints — Praying Project",
+  "short_name": "Orthodox Saints",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#8fd0f6",
+  "theme_color": "#8fd0f6",
+  "description": "Bilingual English/Greek Orthodox catalog of saints, biblical figures, Psalms, parables and Scripture stories.",
+  "icons": [
+    {"src":"web/images/catalog/jesus-christ.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}
+  ]
+}

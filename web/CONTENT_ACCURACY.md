@@ -38,26 +38,19 @@ The project paraphrases source material rather than bulk-copying copyrighted hag
 
 ## Images
 
-Every one of the 1,083 records has a bundled local illustration, and the validation suite verifies that all 1,083 files exist and contain SVG markup before release. The runtime builder will not publish a local verified-image cache path unless that binary is physically present. These local SVGs are **illustrative navigation artwork**, not assertions of historical likeness and not substitutes for canonical liturgical icons.
+Every one of the 1,186 current records has a bundled local illustration, and the validation suite verifies that all 1,186 files exist and contain valid SVG markup before release. The runtime builder will not publish a local verified-image cache path unless that binary is physically present. These local SVGs are **illustrative navigation artwork**, not assertions of historical likeness and not substitutes for canonical liturgical icons.
 
 The local artwork also respects veneration status: context-only/non-venerated people and beings are deliberately drawn without a saint's halo. Christ, the Holy Spirit, the Theotokos, angels, feasts, venerated people, and context-only records use visibly different symbolic treatments.
 
 Where a reusable historical/iconographic image has been individually verified, the runtime can upgrade the local illustration using the mapping in `image-sources.json`. The source page and license are displayed in the record. The project does not automatically take the first image-search result for an obscure name, because that would create false identifications.
 
 
-## Precision corrections in v15
+## Current expansion and search policy
 
-The v15 audit separates ordinary Greek prose normalization from prayer-invocation grammar, preventing vocative forms from leaking into roles and descriptions. Common Gospel/reference labels are normalized to established Greek forms rather than mixed-language constructions.
+The catalog now includes lesser-known saints and ascetics alongside Psalms, parables, Scripture stories, and symbolic or visionary beings. New saint dossiers use direct Orthodox source pages where available and explicitly say when the surviving biographical record is sparse. Scripture-study entries are paraphrases and guides; they do not reproduce modern copyrighted Bible translations.
 
-Saint Olga of Kwethluk's OCA commemoration is stored as **27 October**, following the Orthodox Church in America's official saint page and its announcement fixing the annual feast on that date. The catalog also distinguishes the Holy Synod's 2023 decision to number her among the saints from the public glorification services held in June 2025.
+Search metadata may include historically or devotionally relevant associations such as animals, occupations, places, ascetic disciplines, patronage traditions, feast dates, biblical themes, and alternative names. Such associations are attached only when supported by the stored source or clearly identified tradition. For example, animal-related search terms distinguish a hagiographic story or prayer tradition from a claim of formal universal patronage.
 
-## v19 deep audit
+## Offline and image provenance
 
-v19 tightens three areas that previously could be overstated or visually crowded.
-
-**Image provenance.** A local illustration is never promoted to “verified historical/iconographic” status merely because it is a separate binary. Verified media must have a concrete Wikimedia Commons File page, reuse/license label, credit, and remote URL in `image-sources.json`. The canonical inventory contains 62 such mappings. The other records continue to use clearly labeled local illustrative artwork rather than a guessed identity.
-
-**Greek normalization.** The generator removes legacy slash-gender placeholders, repairs recurring Orthodox Church/Gospel reference constructions, improves common vocative endings, and uses a God-directed plural prayer for collective angelic ranks. The audit rejects the known placeholder/reference regressions so they cannot silently return. This is language normalization, not a claim that every generated prayer is a published liturgical text.
-
-**Globe readability.** The sphere uses level-of-detail rather than forcing all 1,083 bubbles into a physically impossible small-screen overview. Search/active/featured records are protected, more records appear with zoom, and visible nodes pass through collision relaxation plus a final overlap-reduction step. `validate_globe_layout.js` tests this across multiple viewports, rotations, and scales.
-
+The offline installer caches the deployed repository files only. Verified image mappings retain their source/license provenance in `image-sources.json`; accepted binaries are downloaded into the repository before deployment. If no trustworthy reusable match is found, the record keeps its dedicated illustrative SVG rather than using a guessed image. Browser storage is requested persistently when supported, but the browser may still enforce quota or eviction rules.

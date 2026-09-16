@@ -1,8 +1,8 @@
 # Verified icon/image sources
 
-The site currently contains **62 individually mapped Wikimedia Commons sources**. Each mapping records a specific Commons File page, a reuse/license label, an English credit, and the remote image URL. These mappings are optional visual upgrades; all 1,083 entries also have dedicated bundled local illustrative SVG artwork.
+The site currently contains **62 individually mapped Wikimedia Commons sources**. Each mapping records a specific Commons File page, a reuse/license label, an English credit, and the remote image URL. These mappings are optional visual upgrades; all 1,186 entries also have dedicated bundled local illustrative SVG artwork.
 
-To cache the verified images under `web/images/real/` for offline use, run `python web/tools/download_real_icons.py` while online. A cache miss does not break the application.
+To populate repository-hosted verified images, run `python web/tools/prepare_repository_images.py` while online. It downloads the curated mappings, searches Wikimedia Commons for additional safe matches for people/saints/beings, rebuilds the runtime, and refreshes the complete offline-cache manifest. A cache miss never removes the dedicated local illustration.
 
 | Entry | Commons file | License / reuse label |
 |---|---|---|

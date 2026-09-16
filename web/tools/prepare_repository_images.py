@@ -17,4 +17,6 @@ run([sys.executable,'web/tools/build_media_manifest.py'])
 # 4) Rebuild runtime only after actual repository files exist.
 run(['node','web/tools/build_lazy_runtime.js'])
 run(['node','web/tools/validate_lazy_runtime.js'])
+# 5) Refresh the complete browser-offline file list after any downloaded images were added.
+run([sys.executable,'web/tools/build_offline_manifest.py'])
 print('Repository image preparation finished. Commit web/images/real and web/images/real-auto with the rest of the project.')

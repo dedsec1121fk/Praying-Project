@@ -40,6 +40,9 @@
     'nt-saint':{en:'The New Testament gives the primary record for this person, sometimes supplemented by early Christian tradition. The profile separates what the canonical text says from later identifications and local memories.',el:'Η Καινή Διαθήκη δίνει την κύρια μαρτυρία για το πρόσωπο, μερικές φορές συμπληρωμένη από αρχαία χριστιανική παράδοση. Το προφίλ διακρίνει όσα λέει το κανονικό κείμενο από μεταγενέστερες ταυτίσεις και τοπικές μνήμες.'},
     'church-saint':{en:'The saint’s memory is preserved through historical testimony, synaxaria, liturgical texts, letters or writings, relic traditions, and local Church memory. Hagiography may include theological or miracle narratives in addition to datable historical facts; both are presented without pretending they are identical kinds of evidence.',el:'Η μνήμη του αγίου διασώζεται μέσα από ιστορικές μαρτυρίες, συναξάρια, λειτουργικά κείμενα, επιστολές ή συγγράμματα, παραδόσεις λειψάνων και τοπική εκκλησιαστική μνήμη. Η αγιογραφία μπορεί να περιλαμβάνει θεολογικές ή θαυματουργικές διηγήσεις μαζί με χρονολογήσιμα ιστορικά δεδομένα· παρουσιάζονται χωρίς να θεωρούνται το ίδιο είδος μαρτυρίας.'},
     feast:{en:'This record is a liturgical event rather than one person’s biography. The complete meaning belongs to Scripture, hymnography, iconography, fasting or festal practice, and the way the feast fits into the Church year.',el:'Η καταχώριση αφορά λειτουργικό γεγονός και όχι βιογραφία ενός προσώπου. Το πλήρες νόημα ανήκει στη Γραφή, την υμνογραφία, την εικονογραφία, τη νηστευτική ή εορταστική πράξη και τη θέση της εορτής μέσα στο εκκλησιαστικό έτος.'},
+    parable:{en:'This is a teaching parable of Jesus. The catalog summarizes the narrative and major themes, while the cited Gospel remains the primary text and patristic interpretations may emphasize different complementary aspects.',el:'Πρόκειται για διδακτική παραβολή του Ιησού. Ο κατάλογος συνοψίζει τη διήγηση και τα κύρια θέματα, ενώ το παρατιθέμενο Ευαγγέλιο παραμένει το πρωτεύον κείμενο και οι πατερικές ερμηνείες μπορεί να τονίζουν διαφορετικές συμπληρωματικές διαστάσεις.'},
+    psalm:{en:'This is a Psalm entry: biblical prayer and poetry received deeply in Orthodox worship. The catalog summarizes themes and numbering without reproducing a modern copyrighted translation.',el:'Πρόκειται για καταχώριση Ψαλμού: βιβλική προσευχή και ποίηση βαθιά ενταγμένη στην ορθόδοξη λατρεία. Ο κατάλογος συνοψίζει θέματα και αρίθμηση χωρίς να αναπαράγει σύγχρονη μετάφραση που μπορεί να προστατεύεται από πνευματικά δικαιώματα.'},
+    'scripture-story':{en:'This is a biblical narrative entry rather than a person’s biography. It functions as a study guide to the cited passage, preserving the difference between the scriptural narrative, later typology, and devotional interpretation.',el:'Πρόκειται για βιβλική διήγηση και όχι για βιογραφία προσώπου. Λειτουργεί ως οδηγός μελέτης του παρατιθέμενου χωρίου, διατηρώντας τη διάκριση ανάμεσα στη βιβλική αφήγηση, τη μεταγενέστερη τυπολογία και την πνευματική ερμηνεία.'},
     'biblical-context':{en:'This person or being is included because it matters to the biblical narrative, but the catalog does not thereby present it as holy or venerated. The prayer tab is directed to God rather than to a non-venerated figure.',el:'Το πρόσωπο ή ον περιλαμβάνεται επειδή έχει σημασία στη βιβλική διήγηση, χωρίς αυτό να σημαίνει ότι παρουσιάζεται ως άγιο ή τιμώμενο. Η καρτέλα προσευχής απευθύνεται στον Θεό και όχι σε μη τιμώμενο πρόσωπο.'}
   };
   function sourceArray(e){
@@ -118,7 +121,28 @@
     s=s.replace(/^Άγιοι\s+([^\s,]+)\s+και\s+([^\s,]+)/u,(m,a,b)=>`Άγιοι ${greekVocativeWord(a)} και ${greekVocativeWord(b)}`);
     return s;
   }
+  const specialMetadata={
+    tryphon:{patronage_en:['birds','fields','vineyards','gardens'],patronage_el:['πτηνά','αγροί','αμπελώνες','κήποι'],search_aliases:['patron saint of birds','protector of birds','agriculture','lost falcon','προστάτης πτηνών','γεωργία'],metadataSource:'https://www.oca.org/saints/lives/2019/02/01/100397-martyr-tryphon-of-lampsacus-near-apamea-in-syria'},
+    'modestus-jerusalem':{patronage_en:['prayers for sick animals and livestock'],patronage_el:['προσευχές για άρρωστα ζώα και κτηνοτροφία'],search_aliases:['animals','livestock','oxen','horses','donkeys','mules','sheep','protector of animals','ζώα','κτηνοτροφία'],metadataSource:'https://www.goarch.org/-/exorcism'},
+    'seraphim-sarov':{associations_en:['wild animals','bear','care for creation'],associations_el:['άγρια ζώα','αρκούδα','φροντίδα της κτίσης'],search_aliases:['protector of wild animals','wildlife saint','bear saint','άγρια ζώα','αρκούδα'],metadataSource:'https://www.goarch.org/-/social-ethos-ro'},
+    columbanus:{associations_en:['wolves','bears','birds','hares','care for creation'],associations_el:['λύκοι','αρκούδες','πτηνά','λαγοί','φροντίδα της κτίσης'],search_aliases:['wild animals','animal saint','wildlife','άγρια ζώα'],metadataSource:'https://www.goarch.org/-/social-ethos-ro'},
+    'sergius-radonezh':{associations_en:['bear','wild animals','care for creation'],associations_el:['αρκούδα','άγρια ζώα','φροντίδα της κτίσης'],search_aliases:['wild animals','bear saint','wildlife','άγρια ζώα'],metadataSource:'https://www.goarch.org/-/social-ethos-ro'}
+  };
+  function mergeMeta(base,extra){
+    const out=Object.assign({},base||{});if(!extra)return out;
+    for(const [k,v] of Object.entries(extra)){
+      if(Array.isArray(v))out[k]=[...new Set([...(Array.isArray(out[k])?out[k]:[]),...v])];
+      else if(out[k]==null||out[k]==='')out[k]=v;
+    }
+    return out;
+  }
+
   for(const e of entries){
+    e.metadata=mergeMeta(e.metadata,specialMetadata[e.id]);
+    if(specialMetadata[e.id]?.metadataSource){
+      e.sources=Array.isArray(e.sources)?e.sources:[];
+      if(!e.sources.some(s=>s?.url===specialMetadata[e.id].metadataSource))e.sources.push({label:{en:'Orthodox source for searchable association / patronage metadata',el:'Ορθόδοξη πηγή για μεταδεδομένα συσχετισμών / προστασίας'},url:specialMetadata[e.id].metadataSource});
+    }
     const hadKnowledge=!!e.knowledge;
     const enName=clean(e.name?.en||e.id), elName=clean(e.name?.el||e.name?.en||e.id), ctx=kind[e.category]||kind['biblical-context'];
     const enStory=clean(e.story?.en)||`${enName} is present in the catalog because of a recorded role in Scripture or Orthodox tradition.`;

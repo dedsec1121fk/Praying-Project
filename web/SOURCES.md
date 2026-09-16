@@ -13,14 +13,16 @@ The website is an educational Orthodox-oriented explorer, not a replacement for 
 
 Biblical records cite their primary Scripture passages in the detail view. Church-saint summaries are intentionally concise. Where an exact feast date was not treated as sufficiently stable across calendars/jurisdictions, the entry says to consult the local Orthodox calendar rather than inventing a date.
 
-## Scope of the 1,083-entry catalog
+## Scope of the 1,186-entry catalog
 
 The catalog is broader than a list of saints. It includes:
 
 - venerated biblical and Church saints;
 - people named in Scripture who are useful for study but are not presented as saints;
 - peoples or ancestral names in biblical genealogies/Table of Nations;
-- parable figures clearly labeled as parable figures;
+- parables as dedicated study entries, clearly labeled as teachings rather than saints;
+- selected Psalms with LXX/common numbering, summaries, themes, and liturgical/search context;
+- Scripture stories/episodes with bilingual summaries and primary passage references;
 - hostile spiritual beings and apocalyptic symbols clearly placed under `biblical-context`;
 - feasts, synaxes, and liturgical Sundays.
 

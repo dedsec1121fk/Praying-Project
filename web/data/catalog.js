@@ -9,7 +9,8 @@
     ...(window.ORTHODOX_DEEP_BIBLICAL || []),
     ...(window.ORTHODOX_COMPREHENSIVE_EXPANSION || []),
     ...(window.ORTHODOX_V7_EXPANSION || []),
-    ...(window.ORTHODOX_V8_EXPANSION || [])
+    ...(window.ORTHODOX_V8_EXPANSION || []),
+    ...(window.ORTHODOX_V24_EXPANSION || [])
   ];
   // Later expansion layers intentionally replace older records with the same id.
   // This keeps one permanent bubble per person/being/feast.

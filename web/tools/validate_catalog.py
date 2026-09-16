@@ -19,6 +19,7 @@ FILES = [
     ("comprehensive-expansion.js", "ORTHODOX_COMPREHENSIVE_EXPANSION"),
     ("v7-expansion.js", "ORTHODOX_V7_EXPANSION"),
     ("v8-expansion.js", "ORTHODOX_V8_EXPANSION"),
+    ("v24-expansion.js", "ORTHODOX_V24_EXPANSION"),
 ]
 
 def load_js_array(path: Path):
@@ -66,7 +67,7 @@ for e in entries:
         if text and not greek_re.search(text):
             errors.append(f"{eid}: {key}.el does not contain Greek text")
 
-valid_categories = {"christ", "theotokos", "angel", "forefather", "righteous", "prophet", "apostle", "nt-saint", "church-saint", "feast", "biblical-context"}
+valid_categories = {"christ", "theotokos", "angel", "forefather", "righteous", "prophet", "apostle", "nt-saint", "church-saint", "feast", "biblical-context", "parable", "psalm", "scripture-story"}
 for e in entries:
     if e.get("category") not in valid_categories:
         errors.append(f"{e.get('id')}: unknown category {e.get('category')}")

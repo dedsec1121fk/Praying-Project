@@ -442,3 +442,81 @@ html,body{overflow:hidden}
   object-position:50% 50%;
   background:#17243d;
 }
+
+/* v24 content expansion, offline control and scroll guide */
+.loading-stage-percent{
+  min-height:180px;
+  display:grid;
+  place-items:center;
+}
+.startup-percent-only{
+  margin:0!important;
+  font-size:clamp(52px,15vw,96px)!important;
+  line-height:1!important;
+  font-weight:950!important;
+  letter-spacing:-.05em;
+  color:#fff;
+  font-variant-numeric:tabular-nums;
+}
+.offline-btn{
+  flex:0 0 auto;
+  width:38px;height:38px;
+  border:0;border-radius:50%;
+  background:rgba(255,255,255,.10);
+  color:#d9ecff;
+  font-size:20px;font-weight:950;
+  cursor:pointer;
+  display:grid;place-items:center;
+  padding:0;
+}
+.offline-btn:hover,.offline-btn:focus-visible{outline:none;background:rgba(102,239,255,.18);color:#8ff4ff}
+.offline-btn.working{font-size:9px;background:rgba(255,226,122,.16);color:#ffe88f}
+.offline-btn.ready{background:rgba(107,226,147,.16);color:#9df7b8}
+.offline-btn:disabled{cursor:wait;opacity:.9}
+.offline-status{
+  position:fixed;z-index:260;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);
+  width:min(520px,calc(100% - 32px));padding:11px 14px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.25);background:rgba(7,15,35,.96);color:#fff;
+  box-shadow:0 12px 34px rgba(0,0,0,.34);text-align:center;font-size:12px;font-weight:750;line-height:1.4;
+}
+.offline-status.ok{border-color:rgba(139,245,174,.45);color:#c9ffd8}
+.scroll-guide{
+  position:fixed;z-index:95;right:3px;top:86px;bottom:14px;width:34px;
+  display:flex;justify-content:center;pointer-events:none;
+}
+.scroll-guide.inactive{opacity:.2}
+.scroll-guide-track{
+  position:relative;width:8px;height:100%;border-radius:999px;
+  background:rgba(7,20,43,.18);border:1px solid rgba(255,255,255,.33);
+  pointer-events:auto;cursor:pointer;
+}
+.scroll-guide-thumb{
+  position:absolute;left:50%;top:0;transform:translate(-50%,0);
+  width:24px;height:54px;border:1px solid rgba(255,255,255,.65);border-radius:999px;
+  background:rgba(9,20,44,.94);color:#fff;padding:0;cursor:grab;
+  box-shadow:0 4px 12px rgba(0,0,0,.22);touch-action:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.scroll-guide-thumb:active{cursor:grabbing}
+.scroll-guide-thumb span{font-size:8px;font-weight:900;font-variant-numeric:tabular-nums;writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.02em}
+.metadata-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.metadata-grid>div{padding:10px 11px;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09)}
+.metadata-grid b{display:block;margin-bottom:4px;color:#9cf4ff;font-size:10px;text-transform:uppercase;letter-spacing:.055em}
+.metadata-grid span{display:block;color:#f1f4ff;font-size:13px;line-height:1.45}
+.saint-card[data-category="parable"]{border-color:rgba(184,235,159,.66)}
+.saint-card[data-category="psalm"]{border-color:rgba(211,202,255,.68)}
+.saint-card[data-category="scripture-story"]{border-color:rgba(241,194,244,.68)}
+@media(max-width:640px){
+  .search-dock{width:calc(100% - 18px)}
+  .searchbox{gap:6px;padding-left:12px}
+  .searchbox input{font-size:13px}
+  .offline-btn{width:34px;height:34px;font-size:18px}
+  .lang{padding:6px 6px}
+  .scroll-guide{right:0;top:78px;bottom:10px;width:26px}
+  .scroll-guide-track{width:6px}
+  .scroll-guide-thumb{width:20px;height:48px}
+  .scroll-guide-thumb span{font-size:7px}
+  .catalog-section{padding-right:22px}
+  .metadata-grid{grid-template-columns:1fr}
+  .startup-card:has(.loading-stage-percent:not([hidden])){width:min(300px,calc(100vw - 46px));padding:30px 20px}
+}

@@ -230,6 +230,12 @@ def resolve_one(e):
 
 missing=[]
 for e in entries:
+    # Psalms, parables, and Scripture-story cards intentionally use the bundled
+    # local artwork. The resolver focuses network work on people, saints,
+    # heavenly beings, feasts, and biblical-context figures where a real image
+    # can meaningfully correspond to the entry.
+    if e.get('category') in {'psalm','parable','scripture-story'}:
+        continue
     existing=manifest.get(e['id'])
     if existing and existing.get('local') and not (args.force and existing.get('autoResolved')):
         continue

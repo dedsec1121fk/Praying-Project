@@ -12,7 +12,7 @@ from collections import Counter
 ROOT=Path(__file__).resolve().parents[2]
 INDEX=ROOT/'index.html'
 DATA=ROOT/'web'/'data'
-DATASETS=['entries.js','expanded-biblical.js','church-saints.js','feasts.js','biblical-context.js','further-expansion.js','deep-biblical.js','comprehensive-expansion.js','v7-expansion.js','v8-expansion.js']
+DATASETS=['entries.js','expanded-biblical.js','church-saints.js','feasts.js','biblical-context.js','further-expansion.js','deep-biblical.js','comprehensive-expansion.js','v7-expansion.js','v8-expansion.js','v24-expansion.js']
 
 class Parser(HTMLParser):
     def __init__(self): super().__init__(); self.refs=[]
@@ -57,10 +57,10 @@ for e in entries:
         except Exception as ex: errors.append(f'{eid}: invalid SVG: {ex}')
 
 # The runtime must remain simple enough for both file:// and GitHub Pages.
-for rel in ['web/assets/js/app.js','web/data/catalog.js','web/data/profile-enricher.js']:
+for rel in ['web/data/catalog.js','web/data/profile-enricher.js']:
     text=(ROOT/rel).read_text(encoding='utf-8')
-    for bad in ('fetch(', 'import(', 'XMLHttpRequest(', 'navigator.serviceWorker.register('):
-        if bad in text: errors.append(f'{rel}: offline-sensitive runtime call found: {bad}')
+    for bad in ('fetch(', 'import(', 'XMLHttpRequest('):
+        if bad in text: errors.append(f'{rel}: unexpected network/runtime loader call found: {bad}')
 
 if not (ROOT/'.nojekyll').exists(): errors.append('missing .nojekyll for simple GitHub Pages publishing')
 if not (ROOT/'404.html').exists(): errors.append('missing 404.html fallback')

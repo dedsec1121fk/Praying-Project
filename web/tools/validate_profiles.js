@@ -3,7 +3,7 @@
 const fs=require('fs'),vm=require('vm'),path=require('path');
 const root=path.resolve(__dirname,'../..');
 const ctx={window:{},location:{protocol:'file:'}};vm.createContext(ctx);
-const files=['entries.js','expanded-biblical.js','church-saints.js','feasts.js','biblical-context.js','further-expansion.js','deep-biblical.js','comprehensive-expansion.js','v7-expansion.js','v8-expansion.js','catalog.js','deep-profiles.js','deep-profiles-2.js','deep-profiles-3.js','profile-enricher.js'];
+const files=['entries.js','expanded-biblical.js','church-saints.js','feasts.js','biblical-context.js','further-expansion.js','deep-biblical.js','comprehensive-expansion.js','v7-expansion.js','v8-expansion.js','v24-expansion.js','catalog.js','deep-profiles.js','deep-profiles-2.js','deep-profiles-3.js','profile-enricher.js'];
 for(const f of files)vm.runInContext(fs.readFileSync(path.join(root,'web/data',f),'utf8'),ctx,{filename:f});
 const entries=ctx.window.ORTHODOX_ENTRIES||[];
 let errors=[],enWords=0,elWords=0,minEn=1e9,minEl=1e9,deep=0;

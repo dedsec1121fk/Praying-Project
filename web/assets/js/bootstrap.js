@@ -21,9 +21,7 @@
     window.ORTHODOX_BOOT_LANG=lang;window.ORTHODOX_BOOT_STARTED=performance.now();
     save(lang);document.documentElement.lang=lang;
     languageStage.hidden=true;loadingStage.hidden=false;
-    const title=document.getElementById('startupTitle'),sub=document.getElementById('startupSub');
-    title.textContent=lang==='el'?'Φόρτωση του καταλόγου των αγίων':'Loading the saints catalog';
-    sub.textContent=lang==='el'?'Θα ανοίξει αφού προετοιμαστεί ο κατάλογος και οι πρώτες ορατές εικόνες.':'The catalog will open after the catalog and the first visible icons are prepared.';
+    const pct=document.getElementById('startupPct');if(pct)pct.textContent='0%';
     try{
       await loadScript('web/data/runtime-index.js');
       await loadScript('web/assets/js/app.js');

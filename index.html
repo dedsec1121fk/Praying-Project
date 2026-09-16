@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#8fd0f6" />
   <meta name="description" content="A bilingual English/Greek Orthodox catalog of Scripture, saints and heavenly beings." />
   <title>Orthodox Saints • Ορθόδοξοι Άγιοι</title>
+  <link rel="manifest" href="web-app.webmanifest" />
   <link rel="stylesheet" href="web/assets/css/styles.css" />
 </head>
 <body>
@@ -20,12 +21,8 @@
           <button type="button" data-start-lang="el"><b>Ελληνικά</b><small>ΕΛ</small></button>
         </div>
       </div>
-      <div id="loadingStage" class="loading-stage" hidden>
-        <div class="startup-cross" aria-hidden="true">☦</div>
-        <strong id="startupTitle">Preparing the saints catalog</strong>
-        <span id="startupSub">Preparing the catalog and the first visible icons…</span>
-        <div class="startup-track" aria-hidden="true"><i id="startupBar"></i></div>
-        <small id="startupPct">0%</small>
+      <div id="loadingStage" class="loading-stage loading-stage-percent" hidden>
+        <strong id="startupPct" class="startup-percent-only">0%</strong>
       </div>
     </div>
   </div>
@@ -35,6 +32,7 @@
         <span class="search-icon" aria-hidden="true">⌕</span>
         <input id="search" type="search" placeholder="Search a saint, apostle, angel…" autocomplete="off" spellcheck="false" aria-label="Search the Orthodox web" />
         <span id="matchCount" class="match-count" aria-live="polite"></span>
+        <button id="offlineBtn" class="offline-btn" type="button" aria-label="Download website for offline use" title="Download for offline use">⇩</button>
         <span class="lang-switch" role="group" aria-label="Language">
           <button class="lang active" data-lang="en" type="button">EN</button>
           <button class="lang" data-lang="el" type="button">ΕΛ</button>
@@ -46,6 +44,14 @@
       <div id="cardGrid" class="card-grid"></div>
       <div id="emptyState" class="empty-state" hidden data-i18n="none">No matches</div>
     </section>
+    <div id="scrollGuide" class="scroll-guide" aria-hidden="false">
+      <div id="scrollTrack" class="scroll-guide-track">
+        <button id="scrollThumb" class="scroll-guide-thumb" type="button" aria-label="Scroll position">
+          <span id="scrollPercent">0%</span>
+        </button>
+      </div>
+    </div>
+    <div id="offlineStatus" class="offline-status" role="status" aria-live="polite" hidden></div>
   </main>
 
   <dialog id="detailModal" class="modal">

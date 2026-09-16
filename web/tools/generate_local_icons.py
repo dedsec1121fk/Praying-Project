@@ -34,7 +34,10 @@ PALETTE={
  'nt-saint':('#665085','#eadcff','#52406d'),
  'church-saint':('#714a35','#ffe0b9','#5e3d2b'),
  'feast':('#7c5b20','#fff0a8','#6b4d17'),
- 'biblical-context':('#354254','#d8e3f0','#293444')
+ 'biblical-context':('#354254','#d8e3f0','#293444'),
+ 'parable':('#41634f','#dff7c8','#2e513b'),
+ 'psalm':('#3f4d7a','#e7ddff','#2d365f'),
+ 'scripture-story':('#6b4a6f','#f0d5f3','#513854')
 }
 TITLE_WORDS={'saint','st','holy','righteous','prophet','prophetess','apostle','venerable','martyr','greatmartyr','hieromartyr','blessed','patriarch','archangel','the','of','and','equal-to-the-apostles','equal','to','apostles','elder','bishop','mother','father'}
 FEMALE_HINTS={'mary','maria','theotokos','anna','anne','photini','paraskevi','barbara','catherine','katherine','thecla','lydia','phoebe','euphemia','olga','helen','brigid','sarah','rebecca','rachel','esther','judith','martha','magdalene','febe','eudokia','xenia','matrona','marina','irene','sophia','justina','pelagia','mary-egypt','agnes','lucy','monica'}
@@ -185,6 +188,12 @@ def svg_for(e):
         art=f'''{draw_halo('#ffe8a2')}{draw_head(False)}{draw_body(cat,'#375c83','#315985',False,False,False)}{add_symbol(text,cat,accent2,robe2,False)}'''
     elif cat=='feast':
         art=add_symbol(text,cat,accent2,robe2,False)
+    elif cat=='psalm':
+        art='''<path d="M63 56h114v118H63z" rx="10" fill="#f5e8c3" stroke="#fff4cf" stroke-width="5"/><path d="M78 78h84M78 95h73M78 112h80M78 129h68" stroke="#765f3a" stroke-width="5" stroke-linecap="round"/><path d="M92 158c24-24 38-24 57 0" fill="none" stroke="#d8b95f" stroke-width="8"/><circle cx="120" cy="48" r="14" fill="#d8b95f"/><text x="120" y="54" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#2b3459">Ψ</text>'''
+    elif cat=='parable':
+        art='''<path d="M60 165q60-54 120 0v24H60z" fill="#315c3d"/><path d="M120 163v-67" stroke="#f1e6ad" stroke-width="7" stroke-linecap="round"/><path d="M120 121c-19-19-34-18-46-6 18 3 31 12 46 25M120 111c18-20 34-19 47-7-18 4-32 13-47 26" fill="#9dd67a"/><circle cx="120" cy="79" r="18" fill="#f0d27d"/><path d="M80 56h80" stroke="#fff1bf" stroke-width="5" stroke-linecap="round"/>'''
+    elif cat=='scripture-story':
+        art='''<path d="M60 62q30-15 60 1v111q-30-15-60-2z" fill="#f3e0bb" stroke="#fff3d1" stroke-width="4"/><path d="M180 62q-30-15-60 1v111q30-15 60-2z" fill="#ead2aa" stroke="#fff3d1" stroke-width="4"/><path d="M120 64v109" stroke="#9f7a54" stroke-width="3"/><path d="M75 88h31M75 104h34M75 120h27M134 88h31M134 104h28M134 120h34" stroke="#84694d" stroke-width="4" stroke-linecap="round"/><circle cx="120" cy="45" r="13" fill="#f0ca70"/>'''
     elif not ven:
         art='''<rect x="52" y="48" width="136" height="137" rx="22" fill="#25334b" stroke="#9fb5cc" stroke-width="5"/><path d="M82 76h76M82 98h76M82 120h58M82 142h69" stroke="#d7e3ef" stroke-width="6" stroke-linecap="round"/><circle cx="120" cy="37" r="7" fill="#b9c9d9"/><text x="120" y="178" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#dce7f2">•</text>'''
     else:

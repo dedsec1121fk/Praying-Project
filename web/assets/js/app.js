@@ -6,6 +6,12 @@
   const search=document.getElementById('search');
   const matchCount=document.getElementById('matchCount');
   const emptyState=document.getElementById('emptyState');
+  const catalogSection=document.getElementById('catalogSection');
+  const offlineBtn=document.getElementById('offlineBtn');
+  const offlineStatus=document.getElementById('offlineStatus');
+  const scrollTrack=document.getElementById('scrollTrack');
+  const scrollThumb=document.getElementById('scrollThumb');
+  const scrollPercent=document.getElementById('scrollPercent');
   const modal=document.getElementById('detailModal');
   const byId=new Map(entries.map(e=>[e.id,e]));
   const storageGet=(k,f)=>{try{return localStorage.getItem(k)||f}catch(_){return f}};
@@ -20,26 +26,26 @@
 
   const UI={
     en:{
-      title:'Orthodox Saints',search:'Search a saint, apostle, angel…',none:'No matches',
+      title:'Orthodox Saints',search:'Search saints, beings, Psalms, parables, stories…',none:'No matches',
       feastDay:'Feast / commemoration',scripture:'Scripture / tradition',description:'Description',story:'Story',prayer:'Prayer',notes:'Notes & cautions',
       overview:'Known account',identity:'Identity & Orthodox context',sources:'Sources & limits',commemoration:'Commemoration & veneration',names:'Names & aliases',
       notVenerated:'Biblical context: this entry is not presented as a saint and no prayer is addressed to this figure.',
       source:'Primary source / reference',imageSource:'Image source',localIllustration:'Local illustrative icon',detailed:'Expanded source-based profile',localRecord:'Complete local record',
       result:'match',results:'matches',detailLoading:'Loading full profile…',detailError:'The full local profile could not be loaded.',
       startup:'Preparing the saints catalog',startupSub:'Loading the catalog and the first visible icons…',
-      ready:'Catalog ready',
-      category:{christ:'Christ & Spirit',theotokos:'Theotokos',angel:'Angel / Heavenly Power',forefather:'Forefather',righteous:'Old Testament Righteous',prophet:'Prophet',apostle:'Apostle / Evangelist','nt-saint':'New Testament Saint','church-saint':'Church Saint',feast:'Feast','biblical-context':'Biblical Context'}
+      ready:'Catalog ready',metadata:'Search details & associations',offline:'Download for offline use',offlinePreparing:'Preparing offline download…',offlineReady:'Full website cached for offline use',offlineFailed:'Offline download could not finish',offlineUnsupported:'Offline cache requires a secure HTTPS browser',
+      category:{christ:'Christ & Spirit',theotokos:'Theotokos',angel:'Angel / Heavenly Power',forefather:'Forefather',righteous:'Old Testament Righteous',prophet:'Prophet',apostle:'Apostle / Evangelist','nt-saint':'New Testament Saint','church-saint':'Church Saint',feast:'Feast','biblical-context':'Biblical Context',parable:'Parable',psalm:'Psalm','scripture-story':'Scripture Story'}
     },
     el:{
-      title:'Ορθόδοξοι Άγιοι',search:'Αναζήτησε άγιο, απόστολο, άγγελο…',none:'Δεν βρέθηκαν αποτελέσματα',
+      title:'Ορθόδοξοι Άγιοι',search:'Αναζήτησε αγίους, όντα, Ψαλμούς, παραβολές, ιστορίες…',none:'Δεν βρέθηκαν αποτελέσματα',
       feastDay:'Εορτή / μνήμη',scripture:'Γραφή / παράδοση',description:'Περιγραφή',story:'Ιστορία',prayer:'Προσευχή',notes:'Σημειώσεις & επιφυλάξεις',
       overview:'Γνωστή διήγηση',identity:'Ταυτότητα & ορθόδοξο πλαίσιο',sources:'Πηγές & όρια',commemoration:'Μνήμη & τιμή',names:'Ονόματα & εναλλακτικές',
       notVenerated:'Βιβλικό πλαίσιο: η καταχώριση δεν παρουσιάζεται ως άγιος και δεν απευθύνεται προσευχή σε αυτό το πρόσωπο.',
       source:'Κύρια πηγή / αναφορά',imageSource:'Πηγή εικόνας',localIllustration:'Τοπική εικονογραφική απεικόνιση',detailed:'Εκτεταμένο προφίλ βασισμένο σε πηγές',localRecord:'Πλήρης τοπική καταγραφή',
       result:'αποτέλεσμα',results:'αποτελέσματα',detailLoading:'Φόρτωση πλήρους προφίλ…',detailError:'Δεν ήταν δυνατή η φόρτωση του πλήρους τοπικού προφίλ.',
       startup:'Προετοιμασία του καταλόγου των αγίων',startupSub:'Φόρτωση του καταλόγου και των πρώτων ορατών εικόνων…',
-      ready:'Ο κατάλογος είναι έτοιμος',
-      category:{christ:'Χριστός & Πνεύμα',theotokos:'Θεοτόκος',angel:'Άγγελος / Ουράνια Δύναμη',forefather:'Προπάτορας',righteous:'Δίκαιος Παλαιάς Διαθήκης',prophet:'Προφήτης',apostle:'Απόστολος / Ευαγγελιστής','nt-saint':'Άγιος Καινής Διαθήκης','church-saint':'Άγιος Εκκλησίας',feast:'Εορτή','biblical-context':'Βιβλικό Πλαίσιο'}
+      ready:'Ο κατάλογος είναι έτοιμος',metadata:'Στοιχεία αναζήτησης & συσχετισμοί',offline:'Λήψη για πλήρη χρήση εκτός σύνδεσης',offlinePreparing:'Προετοιμασία λήψης εκτός σύνδεσης…',offlineReady:'Ολόκληρη η ιστοσελίδα αποθηκεύτηκε για χρήση εκτός σύνδεσης',offlineFailed:'Η λήψη εκτός σύνδεσης δεν ολοκληρώθηκε',offlineUnsupported:'Η αποθήκευση εκτός σύνδεσης απαιτεί ασφαλή σύνδεση HTTPS',
+      category:{christ:'Χριστός & Πνεύμα',theotokos:'Θεοτόκος',angel:'Άγγελος / Ουράνια Δύναμη',forefather:'Προπάτορας',righteous:'Δίκαιος Παλαιάς Διαθήκης',prophet:'Προφήτης',apostle:'Απόστολος / Ευαγγελιστής','nt-saint':'Άγιος Καινής Διαθήκης','church-saint':'Άγιος Εκκλησίας',feast:'Εορτή','biblical-context':'Βιβλικό Πλαίσιο',parable:'Παραβολή',psalm:'Ψαλμός','scripture-story':'Βιβλική Ιστορία'}
     }
   };
 
@@ -63,7 +69,9 @@
 
   function matches(){
     const q=norm(state.query.trim());
-    return q?ordered.filter(e=>(searchIndex.get(e.id)||'').includes(q)):ordered;
+    if(!q)return ordered;
+    const terms=q.split(/\s+/).filter(Boolean);
+    return ordered.filter(e=>{const hay=searchIndex.get(e.id)||'';return terms.every(term=>hay.includes(term))});
   }
 
   function imageUrl(path){try{return new URL(path,document.baseURI).href}catch(_){return path}}
@@ -140,6 +148,33 @@
     for(const s of sources){if(!s)continue;let label=(s.label&&((typeof s.label==='object'&&s.label[lang])||s.label.en))||s.url;if(!label)continue;label=locText(label,lang);const li=document.createElement('li');if(s.url){const a=document.createElement('a');a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=label;li.append(a)}else{const span=document.createElement('span');span.textContent=label;li.append(span)}ul.append(li)}
     section.append(h,ul);body.append(section);
   }
+  function metadataPairs(meta,lang){
+    if(!meta||typeof meta!=='object')return [];
+    const preferred=lang==='el'?['_el','_en']:['_en','_el'];
+    const labelMap={era:{en:'Era',el:'Εποχή'},location:{en:'Location',el:'Τόπος'},type:{en:'Type',el:'Τύπος'},patronage:{en:'Patronage / intercession association',el:'Προστασία / συσχετισμός πρεσβείας'},associations:{en:'Associations',el:'Συσχετισμοί'},themes:{en:'Themes',el:'Θέματα'},liturgical_context:{en:'Liturgical context',el:'Λειτουργικό πλαίσιο'},lxx_number:{en:'Septuagint number',el:'Αριθμός Ο΄'},common_number:{en:'Common number',el:'Συνήθης αριθμός'},teacher:{en:'Teacher',el:'Διδάσκαλος'}};
+    const seen=new Set(),out=[];
+    for(const [key,val] of Object.entries(meta)){
+      if(key==='metadataSource'||key==='search_aliases'||key==='significance_en'||key==='significance_el')continue;
+      let base=key,rank=2;
+      for(let i=0;i<preferred.length;i++)if(key.endsWith(preferred[i])){base=key.slice(0,-preferred[i].length);rank=i;break}
+      if(seen.has(base)&&rank>0)continue;
+      if(key.endsWith('_en')&&lang==='el'&&meta[base+'_el']!=null)continue;
+      if(key.endsWith('_el')&&lang==='en'&&meta[base+'_en']!=null)continue;
+      const text=Array.isArray(val)?val.join(' • '):String(val??'').trim();if(!text)continue;
+      seen.add(base);
+      const pretty=(labelMap[base]?.[lang])||base.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+      out.push([pretty,text]);
+    }
+    return out;
+  }
+  function addMetadata(body,meta,lang){
+    const pairs=metadataPairs(meta,lang);if(!pairs.length)return;
+    const section=document.createElement('section');section.className='profile-section metadata-section';
+    const h=document.createElement('h3');h.textContent=UI[lang].metadata;
+    const grid=document.createElement('div');grid.className='metadata-grid';
+    for(const [label,value] of pairs){const item=document.createElement('div');const b=document.createElement('b');b.textContent=label;const span=document.createElement('span');span.textContent=locText(value,lang);item.append(b,span);grid.append(item)}
+    section.append(h,grid);body.append(section);
+  }
   function populateModalLoading(e,error=false){
     const lang=state.lang; modal.dataset.loading=error?'error':'true';
     setModalMedia(e);
@@ -162,6 +197,7 @@
     document.getElementById('modalCategory').textContent=UI[lang].category[e.category]||locText(e.category,lang);
     const body=document.getElementById('tabBody'); body.replaceChildren();
     if(state.tab==='description'){
+      addMetadata(body,e.metadata,lang);
       addSection(body,UI[lang].description,(e.description&&e.description[lang])||(e.description&&e.description.en)||(e.story&&e.story[lang])||(e.story&&e.story.en)||'—','description-section');
     }else if(state.tab==='story'){
       const k=e.knowledge?.[lang]||e.knowledge?.en;
@@ -171,7 +207,7 @@
     }else if(state.tab==='prayer'){
       addSection(body,UI[lang].prayer,(e.prayer&&e.prayer[lang])||(e.prayer&&e.prayer.en)||'—','prayer-section');
     }
-    const notice=document.getElementById('modalNotice'); notice.hidden=e.venerated!==false; notice.textContent=UI[lang].notVenerated;
+    const notice=document.getElementById('modalNotice'); const showContextNotice=e.venerated===false&&!['psalm','parable','scripture-story'].includes(e.category); notice.hidden=!showContextNotice; notice.textContent=UI[lang].notVenerated;
     document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===state.tab));
   }
   async function openEntry(id){
@@ -188,7 +224,7 @@
     const frag=document.createDocumentFragment();
     for(const e of list){
       const card=document.createElement('button');
-      card.type='button'; card.className='saint-card'; card.dataset.id=e.id;
+      card.type='button'; card.className='saint-card'; card.dataset.id=e.id; card.dataset.category=e.category;
       card.setAttribute('aria-label',locText(e.name?.[state.lang]||e.name?.en||e.id,state.lang));
       const media=document.createElement('div'); media.className='saint-card-media';
       const img=document.createElement('img');
@@ -201,6 +237,7 @@
       frag.append(card);
     }
     cardGrid.replaceChildren(frag);
+    requestAnimationFrame(updateScrollGuide);
   }
 
   function translate(){
@@ -209,6 +246,7 @@
     search.setAttribute('aria-label',UI[state.lang].search);
     document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(UI[state.lang][key])el.textContent=UI[state.lang][key]});
     document.querySelectorAll('.lang').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===state.lang));
+    if(offlineBtn){offlineBtn.setAttribute('aria-label',UI[state.lang].offline);offlineBtn.title=UI[state.lang].offline;if(storageGet('orthodox-offline-ready','')==='yes')offlineBtn.classList.add('ready')}
     renderCards();
     if(state.active){const e=byId.get(state.active);if(e&&activeDetail?.id===e.id)populateModal();else if(e)populateModalLoading(e)}
   }
@@ -223,18 +261,56 @@
   }
   async function runStartup(){
     const loader=document.getElementById('startupLoader'); if(!loader){ renderCards(); return; }
-    const bar=document.getElementById('startupBar'), pct=document.getElementById('startupPct'), title=document.getElementById('startupTitle'), sub=document.getElementById('startupSub');
-    title.textContent=UI[state.lang].startup; sub.textContent=UI[state.lang].startupSub;
-    const setProgress=(v,text)=>{ const p=Math.max(0,Math.min(1,v)); if(bar)bar.style.transform=`scaleX(${p})`; if(pct)pct.textContent=`${Math.round(p*100)}%`; if(text&&sub)sub.textContent=text; };
-    setProgress(.15,UI[state.lang].startupSub);
-    renderCards();
-    setProgress(.55,state.lang==='el'?'Απεικόνιση του καταλόγου…':'Rendering the catalog…');
+    const pct=document.getElementById('startupPct');
+    const setProgress=v=>{const p=Math.max(0,Math.min(1,v));if(pct)pct.textContent=`${Math.round(p*100)}%`;};
+    setProgress(.10);renderCards();setProgress(.50);
     await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
-    await preloadFirstIcons(24);
-    setProgress(1,UI[state.lang].ready);
-    await new Promise(r=>setTimeout(r,180));
-    loader.classList.add('done'); document.body.classList.remove('startup-lock'); setTimeout(()=>loader.remove(),320);
+    await preloadFirstIcons(24);setProgress(1);
+    await new Promise(r=>setTimeout(r,140));
+    loader.classList.add('done'); document.body.classList.remove('startup-lock'); setTimeout(()=>loader.remove(),260);
   }
+
+  function showOfflineStatus(text,ok=false){
+    if(!offlineStatus)return;offlineStatus.hidden=false;offlineStatus.textContent=text;offlineStatus.classList.toggle('ok',ok);clearTimeout(showOfflineStatus._t);showOfflineStatus._t=setTimeout(()=>{offlineStatus.hidden=true},ok?4200:6500);
+  }
+  async function registerOfflineWorker(){
+    if(!('serviceWorker' in navigator)||!window.isSecureContext)return null;
+    try{return await navigator.serviceWorker.register('service-worker.js',{scope:'./'})}catch(err){console.warn('Service worker registration failed',err);return null}
+  }
+  async function installOffline(){
+    if(!offlineBtn)return;
+    if(!window.isSecureContext||!('caches' in window)||!('serviceWorker' in navigator)){showOfflineStatus(UI[state.lang].offlineUnsupported);return}
+    offlineBtn.disabled=true;offlineBtn.classList.add('working');offlineBtn.textContent='0%';showOfflineStatus(UI[state.lang].offlinePreparing);
+    try{
+      await registerOfflineWorker();
+      if(navigator.storage?.persist)try{await navigator.storage.persist()}catch(_){}
+      const response=await fetch('web/offline-files.json',{cache:'no-store'});if(!response.ok)throw new Error('offline manifest unavailable');
+      const data=await response.json();const files=Array.isArray(data.files)?data.files:[];if(!files.length)throw new Error('offline manifest empty');
+      const cache=await caches.open(data.cacheName||'praying-project-offline-v24');let done=0,failed=0,cursor=0;
+      const worker=async()=>{while(true){const i=cursor++;if(i>=files.length)return;const url=files[i];try{const r=await fetch(url,{cache:'reload'});if(!r.ok)throw new Error(String(r.status));await cache.put(url,r.clone())}catch(_){failed++}done++;const percent=Math.round(done/files.length*100);offlineBtn.textContent=`${percent}%`;offlineBtn.setAttribute('aria-label',`${UI[state.lang].offline} ${percent}%`)}};
+      await Promise.all(Array.from({length:Math.min(6,files.length)},worker));
+      if(failed)throw new Error(`${failed} files failed`);
+      storageSet('orthodox-offline-ready','yes');offlineBtn.textContent='✓';offlineBtn.classList.remove('working');offlineBtn.classList.add('ready');showOfflineStatus(UI[state.lang].offlineReady,true);
+    }catch(err){console.error(err);offlineBtn.textContent='⇩';offlineBtn.classList.remove('working');showOfflineStatus(`${UI[state.lang].offlineFailed}: ${err.message||err}`)}finally{offlineBtn.disabled=false}
+  }
+
+  function updateScrollGuide(){
+    if(!catalogSection||!scrollThumb||!scrollTrack)return;
+    const max=Math.max(0,catalogSection.scrollHeight-catalogSection.clientHeight);const ratio=max?catalogSection.scrollTop/max:0;
+    const trackH=scrollTrack.clientHeight||1;const thumbH=scrollThumb.offsetHeight||52;const travel=Math.max(0,trackH-thumbH);
+    scrollThumb.style.transform=`translateY(${(ratio*travel).toFixed(1)}px)`;if(scrollPercent)scrollPercent.textContent=`${Math.round(ratio*100)}%`;
+    const guide=document.getElementById('scrollGuide');if(guide)guide.classList.toggle('inactive',max<2);
+  }
+  let scrollRaf=0;catalogSection?.addEventListener('scroll',()=>{if(scrollRaf)return;scrollRaf=requestAnimationFrame(()=>{scrollRaf=0;updateScrollGuide()})},{passive:true});
+  window.addEventListener('resize',updateScrollGuide,{passive:true});
+  let thumbDrag=null;
+  scrollThumb?.addEventListener('pointerdown',e=>{e.preventDefault();thumbDrag={id:e.pointerId,startY:e.clientY,startTop:catalogSection.scrollTop};try{scrollThumb.setPointerCapture(e.pointerId)}catch(_){}});
+  scrollThumb?.addEventListener('pointermove',e=>{if(!thumbDrag||thumbDrag.id!==e.pointerId)return;const max=Math.max(0,catalogSection.scrollHeight-catalogSection.clientHeight);const travel=Math.max(1,scrollTrack.clientHeight-scrollThumb.offsetHeight);catalogSection.scrollTop=thumbDrag.startTop+(e.clientY-thumbDrag.startY)*(max/travel)});
+  const endThumb=e=>{if(thumbDrag&&thumbDrag.id===e.pointerId)thumbDrag=null};scrollThumb?.addEventListener('pointerup',endThumb);scrollThumb?.addEventListener('pointercancel',endThumb);
+  scrollTrack?.addEventListener('pointerdown',e=>{if(e.target===scrollThumb||scrollThumb.contains(e.target))return;const rect=scrollTrack.getBoundingClientRect();const ratio=Math.max(0,Math.min(1,(e.clientY-rect.top)/rect.height));catalogSection.scrollTop=ratio*Math.max(0,catalogSection.scrollHeight-catalogSection.clientHeight)});
+
+  if('serviceWorker' in navigator&&window.isSecureContext)registerOfflineWorker();
+  offlineBtn?.addEventListener('click',installOffline);
 
   let searchDebounce=0;
   search.addEventListener('input',e=>{ state.query=e.target.value; clearTimeout(searchDebounce); searchDebounce=setTimeout(renderCards,45); });
