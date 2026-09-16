@@ -520,3 +520,21 @@ html,body{overflow:hidden}
   .metadata-grid{grid-template-columns:1fr}
   .startup-card:has(.loading-stage-percent:not([hidden])){width:min(300px,calc(100vw - 46px));padding:30px 20px}
 }
+
+/* v25 complete startup preload: percent with progress bar only */
+.loading-stage-percent{
+  align-content:center;
+  justify-items:center;
+  gap:20px;
+}
+.startup-track-percent{
+  width:min(270px,72vw);
+  height:12px;
+  margin:0;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.18);
+}
+.startup-track-percent i{transition:transform .12s linear}
+.startup-loader.load-error .startup-track-percent i{background:#ff9d9d}
+.startup-loader.load-error .startup-percent-only{color:#ffd0d0}

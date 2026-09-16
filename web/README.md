@@ -24,7 +24,7 @@ The main page is a lightweight vertically scrolling card grid on a static cloud 
 
 Every entry has a repository fallback illustration in `images/catalog/`, so there is always a local image file.
 
-Verified reusable iconography is mapped in `data/image-sources.json`. `tools/prepare_repository_images.py` first downloads hand-curated mappings, then safely searches Wikimedia Commons for still-unmapped people/saints/beings, stores accepted files under `images/real/` or `images/real-auto/`, rebuilds the runtime, and refreshes the offline manifest. The deployed browser UI uses repository-hosted files rather than Wikimedia URLs at page-view time.
+Verified reusable iconography is mapped in `data/image-sources.json`. `tools/prepare_repository_images.py` first downloads the hand-reviewed mappings, then runs a fail-closed Commons resolver for still-unmapped people/saints/beings. Automatic matches require the full distinctive identity plus religious/iconographic context; ambiguous one-word identities and Wikipedia lead-image guesses are rejected. Accepted files are stored under `images/real/` or `images/real-auto/`, after which the runtime and offline manifest are rebuilt. The deployed browser UI uses repository-hosted files rather than Wikimedia URLs at page-view time.
 
 Psalms, parables, and Scripture-story cards intentionally use their dedicated bundled artwork rather than attempting to match them to an unrelated web image.
 
@@ -66,7 +66,13 @@ node web/tools/validate_profiles.js
 node web/tools/validate_lazy_runtime.js
 node web/tools/audit_content_quality.js
 python web/tools/check_static_site.py
+python web/tools/audit_image_identity.py
+python web/tools/validate_startup_preload.py
 node --check web/assets/js/app.js
 node --check web/assets/js/bootstrap.js
 node --check service-worker.js
 ```
+
+## Startup loading
+
+After language selection, the startup screen shows only a percentage and progress bar. Before the catalog becomes interactive, the app fetches every file listed in `offline-files.json` and verifies that every currently selected catalog image can be loaded. This includes all 1,186 per-entry detail files and all 1,186 dedicated catalog images. If the complete preload fails, the app fails closed rather than opening a partially loaded catalog.

@@ -14,7 +14,7 @@ media=json.loads(src.read_text(encoding='utf-8'))
 public={}
 for eid,m in media.items():
     item={}
-    for k in ('file','local','sourceUrl','license','credit','autoResolved'):
+    for k in ('file','local','sourceUrl','license','credit','autoResolved','identityVerified','identityVerifiedOn','identityEvidence'):
         if m.get(k) not in (None,'',{}): item[k]=m[k]
     if item.get('local'): public[eid]=item
 code=("(()=>{\n  'use strict';\n  const media="+json.dumps(public,ensure_ascii=False,separators=(',',':'))+";\n"

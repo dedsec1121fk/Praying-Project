@@ -1,6 +1,6 @@
 'use strict';
 const CACHE_PREFIX='praying-project-offline-';
-const CACHE_NAME='praying-project-offline-v24';
+const CACHE_NAME='praying-project-offline-v25';
 const SHELL=['./','./index.html','./404.html','./web-app.webmanifest','./web/assets/css/styles.css','./web/assets/js/bootstrap.js','./web/assets/js/app.js','./web/data/runtime-index.js','./web/offline-files.json'];
 
 self.addEventListener('install',event=>{

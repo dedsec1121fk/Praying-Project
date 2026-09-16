@@ -251,23 +251,79 @@
     if(state.active){const e=byId.get(state.active);if(e&&activeDetail?.id===e.id)populateModal();else if(e)populateModalLoading(e)}
   }
 
-  function preloadFirstIcons(limit=24){
-    const first=matches().slice(0,limit);
-    return Promise.all(first.map(e=>new Promise(resolve=>{
-      const img=new Image(); let done=false;
-      const finish=()=>{if(done)return;done=true; resolve();};
-      img.onload=finish; img.onerror=finish; img.decoding='async'; img.src=preferredThumb(e);
-    })));
+  function loadImageFully(url){
+    return new Promise((resolve,reject)=>{
+      const img=new Image();let settled=false;
+      const finish=(ok)=>{if(settled)return;settled=true;img.onload=img.onerror=null;ok?resolve():reject(new Error(`Image failed: ${url}`))};
+      img.decoding='async';img.onload=()=>finish(true);img.onerror=()=>finish(false);img.src=url;
+    });
+  }
+  async function fetchFully(url){
+    let last=null;
+    for(let attempt=0;attempt<4;attempt++){
+      try{
+        const r=await fetch(url,{cache:attempt?'reload':'force-cache'});
+        if(!r.ok)throw new Error(`${r.status} ${url}`);
+        await r.arrayBuffer();
+        return;
+      }catch(err){last=err;await new Promise(r=>setTimeout(r,350*(attempt+1)))}
+    }
+    throw last||new Error(`Could not load ${url}`);
+  }
+  async function preloadEverything(onProgress){
+    const manifestResponse=await fetch('web/offline-files.json',{cache:'reload'});
+    if(!manifestResponse.ok)throw new Error('offline file manifest unavailable');
+    const manifest=await manifestResponse.json();
+    const files=[...new Set(Array.isArray(manifest.files)?manifest.files:[])];
+    if(!files.length)throw new Error('offline file manifest empty');
+    const imageUrls=[...new Set(entries.map(e=>preferredThumb(e)).filter(u=>u&&!u.startsWith('data:')) )];
+    const total=files.length+imageUrls.length;
+    let done=0;
+    const bump=()=>onProgress?.(done,total);
+    let cursor=0;
+    const fetchWorker=async()=>{
+      while(true){
+        const i=cursor++;if(i>=files.length)return;
+        await fetchFully(files[i]);done++;bump();
+      }
+    };
+    await Promise.all(Array.from({length:Math.min(8,files.length)},fetchWorker));
+    cursor=0;
+    const imageWorker=async()=>{
+      while(true){
+        const i=cursor++;if(i>=imageUrls.length)return;
+        let last=null;
+        for(let attempt=0;attempt<3;attempt++){
+          try{await loadImageFully(imageUrls[i]);last=null;break}catch(err){last=err;await new Promise(r=>setTimeout(r,180*(attempt+1)))}
+        }
+        if(last)throw last;
+        done++;bump();
+      }
+    };
+    await Promise.all(Array.from({length:Math.min(6,imageUrls.length)},imageWorker));
+    return {files:files.length,images:imageUrls.length,total};
   }
   async function runStartup(){
     const loader=document.getElementById('startupLoader'); if(!loader){ renderCards(); return; }
-    const pct=document.getElementById('startupPct');
-    const setProgress=v=>{const p=Math.max(0,Math.min(1,v));if(pct)pct.textContent=`${Math.round(p*100)}%`;};
-    setProgress(.10);renderCards();setProgress(.50);
-    await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
-    await preloadFirstIcons(24);setProgress(1);
-    await new Promise(r=>setTimeout(r,140));
-    loader.classList.add('done'); document.body.classList.remove('startup-lock'); setTimeout(()=>loader.remove(),260);
+    const pct=document.getElementById('startupPct'),bar=document.getElementById('startupBar');
+    const setProgress=(done,total)=>{
+      const p=total?Math.max(0,Math.min(1,done/total)):0;
+      if(pct)pct.textContent=`${Math.round(p*100)}%`;
+      if(bar)bar.style.transform=`scaleX(${p})`;
+    };
+    setProgress(0,1);
+    try{
+      await preloadEverything(setProgress);
+      setProgress(1,1);
+      renderCards();
+      await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+      loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),300);
+    }catch(err){
+      console.error('Complete startup preload failed',err);
+      loader.classList.add('load-error');
+      if(pct)pct.textContent='!';
+      // Fail closed: the user is not put into a partially loaded website.
+    }
   }
 
   function showOfflineStatus(text,ok=false){
@@ -286,7 +342,7 @@
       if(navigator.storage?.persist)try{await navigator.storage.persist()}catch(_){}
       const response=await fetch('web/offline-files.json',{cache:'no-store'});if(!response.ok)throw new Error('offline manifest unavailable');
       const data=await response.json();const files=Array.isArray(data.files)?data.files:[];if(!files.length)throw new Error('offline manifest empty');
-      const cache=await caches.open(data.cacheName||'praying-project-offline-v24');let done=0,failed=0,cursor=0;
+      const cache=await caches.open(data.cacheName||'praying-project-offline-v25');let done=0,failed=0,cursor=0;
       const worker=async()=>{while(true){const i=cursor++;if(i>=files.length)return;const url=files[i];try{const r=await fetch(url,{cache:'reload'});if(!r.ok)throw new Error(String(r.status));await cache.put(url,r.clone())}catch(_){failed++}done++;const percent=Math.round(done/files.length*100);offlineBtn.textContent=`${percent}%`;offlineBtn.setAttribute('aria-label',`${UI[state.lang].offline} ${percent}%`)}};
       await Promise.all(Array.from({length:Math.min(6,files.length)},worker));
       if(failed)throw new Error(`${failed} files failed`);

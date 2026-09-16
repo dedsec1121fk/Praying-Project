@@ -1,29 +1,28 @@
 #!/usr/bin/env python3
-"""Resolve and download reusable Wikimedia Commons images for catalog entries.
+"""Strict Wikimedia Commons resolver for repository image files.
 
-This is intentionally conservative. It keeps hand-curated mappings, searches
-only entries still missing a repository image mapping, requires a reusable
-license, scores the file title/description against the entry name/aliases, and
-writes successful images into web/images/real-auto/. The website later uses
-only those committed repository files, never the remote URLs directly.
+Safety goal: wrong identity is worse than no historical image. This resolver
+therefore accepts only high-confidence iconographic/religious matches whose
+full distinctive identity is present in the Commons file title/description.
+Ambiguous one-word identities are not auto-resolved. There is deliberately no
+Wikipedia lead-image fallback.
 """
 from __future__ import annotations
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import argparse, json, re, sys, time, urllib.parse, urllib.request, urllib.error
+import argparse, json, re, time, unicodedata, urllib.parse, urllib.request
 
 ROOT=Path(__file__).resolve().parents[2]
 RUNTIME=ROOT/'web/data/runtime-index.js'
 MANIFEST=ROOT/'web/data/image-sources.json'
 OUT=ROOT/'web/images/real-auto'
 API='https://commons.wikimedia.org/w/api.php'
-WIKI_API='https://en.wikipedia.org/w/api.php'
-UA='Praying-Project/3.0 (+https://github.com/dedsec1121fk/Praying-Project; Commons repository image resolver)'
+UA='Praying-Project/4.0 (+https://github.com/dedsec1121fk/Praying-Project; strict Commons identity resolver)'
 
 parser=argparse.ArgumentParser()
-parser.add_argument('--workers',type=int,default=4)
-parser.add_argument('--limit',type=int,default=0,help='resolve at most N missing entries; 0 = all')
-parser.add_argument('--force',action='store_true',help='also retry entries that already have an auto mapping')
+parser.add_argument('--workers',type=int,default=3)
+parser.add_argument('--limit',type=int,default=0)
+parser.add_argument('--force',action='store_true')
 args=parser.parse_args()
 
 m=re.search(r'window\.ORTHODOX_ENTRIES=(\[.*\]);\}\)\(\);\s*$',RUNTIME.read_text(encoding='utf-8'),re.S)
@@ -33,14 +32,19 @@ manifest=json.loads(MANIFEST.read_text(encoding='utf-8')) if MANIFEST.exists() e
 OUT.mkdir(parents=True,exist_ok=True)
 
 STOP={
- 'saint','st','holy','righteous','venerable','blessed','martyr','great','greatmartyr','hieromartyr','new','apostle','evangelist','prophet','prophetess','patriarch','archangel','angel','the','of','and','son','daughter','father','mother','brother','lord','elder','metropolitan','bishop','abbot','abbess','king','queen','emperor','empress','priest','deacon','monk','nun','feast','synaxis','commemoration'
+ 'saint','st','holy','righteous','venerable','blessed','martyr','great','greatmartyr','hieromartyr','new','apostle','evangelist','prophet','prophetess','patriarch','archangel','angel','the','of','and','son','daughter','father','mother','brother','lord','elder','metropolitan','bishop','abbot','abbess','king','queen','emperor','empress','priest','deacon','monk','nun','feast','synaxis','commemoration','venerable'
 }
-BAD_TITLE={'map','flag','coat of arms','logo','seal','stamp','coin','banknote','street','school','church exterior','cathedral exterior','monastery exterior','grave','tomb','reliquary only'}
+BAD={
+ 'logo','company','corporation','business','brand','product','advertisement','album','film','television','tv series','actor','actress','singer','rapper','musician','football','soccer','basketball','politician','president','prime minister','ceo','university','school','street','map','flag','coat of arms','seal','stamp','coin','banknote','website','software','app icon','trademark'
+}
+RELIGIOUS={
+ 'icon','ikon','orthodox','byzantine','fresco','mosaic','menologion','miniature','saint','apostle','prophet','martyr','archangel','theotokos','christ','biblical','scripture','righteous','monk','bishop','patriarch','church art','religious art'
+}
 ALLOWED_LICENSE=('public domain','cc0','cc by','cc-by','cc by-sa','cc-by-sa','pdm')
 MIME_EXT={'image/jpeg':'.jpg','image/png':'.png','image/webp':'.webp','image/gif':'.gif'}
+AUTO_CATEGORIES={'christ','theotokos','angel','forefather','righteous','prophet','apostle','nt-saint','church-saint','feast'}
 
 def norm(s:str)->str:
-    import unicodedata
     s=unicodedata.normalize('NFKD',s or '').encode('ascii','ignore').decode().lower()
     s=re.sub(r'[^a-z0-9]+',' ',s)
     return re.sub(r'\s+',' ',s).strip()
@@ -48,7 +52,7 @@ def norm(s:str)->str:
 def core_tokens(s:str):
     return [t for t in norm(s).split() if len(t)>=3 and t not in STOP]
 
-def entry_names(e):
+def names(e):
     vals=[e.get('name',{}).get('en','')]
     vals += [a for a in (e.get('aliases') or []) if isinstance(a,str) and re.search('[A-Za-z]',a)]
     out=[]
@@ -57,139 +61,96 @@ def entry_names(e):
         if v and v not in out: out.append(v)
     return out
 
+def safe_identity_phrases(e):
+    out=[]
+    for name in names(e):
+        toks=core_tokens(name)
+        if len(toks)>=2:
+            out.append((name,toks))
+    return out
+
 def query_terms(e):
-    names=entry_names(e)
-    primary=names[0] if names else e['id'].replace('-',' ')
-    simple=' '.join(core_tokens(primary)) or primary
-    cat=e.get('category','')
     qs=[]
-    if cat=='feast':
-        qs=[f'"{primary}" Orthodox icon',f'{simple} icon']
-    elif cat=='angel':
-        qs=[f'"{primary}" icon',f'{simple} Orthodox icon']
-    elif cat=='biblical-context':
-        qs=[f'"{primary}" biblical art',f'{simple} icon']
-    else:
-        qs=[f'"{primary}" icon',f'{simple} Orthodox icon']
-    for a in names[1:3]: qs.append(f'"{a}" icon')
+    for name,toks in safe_identity_phrases(e)[:3]:
+        phrase=' '.join(toks)
+        qs += [f'"{name}" icon',f'"{phrase}" Orthodox icon']
+    if e.get('category')=='feast':
+        primary=(names(e) or [e['id'].replace('-',' ')])[0]
+        qs.insert(0,f'"{primary}" Orthodox icon')
     seen=[]
     for q in qs:
         if q not in seen:seen.append(q)
-    return seen[:3]
+    return seen[:4]
 
 def api_json(params,retries=3):
-    params=dict(params)
-    params.update({'format':'json','formatversion':'2','origin':'*','maxlag':'5'})
+    params=dict(params);params.update({'format':'json','formatversion':'2','origin':'*','maxlag':'5'})
     url=API+'?'+urllib.parse.urlencode(params)
     last=None
     for attempt in range(retries):
         try:
             req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'application/json'})
-            with urllib.request.urlopen(req,timeout=45) as r:
-                return json.loads(r.read().decode('utf-8'))
+            with urllib.request.urlopen(req,timeout=45) as r:return json.loads(r.read().decode('utf-8'))
         except Exception as ex:
-            last=ex; time.sleep(.7*(attempt+1))
+            last=ex;time.sleep(.8*(attempt+1))
     raise last
 
-def clean_html(s):
-    return re.sub(r'<[^>]+>',' ',s or '')
-
-def metadata_value(meta,key):
+def clean_html(s):return re.sub(r'<[^>]+>',' ',s or '')
+def meta_value(meta,key):
     v=(meta or {}).get(key,{})
     return clean_html(v.get('value','')) if isinstance(v,dict) else ''
 
 def license_ok(meta):
-    lic=metadata_value(meta,'LicenseShortName') or metadata_value(meta,'UsageTerms')
+    lic=meta_value(meta,'LicenseShortName') or meta_value(meta,'UsageTerms')
     n=norm(lic)
     return lic if any(norm(x) in n for x in ALLOWED_LICENSE) else ''
 
-def score_candidate(e,page):
+def candidate(e,page):
     title=page.get('title','').replace('File:','')
     ii=(page.get('imageinfo') or [{}])[0]
     meta=ii.get('extmetadata') or {}
-    lic=license_ok(meta)
-    mime=ii.get('mime','')
+    lic=license_ok(meta);mime=ii.get('mime','')
     if not lic or mime not in MIME_EXT:return None
-    hay=norm(' '.join([title,metadata_value(meta,'ImageDescription'),metadata_value(meta,'ObjectName')]))
-    if any(x in hay for x in BAD_TITLE):return None
-    best=-99
-    best_ratio=0
-    for name in entry_names(e):
-        toks=core_tokens(name)
-        if not toks:continue
-        hits=sum(1 for t in toks if t in hay)
-        ratio=hits/len(toks)
-        s=ratio*10+hits
-        if norm(name) and norm(name) in hay:s+=6
-        best=max(best,s);best_ratio=max(best_ratio,ratio)
-    if best<0:
-        toks=core_tokens(e['id'].replace('-',' '));hits=sum(1 for t in toks if t in hay);best_ratio=hits/max(1,len(toks));best=best_ratio*10+hits
-    # Need a meaningful identity match. Single distinctive-token names are okay;
-    # multi-token names require at least half of the distinctive tokens.
-    toks=core_tokens(entry_names(e)[0] if entry_names(e) else e['id'])
-    min_ratio=.50 if len(toks)>=2 else 1.0
-    if best_ratio<min_ratio:return None
     title_n=norm(title)
-    if ' icon ' in f' {title_n} ' or 'ikon' in title_n or 'icon of' in title_n:best+=3
-    if 'orthodox' in hay or 'byzantine' in hay:best+=2
-    w=ii.get('width') or 0;h=ii.get('height') or 0
-    if w and h and min(w,h)>=250:best+=1
-    return best,ii,lic,title,meta
-
-def search_entry(e):
+    desc_n=norm(' '.join([meta_value(meta,'ImageDescription'),meta_value(meta,'ObjectName'),meta_value(meta,'Categories')]))
+    hay=f'{title_n} {desc_n}'.strip()
+    if any(b in hay for b in BAD):return None
+    if not any(r in hay for r in RELIGIOUS):return None
+    identities=safe_identity_phrases(e)
+    if not identities:return None  # deliberately refuse ambiguous one-word identities
     best=None
-    for q in query_terms(e):
-        try:
-            data=api_json({
-              'action':'query','generator':'search','gsrnamespace':'6','gsrlimit':'8','gsrsearch':q,
-              'prop':'imageinfo','iiprop':'url|mime|size|extmetadata','iiurlwidth':'640'
-            })
-        except Exception:
-            continue
-        for p in (data.get('query',{}).get('pages') or []):
-            sc=score_candidate(e,p)
-            if sc and (best is None or sc[0]>best[0]):best=(sc[0],p,sc)
-        if best and best[0]>=14:break
-    if best is None:
-        best=wikipedia_file_candidate(e)
+    for raw,toks in identities:
+        if not all(t in hay for t in toks):continue
+        all_title=all(t in title_n for t in toks)
+        phrase=' '.join(toks)
+        phrase_hit=phrase in hay
+        # Require especially strong evidence: all distinctive tokens in the title,
+        # or the complete distinctive phrase in metadata plus an iconographic term.
+        if not all_title and not phrase_hit:continue
+        score=20 + (8 if all_title else 0) + (5 if phrase_hit else 0)
+        if 'icon' in title_n or 'ikon' in title_n:score+=5
+        if 'orthodox' in hay or 'byzantine' in hay:score+=3
+        if best is None or score>best[0]:best=(score,ii,lic,title,meta,raw,toks)
     return best
 
-
-def wikipedia_file_candidate(e):
-    """Fallback: resolve the lead image of the closest English Wikipedia result,
-    then verify that file's reusable license on Commons before accepting it.
-    """
-    names=entry_names(e)
-    primary=names[0] if names else e['id'].replace('-',' ')
-    params={
-      'action':'query','format':'json','formatversion':'2','generator':'search',
-      'gsrsearch':primary,'gsrnamespace':'0','gsrlimit':'3',
-      'prop':'pageimages','piprop':'name|thumbnail','pithumbsize':'640','origin':'*'
-    }
-    url=WIKI_API+'?'+urllib.parse.urlencode(params)
-    try:
-        req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'application/json'})
-        with urllib.request.urlopen(req,timeout=45) as r:data=json.loads(r.read().decode('utf-8'))
-    except Exception:
-        return None
-    wanted=core_tokens(primary)
-    for page in (data.get('query',{}).get('pages') or []):
-        ptitle=norm(page.get('title',''))
-        hits=sum(1 for t in wanted if t in ptitle)
-        if wanted and hits/max(1,len(wanted)) < (.5 if len(wanted)>=2 else 1.0):
-            continue
-        fname=page.get('pageimage')
-        if not fname:continue
+def search_entry(e):
+    qs=query_terms(e)
+    if not qs:return None
+    candidates=[]
+    for q in qs:
         try:
-            c=api_json({'action':'query','titles':'File:'+fname,'prop':'imageinfo','iiprop':'url|mime|size|extmetadata','iiurlwidth':'640'})
+            data=api_json({'action':'query','generator':'search','gsrnamespace':'6','gsrlimit':'8','gsrsearch':q,'prop':'imageinfo','iiprop':'url|mime|size|extmetadata','iiurlwidth':'640'})
         except Exception:
             continue
-        pages=c.get('query',{}).get('pages') or []
-        if not pages:continue
-        cp=pages[0]
-        sc=score_candidate(e,cp)
-        if sc:return (sc[0]+1.5,cp,sc)
-    return None
+        for p in data.get('query',{}).get('pages') or []:
+            sc=candidate(e,p)
+            if sc:candidates.append((sc[0],p,sc,q))
+    if not candidates:return None
+    candidates.sort(key=lambda x:x[0],reverse=True)
+    # Require the top candidate to be strong. If two different identities are tied
+    # and neither title explicitly carries all tokens, fail closed.
+    top=candidates[0]
+    if top[0]<28:return None
+    return top
 
 def download(url,out):
     req=urllib.request.Request(url,headers={'User-Agent':UA,'Accept':'image/*,*/*;q=.5'})
@@ -201,9 +162,9 @@ def download(url,out):
 
 def resolve_one(e):
     found=search_entry(e)
-    if not found:return e['id'],None,'no safe Commons match'
-    _,page,sc=found
-    _,ii,lic,title,meta=sc
+    if not found:return e['id'],None,'no strict exact-identity Commons match'
+    _,page,sc,query=found
+    score,ii,lic,title,meta,identity,toks=sc
     ext=MIME_EXT.get(ii.get('mime',''),'.jpg')
     local=f'web/images/real-auto/{e["id"]}{ext}'
     out=ROOT/local
@@ -212,63 +173,52 @@ def resolve_one(e):
     try:size=download(url,out)
     except Exception as ex:return e['id'],None,f'download failed: {ex}'
     page_title=page.get('title','File:'+title)
-    source='https://commons.wikimedia.org/wiki/'+urllib.parse.quote(page_title.replace(' ','_'),safe=':(),_-')
-    artist=metadata_value(meta,'Artist') or metadata_value(meta,'Credit')
-    credit_base=clean_html(artist).strip()
-    credit_en=f'{title} — Wikimedia Commons — {lic}'
-    if credit_base and len(credit_base)<160:credit_en=f'{title} — {credit_base} — Wikimedia Commons — {lic}'
+    source='https://commons.wikimedia.org/wiki/'+urllib.parse.quote(page_title.replace(' ','_'),safe=':(),_-\'')
+    artist=meta_value(meta,'Artist') or meta_value(meta,'Credit')
+    artist=clean_html(artist).strip()
+    credit=f'{title} — Wikimedia Commons — {lic}'
+    if artist and len(artist)<160:credit=f'{title} — {artist} — Wikimedia Commons — {lic}'
     item={
-      'file':title,
-      'remote':ii.get('url') or url,
-      'local':local,
-      'sourceUrl':source,
-      'license':lic,
-      'credit':{'en':credit_en,'el':credit_en},
-      'autoResolved':True
+      'file':title,'remote':ii.get('url') or url,'local':local,'sourceUrl':source,'license':lic,
+      'credit':{'en':credit,'el':credit},'autoResolved':True,
+      'identityVerified':'strict-commons-title-metadata-v1','identityEvidence':{'matchedName':identity,'tokens':toks,'query':query,'score':score}
     }
     return e['id'],item,f'{size:,} bytes'
 
+# Never preserve legacy loose auto-resolved mappings.
+for eid in list(manifest):
+    m=manifest[eid]
+    if m.get('autoResolved') and m.get('identityVerified')!='strict-commons-title-metadata-v1':
+        local=m.get('local')
+        if local:
+            try:(ROOT/local).unlink(missing_ok=True)
+            except Exception:pass
+        del manifest[eid]
+
 missing=[]
 for e in entries:
-    # Psalms, parables, and Scripture-story cards intentionally use the bundled
-    # local artwork. The resolver focuses network work on people, saints,
-    # heavenly beings, feasts, and biblical-context figures where a real image
-    # can meaningfully correspond to the entry.
-    if e.get('category') in {'psalm','parable','scripture-story'}:
-        continue
+    if e.get('category') not in AUTO_CATEGORIES:continue
     existing=manifest.get(e['id'])
-    if existing and existing.get('local') and not (args.force and existing.get('autoResolved')):
-        continue
+    if existing and existing.get('local') and not (args.force and existing.get('autoResolved')):continue
+    if not safe_identity_phrases(e):continue
     missing.append(e)
 if args.limit>0:missing=missing[:args.limit]
-print(f'Commons resolver: {len(entries)} catalog entries; {len(manifest)} existing mappings; {len(missing)} to search.')
-if not missing:raise SystemExit(0)
+print(f'Strict Commons resolver: {len(entries)} entries; {len(manifest)} trusted mappings; {len(missing)} eligible exact-identity searches.')
 
 resolved=0;unresolved=0
-with ThreadPoolExecutor(max_workers=max(1,min(args.workers,6))) as pool:
+with ThreadPoolExecutor(max_workers=max(1,min(args.workers,4))) as pool:
     futs={pool.submit(resolve_one,e):e for e in missing}
     for i,f in enumerate(as_completed(futs),1):
         e=futs[f]
         try:eid,item,msg=f.result()
         except Exception as ex:eid,item,msg=e['id'],None,str(ex)
         if item:
-            manifest[eid]=item;resolved+=1
-            print(f'[{i}/{len(missing)}] SAVED {eid}: {item["file"]} ({msg})')
+            manifest[eid]=item;resolved+=1;print(f'[{i}/{len(missing)}] SAVED {eid}: {item["file"]}')
         else:
-            unresolved+=1
-            print(f'[{i}/{len(missing)}] no match {eid}: {msg}')
-        # Save progress frequently so interruption does not lose completed work.
-        if i%10==0:
-            MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+            unresolved+=1;print(f'[{i}/{len(missing)}] fallback {eid}: {msg}')
+        if i%10==0:MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 MANIFEST.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 remaining=[e['id'] for e in entries if e['id'] not in manifest]
-report={
-  'catalogEntries':len(entries),
-  'repositoryImageMappings':len(manifest),
-  'newlyResolvedThisRun':resolved,
-  'unresolvedThisRun':unresolved,
-  'remainingWithoutRealRepositoryImage':remaining
-}
+report={'catalogEntries':len(entries),'trustedRepositoryImageMappings':len(manifest),'newStrictMatchesThisRun':resolved,'rejectedOrUnresolvedThisRun':unresolved,'remainingOnDedicatedIllustration':remaining}
 (ROOT/'web/data/image-resolution-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-print(f'Commons resolver finished: {resolved} new repository images; {unresolved} kept on local illustrated fallback; total mappings {len(manifest)}.')
-print(f'Remaining without a reusable real repository image: {len(remaining)}. Report: web/data/image-resolution-report.json')
+print(f'Strict resolver finished: {resolved} new images; {unresolved} rejected/unresolved; {len(remaining)} remain on dedicated illustrations.')

@@ -1,0 +1,379 @@
+{
+  "reviewedOn": "2026-09-16",
+  "policy": "Only hand-reviewed Commons mappings or strict exact-identity Commons matches may be presented as real iconographic/historical images. All other entries use dedicated repository illustrations.",
+  "manualReviewedCount": 62,
+  "manualReviewed": [
+    {
+      "id": "jesus-christ",
+      "file": "Christ Icon Sinai 6th century.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christ_Icon_Sinai_6th_century.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "theotokos",
+      "file": "Theotokos, the Orthodox icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Theotokos,_the_Orthodox_icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "archangel-michael",
+      "file": "Icon of Archangel Michael.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Archangel_Michael.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "archangel-gabriel",
+      "file": "Archangel Gabriel Icon wearing sacred blue.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Archangel_Gabriel_Icon_wearing_sacred_blue.png",
+      "status": "accepted"
+    },
+    {
+      "id": "john-baptist",
+      "file": "Icon of John Baptist by Emmanouel Tzanes.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_John_Baptist_by_Emmanouel_Tzanes.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "peter",
+      "file": "Apostle Peter - 13th century icon.jpeg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apostle_Peter_-_13th_century_icon.jpeg",
+      "status": "accepted"
+    },
+    {
+      "id": "paul",
+      "file": "Apostle Paul - icon.jpeg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apostle_Paul_-_icon.jpeg",
+      "status": "accepted"
+    },
+    {
+      "id": "andrew",
+      "file": "Saint Andrew.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Andrew.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "john-theologian",
+      "file": "Holy Apostle and Evangelist John the Theologian. Icon. Greece, 1500. Monastery of St. John the Theologian on the island of Patmos.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holy_Apostle_and_Evangelist_John_the_Theologian._Icon._Greece,_1500._Monastery_of_St._John_the_Theologian_on_the_island_of_Patmos.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "mary-magdalene",
+      "file": "Maria Magdalene icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maria_Magdalene_icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "stephen",
+      "file": "Saint stephen bulgaria icon.gif",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_stephen_bulgaria_icon.gif",
+      "status": "accepted"
+    },
+    {
+      "id": "george",
+      "file": "Saint-George-Grk-ikon.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint-George-Grk-ikon.png",
+      "status": "accepted"
+    },
+    {
+      "id": "demetrios",
+      "file": "Saint Demetrius Icon from Saint George Church in Agios Vasileios.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Demetrius_Icon_from_Saint_George_Church_in_Agios_Vasileios.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "nicholas",
+      "file": "Saint nicholas icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_nicholas_icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "nektarios",
+      "file": "Saint Nektarios of Aegina Icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Nektarios_of_Aegina_Icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "john-chrysostom",
+      "file": "Icons of John Chrysostom.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icons_of_John_Chrysostom.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "gregory-palamas",
+      "file": "015 Saint Gregory Palamas Icon from Saint Paraskevi Church in Langadas.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:015_Saint_Gregory_Palamas_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "spyridon",
+      "file": "Saint Spyridon Icon from Gorno Statitsa 1720.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Spyridon_Icon_from_Gorno_Statitsa_1720.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "athanasius-great",
+      "file": "Saint Athanasius Icon in Saint Athanasius Church in Livadi, Sterios Dimitriou, 1844, Detail 1.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Athanasius_Icon_in_Saint_Athanasius_Church_in_Livadi,_Sterios_Dimitriou,_1844,_Detail_1.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "cyril-alexandria",
+      "file": "Icon St. Cyril of Alexandria.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_St._Cyril_of_Alexandria.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "maximus-confessor",
+      "file": "Greek Icon of Saint Maximos the Confessor.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Greek_Icon_of_Saint_Maximos_the_Confessor.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "mary-egypt",
+      "file": "Mary of Egypt.gif",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mary_of_Egypt.gif",
+      "status": "accepted"
+    },
+    {
+      "id": "seraphim-sarov",
+      "file": "Saint Seraphim of Sarov.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Seraphim_of_Sarov.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "david",
+      "file": "David-icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:David-icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "daniel",
+      "file": "Prophet danielorthodox icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prophet_danielorthodox_icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "basil-great",
+      "file": "Basil-the-Great.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Basil-the-Great.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "gregory-theologian",
+      "file": "Gregory of Nazianzus.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gregory_of_Nazianzus.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "elijah",
+      "file": "Prophet Elijah two-sided icon late 12th century Byzantine Museum, Kastoria.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prophet_Elijah_two-sided_icon_late_12th_century_Byzantine_Museum,_Kastoria.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "abraham",
+      "file": "AbrahamIcon.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:AbrahamIcon.JPG",
+      "status": "accepted"
+    },
+    {
+      "id": "holy-spirit",
+      "file": "Dove of the Holy Spirit.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dove_of_the_Holy_Spirit.png",
+      "status": "accepted"
+    },
+    {
+      "id": "archangel-raphael",
+      "file": "Archangel Raphael icon (Annunciation Cathedral in Moscow) by shakko.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Archangel_Raphael_icon_(Annunciation_Cathedral_in_Moscow)_by_shakko.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "james-zebedee",
+      "file": "James son of Zebedee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:James_son_of_Zebedee.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "constantine-helen",
+      "file": "070 Saints Constantine and Helen Icon from Saint Paraskevi Church in Langadas.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:070_Saints_Constantine_and_Helen_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "paisios",
+      "file": "SaintPaisiosofMountAthos.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SaintPaisiosofMountAthos.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "moses",
+      "file": "Moses-icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moses-icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "sarah",
+      "file": "Righteous Sarah.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Righteous_Sarah.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "noah",
+      "file": "Noah icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Noah_icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "pentecost",
+      "file": "Pentecost on Icon from Hajdudorog Frame.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pentecost_on_Icon_from_Hajdudorog_Frame.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "nativity-christ",
+      "file": "Nativity of christ.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nativity_of_christ.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "theophany",
+      "file": "Baptism of Christ Icon from Saint George Church in Melissourgos.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Baptism_of_Christ_Icon_from_Saint_George_Church_in_Melissourgos.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "transfiguration",
+      "file": "Transfiguration of Christ Icon Sinai 12th century.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Transfiguration_of_Christ_Icon_Sinai_12th_century.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "dormition",
+      "file": "Dormition-of-the-Theotokos Icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dormition-of-the-Theotokos_Icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "annunciation",
+      "file": "Ohrid annunciation icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ohrid_annunciation_icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "pascha",
+      "file": "Icon 1500s Anastasis.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_1500s_Anastasis.JPG",
+      "status": "accepted"
+    },
+    {
+      "id": "isaac-syrian",
+      "file": "Isak Sirin.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Isak_Sirin.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "jacob",
+      "file": "Jacob (Israel).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jacob_(Israel).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "aaron",
+      "file": "Icon of Aaron (17th c., North Russia, priv. coll.).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Aaron_(17th_c.,_North_Russia,_priv._coll.).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "ezekiel",
+      "file": "Icon of Ezekiel (17th c., North Russia, priv. coll.).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Ezekiel_(17th_c.,_North_Russia,_priv._coll.).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "gideon",
+      "file": "Icon of Gideon (17th c., North Russia, priv. coll.).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Gideon_(17th_c.,_North_Russia,_priv._coll.).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "jeremiah",
+      "file": "Icon of Jeremiah (17th c., North Russia, priv. coll.).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Jeremiah_(17th_c.,_North_Russia,_priv._coll.).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "zephaniah",
+      "file": "Icon of Zephaniah (17th c., North Russia, priv. coll.).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Zephaniah_(17th_c.,_North_Russia,_priv._coll.).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "job",
+      "file": "Icon of Job (North Russia, 17 c.).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Job_(North_Russia,_17_c.).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "philip-apostle",
+      "file": "Icon of Apostle Philip (10th c, St. Catherine monastery, Sinai).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Apostle_Philip_(10th_c,_St._Catherine_monastery,_Sinai).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "bartholomew",
+      "file": "Icon depicting Apostle Bartholomew (Byzantine and Christian Museum, 1-15-2023).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_depicting_Apostle_Bartholomew_(Byzantine_and_Christian_Museum,_1-15-2023).jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "gregory-nyssa",
+      "file": "St. Gregory of Nyssa.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:St._Gregory_of_Nyssa.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "catherine",
+      "file": "Icon of Saint Catherine.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Saint_Catherine.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "jude-thaddeus",
+      "file": "Icon of Apostle Jude Thaddeus, Saint Catherine's, Sinai.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Icon_of_Apostle_Jude_Thaddeus,_Saint_Catherine's,_Sinai.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "barbara",
+      "file": "Saint-Barbara-Grk-ikon.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint-Barbara-Grk-ikon.png",
+      "status": "accepted"
+    },
+    {
+      "id": "marina",
+      "file": "Saint Marina icon.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Marina_icon.JPG",
+      "status": "accepted"
+    },
+    {
+      "id": "panteleimon",
+      "file": "St Panteleimon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:St_Panteleimon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "anthony-great",
+      "file": "Saint Anthony the Great Athonite Icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Anthony_the_Great_Athonite_Icon.jpg",
+      "status": "accepted"
+    },
+    {
+      "id": "paraskevi",
+      "file": "Saint Paraskevi of Rome, Orthodox Icon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Paraskevi_of_Rome,_Orthodox_Icon.jpg",
+      "status": "accepted"
+    }
+  ]
+}

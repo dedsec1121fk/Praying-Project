@@ -8,15 +8,20 @@ def run(cmd,check=True):
     print('+',' '.join(map(str,cmd)),flush=True)
     return subprocess.run(cmd,cwd=ROOT,check=check)
 
-# 1) Download the hand-curated mappings first.
+# 1) Reject any unverified/legacy image mappings before downloading.
+run([sys.executable,'web/tools/audit_image_identity.py'])
+# 2) Download the hand-reviewed Commons mappings first.
 run([sys.executable,'web/tools/download_real_icons.py'],check=False)
-# 2) Search Commons for every still-unmapped entry and store accepted files in repo.
+# 3) Strict resolver: exact distinctive identity + religious/iconographic context only.
+#    There is intentionally no Wikipedia lead-image fallback.
 run([sys.executable,'web/tools/resolve_commons_images.py'],check=False)
-# 3) Rebuild browser manifest without remote display URLs.
+# 4) Audit again after any strict automatic additions.
+run([sys.executable,'web/tools/audit_image_identity.py'])
+# 5) Rebuild browser manifest without remote display URLs.
 run([sys.executable,'web/tools/build_media_manifest.py'])
-# 4) Rebuild runtime only after actual repository files exist.
+# 6) Rebuild runtime only after actual repository files exist.
 run(['node','web/tools/build_lazy_runtime.js'])
 run(['node','web/tools/validate_lazy_runtime.js'])
-# 5) Refresh the complete browser-offline file list after any downloaded images were added.
+# 7) Refresh the complete browser-offline file list after any downloaded images were added.
 run([sys.executable,'web/tools/build_offline_manifest.py'])
 print('Repository image preparation finished. Commit web/images/real and web/images/real-auto with the rest of the project.')
