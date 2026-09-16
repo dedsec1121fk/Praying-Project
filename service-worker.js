@@ -1,7 +1,7 @@
 'use strict';
 const CACHE_PREFIX='praying-project-offline-';
-const CACHE_NAME='praying-project-offline-v26';
-const SHELL=['./','./index.html','./404.html','./web-app.webmanifest','./web/assets/css/styles.css','./web/assets/js/bootstrap.js','./web/assets/js/app.js','./web/data/runtime-index.js','./web/offline-files.json'];
+const CACHE_NAME='praying-project-offline-v27';
+const SHELL=['./','./index.html','./404.html','./web-app.webmanifest','./web/assets/css/styles.css','./web/assets/js/bootstrap.js','./web/assets/js/app.js','./web/data/runtime-index.js'];
 
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
@@ -30,7 +30,7 @@ function isFreshCritical(path){
   return path.endsWith('/')||path.endsWith('/index.html')||path.endsWith('/404.html')||
     path.endsWith('/web/assets/css/styles.css')||path.endsWith('/web/assets/js/bootstrap.js')||
     path.endsWith('/web/assets/js/app.js')||path.endsWith('/web/data/runtime-index.js')||
-    path.endsWith('/web/offline-files.json')||path.endsWith('/service-worker.js');
+    path.endsWith('/web/data/search-index.js')||path.endsWith('/web/offline-files.json')||path.endsWith('/service-worker.js');
 }
 
 self.addEventListener('fetch',event=>{
@@ -40,6 +40,14 @@ self.addEventListener('fetch',event=>{
   if(url.origin!==self.location.origin)return;
   event.respondWith((async()=>{
     const cache=await caches.open(CACHE_NAME);
+    // Rich per-entry details are network-on-demand and are not automatically
+    // persisted just because a card was opened. If the user explicitly used
+    // the offline-download button, the prebuilt cache is still used as the
+    // offline fallback.
+    if(url.pathname.includes('/web/data/details/')){
+      try{return await fetch(req,{cache:'no-store'})}
+      catch(err){const cached=await cache.match(req,{ignoreSearch:true});if(cached)return cached;throw err}
+    }
     if(isFreshCritical(url.pathname)){
       try{
         const fresh=await fetch(req,{cache:'no-store'});

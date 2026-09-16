@@ -14,7 +14,11 @@ const entries=ctx.window.ORTHODOX_ENTRIES||[];
 for(const e of entries){if(e.imageLocalReal&&!fs.existsSync(path.join(root,e.imageLocalReal)))delete e.imageLocalReal}
 const detailsDir=path.join(root,'web/data/details');fs.mkdirSync(detailsDir,{recursive:true});
 for(const f of fs.readdirSync(detailsDir))if(/^(?:details-[0-9a-f]|entry-\d+)\.js$/.test(f))fs.unlinkSync(path.join(detailsDir,f));
-const lightKeys=new Set(['id','name','category','role','search','aliases','venerated','image','imageLocalReal','imageRemote']);
+
+// Startup shell: only identity + image location + the tiny fields required to
+// draw the grid. Rich content is intentionally excluded and lives in the
+// per-entry detail file loaded only when the user taps a card.
+const shellSourceKeys=new Set(['id','name','category','image','imageLocalReal']);
 function flattenText(value,out=[]){
   if(value==null)return out;
   if(typeof value==='string'||typeof value==='number'||typeof value==='boolean'){out.push(String(value));return out;}
@@ -22,21 +26,24 @@ function flattenText(value,out=[]){
   if(typeof value==='object'){for(const v of Object.values(value))flattenText(v,out);return out;}
   return out;
 }
-function richSearch(e){
-  const pieces=[e.search||'',...flattenText(e.name),...flattenText(e.role),...flattenText(e.aliases),...flattenText(e.metadata),...flattenText(e.feast),e.scripture||'',...flattenText(e.description),...flattenText(e.story)];
-  // Knowledge section titles make long dossiers discoverable without bloating
-  // the lightweight runtime with entire biographies.
-  for(const lang of ['en','el'])for(const s of (e.knowledge?.[lang]?.sections||[]))pieces.push(...flattenText(s?.title));
+function compactSearch(e){
+  // Search metadata is deliberately separate from the startup shell. Do not
+  // include descriptions, stories, prayers or knowledge body text here.
+  const pieces=[...flattenText(e.name),...flattenText(e.role),...flattenText(e.aliases),...flattenText(e.metadata),...flattenText(e.feast),e.scripture||'',e.category||''];
   return [...new Set(pieces.map(x=>String(x).replace(/\s+/g,' ').trim()).filter(Boolean))].join(' ');
 }
+const searchIndex=Object.create(null);
 const lite=entries.map((e,i)=>{
   const detailFile=`entry-${String(i).padStart(4,'0')}.js`;
-  const out={id:e.id,name:e.name,category:e.category,role:e.role,search:richSearch(e),aliases:e.aliases||[],venerated:e.venerated!==false,image:e.image||'',detailFile,atlasIndex:i};
+  const out={id:e.id,name:e.name,category:e.category,image:e.image||'',detailFile};
   if(e.imageLocalReal)out.imageLocalReal=e.imageLocalReal;
-  const detail={};for(const [k,v] of Object.entries(e))if(!lightKeys.has(k))detail[k]=v;
+  searchIndex[e.id]=compactSearch(e);
+  const detail={};
+  for(const [k,v] of Object.entries(e))if(!shellSourceKeys.has(k))detail[k]=v;
   const code=`(()=>{window.ORTHODOX_ENTRY_DETAILS=window.ORTHODOX_ENTRY_DETAILS||Object.create(null);window.ORTHODOX_ENTRY_DETAILS[${JSON.stringify(e.id)}]=${JSON.stringify(detail)};})();\n`;
   fs.writeFileSync(path.join(detailsDir,detailFile),code);
   return out;
 });
 fs.writeFileSync(path.join(root,'web/data/runtime-index.js'),`(()=>{window.ORTHODOX_ENTRIES=${JSON.stringify(lite)};})();\n`);
-console.log(`Built strict per-entry lazy runtime: ${lite.length} lightweight entries + ${lite.length} individual detail files.`);
+fs.writeFileSync(path.join(root,'web/data/search-index.js'),`(()=>{window.ORTHODOX_SEARCH_INDEX=${JSON.stringify(searchIndex)};})();\n`);
+console.log(`Built lean lazy runtime: ${lite.length} startup entries + ${lite.length} on-demand detail files + separate search metadata.`);

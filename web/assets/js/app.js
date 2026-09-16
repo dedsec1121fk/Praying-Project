@@ -55,8 +55,30 @@
     if(lang==='el'&&typeof window.ORTHODOX_LOCALIZE_EL==='function')s=window.ORTHODOX_LOCALIZE_EL(s);
     return s;
   }
-  function haystack(e){return [e.name?.en,e.name?.el,e.role?.en,e.role?.el,e.search,...(e.aliases||[])].join(' ')}
-  const searchIndex=new Map(entries.map(e=>[e.id,norm(haystack(e))]));
+  // Startup search contains names only. Rich search metadata is loaded after
+  // the catalog opens, so it never delays the loading screen.
+  const searchIndex=new Map(entries.map(e=>[e.id,norm([e.name?.en,e.name?.el].join(' '))]));
+  let searchMetadataLoaded=false,searchMetadataPromise=null;
+  function mergeSearchMetadata(){
+    const extra=window.ORTHODOX_SEARCH_INDEX||{};
+    for(const e of entries){
+      const base=[e.name?.en,e.name?.el].join(' ');
+      searchIndex.set(e.id,norm(`${base} ${extra[e.id]||''}`));
+    }
+    searchMetadataLoaded=true;
+  }
+  function ensureSearchMetadata(){
+    if(searchMetadataLoaded)return Promise.resolve();
+    if(searchMetadataPromise)return searchMetadataPromise;
+    searchMetadataPromise=new Promise((resolve,reject)=>{
+      const script=document.createElement('script');
+      script.src='web/data/search-index.js?v=27';script.async=true;
+      script.onload=()=>{mergeSearchMetadata();script.remove();resolve();if(state.query.trim())renderCards()};
+      script.onerror=()=>{script.remove();searchMetadataPromise=null;reject(new Error('Could not load search metadata'))};
+      document.head.appendChild(script);
+    });
+    return searchMetadataPromise;
+  }
   const featuredIds=['jesus-christ','holy-spirit','theotokos','archangel-michael','archangel-gabriel','archangel-raphael','john-baptist','peter','paul','andrew','john-theologian','james-zebedee','mary-magdalene','stephen','george','demetrios','nicholas','nektarios','john-chrysostom','basil-great','gregory-theologian','gregory-palamas','constantine-helen','paisios','porphyrios','seraphim-sarov','spyridon','athanasius-great','cyril-alexandria','maximus-confessor','isaac-syrian','mary-egypt','moses','elijah','david','daniel','abraham','sarah','isaac','jacob','joseph-patriarch','noah','job','pentecost','nativity-christ','theophany','transfiguration','dormition','annunciation','pascha'];
   const featuredSet=new Set(featuredIds);
   const ordered=[...entries].sort((a,b)=>{
@@ -111,7 +133,7 @@
     if(typeof modal.close==='function'){try{modal.close()}catch(_){modal.removeAttribute('open')}}else modal.removeAttribute('open');
     modal.classList.remove('fallback-open');unloadActiveDetails();state.active=null;state.tab='description';
   }
-  function detailFileUrl(e){return `web/data/details/${e.detailFile}`}
+  function detailFileUrl(e){return `web/data/details/${e.detailFile}?v=27`}
   function detailView(e){return activeDetail?.id===e.id?Object.assign({},e,activeDetail.data):e}
   function ensureDetails(e){
     if(!e.detailFile)return Promise.reject(new Error('Missing per-entry detail file'));
@@ -179,7 +201,7 @@
     const lang=state.lang; modal.dataset.loading=error?'error':'true';
     setModalMedia(e);
     document.getElementById('modalName').textContent=locText(e.name?.[lang]||e.name?.en||e.id,lang);
-    document.getElementById('modalRole').textContent=locText(e.role?.[lang]||e.role?.en||'',lang);
+    document.getElementById('modalRole').textContent='';
     document.getElementById('modalFeast').textContent='…'; document.getElementById('modalScripture').textContent='…';
     document.getElementById('modalCategory').textContent=UI[lang].category[e.category]||locText(e.category,lang);
     const body=document.getElementById('tabBody');body.replaceChildren(); const status=document.createElement('div'); status.className='detail-loading';
@@ -226,8 +248,7 @@
     img.loading='lazy'; img.decoding='async'; img.alt=locText(e.name?.[state.lang]||e.name?.en||'',state.lang); img.src=preferredThumb(e); installFallback(img,e);
     media.append(img);
     const name=document.createElement('div'); name.className='saint-card-name'; name.textContent=locText(e.name?.[state.lang]||e.name?.en||e.id,state.lang);
-    const role=document.createElement('div'); role.className='saint-card-role'; role.textContent=locText(e.role?.[state.lang]||e.role?.en||'',state.lang);
-    card.append(media,name,role);
+    card.append(media,name);
     card.addEventListener('click',()=>openEntry(e.id));
     return card;
   }
@@ -282,90 +303,54 @@
       img.decoding='async';img.onload=()=>finish(true);img.onerror=()=>finish(false);img.src=url;
     });
   }
-  async function fetchFully(url,cache){
-    let last=null;
-    for(let attempt=0;attempt<4;attempt++){
-      try{
-        const r=await fetch(url,{cache:'reload'});
-        if(!r.ok)throw new Error(`${r.status} ${url}`);
-        if(cache){try{await cache.put(url,r.clone())}catch(_){}}
-        await r.arrayBuffer();
-        return;
-      }catch(err){last=err;await new Promise(r=>setTimeout(r,300*(attempt+1)))}
-    }
-    throw last||new Error(`Could not load ${url}`);
-  }
-  async function preloadEverything(onProgress){
-    onProgress?.(.01);
-    const manifestResponse=await fetch(`web/offline-files.json?v=26`,{cache:'no-store'});
-    if(!manifestResponse.ok)throw new Error('offline file manifest unavailable');
-    const manifest=await manifestResponse.json();
-    const files=[...new Set(Array.isArray(manifest.files)?manifest.files:[])];
-    if(!files.length)throw new Error('offline file manifest empty');
-    const imageUrls=[...new Set(entries.map(e=>preferredThumb(e)).filter(u=>u&&!u.startsWith('data:')) )];
-    let cache=null;
-    if('caches' in window){try{cache=await caches.open(manifest.cacheName||'praying-project-offline-v26')}catch(_){}}
-
+  async function preloadCatalogImages(onProgress){
+    const total=entries.length;
     let done=0,cursor=0;
-    const fileProgress=()=>onProgress?.(.03+(done/files.length)*.59);
-    const fetchWorker=async()=>{
+    const worker=async()=>{
       while(true){
-        const i=cursor++;if(i>=files.length)return;
-        await fetchFully(files[i],cache);done++;fileProgress();
-      }
-    };
-    await Promise.all(Array.from({length:Math.min(6,files.length)},fetchWorker));
-
-    done=0;cursor=0;
-    const imageProgress=()=>onProgress?.(.62+(done/imageUrls.length)*.28);
-    const imageWorker=async()=>{
-      while(true){
-        const i=cursor++;if(i>=imageUrls.length)return;
-        let last=null;
-        for(let attempt=0;attempt<3;attempt++){
-          try{await loadImageFully(imageUrls[i]);last=null;break}catch(err){last=err;await new Promise(r=>setTimeout(r,160*(attempt+1)))}
+        const i=cursor++;if(i>=total)return;
+        const e=entries[i],chain=thumbChain(e);
+        let loaded=false,last=null;
+        for(const src of chain){
+          try{await loadImageFully(src);loaded=true;break}catch(err){last=err}
         }
-        if(last)throw last;
-        done++;imageProgress();
+        if(!loaded)throw last||new Error(`Could not load image for ${e.id}`);
+        done++;onProgress?.(done/Math.max(1,total));
       }
     };
-    await Promise.all(Array.from({length:Math.min(4,imageUrls.length)},imageWorker));
-    return {files:files.length,images:imageUrls.length};
+    await Promise.all(Array.from({length:Math.min(12,total)},worker));
   }
-  async function waitForMinimumStartup(started,onProgress){
-    const minimum=7000;
-    while(true){
-      const elapsed=performance.now()-started;
-      if(elapsed>=minimum)break;
-      const t=Math.max(0,Math.min(1,elapsed/minimum));
-      onProgress?.(.985+t*.014);
-      await new Promise(r=>setTimeout(r,70));
-    }
-  }
+
   async function runStartup(){
     const loader=document.getElementById('startupLoader'); if(!loader){ renderCards(); return; }
     const pct=document.getElementById('startupPct'),bar=document.getElementById('startupBar');
-    const started=performance.now();
     const setProgress=(p)=>{
       p=Math.max(0,Math.min(1,p||0));
       if(pct)pct.textContent=`${Math.floor(p*100)}%`;
       if(bar)bar.style.transform=`scaleX(${p})`;
     };
-    setProgress(0);
+    setProgress(.08);
     await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
     try{
-      await preloadEverything(setProgress);
-      await renderCardsChunked(f=>setProgress(.90+f*.085));
-      await waitForMinimumStartup(started,setProgress);
+      // Only the catalog shell is prepared here: names/cards + images.
+      // No story, prayer, Psalm, parable or dossier file is requested.
+      let imagePart=0,cardPart=0;
+      const updateCombined=()=>setProgress(.08+imagePart*.82+cardPart*.10);
+      await Promise.all([
+        preloadCatalogImages(f=>{imagePart=f;updateCombined()}),
+        renderCardsChunked(f=>{cardPart=f;updateCombined()})
+      ]);
       setProgress(1);
-      await new Promise(r=>setTimeout(r,320));
-      loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),360);
+      await new Promise(r=>setTimeout(r,140));
+      loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),300);
+      const idle=window.requestIdleCallback||((fn)=>setTimeout(fn,250));
+      idle(()=>ensureSearchMetadata().catch(err=>console.warn(err)));
     }catch(err){
-      console.error('Complete startup preload failed',err);
+      console.error('Catalog shell preload failed',err);
       loader.classList.add('load-error');
       if(pct)pct.textContent='!';
       if(bar)bar.style.transform='scaleX(1)';
-      // Fail closed: never unlock a partially loaded website.
+      // Fail closed: the catalog is not shown until every shell image has a usable source.
     }
   }
 
@@ -385,7 +370,7 @@
       if(navigator.storage?.persist)try{await navigator.storage.persist()}catch(_){}
       const response=await fetch('web/offline-files.json',{cache:'no-store'});if(!response.ok)throw new Error('offline manifest unavailable');
       const data=await response.json();const files=Array.isArray(data.files)?data.files:[];if(!files.length)throw new Error('offline manifest empty');
-      const cache=await caches.open(data.cacheName||'praying-project-offline-v26');let done=0,failed=0,cursor=0;
+      const cache=await caches.open(data.cacheName||'praying-project-offline-v27');let done=0,failed=0,cursor=0;
       const worker=async()=>{while(true){const i=cursor++;if(i>=files.length)return;const url=files[i];try{const r=await fetch(url,{cache:'reload'});if(!r.ok)throw new Error(String(r.status));await cache.put(url,r.clone())}catch(_){failed++}done++;const percent=Math.round(done/files.length*100);offlineBtn.textContent=`${percent}%`;offlineBtn.setAttribute('aria-label',`${UI[state.lang].offline} ${percent}%`)}};
       await Promise.all(Array.from({length:Math.min(6,files.length)},worker));
       if(failed)throw new Error(`${failed} files failed`);
@@ -412,7 +397,8 @@
   offlineBtn?.addEventListener('click',installOffline);
 
   let searchDebounce=0;
-  search.addEventListener('input',e=>{ state.query=e.target.value; clearTimeout(searchDebounce); searchDebounce=setTimeout(renderCards,45); });
+  search.addEventListener('focus',()=>{ensureSearchMetadata().catch(()=>{})});
+  search.addEventListener('input',e=>{ state.query=e.target.value; if(!searchMetadataLoaded)ensureSearchMetadata().catch(()=>{}); clearTimeout(searchDebounce); searchDebounce=setTimeout(renderCards,45); });
   search.addEventListener('keydown',e=>{ if(e.key==='Enter'){ const first=matches()[0]; if(first){ e.preventDefault(); openEntry(first.id); } } });
   document.querySelectorAll('.lang').forEach(btn=>btn.addEventListener('click',ev=>{ ev.preventDefault(); state.lang=btn.dataset.lang; storageSet('orthodox-lang',state.lang); translate(); }));
   document.addEventListener('keydown',e=>{
