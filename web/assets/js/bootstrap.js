@@ -21,10 +21,10 @@
     window.ORTHODOX_BOOT_LANG=lang;window.ORTHODOX_BOOT_STARTED=performance.now();
     save(lang);document.documentElement.lang=lang;
     languageStage.hidden=true;loadingStage.hidden=false;
-    const pct=document.getElementById('startupPct');if(pct)pct.textContent='0%';
+    const pct=document.getElementById('startupPct');if(pct)pct.textContent='0%';const bar=document.getElementById('startupBar');if(bar)bar.style.transform='scaleX(0)';await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))); 
     try{
-      await loadScript('web/data/runtime-index.js');
-      await loadScript('web/assets/js/app.js');
+      await loadScript('web/data/runtime-index.js?v=26');
+      await loadScript('web/assets/js/app.js?v=26');
     }catch(err){
       console.error(err);started=false;languageStage.hidden=false;loadingStage.hidden=true;
       const old=loader.querySelector('.startup-error');if(old)old.remove();

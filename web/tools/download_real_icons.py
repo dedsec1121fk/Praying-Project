@@ -34,6 +34,10 @@ def looks_like_image(data:bytes, content_type:str)->bool:
     )
 
 for i,(entry,m) in enumerate(items.items(),1):
+    if m.get('identityVerified')!='manual-commons-source-review':
+        print(f'[{i}/{len(items)}] SKIP    {entry}: image is not manually identity-reviewed',file=sys.stderr)
+        fail+=1; failed.append((entry,'not manually identity-reviewed'))
+        continue
     local=m.get('local'); remote=m.get('remote')
     if not local or not remote:
         print(f'[{i}/{len(items)}] SKIP    {entry}: incomplete local/remote mapping')

@@ -217,112 +217,155 @@
     catch(err){ if(String(err?.message||err)!=='Detail load cancelled')console.error(err); if(state.active===id)populateModalLoading(e,true); }
   }
 
+  function createCard(e){
+    const card=document.createElement('button');
+    card.type='button'; card.className='saint-card'; card.dataset.id=e.id; card.dataset.category=e.category;
+    card.setAttribute('aria-label',locText(e.name?.[state.lang]||e.name?.en||e.id,state.lang));
+    const media=document.createElement('div'); media.className='saint-card-media';
+    const img=document.createElement('img');
+    img.loading='lazy'; img.decoding='async'; img.alt=locText(e.name?.[state.lang]||e.name?.en||'',state.lang); img.src=preferredThumb(e); installFallback(img,e);
+    media.append(img);
+    const name=document.createElement('div'); name.className='saint-card-name'; name.textContent=locText(e.name?.[state.lang]||e.name?.en||e.id,state.lang);
+    const role=document.createElement('div'); role.className='saint-card-role'; role.textContent=locText(e.role?.[state.lang]||e.role?.en||'',state.lang);
+    card.append(media,name,role);
+    card.addEventListener('click',()=>openEntry(e.id));
+    return card;
+  }
+
   function renderCards(){
     const list=matches();
     emptyState.hidden=list.length!==0;
     matchCount.textContent=state.query.trim()?`${list.length} ${list.length===1?UI[state.lang].result:UI[state.lang].results}`:`${entries.length}`;
     const frag=document.createDocumentFragment();
-    for(const e of list){
-      const card=document.createElement('button');
-      card.type='button'; card.className='saint-card'; card.dataset.id=e.id; card.dataset.category=e.category;
-      card.setAttribute('aria-label',locText(e.name?.[state.lang]||e.name?.en||e.id,state.lang));
-      const media=document.createElement('div'); media.className='saint-card-media';
-      const img=document.createElement('img');
-      img.loading='lazy'; img.decoding='async'; img.alt=locText(e.name?.[state.lang]||e.name?.en||'',state.lang); img.src=preferredThumb(e); installFallback(img,e);
-      media.append(img);
-      const name=document.createElement('div'); name.className='saint-card-name'; name.textContent=locText(e.name?.[state.lang]||e.name?.en||e.id,state.lang);
-      const role=document.createElement('div'); role.className='saint-card-role'; role.textContent=locText(e.role?.[state.lang]||e.role?.en||'',state.lang);
-      card.append(media,name,role);
-      card.addEventListener('click',()=>openEntry(e.id));
-      frag.append(card);
-    }
+    for(const e of list)frag.append(createCard(e));
     cardGrid.replaceChildren(frag);
     requestAnimationFrame(updateScrollGuide);
   }
 
-  function translate(){
+  async function renderCardsChunked(onProgress){
+    const list=matches();
+    emptyState.hidden=list.length!==0;
+    matchCount.textContent=state.query.trim()?`${list.length} ${list.length===1?UI[state.lang].result:UI[state.lang].results}`:`${entries.length}`;
+    cardGrid.replaceChildren();
+    const batch=72;
+    for(let i=0;i<list.length;i+=batch){
+      const frag=document.createDocumentFragment();
+      for(const e of list.slice(i,i+batch))frag.append(createCard(e));
+      cardGrid.append(frag);
+      onProgress?.(Math.min(1,(i+batch)/Math.max(1,list.length)));
+      await new Promise(r=>requestAnimationFrame(r));
+    }
+    await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+    updateScrollGuide();
+  }
+
+  function translate(skipRender=false){
     document.documentElement.lang=state.lang;
     search.placeholder=UI[state.lang].search;
     search.setAttribute('aria-label',UI[state.lang].search);
     document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n;if(UI[state.lang][key])el.textContent=UI[state.lang][key]});
     document.querySelectorAll('.lang').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===state.lang));
     if(offlineBtn){offlineBtn.setAttribute('aria-label',UI[state.lang].offline);offlineBtn.title=UI[state.lang].offline;if(storageGet('orthodox-offline-ready','')==='yes')offlineBtn.classList.add('ready')}
-    renderCards();
+    if(!skipRender)renderCards();
     if(state.active){const e=byId.get(state.active);if(e&&activeDetail?.id===e.id)populateModal();else if(e)populateModalLoading(e)}
   }
 
   function loadImageFully(url){
     return new Promise((resolve,reject)=>{
       const img=new Image();let settled=false;
-      const finish=(ok)=>{if(settled)return;settled=true;img.onload=img.onerror=null;ok?resolve():reject(new Error(`Image failed: ${url}`))};
+      const finish=async(ok)=>{
+        if(settled)return;settled=true;img.onload=img.onerror=null;
+        if(!ok){reject(new Error(`Image failed: ${url}`));return}
+        try{if(img.decode)await img.decode()}catch(_){}
+        resolve();
+      };
       img.decoding='async';img.onload=()=>finish(true);img.onerror=()=>finish(false);img.src=url;
     });
   }
-  async function fetchFully(url){
+  async function fetchFully(url,cache){
     let last=null;
     for(let attempt=0;attempt<4;attempt++){
       try{
-        const r=await fetch(url,{cache:attempt?'reload':'force-cache'});
+        const r=await fetch(url,{cache:'reload'});
         if(!r.ok)throw new Error(`${r.status} ${url}`);
+        if(cache){try{await cache.put(url,r.clone())}catch(_){}}
         await r.arrayBuffer();
         return;
-      }catch(err){last=err;await new Promise(r=>setTimeout(r,350*(attempt+1)))}
+      }catch(err){last=err;await new Promise(r=>setTimeout(r,300*(attempt+1)))}
     }
     throw last||new Error(`Could not load ${url}`);
   }
   async function preloadEverything(onProgress){
-    const manifestResponse=await fetch('web/offline-files.json',{cache:'reload'});
+    onProgress?.(.01);
+    const manifestResponse=await fetch(`web/offline-files.json?v=26`,{cache:'no-store'});
     if(!manifestResponse.ok)throw new Error('offline file manifest unavailable');
     const manifest=await manifestResponse.json();
     const files=[...new Set(Array.isArray(manifest.files)?manifest.files:[])];
     if(!files.length)throw new Error('offline file manifest empty');
     const imageUrls=[...new Set(entries.map(e=>preferredThumb(e)).filter(u=>u&&!u.startsWith('data:')) )];
-    const total=files.length+imageUrls.length;
-    let done=0;
-    const bump=()=>onProgress?.(done,total);
-    let cursor=0;
+    let cache=null;
+    if('caches' in window){try{cache=await caches.open(manifest.cacheName||'praying-project-offline-v26')}catch(_){}}
+
+    let done=0,cursor=0;
+    const fileProgress=()=>onProgress?.(.03+(done/files.length)*.59);
     const fetchWorker=async()=>{
       while(true){
         const i=cursor++;if(i>=files.length)return;
-        await fetchFully(files[i]);done++;bump();
+        await fetchFully(files[i],cache);done++;fileProgress();
       }
     };
-    await Promise.all(Array.from({length:Math.min(8,files.length)},fetchWorker));
-    cursor=0;
+    await Promise.all(Array.from({length:Math.min(6,files.length)},fetchWorker));
+
+    done=0;cursor=0;
+    const imageProgress=()=>onProgress?.(.62+(done/imageUrls.length)*.28);
     const imageWorker=async()=>{
       while(true){
         const i=cursor++;if(i>=imageUrls.length)return;
         let last=null;
         for(let attempt=0;attempt<3;attempt++){
-          try{await loadImageFully(imageUrls[i]);last=null;break}catch(err){last=err;await new Promise(r=>setTimeout(r,180*(attempt+1)))}
+          try{await loadImageFully(imageUrls[i]);last=null;break}catch(err){last=err;await new Promise(r=>setTimeout(r,160*(attempt+1)))}
         }
         if(last)throw last;
-        done++;bump();
+        done++;imageProgress();
       }
     };
-    await Promise.all(Array.from({length:Math.min(6,imageUrls.length)},imageWorker));
-    return {files:files.length,images:imageUrls.length,total};
+    await Promise.all(Array.from({length:Math.min(4,imageUrls.length)},imageWorker));
+    return {files:files.length,images:imageUrls.length};
+  }
+  async function waitForMinimumStartup(started,onProgress){
+    const minimum=7000;
+    while(true){
+      const elapsed=performance.now()-started;
+      if(elapsed>=minimum)break;
+      const t=Math.max(0,Math.min(1,elapsed/minimum));
+      onProgress?.(.985+t*.014);
+      await new Promise(r=>setTimeout(r,70));
+    }
   }
   async function runStartup(){
     const loader=document.getElementById('startupLoader'); if(!loader){ renderCards(); return; }
     const pct=document.getElementById('startupPct'),bar=document.getElementById('startupBar');
-    const setProgress=(done,total)=>{
-      const p=total?Math.max(0,Math.min(1,done/total)):0;
-      if(pct)pct.textContent=`${Math.round(p*100)}%`;
+    const started=performance.now();
+    const setProgress=(p)=>{
+      p=Math.max(0,Math.min(1,p||0));
+      if(pct)pct.textContent=`${Math.floor(p*100)}%`;
       if(bar)bar.style.transform=`scaleX(${p})`;
     };
-    setProgress(0,1);
+    setProgress(0);
+    await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
     try{
       await preloadEverything(setProgress);
-      setProgress(1,1);
-      renderCards();
-      await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
-      loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),300);
+      await renderCardsChunked(f=>setProgress(.90+f*.085));
+      await waitForMinimumStartup(started,setProgress);
+      setProgress(1);
+      await new Promise(r=>setTimeout(r,320));
+      loader.classList.add('done');document.body.classList.remove('startup-lock');setTimeout(()=>loader.remove(),360);
     }catch(err){
       console.error('Complete startup preload failed',err);
       loader.classList.add('load-error');
       if(pct)pct.textContent='!';
-      // Fail closed: the user is not put into a partially loaded website.
+      if(bar)bar.style.transform='scaleX(1)';
+      // Fail closed: never unlock a partially loaded website.
     }
   }
 
@@ -342,7 +385,7 @@
       if(navigator.storage?.persist)try{await navigator.storage.persist()}catch(_){}
       const response=await fetch('web/offline-files.json',{cache:'no-store'});if(!response.ok)throw new Error('offline manifest unavailable');
       const data=await response.json();const files=Array.isArray(data.files)?data.files:[];if(!files.length)throw new Error('offline manifest empty');
-      const cache=await caches.open(data.cacheName||'praying-project-offline-v25');let done=0,failed=0,cursor=0;
+      const cache=await caches.open(data.cacheName||'praying-project-offline-v26');let done=0,failed=0,cursor=0;
       const worker=async()=>{while(true){const i=cursor++;if(i>=files.length)return;const url=files[i];try{const r=await fetch(url,{cache:'reload'});if(!r.ok)throw new Error(String(r.status));await cache.put(url,r.clone())}catch(_){failed++}done++;const percent=Math.round(done/files.length*100);offlineBtn.textContent=`${percent}%`;offlineBtn.setAttribute('aria-label',`${UI[state.lang].offline} ${percent}%`)}};
       await Promise.all(Array.from({length:Math.min(6,files.length)},worker));
       if(failed)throw new Error(`${failed} files failed`);
@@ -382,6 +425,6 @@
   modal.addEventListener('cancel',e=>{ e.preventDefault(); closeModalSafe(); });
 
   document.body.classList.add('startup-lock');
-  translate();
+  translate(true);
   runStartup();
 })();

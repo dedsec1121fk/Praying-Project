@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[2]
 SRC=ROOT/'web/data/image-sources.json'
 RUNTIME=ROOT/'web/data/runtime-index.js'
 BAD=('logo','company','corporation','business','brand','product','album','film','television','actor','actress','singer','rapper','football','soccer','politician','president','ceo','university','software','trademark')
-allowed_verification={'manual-commons-source-review','strict-commons-title-metadata-v1'}
+allowed_verification={'manual-commons-source-review'}
 manifest=json.loads(SRC.read_text(encoding='utf-8'))
 errors=[]
 for eid,m in manifest.items():
@@ -18,7 +18,7 @@ for eid,m in manifest.items():
     if any(x in hay for x in BAD):errors.append(f'{eid}: suspicious non-religious image term in mapping')
     local=m.get('local','')
     if local and not (local.startswith('web/images/real/') or local.startswith('web/images/real-auto/')):errors.append(f'{eid}: unexpected repository image path {local}')
-    if m.get('autoResolved') and status!='strict-commons-title-metadata-v1':errors.append(f'{eid}: legacy/loose autoResolved mapping prohibited')
+    if m.get('autoResolved'):errors.append(f'{eid}: automatic image mapping prohibited')
 # Every runtime item must always have a dedicated local illustration path.
 text=RUNTIME.read_text(encoding='utf-8')
 images=re.findall(r'"image":"([^"]+)"',text)
