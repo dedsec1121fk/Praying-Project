@@ -1138,28 +1138,6 @@
       "score": 33
     }
   },
-  "ambrose-milan": {
-    "file": "Saints Irenaeus of Lyons, Ambrose of Milan, Athanasius the Great, Martin the Merciful, Germanus, Gaudentius and Randoald - Orthodox Icon.jpg",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/4/41/Saints_Irenaeus_of_Lyons%2C_Ambrose_of_Milan%2C_Athanasius_the_Great%2C_Martin_the_Merciful%2C_Germanus%2C_Gaudentius_and_Randoald_-_Orthodox_Icon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "local": "web/images/real-auto/ambrose-milan.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saints_Irenaeus_of_Lyons,_Ambrose_of_Milan,_Athanasius_the_Great,_Martin_the_Merciful,_Germanus,_Gaudentius_and_Randoald_-_Orthodox_Icon.jpg",
-    "license": "CC BY 4.0",
-    "credit": {
-      "en": "Saints Irenaeus of Lyons, Ambrose of Milan, Athanasius the Great, Martin the Merciful, Germanus, Gaudentius and Randoald - Orthodox Icon.jpg — Unknown author Unknown author — Wikimedia Commons — CC BY 4.0",
-      "el": "Saints Irenaeus of Lyons, Ambrose of Milan, Athanasius the Great, Martin the Merciful, Germanus, Gaudentius and Randoald - Orthodox Icon.jpg — Unknown author Unknown author — Wikimedia Commons — CC BY 4.0"
-    },
-    "autoResolved": true,
-    "identityVerified": "strict-commons-title-metadata-v1",
-    "identityEvidence": {
-      "matchedName": "Saint Ambrose of Milan",
-      "tokens": [
-        "ambrose",
-        "milan"
-      ],
-      "query": "\"Saint Ambrose of Milan\" icon",
-      "score": 36
-    }
-  },
   "dionysius-areopagite": {
     "file": "Emmanuel Tzanes - Dionysius the Areopagite - NG.M.01774 - National Museum of Art, Architecture and Design.jpg",
     "remote": "https://upload.wikimedia.org/wikipedia/commons/4/40/Emmanuel_Tzanes_-_Dionysius_the_Areopagite_-_NG.M.01774_-_National_Museum_of_Art%2C_Architecture_and_Design.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
@@ -1180,6 +1158,28 @@
       ],
       "query": "\"Saint Dionysius the Areopagite\" icon",
       "score": 33
+    }
+  },
+  "ambrose-milan": {
+    "file": "Saints Irenaeus of Lyons, Ambrose of Milan, Athanasius the Great, Martin the Merciful, Germanus, Gaudentius and Randoald - Orthodox Icon.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/4/41/Saints_Irenaeus_of_Lyons%2C_Ambrose_of_Milan%2C_Athanasius_the_Great%2C_Martin_the_Merciful%2C_Germanus%2C_Gaudentius_and_Randoald_-_Orthodox_Icon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local": "web/images/real-auto/ambrose-milan.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saints_Irenaeus_of_Lyons,_Ambrose_of_Milan,_Athanasius_the_Great,_Martin_the_Merciful,_Germanus,_Gaudentius_and_Randoald_-_Orthodox_Icon.jpg",
+    "license": "CC BY 4.0",
+    "credit": {
+      "en": "Saints Irenaeus of Lyons, Ambrose of Milan, Athanasius the Great, Martin the Merciful, Germanus, Gaudentius and Randoald - Orthodox Icon.jpg — Unknown author Unknown author — Wikimedia Commons — CC BY 4.0",
+      "el": "Saints Irenaeus of Lyons, Ambrose of Milan, Athanasius the Great, Martin the Merciful, Germanus, Gaudentius and Randoald - Orthodox Icon.jpg — Unknown author Unknown author — Wikimedia Commons — CC BY 4.0"
+    },
+    "autoResolved": true,
+    "identityVerified": "strict-commons-title-metadata-v1",
+    "identityEvidence": {
+      "matchedName": "Saint Ambrose of Milan",
+      "tokens": [
+        "ambrose",
+        "milan"
+      ],
+      "query": "\"Saint Ambrose of Milan\" icon",
+      "score": 36
     }
   },
   "benedict-nursia": {
@@ -1204,28 +1204,6 @@
       "score": 31
     }
   },
-  "ascension": {
-    "file": "Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/9/97/Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "local": "web/images/real-auto/ascension.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg",
-    "license": "Public domain",
-    "credit": {
-      "en": "Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
-      "el": "Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
-    },
-    "autoResolved": true,
-    "identityVerified": "strict-commons-title-metadata-v1",
-    "identityEvidence": {
-      "matchedName": "Ascension of Christ",
-      "tokens": [
-        "ascension",
-        "christ"
-      ],
-      "query": "\"Ascension of Christ\" Orthodox icon",
-      "score": 33
-    }
-  },
   "entry-jerusalem": {
     "file": "Entry into Jerusalem Icon by Adamche Naydov.jpg",
     "remote": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Entry_into_Jerusalem_Icon_by_Adamche_Naydov.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
@@ -1247,6 +1225,28 @@
       ],
       "query": "\"entry into jerusalem\" Orthodox icon",
       "score": 38
+    }
+  },
+  "ascension": {
+    "file": "Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/9/97/Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local": "web/images/real-auto/ascension.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
+      "el": "Christ-Ascension-icon-Michurin-Bulgaria-16century.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
+    },
+    "autoResolved": true,
+    "identityVerified": "strict-commons-title-metadata-v1",
+    "identityEvidence": {
+      "matchedName": "Ascension of Christ",
+      "tokens": [
+        "ascension",
+        "christ"
+      ],
+      "query": "\"Ascension of Christ\" Orthodox icon",
+      "score": 33
     }
   },
   "exaltation-cross": {
@@ -1426,28 +1426,6 @@
       "score": 28
     }
   },
-  "theophanes-confessor": {
-    "file": "Athonite Icon of Saint Theophanes the Confessor of Megalos Agros 2.jpg",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/1/17/Athonite_Icon_of_Saint_Theophanes_the_Confessor_of_Megalos_Agros_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "local": "web/images/real-auto/theophanes-confessor.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Athonite_Icon_of_Saint_Theophanes_the_Confessor_of_Megalos_Agros_2.jpg",
-    "license": "Public domain",
-    "credit": {
-      "en": "Athonite Icon of Saint Theophanes the Confessor of Megalos Agros 2.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
-      "el": "Athonite Icon of Saint Theophanes the Confessor of Megalos Agros 2.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
-    },
-    "autoResolved": true,
-    "identityVerified": "strict-commons-title-metadata-v1",
-    "identityEvidence": {
-      "matchedName": "Saint Theophanes the Confessor",
-      "tokens": [
-        "theophanes",
-        "confessor"
-      ],
-      "query": "\"Saint Theophanes the Confessor\" icon",
-      "score": 33
-    }
-  },
   "theodore-studite": {
     "file": "St. Theodore Studite and Stefan the New, north chapel, GRACANICA 4 439A2434.jpg",
     "remote": "https://upload.wikimedia.org/wikipedia/commons/f/fb/St._Theodore_Studite_and_Stefan_the_New%2C_north_chapel%2C_GRACANICA_4_439A2434.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
@@ -1490,6 +1468,28 @@
       ],
       "query": "\"Saint Mark of Ephesus\" icon",
       "score": 28
+    }
+  },
+  "theophanes-confessor": {
+    "file": "Athonite Icon of Saint Theophanes the Confessor of Megalos Agros 2.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/1/17/Athonite_Icon_of_Saint_Theophanes_the_Confessor_of_Megalos_Agros_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local": "web/images/real-auto/theophanes-confessor.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Athonite_Icon_of_Saint_Theophanes_the_Confessor_of_Megalos_Agros_2.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Athonite Icon of Saint Theophanes the Confessor of Megalos Agros 2.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
+      "el": "Athonite Icon of Saint Theophanes the Confessor of Megalos Agros 2.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
+    },
+    "autoResolved": true,
+    "identityVerified": "strict-commons-title-metadata-v1",
+    "identityEvidence": {
+      "matchedName": "Saint Theophanes the Confessor",
+      "tokens": [
+        "theophanes",
+        "confessor"
+      ],
+      "query": "\"Saint Theophanes the Confessor\" icon",
+      "score": 33
     }
   },
   "clement-ohrid": {
@@ -1581,14 +1581,14 @@
     }
   },
   "boris-gleb": {
-    "file": "The Christ Child with Saints Boris and Gleb MET sf33-84cs1.jpg",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/4/42/The_Christ_Child_with_Saints_Boris_and_Gleb_MET_sf33-84cs1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "file": "The Christ Child with Saints Boris and Gleb MET sf33-84abs1.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/1/1f/The_Christ_Child_with_Saints_Boris_and_Gleb_MET_sf33-84abs1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
     "local": "web/images/real-auto/boris-gleb.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Christ_Child_with_Saints_Boris_and_Gleb_MET_sf33-84cs1.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_Christ_Child_with_Saints_Boris_and_Gleb_MET_sf33-84abs1.jpg",
     "license": "CC0",
     "credit": {
-      "en": "The Christ Child with Saints Boris and Gleb MET sf33-84cs1.jpg — Anonymous  Unknown author — Wikimedia Commons — CC0",
-      "el": "The Christ Child with Saints Boris and Gleb MET sf33-84cs1.jpg — Anonymous  Unknown author — Wikimedia Commons — CC0"
+      "en": "The Christ Child with Saints Boris and Gleb MET sf33-84abs1.jpg — Anonymous  Unknown author — Wikimedia Commons — CC0",
+      "el": "The Christ Child with Saints Boris and Gleb MET sf33-84abs1.jpg — Anonymous  Unknown author — Wikimedia Commons — CC0"
     },
     "autoResolved": true,
     "identityVerified": "strict-commons-title-metadata-v1",
@@ -1691,28 +1691,6 @@
       "score": 31
     }
   },
-  "gregory-illuminator": {
-    "file": "Gregory Illuminator.JPG",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Gregory_Illuminator.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "local": "web/images/real-auto/gregory-illuminator.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gregory_Illuminator.JPG",
-    "license": "Public domain",
-    "credit": {
-      "en": "Gregory Illuminator.JPG — Unknown Unknown   Byzantine artist — Wikimedia Commons — Public domain",
-      "el": "Gregory Illuminator.JPG — Unknown Unknown   Byzantine artist — Wikimedia Commons — Public domain"
-    },
-    "autoResolved": true,
-    "identityVerified": "strict-commons-title-metadata-v1",
-    "identityEvidence": {
-      "matchedName": "Saint Gregory the Illuminator",
-      "tokens": [
-        "gregory",
-        "illuminator"
-      ],
-      "query": "\"gregory illuminator\" Orthodox icon",
-      "score": 33
-    }
-  },
   "nino-georgia": {
     "file": "St Nino icon at Svetitskhoveli, Georgia.JPG",
     "remote": "https://upload.wikimedia.org/wikipedia/commons/5/55/St_Nino_icon_at_Svetitskhoveli%2C_Georgia.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
@@ -1732,6 +1710,28 @@
         "georgia"
       ],
       "query": "\"Saint Nino of Georgia\" icon",
+      "score": 33
+    }
+  },
+  "gregory-illuminator": {
+    "file": "Gregory Illuminator.JPG",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Gregory_Illuminator.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local": "web/images/real-auto/gregory-illuminator.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Gregory_Illuminator.JPG",
+    "license": "Public domain",
+    "credit": {
+      "en": "Gregory Illuminator.JPG — Unknown Unknown   Byzantine artist — Wikimedia Commons — Public domain",
+      "el": "Gregory Illuminator.JPG — Unknown Unknown   Byzantine artist — Wikimedia Commons — Public domain"
+    },
+    "autoResolved": true,
+    "identityVerified": "strict-commons-title-metadata-v1",
+    "identityEvidence": {
+      "matchedName": "Saint Gregory the Illuminator",
+      "tokens": [
+        "gregory",
+        "illuminator"
+      ],
+      "query": "\"gregory illuminator\" Orthodox icon",
       "score": 33
     }
   },
@@ -1846,28 +1846,6 @@
       "score": 28
     }
   },
-  "dmitry-donskoy": {
-    "file": "Sergius of Radonezh vita icon (17 c., Yaroslavl museum) - detail 03.jpg",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Sergius_of_Radonezh_vita_icon_%2817_c.%2C_Yaroslavl_museum%29_-_detail_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "local": "web/images/real-auto/dmitry-donskoy.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sergius_of_Radonezh_vita_icon_(17_c.,_Yaroslavl_museum)_-_detail_03.jpg",
-    "license": "Public domain",
-    "credit": {
-      "en": "Sergius of Radonezh vita icon (17 c., Yaroslavl museum) - detail 03.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
-      "el": "Sergius of Radonezh vita icon (17 c., Yaroslavl museum) - detail 03.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
-    },
-    "autoResolved": true,
-    "identityVerified": "strict-commons-title-metadata-v1",
-    "identityEvidence": {
-      "matchedName": "Saint Dmitry Donskoy",
-      "tokens": [
-        "dmitry",
-        "donskoy"
-      ],
-      "query": "\"dmitry donskoy\" Orthodox icon",
-      "score": 30
-    }
-  },
   "alexander-nevsky": {
     "file": "Alexander nevsky icon vilnius cathedral.JPG",
     "remote": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Alexander_nevsky_icon_vilnius_cathedral.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
@@ -1888,6 +1866,28 @@
       ],
       "query": "\"alexander nevsky\" Orthodox icon",
       "score": 41
+    }
+  },
+  "dmitry-donskoy": {
+    "file": "Sergius of Radonezh vita icon (17 c., Yaroslavl museum) - detail 03.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Sergius_of_Radonezh_vita_icon_%2817_c.%2C_Yaroslavl_museum%29_-_detail_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local": "web/images/real-auto/dmitry-donskoy.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sergius_of_Radonezh_vita_icon_(17_c.,_Yaroslavl_museum)_-_detail_03.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Sergius of Radonezh vita icon (17 c., Yaroslavl museum) - detail 03.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
+      "el": "Sergius of Radonezh vita icon (17 c., Yaroslavl museum) - detail 03.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
+    },
+    "autoResolved": true,
+    "identityVerified": "strict-commons-title-metadata-v1",
+    "identityEvidence": {
+      "matchedName": "Saint Dmitry Donskoy",
+      "tokens": [
+        "dmitry",
+        "donskoy"
+      ],
+      "query": "\"dmitry donskoy\" Orthodox icon",
+      "score": 30
     }
   },
   "parascheva-balkans": {
@@ -2225,28 +2225,6 @@
       "score": 36
     }
   },
-  "mid-pentecost": {
-    "file": "007 Mid-Pentecost Icon from Saint Paraskevi Church in Langadas.jpg",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/2/2e/007_Mid-Pentecost_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "local": "web/images/real-auto/mid-pentecost.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:007_Mid-Pentecost_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg",
-    "license": "Public domain",
-    "credit": {
-      "en": "007 Mid-Pentecost Icon from Saint Paraskevi Church in Langadas.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
-      "el": "007 Mid-Pentecost Icon from Saint Paraskevi Church in Langadas.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
-    },
-    "autoResolved": true,
-    "identityVerified": "strict-commons-title-metadata-v1",
-    "identityEvidence": {
-      "matchedName": "Mid-Pentecost",
-      "tokens": [
-        "mid",
-        "pentecost"
-      ],
-      "query": "\"Mid-Pentecost\" Orthodox icon",
-      "score": 38
-    }
-  },
   "olympias-deaconess": {
     "file": "Icon of Saint Olympias the Deaconess.jpg",
     "remote": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Icon_of_Saint_Olympias_the_Deaconess.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
@@ -2267,6 +2245,28 @@
       ],
       "query": "\"Saint Olympias the Deaconess\" icon",
       "score": 33
+    }
+  },
+  "mid-pentecost": {
+    "file": "007 Mid-Pentecost Icon from Saint Paraskevi Church in Langadas.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/2/2e/007_Mid-Pentecost_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local": "web/images/real-auto/mid-pentecost.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:007_Mid-Pentecost_Icon_from_Saint_Paraskevi_Church_in_Langadas.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "007 Mid-Pentecost Icon from Saint Paraskevi Church in Langadas.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain",
+      "el": "007 Mid-Pentecost Icon from Saint Paraskevi Church in Langadas.jpg — Unknown author Unknown author — Wikimedia Commons — Public domain"
+    },
+    "autoResolved": true,
+    "identityVerified": "strict-commons-title-metadata-v1",
+    "identityEvidence": {
+      "matchedName": "Mid-Pentecost",
+      "tokens": [
+        "mid",
+        "pentecost"
+      ],
+      "query": "\"Mid-Pentecost\" Orthodox icon",
+      "score": 38
     }
   },
   "simeon-stylite": {
@@ -2512,28 +2512,6 @@
       "score": 33
     }
   },
-  "nicholas-japan": {
-    "file": "Hakodate Orthodox Church May 2016 Icon Nicholas of Japan.jpg",
-    "remote": "https://upload.wikimedia.org/wikipedia/commons/4/49/Hakodate_Orthodox_Church_May_2016_Icon_Nicholas_of_Japan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-    "local": "web/images/real-auto/nicholas-japan.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hakodate_Orthodox_Church_May_2016_Icon_Nicholas_of_Japan.jpg",
-    "license": "CC BY 4.0",
-    "credit": {
-      "en": "Hakodate Orthodox Church May 2016 Icon Nicholas of Japan.jpg — Alexander Klink — Wikimedia Commons — CC BY 4.0",
-      "el": "Hakodate Orthodox Church May 2016 Icon Nicholas of Japan.jpg — Alexander Klink — Wikimedia Commons — CC BY 4.0"
-    },
-    "autoResolved": true,
-    "identityVerified": "strict-commons-title-metadata-v1",
-    "identityEvidence": {
-      "matchedName": "Saint Nicholas of Japan",
-      "tokens": [
-        "nicholas",
-        "japan"
-      ],
-      "query": "\"Saint Nicholas of Japan\" icon",
-      "score": 36
-    }
-  },
   "john-russian": {
     "file": "IconJohnRussian.jpg",
     "remote": "https://upload.wikimedia.org/wikipedia/commons/4/4b/IconJohnRussian.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
@@ -2554,6 +2532,28 @@
       ],
       "query": "\"Saint John the Russian\" icon",
       "score": 33
+    }
+  },
+  "nicholas-japan": {
+    "file": "Hakodate Orthodox Church May 2016 Icon Nicholas of Japan.jpg",
+    "remote": "https://upload.wikimedia.org/wikipedia/commons/4/49/Hakodate_Orthodox_Church_May_2016_Icon_Nicholas_of_Japan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "local": "web/images/real-auto/nicholas-japan.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hakodate_Orthodox_Church_May_2016_Icon_Nicholas_of_Japan.jpg",
+    "license": "CC BY 4.0",
+    "credit": {
+      "en": "Hakodate Orthodox Church May 2016 Icon Nicholas of Japan.jpg — Alexander Klink — Wikimedia Commons — CC BY 4.0",
+      "el": "Hakodate Orthodox Church May 2016 Icon Nicholas of Japan.jpg — Alexander Klink — Wikimedia Commons — CC BY 4.0"
+    },
+    "autoResolved": true,
+    "identityVerified": "strict-commons-title-metadata-v1",
+    "identityEvidence": {
+      "matchedName": "Saint Nicholas of Japan",
+      "tokens": [
+        "nicholas",
+        "japan"
+      ],
+      "query": "\"Saint Nicholas of Japan\" icon",
+      "score": 36
     }
   },
   "moses-hungarian": {
