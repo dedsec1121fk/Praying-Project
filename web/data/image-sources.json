@@ -804,5 +804,304 @@
     "local": "web/images/real/paraskevi.jpg",
     "identityVerified": "manual-commons-source-review",
     "identityVerifiedOn": "2026-09-16"
+  },
+  "matthew": {
+    "file": "Matthew the Evangelist - icon.jpeg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Matthew%20the%20Evangelist%20-%20icon.jpeg?width=640",
+    "local": "web/images/real/matthew.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matthew_the_Evangelist_-_icon.jpeg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Saint Matthew the Evangelist, Russian Orthodox icon, mid-19th century — Wikimedia Commons — Public domain",
+      "el": "Saint Matthew the Evangelist, Russian Orthodox icon, mid-19th century — Wikimedia Commons — Public domain"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "mark": {
+    "file": "Saint Mark - Orthodox Icon.jpeg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Mark%20-%20Orthodox%20Icon.jpeg?width=640",
+    "local": "web/images/real/mark.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Mark_-_Orthodox_Icon.jpeg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Saint Mark the Evangelist, Russian Orthodox icon, 18th century — Wikimedia Commons — Public domain",
+      "el": "Saint Mark the Evangelist, Russian Orthodox icon, 18th century — Wikimedia Commons — Public domain"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "luke": {
+    "file": "Saint Luke the Evangelist - icon.jpeg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Luke%20the%20Evangelist%20-%20icon.jpeg?width=640",
+    "local": "web/images/real/luke.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Luke_the_Evangelist_-_icon.jpeg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Saint Luke the Evangelist, Russian Eastern Orthodox icon, 18th century — Wikimedia Commons — Public domain",
+      "el": "Saint Luke the Evangelist, Russian Eastern Orthodox icon, 18th century — Wikimedia Commons — Public domain"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "timothy": {
+    "file": "Saint Timothy.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Timothy.jpg?width=640",
+    "local": "web/images/real/timothy.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Timothy.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Saint Timothy of Ephesus, Orthodox icon — Wikimedia Commons — Public domain artwork",
+      "el": "Saint Timothy of Ephesus, Orthodox icon — Wikimedia Commons — Public domain artwork"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "barnabas": {
+    "file": "St. Barnabas-Ikone.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/St.%20Barnabas-Ikone.jpg?width=640",
+    "local": "web/images/real/barnabas.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:St._Barnabas-Ikone.jpg",
+    "license": "GFDL / CC BY-SA",
+    "credit": {
+      "en": "Icon of Saint Barnabas, Salamis, Cyprus — Wikimedia Commons — GFDL / CC BY-SA",
+      "el": "Icon of Saint Barnabas, Salamis, Cyprus — Wikimedia Commons — GFDL / CC BY-SA"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "symeon-new-theologian": {
+    "file": "Symeon the New Theologian.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Symeon%20the%20New%20Theologian.jpg?width=640",
+    "local": "web/images/real/symeon-new-theologian.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Symeon_the_New_Theologian.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Saint Symeon the New Theologian, Orthodox icon — Wikimedia Commons — Public domain artwork",
+      "el": "Saint Symeon the New Theologian, Orthodox icon — Wikimedia Commons — Public domain artwork"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "ignatius-antioch": {
+    "file": "Ignatius of Antioch, Ignatius Theophoros.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Ignatius%20of%20Antioch%2C%20Ignatius%20Theophoros.jpg?width=640",
+    "local": "web/images/real/ignatius-antioch.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ignatius_of_Antioch,_Ignatius_Theophoros.jpg",
+    "license": "CC0 1.0",
+    "credit": {
+      "en": "Orthodox icon of Saint Ignatius of Antioch / Ignatius Theophoros — Wikimedia Commons — CC0 1.0",
+      "el": "Orthodox icon of Saint Ignatius of Antioch / Ignatius Theophoros — Wikimedia Commons — CC0 1.0"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "polycarp": {
+    "file": "Polycarp of Smyrna, Menologion of Basil II.png",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Polycarp%20of%20Smyrna%2C%20Menologion%20of%20Basil%20II.png?width=640",
+    "local": "web/images/real/polycarp.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Polycarp_of_Smyrna,_Menologion_of_Basil_II.png",
+    "license": "Public domain",
+    "credit": {
+      "en": "Saint Polycarp of Smyrna, Menologion of Basil II — Wikimedia Commons — Public domain",
+      "el": "Saint Polycarp of Smyrna, Menologion of Basil II — Wikimedia Commons — Public domain"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "ephrem-syrian": {
+    "file": "Ephrem.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Ephrem.jpg?width=640",
+    "local": "web/images/real/ephrem-syrian.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ephrem.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Icon of Saint Ephrem the Syrian — Wikimedia Commons — Public domain",
+      "el": "Icon of Saint Ephrem the Syrian — Wikimedia Commons — Public domain"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "john-climacus": {
+    "file": "John Climacus.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Climacus.jpg?width=640",
+    "local": "web/images/real/john-climacus.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:John_Climacus.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Saint John Climacus, detail of a Novgorod icon — Wikimedia Commons — Public domain artwork",
+      "el": "Saint John Climacus, detail of a Novgorod icon — Wikimedia Commons — Public domain artwork"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "matthias": {
+    "file": "Saint Matthias.PNG",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Matthias.PNG?width=640",
+    "local": "web/images/real/matthias.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Matthias.PNG",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Saint Matthias, workshop of Simone Martini, c. 1317 — Wikimedia Commons — Public domain artwork",
+      "el": "Saint Matthias, workshop of Simone Martini, c. 1317 — Wikimedia Commons — Public domain artwork"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "thomas": {
+    "file": "Apostle Thomas - Orthodox icon.jpeg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Apostle%20Thomas%20-%20Orthodox%20icon.jpeg?width=640",
+    "local": "web/images/real/thomas.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Apostle_Thomas_-_Orthodox_icon.jpeg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Apostle Thomas, Russian Orthodox icon, early 19th century — Wikimedia Commons — Public domain",
+      "el": "Apostle Thomas, Russian Orthodox icon, early 19th century — Wikimedia Commons — Public domain"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "titus": {
+    "file": "Saint Titus (Kosovo, 14th c. Pech Patriarch., S. Nicholas church).jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Titus%20%28Kosovo%2C%2014th%20c.%20Pech%20Patriarch.%2C%20S.%20Nicholas%20church%29.jpg?width=640",
+    "local": "web/images/real/titus.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Titus_(Kosovo,_14th_c._Pech_Patriarch.,_S._Nicholas_church).jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Holy Apostle Titus of Crete, 14th-century icon/fresco — Wikimedia Commons — Public domain artwork",
+      "el": "Holy Apostle Titus of Crete, 14th-century icon/fresco — Wikimedia Commons — Public domain artwork"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "herman-alaska": {
+    "file": "Saint Herman of Alaska.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Herman%20of%20Alaska.jpg?width=640",
+    "local": "web/images/real/herman-alaska.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Herman_of_Alaska.jpg",
+    "license": "CC BY-SA 3.0",
+    "credit": {
+      "en": "Icon of Saint Herman of Alaska from the Coastal Monastery of St. Sergius — Wikimedia Commons — CC BY-SA 3.0",
+      "el": "Εικόνα του Αγίου Γερμανού της Αλάσκας από τη Μονή Αγίου Σεργίου — Wikimedia Commons — CC BY-SA 3.0"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "innocent-alaska": {
+    "file": "St Innocent of Alaska.JPG",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/St%20Innocent%20of%20Alaska.JPG?width=640",
+    "local": "web/images/real/innocent-alaska.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:St_Innocent_of_Alaska.JPG",
+    "license": "CC BY-SA 4.0",
+    "credit": {
+      "en": "Image of Saint Innocent of Alaska — Wikimedia Commons — CC BY-SA 4.0",
+      "el": "Εικόνα του Αγίου Ιννοκεντίου της Αλάσκας — Wikimedia Commons — CC BY-SA 4.0"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "xenia-petersburg": {
+    "file": "Ksenia of petersbourg.jpeg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Ksenia%20of%20petersbourg.jpeg?width=640",
+    "local": "web/images/real/xenia-petersburg.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ksenia_of_petersbourg.jpeg",
+    "license": "CC0 / public-domain artwork",
+    "credit": {
+      "en": "Orthodox icon of Saint Xenia of Petersburg — Wikimedia Commons — CC0 / public-domain artwork",
+      "el": "Ορθόδοξη εικόνα της Αγίας Ξένιας της Πετρούπολης — Wikimedia Commons — CC0 / έργο κοινού κτήματος"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "mark-ephesus": {
+    "file": "Mark of Ephesus.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Mark%20of%20Ephesus.jpg?width=640",
+    "local": "web/images/real/mark-ephesus.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mark_of_Ephesus.jpg",
+    "license": "Public domain artwork",
+    "credit": {
+      "en": "Fresco of Saint Mark of Ephesus — Wikimedia Commons — Public domain artwork",
+      "el": "Τοιχογραφία του Αγίου Μάρκου Ευγενικού της Εφέσου — Wikimedia Commons — έργο κοινού κτήματος"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "kosmas-aetolos": {
+    "file": "Saint Kosmas the Aitolian, with scenes of his martyrdom. Portable icon of the Church of Saint Anne - Karyon.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Kosmas%20the%20Aitolian%2C%20with%20scenes%20of%20his%20martyrdom.%20Portable%20icon%20of%20the%20Church%20of%20Saint%20Anne%20-%20Karyon.jpg?width=640",
+    "local": "web/images/real/kosmas-aetolos.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Kosmas_the_Aitolian,_with_scenes_of_his_martyrdom._Portable_icon_of_the_Church_of_Saint_Anne_-_Karyon.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "19th-century icon of Saint Kosmas the Aitolian with scenes of his martyrdom — Wikimedia Commons — Public domain",
+      "el": "Εικόνα 19ου αιώνα του Αγίου Κοσμά του Αιτωλού με σκηνές του μαρτυρίου του — Wikimedia Commons — κοινό κτήμα"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "dionysios-zakynthos": {
+    "file": "Saint Dionysius of Zakynthos.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Dionysius%20of%20Zakynthos.jpg?width=640",
+    "local": "web/images/real/dionysios-zakynthos.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Dionysius_of_Zakynthos.jpg",
+    "license": "CC BY-SA 4.0",
+    "credit": {
+      "en": "Orthodox icon of Saint Dionysios of Zakynthos — Wikimedia Commons — CC BY-SA 4.0",
+      "el": "Ορθόδοξη εικόνα του Αγίου Διονυσίου Ζακύνθου — Wikimedia Commons — CC BY-SA 4.0"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "tikhon-moscow": {
+    "file": "Άγιος Τύχων Πατριάρχης Μόσχας.png",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/%CE%86%CE%B3%CE%B9%CE%BF%CF%82%20%CE%A4%CF%8D%CF%87%CF%89%CE%BD%20%CE%A0%CE%B1%CF%84%CF%81%CE%B9%CE%AC%CF%81%CF%87%CE%B7%CF%82%20%CE%9C%CF%8C%CF%83%CF%87%CE%B1%CF%82.png?width=640",
+    "local": "web/images/real/tikhon-moscow.png",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Άγιος_Τύχων_Πατριάρχης_Μόσχας.png",
+    "license": "Public domain",
+    "credit": {
+      "en": "Patriarch Saint Tikhon of Moscow — Wikimedia Commons — Public domain",
+      "el": "Άγιος Τύχων Πατριάρχης Μόσχας — Wikimedia Commons — κοινό κτήμα"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "luke-crimea": {
+    "file": "Luke of Simferopol.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Luke%20of%20Simferopol.jpg?width=640",
+    "local": "web/images/real/luke-crimea.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Luke_of_Simferopol.jpg",
+    "license": "CC0 1.0",
+    "credit": {
+      "en": "Orthodox icon of Saint Luke of Simferopol / Crimea — Wikimedia Commons — CC0 1.0",
+      "el": "Ορθόδοξη εικόνα του Αγίου Λουκά Συμφερουπόλεως και Κριμαίας — Wikimedia Commons — CC0 1.0"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "gerasimos-kefalonia": {
+    "file": "Saint Gerasimos, Faraklata Naos Agiou Nikolaou.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Gerasimos%2C%20Faraklata%20Naos%20Agiou%20Nikolaou.jpg?width=640",
+    "local": "web/images/real/gerasimos-kefalonia.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Gerasimos,_Faraklata_Naos_Agiou_Nikolaou.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Icon of Saint Gerasimos of Kefalonia — Wikimedia Commons — Public domain",
+      "el": "Εικόνα του Αγίου Γερασίμου Κεφαλληνίας — Wikimedia Commons — κοινό κτήμα"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
+  },
+  "gerasimos-cephalonia": {
+    "file": "Saint Gerasimos, Faraklata Naos Agiou Nikolaou.jpg",
+    "remote": "https://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Gerasimos%2C%20Faraklata%20Naos%20Agiou%20Nikolaou.jpg?width=640",
+    "local": "web/images/real/gerasimos-kefalonia.jpg",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saint_Gerasimos,_Faraklata_Naos_Agiou_Nikolaou.jpg",
+    "license": "Public domain",
+    "credit": {
+      "en": "Icon of Saint Gerasimos of Kefalonia — Wikimedia Commons — Public domain",
+      "el": "Εικόνα του Αγίου Γερασίμου Κεφαλληνίας — Wikimedia Commons — κοινό κτήμα"
+    },
+    "identityVerified": "manual-commons-source-review",
+    "identityVerifiedOn": "2026-09-16"
   }
 }

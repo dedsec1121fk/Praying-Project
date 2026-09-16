@@ -24,13 +24,13 @@ The main page is a lightweight vertically scrolling card grid on a static cloud 
 
 Every entry has a repository fallback illustration in `images/catalog/`, so there is always a local image file.
 
-Verified reusable iconography is mapped in `data/image-sources.json`. `tools/prepare_repository_images.py` first downloads the hand-reviewed mappings, then runs a fail-closed Commons resolver for still-unmapped people/saints/beings. Automatic matches require the full distinctive identity plus religious/iconographic context; ambiguous one-word identities and Wikipedia lead-image guesses are rejected. Accepted files are stored under `images/real/` or `images/real-auto/`, after which the runtime and offline manifest are rebuilt. The deployed browser UI uses repository-hosted files rather than Wikimedia URLs at page-view time.
+Verified reusable iconography is mapped in `data/image-sources.json`. `tools/prepare_repository_images.py` downloads only the manually reviewed Commons whitelist. Automatic image discovery is disabled: ambiguous identities are never guessed, and a dedicated repository illustration is used whenever a reviewed real/iconographic source is unavailable. Approved files are stored under `images/real/`, after which the runtime and offline manifest are rebuilt. The deployed browser UI uses repository-hosted files rather than Wikimedia URLs at page-view time.
 
 Psalms, parables, and Scripture-story cards intentionally use their dedicated bundled artwork rather than attempting to match them to an unrelated web image.
 
 ## Browser offline installation
 
-The download button in the top search bar installs the complete deployed site into browser Cache Storage. The cache manifest includes the startup shell, all lazy detail files, catalog data, CSS/JavaScript, and repository images. A service worker then serves cached same-origin files when the network is unavailable.
+The download button in the top search bar installs the complete deployed site into browser Cache Storage. The cache manifest includes the startup shell, all lazy detail bundles, catalog data, CSS/JavaScript, and repository images. A service worker then serves cached same-origin files when the network is unavailable.
 
 The browser must serve the site from **HTTPS** (or localhost) for service workers and Cache Storage. The installer requests persistent storage when supported, but browsers retain final control over storage quotas and eviction.
 
@@ -46,12 +46,12 @@ Files involved:
 - `assets/js/app.js` — responsive catalog, rich search, metadata display, scroll guide, offline installer, language switch, and detail viewer.
 - `assets/css/styles.css` — cloud background, card grid, scroll guide, offline UI, and modal styling.
 - `data/runtime-index.js` — lightweight startup/search index.
-- `data/details/` — one lazy detail file per record.
+- `data/detail-bundles/` — compact JSON bundles (up to 12 records each) warmed after startup; only the tapped record is parsed into active page memory.
 - `data/v24-expansion.js` — additional lesser-known saints/beings, Psalms, parables, and Scripture stories.
 - `data/image-sources.json` / `data/media-manifest.js` — verified image source mappings.
 - `images/catalog/` — dedicated repository fallback images for every record.
-- `images/real/` / `images/real-auto/` — downloaded repository-hosted verified images when available.
-- `tools/prepare_repository_images.py` — resolves/downloads images, rebuilds runtime, validates it, and refreshes the offline manifest.
+- `images/real/` — downloaded repository-hosted, manually reviewed images when available.
+- `tools/prepare_repository_images.py` — downloads only the reviewed image whitelist, rebuilds the bundled runtime, validates it, and refreshes the offline manifest.
 
 ## Validation
 
@@ -67,7 +67,8 @@ node web/tools/validate_lazy_runtime.js
 node web/tools/audit_content_quality.js
 python web/tools/check_static_site.py
 python web/tools/audit_image_identity.py
-python web/tools/validate_startup_preload.py
+python web/tools/audit_bilingual_v29.py
+python web/tools/validate_lazy_startup.py
 node --check web/assets/js/app.js
 node --check web/assets/js/bootstrap.js
 node --check service-worker.js
@@ -75,4 +76,6 @@ node --check service-worker.js
 
 ## Startup loading
 
-After language selection, the startup screen shows only a percentage and progress bar. Before the catalog becomes interactive, the app fetches every file listed in `offline-files.json` and verifies that every currently selected catalog image can be loaded. This includes all 1,186 per-entry detail files and all 1,186 dedicated catalog images. If the complete preload fails, the app fails closed rather than opening a partially loaded catalog.
+After language selection, the startup screen shows only a percentage and progress bar. Startup prepares the lightweight catalog shell: **names/cards plus the 1,186 card images**. Long-form stories, prayers, parables, Psalms, biographies, sources, and metadata dossiers do **not** delay entry.
+
+Once the catalog is visible, small detail bundles near the current scroll position are warmed as raw Cache Storage bytes. Opening a card parses only that record; closing the card releases the parsed dossier from active page memory. The remaining bundles can warm later at low concurrency, while the explicit offline-download button is still the only action that intentionally installs the complete site for offline use.

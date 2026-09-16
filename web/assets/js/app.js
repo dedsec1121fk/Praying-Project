@@ -72,7 +72,7 @@
     if(searchMetadataPromise)return searchMetadataPromise;
     searchMetadataPromise=new Promise((resolve,reject)=>{
       const script=document.createElement('script');
-      script.src='web/data/search-index.js?v=27';script.async=true;
+      script.src='web/data/search-index.js?v=29';script.async=true;
       script.onload=()=>{mergeSearchMetadata();script.remove();resolve();if(state.query.trim())renderCards()};
       script.onerror=()=>{script.remove();searchMetadataPromise=null;reject(new Error('Could not load search metadata'))};
       document.head.appendChild(script);
@@ -112,17 +112,9 @@
   }
 
   let activeDetail=null;
-  let detailScript=null;
   let detailLoadToken=0;
-  function clearPublishedDetail(id){
-    const store=window.ORTHODOX_ENTRY_DETAILS;if(!store||!id)return;delete store[id];
-    if(!Object.keys(store).length){try{delete window.ORTHODOX_ENTRY_DETAILS}catch(_){window.ORTHODOX_ENTRY_DETAILS=Object.create(null)}}
-  }
   function unloadActiveDetails(){
     detailLoadToken++;
-    if(detailScript){detailScript.onload=null;detailScript.onerror=null;detailScript.remove();detailScript=null}
-    if(activeDetail?.id)clearPublishedDetail(activeDetail.id);
-    if(state.active)clearPublishedDetail(state.active);
     activeDetail=null;
     const body=document.getElementById('tabBody');if(body)body.replaceChildren();
     const credit=document.getElementById('modalImageCredit');if(credit){credit.hidden=true;credit.removeAttribute('href');credit.textContent=''}
@@ -133,13 +125,19 @@
     if(typeof modal.close==='function'){try{modal.close()}catch(_){modal.removeAttribute('open')}}else modal.removeAttribute('open');
     modal.classList.remove('fallback-open');unloadActiveDetails();state.active=null;state.tab='description';
   }
-  const DETAIL_WARM_CACHE='praying-project-detail-warm-v28';
+
+  // v29: details are grouped into small JSON bundles.  The raw bundle bytes
+  // can be prefetched/cached without parsing the stories into page memory.
+  // Only the selected record is retained as activeDetail, and it is released
+  // when the modal closes.
+  const DETAIL_WARM_CACHE='praying-project-detail-bundles-v29';
+  const OFFLINE_CACHE='praying-project-offline-v29';
   let detailsWarmEnabled=false;
-  const detailWarmPromises=new Map();
-  const detailWarmQueued=new Set();
-  const detailWarmQueue=[];
-  let detailWarmActive=0;
-  const DETAIL_WARM_CONCURRENCY=4;
+  const bundleWarmPromises=new Map();
+  const bundleWarmQueued=new Set();
+  const bundleWarmQueue=[];
+  let bundleWarmActive=0;
+  const DETAIL_WARM_CONCURRENCY=2;
 
   function canWarmDetails(){
     if(!detailsWarmEnabled)return false;
@@ -148,133 +146,77 @@
     if(c?.saveData)return false;
     return true;
   }
-  async function detailAlreadyCached(e){
-    if(!('caches' in window))return false;
-    const url=detailFileUrl(e);
-    try{
-      const warm=await caches.open(DETAIL_WARM_CACHE);
-      if(await warm.match(url,{ignoreSearch:true}))return true;
-      const offline=await caches.open('praying-project-offline-v28');
-      return !!(await offline.match(url,{ignoreSearch:true}));
-    }catch(_){return false}
-  }
-  function pumpDetailWarmQueue(){
-    if(!canWarmDetails())return;
-    while(detailWarmActive<DETAIL_WARM_CONCURRENCY&&detailWarmQueue.length){
-      const e=detailWarmQueue.shift();
-      detailWarmQueued.delete(e.id);
-      if(detailWarmPromises.has(e.id))continue;
-      detailWarmActive++;
-      const promise=(async()=>{
-        try{
-          if(await detailAlreadyCached(e))return true;
-          const url=detailFileUrl(e);
-          const response=await fetch(url,{cache:'no-store',credentials:'same-origin'});
-          if(!response.ok)throw new Error(String(response.status));
-          const cache=await caches.open(DETAIL_WARM_CACHE);
-          await cache.put(url,response.clone());
-          return true;
-        }catch(_){return false}
-      })().finally(()=>{
-        detailWarmActive--;
-        detailWarmPromises.delete(e.id);
-        pumpDetailWarmQueue();
-      });
-      detailWarmPromises.set(e.id,promise);
-    }
-  }
-  function queueDetailWarm(e,urgent=false){
-    if(!e?.detailFile||!canWarmDetails())return Promise.resolve(false);
-    if(detailWarmPromises.has(e.id))return detailWarmPromises.get(e.id);
-    if(!detailWarmQueued.has(e.id)){
-      detailWarmQueued.add(e.id);
-      urgent?detailWarmQueue.unshift(e):detailWarmQueue.push(e);
-    }else if(urgent){
-      const i=detailWarmQueue.findIndex(x=>x.id===e.id);
-      if(i>0){const [item]=detailWarmQueue.splice(i,1);detailWarmQueue.unshift(item)}
-    }
-    pumpDetailWarmQueue();
-    return detailWarmPromises.get(e.id)||Promise.resolve(false);
-  }
-  function warmCardsNearViewport(){
-    if(!canWarmDetails())return;
-    const root=document.getElementById('catalogSection');
-    if(!root)return;
-    const rootRect=root.getBoundingClientRect();
-    const margin=Math.max(1400,rootRect.height*2.2);
-    const cards=cardGrid.querySelectorAll('.saint-card[data-id]');
-    for(const card of cards){
-      const r=card.getBoundingClientRect();
-      if(r.bottom>=rootRect.top-margin&&r.top<=rootRect.bottom+margin){
-        const e=byId.get(card.dataset.id);if(e)queueDetailWarm(e,false);
-      }
-    }
-  }
-  let warmScrollTimer=0;
-  function scheduleWarmCards(){
-    clearTimeout(warmScrollTimer);
-    warmScrollTimer=setTimeout(()=>{
-      if('requestIdleCallback' in window)requestIdleCallback(warmCardsNearViewport,{timeout:700});
-      else warmCardsNearViewport();
-    },90);
-  }
-
-  function detailFileUrl(e){return `web/data/details/${e.detailFile}?v=28`}
+  function detailBundleUrl(e){return `web/data/detail-bundles/${e.detailBundle}?v=29`}
   function detailView(e){return activeDetail?.id===e.id?Object.assign({},e,activeDetail.data):e}
-  async function cachedDetailResponse(e){
+  async function cachedBundleResponse(e){
     if(!('caches' in window))return null;
-    const url=detailFileUrl(e);
+    const url=detailBundleUrl(e);
     try{
       const warm=await caches.open(DETAIL_WARM_CACHE);
-      const a=await warm.match(url,{ignoreSearch:true});if(a)return a;
-      const offline=await caches.open('praying-project-offline-v28');
+      const hit=await warm.match(url,{ignoreSearch:true});if(hit)return hit;
+      const offline=await caches.open(OFFLINE_CACHE);
       return await offline.match(url,{ignoreSearch:true});
     }catch(_){return null}
   }
+  async function bundleAlreadyCached(e){return !!(await cachedBundleResponse(e))}
+  function pumpBundleWarmQueue(){
+    if(!canWarmDetails())return;
+    while(bundleWarmActive<DETAIL_WARM_CONCURRENCY&&bundleWarmQueue.length){
+      const e=bundleWarmQueue.shift(),key=e.detailBundle;
+      bundleWarmQueued.delete(key);if(bundleWarmPromises.has(key))continue;
+      bundleWarmActive++;
+      const promise=(async()=>{
+        try{
+          if(await bundleAlreadyCached(e))return true;
+          const url=detailBundleUrl(e),response=await fetch(url,{cache:'no-store',credentials:'same-origin'});
+          if(!response.ok)throw new Error(String(response.status));
+          const cache=await caches.open(DETAIL_WARM_CACHE);await cache.put(url,response.clone());return true;
+        }catch(_){return false}
+      })().finally(()=>{bundleWarmActive--;bundleWarmPromises.delete(key);pumpBundleWarmQueue()});
+      bundleWarmPromises.set(key,promise);
+    }
+  }
+  function queueDetailWarm(e,urgent=false){
+    if(!e?.detailBundle||!canWarmDetails())return Promise.resolve(false);
+    const key=e.detailBundle;if(bundleWarmPromises.has(key))return bundleWarmPromises.get(key);
+    if(!bundleWarmQueued.has(key)){bundleWarmQueued.add(key);urgent?bundleWarmQueue.unshift(e):bundleWarmQueue.push(e)}
+    else if(urgent){const i=bundleWarmQueue.findIndex(x=>x.detailBundle===key);if(i>0){const [x]=bundleWarmQueue.splice(i,1);bundleWarmQueue.unshift(x)}}
+    pumpBundleWarmQueue();return bundleWarmPromises.get(key)||Promise.resolve(false);
+  }
+  function warmCardsNearViewport(){
+    if(!canWarmDetails())return;
+    const root=document.getElementById('catalogSection');if(!root)return;
+    const rr=root.getBoundingClientRect(),margin=Math.max(1700,rr.height*3);
+    for(const card of cardGrid.querySelectorAll('.saint-card[data-id]')){
+      const r=card.getBoundingClientRect();if(r.bottom>=rr.top-margin&&r.top<=rr.bottom+margin){const e=byId.get(card.dataset.id);if(e)queueDetailWarm(e,false)}
+    }
+  }
+  function warmAllBundlesInBackground(){
+    if(!canWarmDetails())return;
+    const seen=new Set();
+    for(const e of entries){if(e.detailBundle&&!seen.has(e.detailBundle)){seen.add(e.detailBundle);queueDetailWarm(e,false)}}
+  }
+  let warmScrollTimer=0;
+  function scheduleWarmCards(){clearTimeout(warmScrollTimer);warmScrollTimer=setTimeout(()=>warmCardsNearViewport(),60)}
+
   async function ensureDetails(e){
-    if(!e.detailFile)throw new Error('Missing per-entry detail file');
-    const token=++detailLoadToken;
-
-    // If this item is only waiting in the background queue, remove that queued
-    // copy and let the user's tap become the priority request instead.
-    if(detailWarmQueued.has(e.id)&&!detailWarmPromises.has(e.id)){
-      const i=detailWarmQueue.findIndex(x=>x.id===e.id);
-      if(i>=0)detailWarmQueue.splice(i,1);
-      detailWarmQueued.delete(e.id);
+    if(!e.detailBundle)throw new Error('Missing detail bundle');
+    const token=++detailLoadToken,key=e.detailBundle;
+    if(bundleWarmQueued.has(key)&&!bundleWarmPromises.has(key)){
+      const i=bundleWarmQueue.findIndex(x=>x.detailBundle===key);if(i>=0)bundleWarmQueue.splice(i,1);bundleWarmQueued.delete(key);
     }
-
-    // Reuse an in-flight nearby prefetch instead of starting a duplicate request.
-    const warming=detailWarmPromises.get(e.id);
-    if(warming){try{await warming}catch(_){}}
+    const warming=bundleWarmPromises.get(key);if(warming){try{await warming}catch(_){}}
     if(token!==detailLoadToken||state.active!==e.id)throw new Error('Detail load cancelled');
-
-    let response=await cachedDetailResponse(e);
+    let response=await cachedBundleResponse(e);
     if(!response){
-      response=await fetch(detailFileUrl(e),{cache:'no-store',credentials:'same-origin'});
-      if(!response.ok)throw new Error(`Could not load ${detailFileUrl(e)} (${response.status})`);
-      if('caches' in window){
-        try{const cache=await caches.open(DETAIL_WARM_CACHE);await cache.put(detailFileUrl(e),response.clone())}catch(_){}
-      }
+      response=await fetch(detailBundleUrl(e),{cache:'no-store',credentials:'same-origin'});
+      if(!response.ok)throw new Error(`Could not load ${detailBundleUrl(e)} (${response.status})`);
+      if('caches' in window)try{const cache=await caches.open(DETAIL_WARM_CACHE);await cache.put(detailBundleUrl(e),response.clone())}catch(_){}
     }
+    const payload=await response.json();
     if(token!==detailLoadToken||state.active!==e.id)throw new Error('Detail load cancelled');
-
-    let objectUrl='';
-    try{objectUrl=URL.createObjectURL(await response.blob())}
-    catch(_){throw new Error(`Could not prepare ${detailFileUrl(e)}`)}
-
-    return new Promise((resolve,reject)=>{
-      const script=document.createElement('script');detailScript=script;script.src=objectUrl;script.async=true;
-      const cleanupUrl=()=>{if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=''}};
-      script.onload=()=>{
-        cleanupUrl();
-        const data=window.ORTHODOX_ENTRY_DETAILS?.[e.id];
-        if(token!==detailLoadToken||state.active!==e.id){clearPublishedDetail(e.id);script.remove();if(detailScript===script)detailScript=null;return reject(new Error('Detail load cancelled'))}
-        if(!data){script.remove();if(detailScript===script)detailScript=null;return reject(new Error('Entry missing from detail file'))}
-        activeDetail={id:e.id,data};resolve(data);
-      };
-      script.onerror=()=>{cleanupUrl();if(detailScript===script)detailScript=null;script.remove();clearPublishedDetail(e.id);reject(new Error(`Could not execute ${detailFileUrl(e)}`))};
-      document.head.appendChild(script);
-    });
+    const data=payload?.entries?.[e.id];if(!data)throw new Error(`Entry missing from ${e.detailBundle}`);
+    activeDetail={id:e.id,data};return data;
   }
 
   function setModalMedia(e){
@@ -310,6 +252,11 @@
       if(key.endsWith('_en')&&lang==='el'&&meta[base+'_el']!=null)continue;
       if(key.endsWith('_el')&&lang==='en'&&meta[base+'_en']!=null)continue;
       const text=Array.isArray(val)?val.join(' • '):String(val??'').trim();if(!text)continue;
+      // Never leak untranslated English metadata into the Greek UI. If a
+      // Greek-specific counterpart is unavailable, omit that chip instead of
+      // pretending it is translated. Numbers and punctuation-only values are
+      // still safe to display.
+      if(lang==='el'&&/[A-Za-z]/.test(text)&&!/[\u0370-\u03ff\u1f00-\u1fff]/.test(text))continue;
       seen.add(base);
       const pretty=(labelMap[base]?.[lang])||base.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
       out.push([pretty,text]);
@@ -479,7 +426,8 @@
       // Only after the user is inside the catalog do we begin low-priority
       // detail warming. Startup itself remains names/cards/images only.
       detailsWarmEnabled=true;
-      scheduleWarmCards();
+      warmCardsNearViewport();
+      setTimeout(()=>{const idle2=window.requestIdleCallback||((fn)=>setTimeout(fn,500));idle2(warmAllBundlesInBackground,{timeout:5000})},2500);
       const idle=window.requestIdleCallback||((fn)=>setTimeout(fn,250));
       idle(()=>ensureSearchMetadata().catch(err=>console.warn(err)));
     }catch(err){
@@ -507,7 +455,7 @@
       if(navigator.storage?.persist)try{await navigator.storage.persist()}catch(_){}
       const response=await fetch('web/offline-files.json',{cache:'no-store'});if(!response.ok)throw new Error('offline manifest unavailable');
       const data=await response.json();const files=Array.isArray(data.files)?data.files:[];if(!files.length)throw new Error('offline manifest empty');
-      const cache=await caches.open(data.cacheName||'praying-project-offline-v28');let done=0,failed=0,cursor=0;
+      const cache=await caches.open(data.cacheName||'praying-project-offline-v29');let done=0,failed=0,cursor=0;
       const worker=async()=>{while(true){const i=cursor++;if(i>=files.length)return;const url=files[i];try{const r=await fetch(url,{cache:'reload'});if(!r.ok)throw new Error(String(r.status));await cache.put(url,r.clone())}catch(_){failed++}done++;const percent=Math.round(done/files.length*100);offlineBtn.textContent=`${percent}%`;offlineBtn.setAttribute('aria-label',`${UI[state.lang].offline} ${percent}%`)}};
       await Promise.all(Array.from({length:Math.min(6,files.length)},worker));
       if(failed)throw new Error(`${failed} files failed`);

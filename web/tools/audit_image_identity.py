@@ -17,7 +17,7 @@ for eid,m in manifest.items():
     hay=' '.join(str(m.get(k,'')) for k in ('file','sourceUrl')).lower()
     if any(x in hay for x in BAD):errors.append(f'{eid}: suspicious non-religious image term in mapping')
     local=m.get('local','')
-    if local and not (local.startswith('web/images/real/') or local.startswith('web/images/real-auto/')):errors.append(f'{eid}: unexpected repository image path {local}')
+    if local and not local.startswith('web/images/real/'):errors.append(f'{eid}: unexpected repository image path {local}')
     if m.get('autoResolved'):errors.append(f'{eid}: automatic image mapping prohibited')
 # Every runtime item must always have a dedicated local illustration path.
 text=RUNTIME.read_text(encoding='utf-8')

@@ -1,18 +1,15 @@
 'use strict';
 const CACHE_PREFIX='praying-project-offline-';
-const CACHE_NAME='praying-project-offline-v28';
-const DETAIL_CACHE_PREFIX='praying-project-detail-warm-';
-const DETAIL_CACHE_NAME='praying-project-detail-warm-v28';
+const CACHE_NAME='praying-project-offline-v29';
+const DETAIL_CACHE_PREFIX='praying-project-detail-';
+const DETAIL_CACHE_NAME='praying-project-detail-bundles-v29';
 const SHELL=['./','./index.html','./404.html','./web-app.webmanifest','./web/assets/css/styles.css','./web/assets/js/bootstrap.js','./web/assets/js/app.js','./web/data/runtime-index.js'];
 
 self.addEventListener('install',event=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE_NAME);
     for(const url of SHELL){
-      try{
-        const r=await fetch(url,{cache:'reload'});
-        if(r.ok)await cache.put(url,r.clone());
-      }catch(_){}
+      try{const r=await fetch(url,{cache:'reload'});if(r.ok)await cache.put(url,r.clone())}catch(_){}
     }
     await self.skipWaiting();
   })());
@@ -21,10 +18,8 @@ self.addEventListener('install',event=>{
 self.addEventListener('activate',event=>{
   event.waitUntil((async()=>{
     const names=await caches.keys();
-    await Promise.all(names.filter(n=>(n.startsWith(CACHE_PREFIX)&&n!==CACHE_NAME)||(n.startsWith(DETAIL_CACHE_PREFIX)&&n!==DETAIL_CACHE_NAME)).map(n=>caches.delete(n)));
+    await Promise.all(names.filter(n=>(n.startsWith(CACHE_PREFIX)&&n!==CACHE_NAME)||(n.startsWith(DETAIL_CACHE_PREFIX)&&n!==DETAIL_CACHE_NAME)||n.startsWith('praying-project-detail-warm-')).map(n=>caches.delete(n)));
     await self.clients.claim();
-    const windows=await self.clients.matchAll({type:'window'});
-    for(const client of windows){try{await client.navigate(client.url)}catch(_){}}
   })());
 });
 
@@ -36,51 +31,25 @@ function isFreshCritical(path){
 }
 
 self.addEventListener('fetch',event=>{
-  const req=event.request;
-  if(req.method!=='GET')return;
-  const url=new URL(req.url);
-  if(url.origin!==self.location.origin)return;
+  const req=event.request;if(req.method!=='GET')return;
+  const url=new URL(req.url);if(url.origin!==self.location.origin)return;
   event.respondWith((async()=>{
-    const cache=await caches.open(CACHE_NAME);
-    // Rich per-entry details are network-on-demand and are not automatically
-    // persisted just because a card was opened. If the user explicitly used
-    // the offline-download button, the prebuilt cache is still used as the
-    // offline fallback.
-    if(url.pathname.includes('/web/data/details/')){
+    const offline=await caches.open(CACHE_NAME);
+    // v29 detail bundles: cache-first when warmed, otherwise network once and
+    // store the raw JSON bundle. The page only parses the selected record and
+    // releases it when the modal closes.
+    if(url.pathname.includes('/web/data/detail-bundles/')){
       const warm=await caches.open(DETAIL_CACHE_NAME);
-      const warmHit=await warm.match(req,{ignoreSearch:true});
-      if(warmHit)return warmHit;
-      const offlineHit=await cache.match(req,{ignoreSearch:true});
-      if(offlineHit)return offlineHit;
-      try{
-        const fresh=await fetch(req,{cache:'no-store'});
-        if(fresh&&fresh.ok)warm.put(req,fresh.clone()).catch(()=>{});
-        return fresh;
-      }catch(err){throw err}
+      const hit=await warm.match(req,{ignoreSearch:true});if(hit)return hit;
+      const offlineHit=await offline.match(req,{ignoreSearch:true});if(offlineHit)return offlineHit;
+      try{const fresh=await fetch(req,{cache:'no-store'});if(fresh&&fresh.ok)warm.put(req,fresh.clone()).catch(()=>{});return fresh}catch(err){throw err}
     }
     if(isFreshCritical(url.pathname)){
-      try{
-        const fresh=await fetch(req,{cache:'no-store'});
-        if(fresh&&fresh.ok)cache.put(req,fresh.clone()).catch(()=>{});
-        return fresh;
-      }catch(_){
-        const cached=await cache.match(req,{ignoreSearch:true});
-        if(cached)return cached;
-        throw _;
-      }
+      try{const fresh=await fetch(req,{cache:'no-store'});if(fresh&&fresh.ok)offline.put(req,fresh.clone()).catch(()=>{});return fresh}
+      catch(err){const cached=await offline.match(req,{ignoreSearch:true});if(cached)return cached;throw err}
     }
-    const cached=await cache.match(req,{ignoreSearch:true});
-    if(cached)return cached;
-    try{
-      const response=await fetch(req);
-      if(response&&response.ok)cache.put(req,response.clone()).catch(()=>{});
-      return response;
-    }catch(err){
-      if(req.mode==='navigate'){
-        const fallback=await cache.match('./index.html');
-        if(fallback)return fallback;
-      }
-      throw err;
-    }
+    const cached=await offline.match(req,{ignoreSearch:true});if(cached)return cached;
+    try{const response=await fetch(req);if(response&&response.ok)offline.put(req,response.clone()).catch(()=>{});return response}
+    catch(err){if(req.mode==='navigate'){const fallback=await offline.match('./index.html');if(fallback)return fallback}throw err}
   })());
 });
