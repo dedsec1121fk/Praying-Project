@@ -1,6 +1,6 @@
 {
   "cycle_number": 1,
-  "last_prayer_run_target": "2026-09-15|UZ|2026-09-15T22:00:00+00:00",
+  "last_prayer_run_target": "2026-09-12|LK|2026-09-12T21:30:00+00:00",
   "remaining_iso2": [
     "VU",
     "HR",
@@ -163,14 +163,15 @@
     "PA",
     "RO",
     "GN",
-    "ET"
+    "ET",
+    "UZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Tashkent",
-    "country": "Uzbekistan",
-    "iso2": "UZ",
-    "timezone": "Asia/Tashkent"
+    "capital": "Caracas",
+    "country": "Venezuela",
+    "iso2": "VE",
+    "timezone": "America/Caracas"
   },
-  "selection_period": "2026-09-15"
+  "selection_period": "2026-09-13"
 }
