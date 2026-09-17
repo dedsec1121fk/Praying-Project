@@ -162,15 +162,14 @@
     "BS",
     "PA",
     "RO",
-    "GN",
-    "ET"
+    "GN"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Tashkent",
-    "country": "Uzbekistan",
-    "iso2": "UZ",
-    "timezone": "Asia/Tashkent"
+    "capital": "Addis Ababa",
+    "country": "Ethiopia",
+    "iso2": "ET",
+    "timezone": "Africa/Addis_Ababa"
   },
-  "selection_period": "2026-09-16"
+  "selection_period": "2026-09-17"
 }
