@@ -161,15 +161,14 @@
     "SS",
     "BS",
     "PA",
-    "RO",
-    "GN"
+    "RO"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Addis Ababa",
-    "country": "Ethiopia",
-    "iso2": "ET",
-    "timezone": "Africa/Addis_Ababa"
+    "capital": "Conakry",
+    "country": "Guinea",
+    "iso2": "GN",
+    "timezone": "Africa/Conakry"
   },
-  "selection_period": "2026-09-17"
+  "selection_period": "2026-09-18"
 }
