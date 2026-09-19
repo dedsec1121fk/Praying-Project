@@ -160,15 +160,14 @@
     "ER",
     "SS",
     "BS",
-    "PA",
-    "RO"
+    "PA"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Conakry",
-    "country": "Guinea",
-    "iso2": "GN",
-    "timezone": "Africa/Conakry"
+    "capital": "Bucharest",
+    "country": "Romania",
+    "iso2": "RO",
+    "timezone": "Europe/Bucharest"
   },
-  "selection_period": "2026-09-18"
+  "selection_period": "2026-09-19"
 }
