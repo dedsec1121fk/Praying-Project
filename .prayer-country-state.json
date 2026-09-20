@@ -159,15 +159,14 @@
     "SN",
     "ER",
     "SS",
-    "BS",
-    "PA"
+    "BS"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Bucharest",
-    "country": "Romania",
-    "iso2": "RO",
-    "timezone": "Europe/Bucharest"
+    "capital": "Panama City",
+    "country": "Panama",
+    "iso2": "PA",
+    "timezone": "America/Panama"
   },
-  "selection_period": "2026-09-19"
+  "selection_period": "2026-09-20"
 }
