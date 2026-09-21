@@ -158,15 +158,14 @@
     "NA",
     "SN",
     "ER",
-    "SS",
-    "BS"
+    "SS"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Panama City",
-    "country": "Panama",
-    "iso2": "PA",
-    "timezone": "America/Panama"
+    "capital": "Nassau",
+    "country": "Bahamas",
+    "iso2": "BS",
+    "timezone": "America/Nassau"
   },
-  "selection_period": "2026-09-20"
+  "selection_period": "2026-09-21"
 }
