@@ -157,15 +157,14 @@
     "BI",
     "NA",
     "SN",
-    "ER",
-    "SS"
+    "ER"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Nassau",
-    "country": "Bahamas",
-    "iso2": "BS",
-    "timezone": "America/Nassau"
+    "capital": "Juba",
+    "country": "South Sudan",
+    "iso2": "SS",
+    "timezone": "Africa/Juba"
   },
-  "selection_period": "2026-09-21"
+  "selection_period": "2026-09-22"
 }
