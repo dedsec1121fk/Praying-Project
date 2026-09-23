@@ -156,15 +156,14 @@
     "TJ",
     "BI",
     "NA",
-    "SN",
-    "ER"
+    "SN"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Juba",
-    "country": "South Sudan",
-    "iso2": "SS",
-    "timezone": "Africa/Juba"
+    "capital": "Asmara",
+    "country": "Eritrea",
+    "iso2": "ER",
+    "timezone": "Africa/Asmara"
   },
-  "selection_period": "2026-09-22"
+  "selection_period": "2026-09-23"
 }
