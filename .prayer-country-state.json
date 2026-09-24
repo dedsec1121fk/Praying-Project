@@ -155,15 +155,14 @@
     "NO",
     "TJ",
     "BI",
-    "NA",
-    "SN"
+    "NA"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Asmara",
-    "country": "Eritrea",
-    "iso2": "ER",
-    "timezone": "Africa/Asmara"
+    "capital": "Dakar",
+    "country": "Senegal",
+    "iso2": "SN",
+    "timezone": "Africa/Dakar"
   },
-  "selection_period": "2026-09-23"
+  "selection_period": "2026-09-24"
 }
