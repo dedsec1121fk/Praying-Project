@@ -154,15 +154,14 @@
     "CM",
     "NO",
     "TJ",
-    "BI",
-    "NA"
+    "BI"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Dakar",
-    "country": "Senegal",
-    "iso2": "SN",
-    "timezone": "Africa/Dakar"
+    "capital": "Windhoek",
+    "country": "Namibia",
+    "iso2": "NA",
+    "timezone": "Africa/Windhoek"
   },
-  "selection_period": "2026-09-24"
+  "selection_period": "2026-09-25"
 }
