@@ -153,15 +153,14 @@
     "CI",
     "CM",
     "NO",
-    "TJ",
-    "BI"
+    "TJ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Windhoek",
-    "country": "Namibia",
-    "iso2": "NA",
-    "timezone": "Africa/Windhoek"
+    "capital": "Gitega",
+    "country": "Burundi",
+    "iso2": "BI",
+    "timezone": "Africa/Bujumbura"
   },
-  "selection_period": "2026-09-25"
+  "selection_period": "2026-09-26"
 }
