@@ -152,15 +152,14 @@
     "IT",
     "CI",
     "CM",
-    "NO",
-    "TJ"
+    "NO"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Gitega",
-    "country": "Burundi",
-    "iso2": "BI",
-    "timezone": "Africa/Bujumbura"
+    "capital": "Dushanbe",
+    "country": "Tajikistan",
+    "iso2": "TJ",
+    "timezone": "Asia/Dushanbe"
   },
-  "selection_period": "2026-09-26"
+  "selection_period": "2026-09-27"
 }
