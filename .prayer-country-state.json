@@ -151,15 +151,14 @@
     "ML",
     "IT",
     "CI",
-    "CM",
-    "NO"
+    "CM"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Dushanbe",
-    "country": "Tajikistan",
-    "iso2": "TJ",
-    "timezone": "Asia/Dushanbe"
+    "capital": "Oslo",
+    "country": "Norway",
+    "iso2": "NO",
+    "timezone": "Europe/Oslo"
   },
-  "selection_period": "2026-09-27"
+  "selection_period": "2026-09-28"
 }
