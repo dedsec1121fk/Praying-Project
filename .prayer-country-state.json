@@ -150,15 +150,14 @@
     "MU",
     "ML",
     "IT",
-    "CI",
-    "CM"
+    "CI"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Oslo",
-    "country": "Norway",
-    "iso2": "NO",
-    "timezone": "Europe/Oslo"
+    "capital": "Yaoundé",
+    "country": "Cameroon",
+    "iso2": "CM",
+    "timezone": "Africa/Douala"
   },
-  "selection_period": "2026-09-28"
+  "selection_period": "2026-09-29"
 }
