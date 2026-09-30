@@ -149,15 +149,14 @@
     "GD",
     "MU",
     "ML",
-    "IT",
-    "CI"
+    "IT"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Yaoundé",
-    "country": "Cameroon",
-    "iso2": "CM",
-    "timezone": "Africa/Douala"
+    "capital": "Yamoussoukro",
+    "country": "Côte d’Ivoire",
+    "iso2": "CI",
+    "timezone": "Africa/Abidjan"
   },
-  "selection_period": "2026-09-29"
+  "selection_period": "2026-09-30"
 }
