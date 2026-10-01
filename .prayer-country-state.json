@@ -148,15 +148,14 @@
     "DJ",
     "GD",
     "MU",
-    "ML",
-    "IT"
+    "ML"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Yamoussoukro",
-    "country": "Côte d’Ivoire",
-    "iso2": "CI",
-    "timezone": "Africa/Abidjan"
+    "capital": "Rome",
+    "country": "Italy",
+    "iso2": "IT",
+    "timezone": "Europe/Rome"
   },
-  "selection_period": "2026-09-30"
+  "selection_period": "2026-10-01"
 }
