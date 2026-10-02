@@ -147,15 +147,14 @@
     "MD",
     "DJ",
     "GD",
-    "MU",
-    "ML"
+    "MU"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Rome",
-    "country": "Italy",
-    "iso2": "IT",
-    "timezone": "Europe/Rome"
+    "capital": "Bamako",
+    "country": "Mali",
+    "iso2": "ML",
+    "timezone": "Africa/Bamako"
   },
-  "selection_period": "2026-10-01"
+  "selection_period": "2026-10-02"
 }
