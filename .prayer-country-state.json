@@ -146,15 +146,14 @@
     "SZ",
     "MD",
     "DJ",
-    "GD",
-    "MU"
+    "GD"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Bamako",
-    "country": "Mali",
-    "iso2": "ML",
-    "timezone": "Africa/Bamako"
+    "capital": "Port Louis",
+    "country": "Mauritius",
+    "iso2": "MU",
+    "timezone": "Indian/Mauritius"
   },
-  "selection_period": "2026-10-02"
+  "selection_period": "2026-10-03"
 }
