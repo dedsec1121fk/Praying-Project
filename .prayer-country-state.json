@@ -145,15 +145,14 @@
     "BO",
     "SZ",
     "MD",
-    "DJ",
-    "GD"
+    "DJ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Port Louis",
-    "country": "Mauritius",
-    "iso2": "MU",
-    "timezone": "Indian/Mauritius"
+    "capital": "St. George's",
+    "country": "Grenada",
+    "iso2": "GD",
+    "timezone": "America/Grenada"
   },
-  "selection_period": "2026-10-03"
+  "selection_period": "2026-10-04"
 }
