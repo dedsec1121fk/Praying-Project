@@ -144,15 +144,14 @@
     "ZM",
     "BO",
     "SZ",
-    "MD",
-    "DJ"
+    "MD"
   ],
   "schema": 1,
   "selected": {
-    "capital": "St. George's",
-    "country": "Grenada",
-    "iso2": "GD",
-    "timezone": "America/Grenada"
+    "capital": "Djibouti",
+    "country": "Djibouti",
+    "iso2": "DJ",
+    "timezone": "Africa/Djibouti"
   },
-  "selection_period": "2026-10-04"
+  "selection_period": "2026-10-05"
 }
