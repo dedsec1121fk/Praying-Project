@@ -143,15 +143,14 @@
     "RU",
     "ZM",
     "BO",
-    "SZ",
-    "MD"
+    "SZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Djibouti",
-    "country": "Djibouti",
-    "iso2": "DJ",
-    "timezone": "Africa/Djibouti"
+    "capital": "Chișinău",
+    "country": "Moldova",
+    "iso2": "MD",
+    "timezone": "Europe/Chisinau"
   },
-  "selection_period": "2026-10-05"
+  "selection_period": "2026-10-06"
 }
