@@ -142,15 +142,14 @@
     "KI",
     "RU",
     "ZM",
-    "BO",
-    "SZ"
+    "BO"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Chișinău",
-    "country": "Moldova",
-    "iso2": "MD",
-    "timezone": "Europe/Chisinau"
+    "capital": "Lobamba",
+    "country": "Eswatini",
+    "iso2": "SZ",
+    "timezone": "Africa/Mbabane"
   },
-  "selection_period": "2026-10-06"
+  "selection_period": "2026-10-07"
 }
