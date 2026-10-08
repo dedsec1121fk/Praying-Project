@@ -141,15 +141,14 @@
     "TL",
     "KI",
     "RU",
-    "ZM",
-    "BO"
+    "ZM"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Lobamba",
-    "country": "Eswatini",
-    "iso2": "SZ",
-    "timezone": "Africa/Mbabane"
+    "capital": "Sucre",
+    "country": "Bolivia",
+    "iso2": "BO",
+    "timezone": "America/La_Paz"
   },
-  "selection_period": "2026-10-07"
+  "selection_period": "2026-10-08"
 }
