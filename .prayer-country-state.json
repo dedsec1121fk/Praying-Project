@@ -140,15 +140,14 @@
     "LA",
     "TL",
     "KI",
-    "RU",
-    "ZM"
+    "RU"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Sucre",
-    "country": "Bolivia",
-    "iso2": "BO",
-    "timezone": "America/La_Paz"
+    "capital": "Lusaka",
+    "country": "Zambia",
+    "iso2": "ZM",
+    "timezone": "Africa/Lusaka"
   },
-  "selection_period": "2026-10-08"
+  "selection_period": "2026-10-09"
 }
