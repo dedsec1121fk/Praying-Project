@@ -138,15 +138,14 @@
     "MX",
     "NR",
     "LA",
-    "TL",
-    "KI"
+    "TL"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Moscow",
-    "country": "Russia",
-    "iso2": "RU",
-    "timezone": "Europe/Moscow"
+    "capital": "South Tarawa",
+    "country": "Kiribati",
+    "iso2": "KI",
+    "timezone": "Pacific/Tarawa"
   },
-  "selection_period": "2026-10-10"
+  "selection_period": "2026-10-11"
 }
