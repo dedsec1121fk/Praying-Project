@@ -137,15 +137,14 @@
     "BB",
     "MX",
     "NR",
-    "LA",
-    "TL"
+    "LA"
   ],
   "schema": 1,
   "selected": {
-    "capital": "South Tarawa",
-    "country": "Kiribati",
-    "iso2": "KI",
-    "timezone": "Pacific/Tarawa"
+    "capital": "Dili",
+    "country": "Timor-Leste",
+    "iso2": "TL",
+    "timezone": "Asia/Dili"
   },
-  "selection_period": "2026-10-11"
+  "selection_period": "2026-10-12"
 }
