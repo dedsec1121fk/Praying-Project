@@ -136,15 +136,14 @@
     "SY",
     "BB",
     "MX",
-    "NR",
-    "LA"
+    "NR"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Dili",
-    "country": "Timor-Leste",
-    "iso2": "TL",
-    "timezone": "Asia/Dili"
+    "capital": "Vientiane",
+    "country": "Laos",
+    "iso2": "LA",
+    "timezone": "Asia/Vientiane"
   },
-  "selection_period": "2026-10-12"
+  "selection_period": "2026-10-13"
 }
