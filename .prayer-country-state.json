@@ -135,15 +135,14 @@
     "ZW",
     "SY",
     "BB",
-    "MX",
-    "NR"
+    "MX"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Vientiane",
-    "country": "Laos",
-    "iso2": "LA",
-    "timezone": "Asia/Vientiane"
+    "capital": "Yaren",
+    "country": "Nauru",
+    "iso2": "NR",
+    "timezone": "Pacific/Nauru"
   },
-  "selection_period": "2026-10-13"
+  "selection_period": "2026-10-14"
 }
