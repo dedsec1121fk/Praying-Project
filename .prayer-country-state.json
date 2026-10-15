@@ -134,15 +134,14 @@
     "FI",
     "ZW",
     "SY",
-    "BB",
-    "MX"
+    "BB"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Yaren",
-    "country": "Nauru",
-    "iso2": "NR",
-    "timezone": "Pacific/Nauru"
+    "capital": "Mexico City",
+    "country": "Mexico",
+    "iso2": "MX",
+    "timezone": "America/Mexico_City"
   },
-  "selection_period": "2026-10-14"
+  "selection_period": "2026-10-15"
 }
