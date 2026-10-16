@@ -133,15 +133,14 @@
     "KP",
     "FI",
     "ZW",
-    "SY",
-    "BB"
+    "SY"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Mexico City",
-    "country": "Mexico",
-    "iso2": "MX",
-    "timezone": "America/Mexico_City"
+    "capital": "Bridgetown",
+    "country": "Barbados",
+    "iso2": "BB",
+    "timezone": "America/Barbados"
   },
-  "selection_period": "2026-10-15"
+  "selection_period": "2026-10-16"
 }
