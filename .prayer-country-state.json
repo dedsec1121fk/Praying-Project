@@ -132,15 +132,14 @@
     "CG",
     "KP",
     "FI",
-    "ZW",
-    "SY"
+    "ZW"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Bridgetown",
-    "country": "Barbados",
-    "iso2": "BB",
-    "timezone": "America/Barbados"
+    "capital": "Damascus",
+    "country": "Syria",
+    "iso2": "SY",
+    "timezone": "Asia/Damascus"
   },
-  "selection_period": "2026-10-16"
+  "selection_period": "2026-10-17"
 }
