@@ -131,15 +131,14 @@
     "CY",
     "CG",
     "KP",
-    "FI",
-    "ZW"
+    "FI"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Damascus",
-    "country": "Syria",
-    "iso2": "SY",
-    "timezone": "Asia/Damascus"
+    "capital": "Harare",
+    "country": "Zimbabwe",
+    "iso2": "ZW",
+    "timezone": "Africa/Harare"
   },
-  "selection_period": "2026-10-17"
+  "selection_period": "2026-10-18"
 }
