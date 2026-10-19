@@ -130,15 +130,14 @@
     "BN",
     "CY",
     "CG",
-    "KP",
-    "FI"
+    "KP"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Harare",
-    "country": "Zimbabwe",
-    "iso2": "ZW",
-    "timezone": "Africa/Harare"
+    "capital": "Helsinki",
+    "country": "Finland",
+    "iso2": "FI",
+    "timezone": "Europe/Helsinki"
   },
-  "selection_period": "2026-10-18"
+  "selection_period": "2026-10-19"
 }
