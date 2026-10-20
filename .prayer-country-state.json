@@ -129,15 +129,14 @@
     "VN",
     "BN",
     "CY",
-    "CG",
-    "KP"
+    "CG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Helsinki",
-    "country": "Finland",
-    "iso2": "FI",
-    "timezone": "Europe/Helsinki"
+    "capital": "Pyongyang",
+    "country": "North Korea",
+    "iso2": "KP",
+    "timezone": "Asia/Pyongyang"
   },
-  "selection_period": "2026-10-19"
+  "selection_period": "2026-10-20"
 }
