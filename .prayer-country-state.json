@@ -128,15 +128,14 @@
     "MM",
     "VN",
     "BN",
-    "CY",
-    "CG"
+    "CY"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Pyongyang",
-    "country": "North Korea",
-    "iso2": "KP",
-    "timezone": "Asia/Pyongyang"
+    "capital": "Brazzaville",
+    "country": "Republic of the Congo",
+    "iso2": "CG",
+    "timezone": "Africa/Brazzaville"
   },
-  "selection_period": "2026-10-20"
+  "selection_period": "2026-10-21"
 }
