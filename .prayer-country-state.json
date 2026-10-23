@@ -126,15 +126,14 @@
     "TD",
     "DZ",
     "MM",
-    "VN",
-    "BN"
+    "VN"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Nicosia",
-    "country": "Cyprus",
-    "iso2": "CY",
-    "timezone": "Asia/Nicosia"
+    "capital": "Bandar Seri Begawan",
+    "country": "Brunei",
+    "iso2": "BN",
+    "timezone": "Asia/Brunei"
   },
-  "selection_period": "2026-10-22"
+  "selection_period": "2026-10-23"
 }
