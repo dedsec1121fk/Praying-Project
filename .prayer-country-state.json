@@ -125,15 +125,14 @@
     "LI",
     "TD",
     "DZ",
-    "MM",
-    "VN"
+    "MM"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Bandar Seri Begawan",
-    "country": "Brunei",
-    "iso2": "BN",
-    "timezone": "Asia/Brunei"
+    "capital": "Hanoi",
+    "country": "Vietnam",
+    "iso2": "VN",
+    "timezone": "Asia/Ho_Chi_Minh"
   },
-  "selection_period": "2026-10-23"
+  "selection_period": "2026-10-24"
 }
