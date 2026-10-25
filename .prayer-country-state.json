@@ -124,15 +124,14 @@
     "LT",
     "LI",
     "TD",
-    "DZ",
-    "MM"
+    "DZ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Hanoi",
-    "country": "Vietnam",
-    "iso2": "VN",
-    "timezone": "Asia/Ho_Chi_Minh"
+    "capital": "Naypyidaw",
+    "country": "Myanmar",
+    "iso2": "MM",
+    "timezone": "Asia/Yangon"
   },
-  "selection_period": "2026-10-24"
+  "selection_period": "2026-10-25"
 }
