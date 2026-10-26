@@ -123,15 +123,14 @@
     "RS",
     "LT",
     "LI",
-    "TD",
-    "DZ"
+    "TD"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Naypyidaw",
-    "country": "Myanmar",
-    "iso2": "MM",
-    "timezone": "Asia/Yangon"
+    "capital": "Algiers",
+    "country": "Algeria",
+    "iso2": "DZ",
+    "timezone": "Africa/Algiers"
   },
-  "selection_period": "2026-10-25"
+  "selection_period": "2026-10-26"
 }
