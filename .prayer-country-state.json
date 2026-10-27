@@ -122,15 +122,14 @@
     "TN",
     "RS",
     "LT",
-    "LI",
-    "TD"
+    "LI"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Algiers",
-    "country": "Algeria",
-    "iso2": "DZ",
-    "timezone": "Africa/Algiers"
+    "capital": "N'Djamena",
+    "country": "Chad",
+    "iso2": "TD",
+    "timezone": "Africa/Ndjamena"
   },
-  "selection_period": "2026-10-26"
+  "selection_period": "2026-10-27"
 }
