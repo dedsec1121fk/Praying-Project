@@ -121,15 +121,14 @@
     "AE",
     "TN",
     "RS",
-    "LT",
-    "LI"
+    "LT"
   ],
   "schema": 1,
   "selected": {
-    "capital": "N'Djamena",
-    "country": "Chad",
-    "iso2": "TD",
-    "timezone": "Africa/Ndjamena"
+    "capital": "Vaduz",
+    "country": "Liechtenstein",
+    "iso2": "LI",
+    "timezone": "Europe/Vaduz"
   },
-  "selection_period": "2026-10-27"
+  "selection_period": "2026-10-28"
 }
