@@ -120,15 +120,14 @@
     "JO",
     "AE",
     "TN",
-    "RS",
-    "LT"
+    "RS"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Vaduz",
-    "country": "Liechtenstein",
-    "iso2": "LI",
-    "timezone": "Europe/Vaduz"
+    "capital": "Vilnius",
+    "country": "Lithuania",
+    "iso2": "LT",
+    "timezone": "Europe/Vilnius"
   },
-  "selection_period": "2026-10-28"
+  "selection_period": "2026-10-29"
 }
