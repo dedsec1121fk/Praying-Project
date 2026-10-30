@@ -119,15 +119,14 @@
     "LC",
     "JO",
     "AE",
-    "TN",
-    "RS"
+    "TN"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Vilnius",
-    "country": "Lithuania",
-    "iso2": "LT",
-    "timezone": "Europe/Vilnius"
+    "capital": "Belgrade",
+    "country": "Serbia",
+    "iso2": "RS",
+    "timezone": "Europe/Belgrade"
   },
-  "selection_period": "2026-10-29"
+  "selection_period": "2026-10-30"
 }
