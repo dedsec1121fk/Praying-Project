@@ -118,15 +118,14 @@
     "BG",
     "LC",
     "JO",
-    "AE",
-    "TN"
+    "AE"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Belgrade",
-    "country": "Serbia",
-    "iso2": "RS",
-    "timezone": "Europe/Belgrade"
+    "capital": "Tunis",
+    "country": "Tunisia",
+    "iso2": "TN",
+    "timezone": "Africa/Tunis"
   },
-  "selection_period": "2026-10-30"
+  "selection_period": "2026-10-31"
 }
