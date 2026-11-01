@@ -117,15 +117,14 @@
     "DE",
     "BG",
     "LC",
-    "JO",
-    "AE"
+    "JO"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Tunis",
-    "country": "Tunisia",
-    "iso2": "TN",
-    "timezone": "Africa/Tunis"
+    "capital": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "iso2": "AE",
+    "timezone": "Asia/Dubai"
   },
-  "selection_period": "2026-10-31"
+  "selection_period": "2026-11-01"
 }
