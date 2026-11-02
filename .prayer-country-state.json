@@ -116,15 +116,14 @@
     "KN",
     "DE",
     "BG",
-    "LC",
-    "JO"
+    "LC"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Abu Dhabi",
-    "country": "United Arab Emirates",
-    "iso2": "AE",
-    "timezone": "Asia/Dubai"
+    "capital": "Amman",
+    "country": "Jordan",
+    "iso2": "JO",
+    "timezone": "Asia/Amman"
   },
-  "selection_period": "2026-11-01"
+  "selection_period": "2026-11-02"
 }
