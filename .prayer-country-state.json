@@ -115,15 +115,14 @@
     "PE",
     "KN",
     "DE",
-    "BG",
-    "LC"
+    "BG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Amman",
-    "country": "Jordan",
-    "iso2": "JO",
-    "timezone": "Asia/Amman"
+    "capital": "Castries",
+    "country": "Saint Lucia",
+    "iso2": "LC",
+    "timezone": "America/St_Lucia"
   },
-  "selection_period": "2026-11-02"
+  "selection_period": "2026-11-03"
 }
