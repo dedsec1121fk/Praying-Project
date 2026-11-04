@@ -114,15 +114,14 @@
     "CD",
     "PE",
     "KN",
-    "DE",
-    "BG"
+    "DE"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Castries",
-    "country": "Saint Lucia",
-    "iso2": "LC",
-    "timezone": "America/St_Lucia"
+    "capital": "Sofia",
+    "country": "Bulgaria",
+    "iso2": "BG",
+    "timezone": "Europe/Sofia"
   },
-  "selection_period": "2026-11-03"
+  "selection_period": "2026-11-04"
 }
