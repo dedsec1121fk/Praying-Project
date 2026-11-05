@@ -113,15 +113,14 @@
     "SD",
     "CD",
     "PE",
-    "KN",
-    "DE"
+    "KN"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Sofia",
-    "country": "Bulgaria",
-    "iso2": "BG",
-    "timezone": "Europe/Sofia"
+    "capital": "Berlin",
+    "country": "Germany",
+    "iso2": "DE",
+    "timezone": "Europe/Berlin"
   },
-  "selection_period": "2026-11-04"
+  "selection_period": "2026-11-05"
 }
