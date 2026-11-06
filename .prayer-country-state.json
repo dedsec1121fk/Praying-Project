@@ -112,15 +112,14 @@
     "LB",
     "SD",
     "CD",
-    "PE",
-    "KN"
+    "PE"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Berlin",
-    "country": "Germany",
-    "iso2": "DE",
-    "timezone": "Europe/Berlin"
+    "capital": "Basseterre",
+    "country": "Saint Kitts and Nevis",
+    "iso2": "KN",
+    "timezone": "America/St_Kitts"
   },
-  "selection_period": "2026-11-05"
+  "selection_period": "2026-11-06"
 }
