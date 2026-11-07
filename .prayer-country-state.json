@@ -111,15 +111,14 @@
     "TG",
     "LB",
     "SD",
-    "CD",
-    "PE"
+    "CD"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Basseterre",
-    "country": "Saint Kitts and Nevis",
-    "iso2": "KN",
-    "timezone": "America/St_Kitts"
+    "capital": "Lima",
+    "country": "Peru",
+    "iso2": "PE",
+    "timezone": "America/Lima"
   },
-  "selection_period": "2026-11-06"
+  "selection_period": "2026-11-07"
 }
