@@ -110,15 +110,14 @@
     "TH",
     "TG",
     "LB",
-    "SD",
-    "CD"
+    "SD"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Lima",
-    "country": "Peru",
-    "iso2": "PE",
-    "timezone": "America/Lima"
+    "capital": "Kinshasa",
+    "country": "Democratic Republic of the Congo",
+    "iso2": "CD",
+    "timezone": "Africa/Kinshasa"
   },
-  "selection_period": "2026-11-07"
+  "selection_period": "2026-11-08"
 }
