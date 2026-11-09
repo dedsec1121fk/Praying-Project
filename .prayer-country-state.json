@@ -109,15 +109,14 @@
     "MG",
     "TH",
     "TG",
-    "LB",
-    "SD"
+    "LB"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Kinshasa",
-    "country": "Democratic Republic of the Congo",
-    "iso2": "CD",
-    "timezone": "Africa/Kinshasa"
+    "capital": "Khartoum",
+    "country": "Sudan",
+    "iso2": "SD",
+    "timezone": "Africa/Khartoum"
   },
-  "selection_period": "2026-11-08"
+  "selection_period": "2026-11-09"
 }
