@@ -108,15 +108,14 @@
     "IL",
     "MG",
     "TH",
-    "TG",
-    "LB"
+    "TG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Khartoum",
-    "country": "Sudan",
-    "iso2": "SD",
-    "timezone": "Africa/Khartoum"
+    "capital": "Beirut",
+    "country": "Lebanon",
+    "iso2": "LB",
+    "timezone": "Asia/Beirut"
   },
-  "selection_period": "2026-11-09"
+  "selection_period": "2026-11-10"
 }
