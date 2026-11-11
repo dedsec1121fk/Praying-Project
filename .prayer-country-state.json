@@ -107,15 +107,14 @@
     "PH",
     "IL",
     "MG",
-    "TH",
-    "TG"
+    "TH"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Beirut",
-    "country": "Lebanon",
-    "iso2": "LB",
-    "timezone": "Asia/Beirut"
+    "capital": "Lomé",
+    "country": "Togo",
+    "iso2": "TG",
+    "timezone": "Africa/Lome"
   },
-  "selection_period": "2026-11-10"
+  "selection_period": "2026-11-11"
 }
