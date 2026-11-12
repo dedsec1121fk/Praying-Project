@@ -106,15 +106,14 @@
     "EC",
     "PH",
     "IL",
-    "MG",
-    "TH"
+    "MG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Lomé",
-    "country": "Togo",
-    "iso2": "TG",
-    "timezone": "Africa/Lome"
+    "capital": "Bangkok",
+    "country": "Thailand",
+    "iso2": "TH",
+    "timezone": "Asia/Bangkok"
   },
-  "selection_period": "2026-11-11"
+  "selection_period": "2026-11-12"
 }
