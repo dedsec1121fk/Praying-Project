@@ -105,15 +105,14 @@
     "GA",
     "EC",
     "PH",
-    "IL",
-    "MG"
+    "IL"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Bangkok",
-    "country": "Thailand",
-    "iso2": "TH",
-    "timezone": "Asia/Bangkok"
+    "capital": "Antananarivo",
+    "country": "Madagascar",
+    "iso2": "MG",
+    "timezone": "Indian/Antananarivo"
   },
-  "selection_period": "2026-11-12"
+  "selection_period": "2026-11-13"
 }
