@@ -104,15 +104,14 @@
     "ST",
     "GA",
     "EC",
-    "PH",
-    "IL"
+    "PH"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Antananarivo",
-    "country": "Madagascar",
-    "iso2": "MG",
-    "timezone": "Indian/Antananarivo"
+    "capital": "Jerusalem",
+    "country": "Israel",
+    "iso2": "IL",
+    "timezone": "Asia/Jerusalem"
   },
-  "selection_period": "2026-11-13"
+  "selection_period": "2026-11-14"
 }
