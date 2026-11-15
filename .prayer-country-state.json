@@ -103,15 +103,14 @@
     "BF",
     "ST",
     "GA",
-    "EC",
-    "PH"
+    "EC"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Jerusalem",
-    "country": "Israel",
-    "iso2": "IL",
-    "timezone": "Asia/Jerusalem"
+    "capital": "Manila",
+    "country": "Philippines",
+    "iso2": "PH",
+    "timezone": "Asia/Manila"
   },
-  "selection_period": "2026-11-14"
+  "selection_period": "2026-11-15"
 }
