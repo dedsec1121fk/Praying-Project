@@ -102,15 +102,14 @@
     "MY",
     "BF",
     "ST",
-    "GA",
-    "EC"
+    "GA"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Manila",
-    "country": "Philippines",
-    "iso2": "PH",
-    "timezone": "Asia/Manila"
+    "capital": "Quito",
+    "country": "Ecuador",
+    "iso2": "EC",
+    "timezone": "America/Guayaquil"
   },
-  "selection_period": "2026-11-15"
+  "selection_period": "2026-11-16"
 }
