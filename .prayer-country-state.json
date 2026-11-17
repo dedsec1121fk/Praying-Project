@@ -101,15 +101,14 @@
     "UG",
     "MY",
     "BF",
-    "ST",
-    "GA"
+    "ST"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Quito",
-    "country": "Ecuador",
-    "iso2": "EC",
-    "timezone": "America/Guayaquil"
+    "capital": "Libreville",
+    "country": "Gabon",
+    "iso2": "GA",
+    "timezone": "Africa/Libreville"
   },
-  "selection_period": "2026-11-16"
+  "selection_period": "2026-11-17"
 }
