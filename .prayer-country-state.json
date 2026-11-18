@@ -100,15 +100,14 @@
     "GH",
     "UG",
     "MY",
-    "BF",
-    "ST"
+    "BF"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Libreville",
-    "country": "Gabon",
-    "iso2": "GA",
-    "timezone": "Africa/Libreville"
+    "capital": "São Tomé",
+    "country": "Sao Tome and Principe",
+    "iso2": "ST",
+    "timezone": "Africa/Sao_Tome"
   },
-  "selection_period": "2026-11-17"
+  "selection_period": "2026-11-18"
 }
