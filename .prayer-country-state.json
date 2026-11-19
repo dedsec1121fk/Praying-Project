@@ -99,15 +99,14 @@
     "JM",
     "GH",
     "UG",
-    "MY",
-    "BF"
+    "MY"
   ],
   "schema": 1,
   "selected": {
-    "capital": "São Tomé",
-    "country": "Sao Tome and Principe",
-    "iso2": "ST",
-    "timezone": "Africa/Sao_Tome"
+    "capital": "Ouagadougou",
+    "country": "Burkina Faso",
+    "iso2": "BF",
+    "timezone": "Africa/Ouagadougou"
   },
-  "selection_period": "2026-11-18"
+  "selection_period": "2026-11-19"
 }
