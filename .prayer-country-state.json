@@ -98,15 +98,14 @@
     "DO",
     "JM",
     "GH",
-    "UG",
-    "MY"
+    "UG"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Ouagadougou",
-    "country": "Burkina Faso",
-    "iso2": "BF",
-    "timezone": "Africa/Ouagadougou"
+    "capital": "Kuala Lumpur",
+    "country": "Malaysia",
+    "iso2": "MY",
+    "timezone": "Asia/Kuala_Lumpur"
   },
-  "selection_period": "2026-11-19"
+  "selection_period": "2026-11-20"
 }
