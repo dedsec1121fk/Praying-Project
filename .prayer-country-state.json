@@ -97,15 +97,14 @@
     "NI",
     "DO",
     "JM",
-    "GH",
-    "UG"
+    "GH"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Kuala Lumpur",
-    "country": "Malaysia",
-    "iso2": "MY",
-    "timezone": "Asia/Kuala_Lumpur"
+    "capital": "Kampala",
+    "country": "Uganda",
+    "iso2": "UG",
+    "timezone": "Africa/Kampala"
   },
-  "selection_period": "2026-11-20"
+  "selection_period": "2026-11-21"
 }
