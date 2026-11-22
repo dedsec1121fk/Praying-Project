@@ -96,15 +96,14 @@
     "CO",
     "NI",
     "DO",
-    "JM",
-    "GH"
+    "JM"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Kampala",
-    "country": "Uganda",
-    "iso2": "UG",
-    "timezone": "Africa/Kampala"
+    "capital": "Accra",
+    "country": "Ghana",
+    "iso2": "GH",
+    "timezone": "Africa/Accra"
   },
-  "selection_period": "2026-11-21"
+  "selection_period": "2026-11-22"
 }
