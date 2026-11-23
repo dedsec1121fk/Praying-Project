@@ -95,15 +95,14 @@
     "VC",
     "CO",
     "NI",
-    "DO",
-    "JM"
+    "DO"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Accra",
-    "country": "Ghana",
-    "iso2": "GH",
-    "timezone": "Africa/Accra"
+    "capital": "Kingston",
+    "country": "Jamaica",
+    "iso2": "JM",
+    "timezone": "America/Jamaica"
   },
-  "selection_period": "2026-11-22"
+  "selection_period": "2026-11-23"
 }
