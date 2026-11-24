@@ -94,15 +94,14 @@
     "FJ",
     "VC",
     "CO",
-    "NI",
-    "DO"
+    "NI"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Kingston",
-    "country": "Jamaica",
-    "iso2": "JM",
-    "timezone": "America/Jamaica"
+    "capital": "Santo Domingo",
+    "country": "Dominican Republic",
+    "iso2": "DO",
+    "timezone": "America/Santo_Domingo"
   },
-  "selection_period": "2026-11-23"
+  "selection_period": "2026-11-24"
 }
