@@ -93,15 +93,14 @@
     "DM",
     "FJ",
     "VC",
-    "CO",
-    "NI"
+    "CO"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Santo Domingo",
-    "country": "Dominican Republic",
-    "iso2": "DO",
-    "timezone": "America/Santo_Domingo"
+    "capital": "Managua",
+    "country": "Nicaragua",
+    "iso2": "NI",
+    "timezone": "America/Managua"
   },
-  "selection_period": "2026-11-24"
+  "selection_period": "2026-11-25"
 }
