@@ -92,15 +92,14 @@
     "ES",
     "DM",
     "FJ",
-    "VC",
-    "CO"
+    "VC"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Managua",
-    "country": "Nicaragua",
-    "iso2": "NI",
-    "timezone": "America/Managua"
+    "capital": "Bogotá",
+    "country": "Colombia",
+    "iso2": "CO",
+    "timezone": "America/Bogota"
   },
-  "selection_period": "2026-11-25"
+  "selection_period": "2026-11-26"
 }
