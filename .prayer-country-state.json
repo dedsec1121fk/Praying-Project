@@ -91,15 +91,14 @@
     "BR",
     "ES",
     "DM",
-    "FJ",
-    "VC"
+    "FJ"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Bogotá",
-    "country": "Colombia",
-    "iso2": "CO",
-    "timezone": "America/Bogota"
+    "capital": "Kingstown",
+    "country": "Saint Vincent and the Grenadines",
+    "iso2": "VC",
+    "timezone": "America/St_Vincent"
   },
-  "selection_period": "2026-11-26"
+  "selection_period": "2026-11-27"
 }
