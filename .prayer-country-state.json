@@ -90,15 +90,14 @@
     "SL",
     "BR",
     "ES",
-    "DM",
-    "FJ"
+    "DM"
   ],
   "schema": 1,
   "selected": {
-    "capital": "Kingstown",
-    "country": "Saint Vincent and the Grenadines",
-    "iso2": "VC",
-    "timezone": "America/St_Vincent"
+    "capital": "Suva",
+    "country": "Fiji",
+    "iso2": "FJ",
+    "timezone": "Pacific/Fiji"
   },
-  "selection_period": "2026-11-27"
+  "selection_period": "2026-11-28"
 }
